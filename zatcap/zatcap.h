@@ -57,6 +57,7 @@ namespace settings
 	extern string browserCommand;
 	extern int underlineLinksWhenHovered;
 	extern int tempInt;
+	extern int markReadAfterTweeting;
 }
 namespace colors
 {
@@ -137,6 +138,7 @@ extern SDL_Surface* retweet[3];
 extern SDL_Surface* reply[3];
 extern SDL_Surface* deleteButton[2];
 extern SDL_Surface* refresh[2];
+extern SDL_Surface* top[2];
 
 void boxRGB(SDL_Surface* screen,int x1,int y1,int x2,int y2,int r,int g,int b,int a=255);
 void boxColor(SDL_Surface* screen,int x1,int y1,int x2,int y2,Uint32 color);

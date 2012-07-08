@@ -60,6 +60,9 @@
     <ClInclude Include="TimedEventProcess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Tweet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -108,6 +111,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TimedEventProcess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tweet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

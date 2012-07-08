@@ -3,6 +3,7 @@
 #include "zatcap.h"
 #include <time.h>
 #include "Button.h"
+#include "Tweet.h"
 
 #define COLUMNHEADERHEIGHT 35
 
@@ -17,11 +18,11 @@ public:
 	string columnName;
 	string emptyColumnText;
 	int scrollBarHeight;
+	bool onOff;
 	bool highlightScrollbar;
 	int scrollBarY;
 	int tweetHeight;
-	int nNewTweets;
-	map<string,Tweet*> m_tweets;
+	map<string,TweetInstance*> m_tweets;
 	Column(float w,string name);
 	virtual ~Column(void);
 	virtual void update();
@@ -33,7 +34,7 @@ public:
 
 	virtual void deleteTweet(string id);
 	bool drawRefreshButton();
-
+	bool redrawAllTweets;
 };
 
 extern int columnHorizontalScroll;

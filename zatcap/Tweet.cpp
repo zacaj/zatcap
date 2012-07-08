@@ -459,6 +459,7 @@ draw:
 	drawSprite(pic,tempSurface,0,0,x+5,y+5,pic->w,pic->h);
 	surface=SDL_CreateRGBSurface(SDL_HWSURFACE,w,height,32,tempSurface->format->Rmask,tempSurface->format->Gmask,tempSurface->format->Bmask,tempSurface->format->Amask);
 	drawSprite(tempSurface,surface,0,0,0,0,w,height);
+	needsRefresh=0;
 }
 
 void TweetInstance::draw( int x,int y )	

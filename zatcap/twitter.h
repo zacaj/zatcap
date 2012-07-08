@@ -5,6 +5,8 @@ int twitterInit(void *twit);
 #include <time.h>
 #include <assert.h>
 #include "file.h"
+class Tweet;
+class Retweet;
 extern SDL_Surface *defaultUserPic;
 extern SDL_Surface *defaultSmallUserPic;
 extern SDL_Surface *defaultMediumUserPic;
@@ -132,68 +134,9 @@ public:
 	}
 };
 
-class Tweet
-{
-public:
-	char _type;
-	string text;
-	string originalText;
-	string id;
-	string userid;
-	Tweet()
-	{
-		_user=NULL;
-		_type=0;
-		read=0;
-	}
-	struct tm timeTweeted;
-	time_t timeTweetedInSeconds;
-	bool favorited;
-	bool retweeted;
-	int read;
-	vector<Entity *> entities;
-	User* user()
-	{
-		if(_user==NULL)
-			_user=getUser(userid);
-		return _user;
-	}
-	User *_user;
-	virtual int draw(int x,int y,int w,int background);
-	virtual int drawButtons(int x,int y,int w,int h,bool highlighted,SDL_Surface* _screen=NULL);
-	virtual void write(FILE *fp);
-};
-
 Tweet* getTweet(string id);
 
 
-
-class Retweet:public Tweet
-{
-public:	
-	User *retweetedBy;
-	string originalID;
-	int nRetweet;
-	struct tm timeRetweeted;
-	time_t timeRetweetedInSeconds;
-	Tweet *_original;
-	Retweet()
-	{
-		retweetedBy=NULL;
-		_type=1;
-		_original=NULL;
-		read=0;
-	}
-	Tweet* original()
-	{debugHere();
-		if(_original!=NULL)
-			return _original;
-		return _original=getTweet(originalID);
-	}
-
-	virtual int draw( int x,int y,int w,int background );
-	virtual void write(FILE *fp);
-};
 
 void deleteTweet(string id);
 

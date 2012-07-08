@@ -18,11 +18,10 @@ void HomeColumn::newTweet( Tweet *tweet )
 	if(tweet->_type<0)
 		return;
 	while(drawing);
-	m_tweets[tweet->id]=tweet;
+	m_tweets[tweet->id]=new TweetInstance(tweet,rw,onOff);
 	updateScreen=1;
 	//printf("o %i\n",tweetHeight);
 	tweetHeight=-1;
-	nNewTweets++;
 }
 
 int homeColumnRefresh(void *data)
@@ -31,7 +30,7 @@ int homeColumnRefresh(void *data)
 	string tmpString;
 	if(!col->m_tweets.empty())
 	{
-		map<string,Tweet*>::reverse_iterator rit=col->m_tweets.rbegin();
+		auto rit=col->m_tweets.rbegin();
 		rit++;
 		while((tmpString=twit->timelineHomeGet(false,true,800,rit->first,""))=="");//settings::tweetsToLoadOnStartup+50
 	}

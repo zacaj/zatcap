@@ -93,6 +93,7 @@
     <ClInclude Include="stream.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Textbox.h" />
+    <ClInclude Include="Tweet.h" />
     <ClInclude Include="twitter.h" />
     <ClInclude Include="TimedEventProcess.h" />
     <ClInclude Include="WaitIndicator.h" />
@@ -111,6 +112,7 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="stream.cpp" />
     <ClCompile Include="Textbox.cpp" />
+    <ClCompile Include="Tweet.cpp" />
     <ClCompile Include="twitter.cpp" />
     <ClCompile Include="TimedEventProcess.cpp" />
     <ClCompile Include="WaitIndicator.cpp" />

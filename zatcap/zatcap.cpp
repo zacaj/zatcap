@@ -45,6 +45,7 @@ SDL_Surface* retweet[3];
 SDL_Surface* reply[3];
 SDL_Surface* deleteButton[2];
  SDL_Surface* refresh[2];
+ SDL_Surface* top[2];
 SDL_Surface* tempSurface;
 string tempString;
 Process *keyboardInputReceiver;
@@ -84,6 +85,7 @@ namespace settings
 	string browserCommand="C:\\Users\\Zack\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe";
 	int underlineLinksWhenHovered=1;
 	int tempInt;
+	int markReadAfterTweeting=0;
 }
 namespace colors
 {
@@ -275,7 +277,7 @@ int main(int argc, char* argv[])
 	screen=SDL_SetVideoMode(settings::windowWidth,settings::windowHeight,32,SDL_SWSURFACE| SDL_RESIZABLE);debug("%i\n",__LINE__);
 	readConfig();debug("%i\n",__LINE__);//read a second time to load colors
 	//sysinit();
-	tempSurface=SDL_CreateRGBSurface(SDL_SWSURFACE,8,8,32,screen->format->Rmask,screen->format->Gmask,screen->format->Bmask,screen->format->Amask);
+	tempSurface=SDL_CreateRGBSurface(SDL_SWSURFACE,3000,1000,32,screen->format->Rmask,screen->format->Gmask,screen->format->Bmask,screen->format->Amask);
 	twitCurl *twit=NULL;
 	TTF_Init();debug("%i\n",__LINE__);
 	SDL_WM_SetCaption( "Zacaj's Amazing Twitter Client for Awesome People", NULL );
@@ -304,6 +306,8 @@ int main(int argc, char* argv[])
 	assert(deleteButton[1]=IMG_Load("resources/delete_hover.png"));
 	assert(refresh[0]=IMG_Load("resources/refresh.png"));
 	assert(refresh[1]=IMG_Load("resources/refresh_hover.png"));
+	assert(top[0]=IMG_Load("resources/top.png"));
+	assert(top[1]=IMG_Load("resources/top_hover.png"));
 
 
 	SDL_Thread *thread=SDL_CreateThread(twitterInit,&twit);debug("%i\n",__LINE__);
@@ -621,6 +625,8 @@ void readConfig()
 	fscanf(fp,"%i\n",&settings::underlineLinksWhenHovered);
 	jumpToSetting(fp,"temp");
 	fscanf(fp,"%i\n",&settings::tempInt);
+	jumpToSetting(fp,"mark all tweets as read after tweeting");
+	fscanf(fp,"%i\n",&settings::markReadAfterTweeting);
 
 	using namespace colors;
 	jumpToSetting(fp,"unread tweet color");

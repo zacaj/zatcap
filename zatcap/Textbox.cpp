@@ -3,6 +3,7 @@
 #include <SDL_gfxPrimitives.h>
 #include "twitcurl.h"
 #include "twitter.h"
+#include "Tweet.h"
 
 TTF_Font* getFont(int size);
 #define ITR str.begin()+

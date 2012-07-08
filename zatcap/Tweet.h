@@ -1,5 +1,6 @@
 #pragma once
 
+#include "zatcap.h"
 #include "twitter.h"
 
 class Tweet
@@ -73,4 +74,5 @@ public:
 	TweetInstance(Tweet *_tweet,int w,int _background );
 	~TweetInstance();
 	void draw(int x,int y);
+	bool needsRefresh;
 };

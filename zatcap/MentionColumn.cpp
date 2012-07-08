@@ -18,9 +18,8 @@ void MentionColumn::newTweet( Tweet *tweet )
 	if(tweet->text.find(term)!=string::npos)
 	{
 		while(drawing);
-		m_tweets[tweet->id]=tweet;
+		m_tweets[tweet->id]=new TweetInstance(tweet,rw,onOff);
 		updateScreen=1;
-		nNewTweets++;
 	}
 }
 
@@ -29,7 +28,7 @@ int mentionColumnRefresh(void *data)
 	MentionColumn *col=(MentionColumn*)data;
 	if(col->m_tweets.empty())
 		return 0;
-	map<string,Tweet*>::reverse_iterator rit=col->m_tweets.rbegin();
+	auto rit=col->m_tweets.rbegin();
 	rit++;
 	string tmpString;
 	while((tmpString=twit->mentionsGet(rit->first,""))=="");//settings::tweetsToLoadOnStartup+50
