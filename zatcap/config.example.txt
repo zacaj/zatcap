@@ -1,0 +1,23 @@
+# what file to store user info in
+##  if you change this, make sure to actually create the new file
+##    and put in your username and password
+##  use user.example.txt as an example, obviously
+user info file = user.txt
+
+# the maximum number of tweets to load at startup
+#   this will stop if it reaches the point in time where the last
+#   session of ZATCAP saved tweets to, if tweet saving is enabled
+##  if you don't want any loaded, put 0 obviously
+##  
+##  to load as many tweets as required to reach the tweets saved
+##    from the last launch, put -1
+tweets to load = 5
+
+# how long to keep tweets stored on disk, in days
+##  tweets older than this will be deleted
+##
+##  0 = don't save tweets
+##
+##  -1 = don't ever delete tweets
+##    (this may cause problems after a long enough time)
+tweet archive age = 0

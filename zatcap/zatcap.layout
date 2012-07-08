@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="Column.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="5054" topLine="115" />
+	</File>
+	<File name="Textbox.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="1829" topLine="58" />
+	</File>
+	<File name="file.cpp" open="1" top="0" tabpos="10">
+		<Cursor position="1974" topLine="108" />
+	</File>
+	<File name="stream.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="3213" topLine="93" />
+	</File>
+	<File name="twitter.cpp" open="1" top="1" tabpos="6">
+		<Cursor position="2042" topLine="79" />
+	</File>
+	<File name="zatcap.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="16439" topLine="565" />
+	</File>
+	<File name="zatcap.h" open="1" top="0" tabpos="3">
+		<Cursor position="204" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>

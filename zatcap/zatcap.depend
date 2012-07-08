@@ -1,0 +1,558 @@
+# depslib dependency file v1.0
+1335113610 source:/media/sf_source/zatcap/zatcap/Button.cpp
+	"Button.h"
+	"zatcap.h"
+
+1335657118 /media/sf_source/zatcap/zatcap/Button.h
+	"process.h"
+	<SDL_video.h>
+
+1327664837 /usr/include/SDL/SDL_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_config.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1327664837 /usr/include/SDL/SDL_platform.h
+
+1327664837 /usr/include/SDL/begin_code.h
+
+1327664837 /usr/include/SDL/close_code.h
+
+1327664837 /usr/include/SDL/SDL_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1336950923 /media/sf_source/zatcap/zatcap/zatcap.h
+	"twitcurl.h"
+	"curl.h"
+	<string>
+	<SDL_gfxPrimitives.h>
+	<SDL.h>
+	<SDL_ttf.h>
+	<vector>
+	<map>
+	<stdio.h>
+	<json/reader.h>
+
+1336833665 /media/sf_src/libtwitcurl/twitcurl.h
+	<string>
+	<sstream>
+	<cstring>
+	"oauthlib.h"
+	"curl/curl.h"
+
+1334266405 /media/sf_src/libtwitcurl/oauthlib.h
+	"time.h"
+	<cstdlib>
+	<sstream>
+	<iostream>
+	<fstream>
+	<string>
+	<list>
+	<map>
+
+1334266341 /media/sf_src/libtwitcurl/curl/curl.h
+	"curlver.h"
+	"curlbuild.h"
+	"curlrules.h"
+	<stdio.h>
+	<limits.h>
+	<osreldate.h>
+	<sys/types.h>
+	<time.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/select.h>
+	<sys/socket.h>
+	<sys/time.h>
+	<sys/types.h>
+	<support/SupportDefs.h>
+	"easy.h"
+	"multi.h"
+	"typecheck-gcc.h"
+
+1334266341 /media/sf_src/libtwitcurl/curl/curlver.h
+
+1334266341 /media/sf_src/libtwitcurl/curl/curlbuild.h
+	<sys/types.h>
+	<sys/socket.h>
+
+1334266341 /media/sf_src/libtwitcurl/curl/curlrules.h
+
+1334266341 /media/sf_src/libtwitcurl/curl/easy.h
+
+1334266341 /media/sf_src/libtwitcurl/curl/multi.h
+	"curl.h"
+
+1334266341 /media/sf_src/libtwitcurl/curl/typecheck-gcc.h
+
+1332459384 /usr/include/curl/curl.h
+	"curlver.h"
+	"curlbuild.h"
+	"curlrules.h"
+	<stdio.h>
+	<limits.h>
+	<osreldate.h>
+	<sys/types.h>
+	<time.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/select.h>
+	<sys/socket.h>
+	<sys/time.h>
+	<support/SupportDefs.h>
+	"easy.h"
+	"multi.h"
+	"typecheck-gcc.h"
+
+1332459384 /usr/include/curl/curlver.h
+
+1332459384 /usr/include/curl/curlbuild.h
+	<windows.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/types.h>
+	<stdint.h>
+	<inttypes.h>
+	<sys/socket.h>
+
+1332459384 /usr/include/curl/curlrules.h
+
+1332459384 /usr/include/curl/easy.h
+
+1332459384 /usr/include/curl/multi.h
+	"curl.h"
+
+1332459384 /usr/include/curl/typecheck-gcc.h
+
+1326465968 /usr/include/SDL/SDL_gfxPrimitives.h
+	<math.h>
+	"SDL.h"
+
+1327664837 /usr/include/SDL/SDL.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_endian.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_keysym.h
+
+1327664837 /usr/include/SDL/SDL_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1327664837 /usr/include/SDL/SDL_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327664837 /usr/include/SDL/SDL_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325205476 /usr/include/SDL/SDL_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1335654948 /media/sf_src/jsoncpp-src-0.5.0/include/json/reader.h
+	"mfeatures.h"
+	"value.h"
+	<deque>
+	<stack>
+	<string>
+	<iostream>
+
+1268379095 /media/sf_src/jsoncpp-src-0.5.0/include/json/features.h
+	"forwards.h"
+
+1268379095 /media/sf_src/jsoncpp-src-0.5.0/include/json/forwards.h
+	"config.h"
+
+1268379095 /media/sf_src/jsoncpp-src-0.5.0/include/json/config.h
+	<cpptl/config.h>
+
+1268379095 /media/sf_src/jsoncpp-src-0.5.0/include/json/value.h
+	"forwards.h"
+	<string>
+	<vector>
+	<map>
+	<cpptl/smallmap.h>
+	<cpptl/forwards.h>
+
+1336948721 source:/media/sf_source/zatcap/zatcap/Column.cpp
+	"Column.h"
+	"twitter.h"
+	<SDL_rotozoom.h>
+
+1336769986 /media/sf_source/zatcap/zatcap/Column.h
+	"process.h"
+	"zatcap.h"
+	<time.h>
+	"Button.h"
+
+1336943870 /media/sf_source/zatcap/zatcap/twitter.h
+	"zatcap.h"
+	<time.h>
+	<assert.h>
+	"file.h"
+
+1326465968 /usr/include/SDL/SDL_rotozoom.h
+	<math.h>
+	"SDL.h"
+
+1336772489 source:/media/sf_source/zatcap/zatcap/HomeColumn.cpp
+	"HomeColumn.h"
+	"twitter.h"
+
+1335651254 /media/sf_source/zatcap/zatcap/HomeColumn.h
+	"column.h"
+	"zatcap.h"
+
+1336770038 source:/media/sf_source/zatcap/zatcap/MentionColumn.cpp
+	"MentionColumn.h"
+	"twitter.h"
+
+1335666023 /media/sf_source/zatcap/zatcap/MentionColumn.h
+	"column.h"
+	"zatcap.h"
+
+1336951019 source:/media/sf_source/zatcap/zatcap/Textbox.cpp
+	"Textbox.h"
+	"zatcap.h"
+	<SDL_gfxPrimitives.h>
+	"twitcurl.h"
+	"twitter.h"
+
+1335733447 /media/sf_source/zatcap/zatcap/Textbox.h
+	"process.h"
+	<string>
+	<stack>
+
+1335113091 source:/media/sf_source/zatcap/zatcap/UserRetryProcess.cpp
+	"UserRetryProcess.h"
+	"twitter.h"
+
+1335113569 /media/sf_source/zatcap/zatcap/UserRetryProcess.h
+	"process.h"
+
+1336331370 source:/media/sf_source/zatcap/zatcap/WaitIndicator.cpp
+	"WaitIndicator.h"
+
+1335113100 /media/sf_source/zatcap/zatcap/WaitIndicator.h
+	"process.h"
+	"zatcap.h"
+
+1336774603 source:/media/sf_source/zatcap/zatcap/file.cpp
+	"file.h"
+	"zatcap.h"
+
+1336774607 /media/sf_source/zatcap/zatcap/file.h
+	<stdio.h>
+	"zatcap.h"
+
+1268379095 source:/media/sf_source/zatcap/zatcap/json_reader.cpp
+	<json/reader.h>
+	<json/value.h>
+	<utility>
+	<cstdio>
+	<cassert>
+	<cstring>
+	<iostream>
+	<stdexcept>
+
+1268379095 source:/media/sf_source/zatcap/zatcap/json_value.cpp
+	<iostream>
+	<json/value.h>
+	<json/writer.h>
+	<utility>
+	<stdexcept>
+	<cstring>
+	<cassert>
+	<cpptl/conststring.h>
+	<cstddef>
+	"json_batchallocator.h"
+	"json_internalarray.inl"
+	"json_internalmap.inl"
+	"json_valueiterator.inl"
+
+1268379095 /media/sf_src/jsoncpp-src-0.5.0/include/json/writer.h
+	"value.h"
+	<vector>
+	<string>
+	<iostream>
+
+1268379095 /media/sf_source/zatcap/zatcap/json_batchallocator.h
+	<stdlib.h>
+	<assert.h>
+
+1268379095 /media/sf_source/zatcap/zatcap/json_internalarray.inl
+
+1268379095 /media/sf_source/zatcap/zatcap/json_internalmap.inl
+
+1268379095 /media/sf_source/zatcap/zatcap/json_valueiterator.inl
+
+1268379095 source:/media/sf_source/zatcap/zatcap/json_writer.cpp
+	<json/writer.h>
+	<utility>
+	<assert.h>
+	<stdio.h>
+	<string.h>
+	<iostream>
+	<sstream>
+	<iomanip>
+
+1336938733 source:/media/sf_source/zatcap/zatcap/sdl.cpp
+	"zatcap.h"
+	<algorithm>
+	<SDL_image.h>
+	"twitter.h"
+	"utf8.h"
+
+1325206101 /usr/include/SDL/SDL_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1336781924 source:/media/sf_source/zatcap/zatcap/stream.cpp
+	"stream.h"
+	"zatcap.h"
+	"twitter.h"
+
+1334960909 /media/sf_source/zatcap/zatcap/stream.h
+
+1268379095 /media/sf_src/jsoncpp-src-0.5.0/include/json/mfeatures.h
+	"forwards.h"
+
+1336951580 source:/media/sf_source/zatcap/zatcap/twitter.cpp
+	"twitter.h"
+	"zatcap.h"
+	"twitcurl.h"
+	"stream.h"
+	"WaitIndicator.h"
+	<assert.h>
+	<json\writer.h>
+	"TimedEventProcess.h"
+	"MentionColumn.h"
+	<SDL_rotozoom.h>
+	"Textbox.h"
+	"file.h"
+	<stdio.h>
+	<dirent.h>
+	<iosfwd>
+
+1336950929 source:/media/sf_source/zatcap/zatcap/zatcap.cpp
+	"stdafx.h"
+	"twitcurl.h"
+	"curl.h"
+	<string>
+	<stdio.h>
+	"twitter.h"
+	"file.h"
+	"stream.h"
+	"zatcap.h"
+	"WaitIndicator.h"
+	<SDL.h>
+	<SDL_thread.h>
+	<assert.h>
+	"HomeColumn.h"
+	<time.h>
+	<string.h>
+	<sys/stat.h>
+	"MentionColumn.h"
+	<SDL_image.h>
+	<SDL_rotozoom.h>
+	"Button.h"
+	<SDL_syswm.h>
+	"Textbox.h"
+	<direct.h>
+	<sys/stat.h>
+	"TimedEventProcess.h"
+
+1335723374 /media/sf_source/zatcap/zatcap/stdafx.h
+	"targetver.h"
+	<stdio.h>
+	<tchar.h>
+
+1334276296 /media/sf_source/zatcap/zatcap/targetver.h
+	<SDKDDKVer.h>
+
+1327664837 /usr/include/SDL/SDL_syswm.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_version.h"
+	"begin_code.h"
+	<X11/Xlib.h>
+	<X11/Xatom.h>
+	<microwin/nano-X.h>
+	<windows.h>
+	<sys/neutrino.h>
+	<Ph.h>
+	"close_code.h"
+
+1336341547 /media/sf_source/zatcap/zatcap/TimedEventProcess.h
+	"process.h"
+
+1336093740 source:/media/sf_source/zatcap/zatcap/TimedEventProcess.cpp
+	"TimedEventProcess.h"
+	"twitter.h"
+
+1246628648 /media/sf_source/zatcap/zatcap/utf8.h
+	"utf8/checked.h"
+	"utf8/unchecked.h"
+
+1298222932 /media/sf_source/zatcap/zatcap/utf8/checked.h
+	"core.h"
+	<stdexcept>
+
+1298223976 /media/sf_source/zatcap/zatcap/utf8/core.h
+	<iterator>
+
+1260148895 /media/sf_source/zatcap/zatcap/utf8/unchecked.h
+	"core.h"
+
