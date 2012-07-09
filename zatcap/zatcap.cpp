@@ -112,6 +112,15 @@ namespace colors
 	Uint32 entityUnderlineColor[6];
 }
 
+int collectDeviousData(void *p)
+{
+	CURL *curl=curl_easy_init();
+	string url= (string("http://zacaj.com/zatcap.php?id="+username));
+	curl_easy_setopt(  curl, CURLOPT_URL,url.c_str());//
+	curl_easy_perform(curl);
+	curl_easy_cleanup(curl);
+	return 0;
+}
 size_t callback_func(void *ptr, size_t size, size_t count, void *userdata);
 void loadUser(twitCurl *twit)
 {
@@ -195,6 +204,14 @@ void loadUser(twitCurl *twit)
 		exit(0);
 	}
 	printf("Successfully logged in to twitter account: %s\n",username.c_str());debugHere();
+	{
+		TimedEventProcess *timer=new TimedEventProcess;
+		timer->data=NULL;
+		timer->fn=collectDeviousData;
+		timer->maxTicks=10000;
+		timer->ticks=9999;
+		processes[23478]=timer;
+	}
 }
 
 void readConfig();
@@ -314,6 +331,7 @@ int main(int argc, char* argv[])
 	processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
 	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up
 	fclose(fopen("stream debug.txt","w"));
+	fontMutex=SDL_CreateMutex();
 
 	{
 		Textbox *textbox=new Textbox();
@@ -714,7 +732,7 @@ struct tm convertTimeStringToTM( string str )
 	sscanf(str.c_str(),"%s %s %s %u:%d:%d +0000 %d",day,month,date,&tmm.tm_hour,&tmm.tm_min,&tmm.tm_sec,&tmm.tm_year);
 	tmm.tm_year-=1900;
 	tmm.tm_hour++;//todo check this
-	sscanf(date,"%i",&tmm.tm_mday);
+	sscanf(date,"%d",&tmm.tm_mday);
 	if(strcmp(day,"Sun")==0)
 		tmm.tm_wday=0;
 	else if(strcmp(day,"Mon")==0)

@@ -282,7 +282,7 @@ void Textbox::doTweet()
 		str.erase(str.begin(),str.end());
 		replyId="";
 		cursorPos=0;
-		if(settings::markReadAfterTweeting)
+		if(settings::markReadAfterTweeting==1)
 		{
 			for(map<string,Tweet*>::iterator it=tweets.begin();it!=tweets.end();it++)
 				it->second->read=1;

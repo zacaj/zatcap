@@ -158,3 +158,5 @@ extern int mousex,mousey;
 bool fileExists(string path);
 
 #define MOUSEPREPRESS -7
+
+extern SDL_mutex *fontMutex;

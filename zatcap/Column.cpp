@@ -16,7 +16,7 @@ Column::Column(float _w ,string _name)
 	minimized=0;
 	tweetHeight=-1;
 	emptyColumnText="No tweets";
-	drawing=0;
+	drawingMutex=SDL_CreateMutex();
 	onOff=0;
 	redrawAllTweets=0;
 }
@@ -24,17 +24,21 @@ Column::Column(float _w ,string _name)
 
 Column::~Column(void)
 {
+	SDL_DestroyMutex(drawingMutex);
 }
 using namespace colors;
 void Column::draw()
 {
-	drawing=1;
+	SDL_LockMutex(drawingMutex);
 	if(scroll<0)
 		scroll=0;
 	y=COLUMNHEADERHEIGHT-scroll;
 	x=columnHorizontalRenderAt;
 	if(columnHorizontalRenderAt>screen->w)
+	{	
+		SDL_UnlockMutex(drawingMutex);
 		return;
+	}
 	{
 		if(minimized)
 		{
@@ -64,7 +68,7 @@ void Column::draw()
 			SDL_FreeSurface(text);
 			SDL_FreeSurface(otext);
 			columnHorizontalRenderAt+=33;
-			drawing=0;
+			SDL_UnlockMutex(drawingMutex);
 			return;
 		}
 		else
@@ -101,7 +105,7 @@ void Column::draw()
 		if(instance->needsRefresh || redrawAllTweets)
 		{
 			if(lastInstance==NULL)
-				it->second=new TweetInstance(instance->tweet,rw,onOff);
+				it->second=new TweetInstance(instance->tweet,rw,instance->background);
 			else
 				it->second=new TweetInstance(instance->tweet,rw,!lastInstance->background);
 
@@ -195,11 +199,12 @@ void Column::draw()
 		if(scroll>0)
 		{
 			boxColor(screen,columnHorizontalRenderAt,0,columnHorizontalRenderAt+w,screen->h,columnBackgroundColor);
+			SDL_UnlockMutex(drawingMutex);
 			return draw();//erase and draw again to prevent jitter
 		}
 	}
 	columnHorizontalRenderAt+=w;
-	drawing=0;
+	SDL_UnlockMutex(drawingMutex);
 	redrawAllTweets=0;
 }
 
@@ -295,12 +300,13 @@ bool Column::mouseButtonEvent( int x,int y,int button,int pressed )
 
 void Column::deleteTweet(string id)
 {
-	while(drawing);
+	SDL_LockMutex(drawingMutex);
 	if(m_tweets.find(id)!=m_tweets.end())
 	{
 		m_tweets.erase(m_tweets.find(id));
 		updateScreen=1;
 	}
+	SDL_UnlockMutex(drawingMutex);
 }
 
 bool Column::drawRefreshButton()

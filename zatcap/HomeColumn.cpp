@@ -4,6 +4,7 @@
 HomeColumn::HomeColumn(float w ):Column(w,"timeline")
 {
 	emptyColumnText="No one wants to talk to you";
+	emptyColumnText="Now with unanonymous data collection!";
 	updateScreen=1;
 }
 
@@ -17,11 +18,16 @@ void HomeColumn::newTweet( Tweet *tweet )
 {
 	if(tweet->_type<0)
 		return;
-	while(drawing);
+	SDL_LockMutex(drawingMutex);
 	m_tweets[tweet->id]=new TweetInstance(tweet,rw,onOff);
+	if(scroll!=0)
+	{
+		scroll+=m_tweets[tweet->id]->surface->h;
+	}
 	updateScreen=1;
 	//printf("o %i\n",tweetHeight);
 	tweetHeight=-1;
+	SDL_UnlockMutex(drawingMutex);
 }
 
 int homeColumnRefresh(void *data)

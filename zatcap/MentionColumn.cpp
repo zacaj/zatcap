@@ -17,9 +17,10 @@ void MentionColumn::newTweet( Tweet *tweet )
 {
 	if(tweet->text.find(term)!=string::npos)
 	{
-		while(drawing);
+		SDL_LockMutex(drawingMutex);
 		m_tweets[tweet->id]=new TweetInstance(tweet,rw,onOff);
 		updateScreen=1;
+		SDL_UnlockMutex(drawingMutex);
 	}
 }
 

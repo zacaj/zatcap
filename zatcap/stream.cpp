@@ -3,7 +3,6 @@
 #include "twitter.h"
 
 int streaming=0;
-
 void parseStream(Json::Value root,string str)
 {debugHere();
 	if(!root["friends"].isNull() && root["friends"].isArray())//opening friends message
@@ -45,20 +44,36 @@ void parseStream(Json::Value root,string str)
 	}debugHere();
 
 }
-
+struct ParseStream
+{
+	Json::Value root;
+	string str;
+};
+int parseStreamThread(void *ptr)
+{
+	ParseStream *str=(ParseStream*)ptr;
+	parseStream(str->root,str->str);
+	delete ptr;
+	return 0;
+}
+int loadMissingTweets(void *data)
+{
+	printf("Loading missing tweets\n");
+	string tmpString;debugHere();
+	if(!tweets.empty())
+	{
+		while((tmpString=twit->timelineHomeGet(false,true,800,(--tweets.end())->first,""))=="");debugHere();//settings::tweetsToLoadOnStartup+50
+	}
+	else
+		while((tmpString=twit->timelineHomeGet(false,true,settings::tweetsToLoadOnStartup,"",""))=="");
+	parseRestTweets(tmpString);debugHere();
+	return 0;
+}
 size_t callback_func(void *ptr, size_t size, size_t count, void *userdata)
 {
 	if(streaming<=0)
 	{
-		printf("Loading missing tweets\n");
-		string tmpString;debugHere();
-		if(!tweets.empty())
-		{
-			while((tmpString=twit->timelineHomeGet(false,true,800,(--tweets.end())->first,""))=="");debugHere();//settings::tweetsToLoadOnStartup+50
-		}
-		else
-			while((tmpString=twit->timelineHomeGet(false,true,settings::tweetsToLoadOnStartup,"",""))=="");
-		parseRestTweets(tmpString);debugHere();
+		SDL_CreateThread(loadMissingTweets,NULL);
 	}
 	streaming=60*45;debugHere();
 	string str=(char*)ptr;
@@ -84,7 +99,10 @@ size_t callback_func(void *ptr, size_t size, size_t count, void *userdata)
 			Json::Reader reader;
 			Json::Value root;debugHere();
 			reader.parse(s,root);debugHere();
-			parseStream(root,s);debugHere();
+			ParseStream *strm=new ParseStream;
+			strm->root=root;
+			strm->str=s;
+			SDL_CreateThread(parseStreamThread,strm);//parseStream(root,s);debugHere();
 			lpos=pos;debugHere();
 		} //i will be so amazed if this actually works
 	}
@@ -99,7 +117,11 @@ size_t callback_func(void *ptr, size_t size, size_t count, void *userdata)
 //			fflush(fp);
 			Json::Value root;debugHere();
 			reader.parse(str2,root);debugHere();
-			parseStream(root,str2);debugHere();
+			ParseStream *strm=new ParseStream;
+			strm->root=root;
+			strm->str=str2;
+			SDL_CreateThread(parseStreamThread,strm);
+			//parseStream(root,str2);debugHere();
 			((string*)userdata)->clear();debugHere();
 		}
 		else

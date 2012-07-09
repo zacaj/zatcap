@@ -390,6 +390,7 @@ void Tweet::write( FILE *fp )
 	wuchar(_type,fp);
 	wstr(id,fp);
 	fwrite(&timeTweeted,sizeof(int),9,fp);
+	fputc('\n',fp);
 	wstr(text,fp);
 	wstr(userid,fp);
 	wuchar(favorited,fp);
@@ -408,6 +409,7 @@ void Retweet::write( FILE *fp )
 	wstr(originalID,fp);
 	wuint(nRetweet,fp);
 	fwrite(&timeRetweeted,sizeof(int),9,fp);
+	fputc('\n',fp);
 }
 
 TweetInstance::TweetInstance( Tweet *_tweet,int w,int _background  )	:
@@ -421,6 +423,7 @@ TweetInstance::TweetInstance( Tweet *_tweet,int w,int _background  )	:
 	int textWidth=w-7-pic->w-5-7-13-16;
 draw:
 	int nameWidth=200;
+	//SDL_FillRect(tempSurface,0,0);
 	height=drawTextWrappedw(tweet->user()->username.c_str(),x+7+pic->w+5,y+2,nameWidth,15,first,usernameTextColorR,usernameTextColorG,usernameTextColorB,tempSurface);
 	char date[1000];
 	if(tweet->timeTweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
@@ -460,6 +463,7 @@ draw:
 	surface=SDL_CreateRGBSurface(SDL_HWSURFACE,w,height,32,tempSurface->format->Rmask,tempSurface->format->Gmask,tempSurface->format->Bmask,tempSurface->format->Amask);
 	drawSprite(tempSurface,surface,0,0,0,0,w,height);
 	needsRefresh=0;
+	pic=tweet->user()->pic();
 }
 
 void TweetInstance::draw( int x,int y )	
@@ -476,6 +480,9 @@ void TweetInstance::draw( int x,int y )
 	}
 	if(hoverButton(x+5,y+5,48,48))
 		drawSprite(reply[2],screen,0,0,x+5,y+5,reply[2]->w,reply[2]->h);
+
+	if(tweet->user()->pic()!=pic)
+		needsRefresh=1;
 }
 
 TweetInstance::~TweetInstance()

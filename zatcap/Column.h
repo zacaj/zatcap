@@ -4,6 +4,7 @@
 #include <time.h>
 #include "Button.h"
 #include "Tweet.h"
+#include <SDL_mutex.h>
 
 #define COLUMNHEADERHEIGHT 35
 
@@ -27,7 +28,7 @@ public:
 	virtual ~Column(void);
 	virtual void update();
 	virtual void draw();
-	bool drawing;
+	SDL_mutex *drawingMutex;
 	virtual void newTweet(Tweet *tweet)=0;
 
 	virtual bool mouseButtonEvent( int x,int y,int button,int pressed );

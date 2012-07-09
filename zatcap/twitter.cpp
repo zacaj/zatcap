@@ -138,6 +138,7 @@ void readTweetFile(string path)
 	{
 	case 2:
 	case 3:
+	case 4:
 		{
 			int n=ruint(fp);
 			for(int i=0;i<n;i++)
@@ -155,15 +156,23 @@ void readTweetFile(string path)
 					{
 						Tweet *tweet=new Tweet;
 						tweet->id=rstr(fp);
-						fread(&tweet->timeTweeted,sizeof(int),9,fp);
-						tweet->timeTweetedInSeconds=mktime(&tweet->timeTweeted);
+						if(version>=5)
+						{
+
+						}
+						else
+						{
+							fread(&tweet->timeTweeted,sizeof(int),9,fp);
+							if(version==4) fgetc(fp);
+							tweet->timeTweetedInSeconds=mktime(&tweet->timeTweeted);
+						}
 						tweet->text=rstr(fp);
 						tweet->userid=rstr(fp);
 						tweet->_user=getUser(tweet->userid);
 						tweet->favorited=ruchar(fp);
 						tweet->retweeted=ruchar(fp);
 						tweet->read=ruchar(fp);debugHere();
-						if(version==3)
+						if(version>=3)
 						{
 							int nEntity=ruchar(fp);
 							for(int iEntity=0;iEntity<nEntity;iEntity++)
@@ -187,6 +196,7 @@ void readTweetFile(string path)
 						Retweet *retweet=new Retweet;
 						retweet->id=rstr(fp);
 						fread(&retweet->timeTweeted,sizeof(int),9,fp);
+						if(version==4) fgetc(fp);
 						retweet->timeTweetedInSeconds=mktime(&retweet->timeTweeted);
 						retweet->text=rstr(fp);
 						retweet->userid=rstr(fp);
@@ -194,7 +204,7 @@ void readTweetFile(string path)
 						retweet->favorited=ruchar(fp);
 						retweet->retweeted=ruchar(fp);
 						retweet->read=ruchar(fp);
-						if(version==3)
+						if(version>=3)
 						{
 							int nEntity=ruchar(fp);
 							for(int iEntity=0;iEntity<nEntity;iEntity++)
@@ -215,6 +225,7 @@ void readTweetFile(string path)
 						retweet->_original=getTweet(retweet->originalID);
 						//tweetsMissing.push_back(retweet);
 						fread(&retweet->timeRetweeted,sizeof(struct tm),1,fp);
+						if(version==4) fgetc(fp);
 						retweet->timeRetweetedInSeconds=mktime(&retweet->timeRetweeted);debugHere();
 						addTweet(retweet);debugHere();
 					}
@@ -329,6 +340,7 @@ string removeLast(string id)
 
 void saveTweets()
 {
+	printf("Saving tweets\n");
 	if(tweets.empty())
 		return;
 	map<string,Tweet*>::iterator top=--tweets.end();
@@ -347,7 +359,7 @@ void saveTweets()
 				rename((string("tweets/")+prefix).c_str(),(string("tweets/")+prefix+".backup").c_str());
 			}
 			fp=fopen((string("tweets/")+prefix).c_str(),"wb");
-			wuchar(3,fp);//version
+			wuchar(4,fp);//version
 			wuint(n,fp);
 			for(map<string,Tweet*>::iterator it=bottom;it!=top;it++)
 			{
@@ -428,6 +440,7 @@ int loadProfilePic(void *ptr)
 {
 	profilepic *pic=(profilepic*)ptr;
 	SDL_Surface** img=(SDL_Surface**)pic->img;
+	printf("Downloading @%s's avatar\n",pic->name.c_str());
 retry:
 	debugHere();
 	CURL *curl= curl_easy_init();
@@ -467,8 +480,9 @@ retry:
 			(*img)=zoomSurface((*img),48.f/ (*img)->w,48.f/ (*img)->h,1);debugHere();//haha @ needing space after /
 			SDL_FreeSurface(temp);debugHere();
 		}debugHere();
-		if(!pic->user->_pic)
-			goto retry;debugHere();
+		if(pic->user->_pic==NULL)
+			goto retry;
+		debugHere();
 		processUserPics(pic->user);debugHere();
 	}
 	else
@@ -480,6 +494,7 @@ retry:
 		*img=NULL;
 		goto retry;
 	}
+	printf("Downloaded @%s's avatar\n",pic->name.c_str());
 	delete ptr;debugHere();
 	return 0;
 }
@@ -542,6 +557,7 @@ int fixUser(void *ptr)
 
 User * getUser( string id )
 {debugHere();
+//printf("%i\n",rand());
 	if(users.find(id)!=users.end())
 		return users[id];
 	if(fileExists(string("users/")+id))
@@ -602,62 +618,6 @@ bool tweetsInuse=0;
 std::string User::getPicPath()
 {
 	return string("profilepics/")+username+"."+getExt(picURL);
-}
-
-Uint32 getBackgroundColor(int background,int read)
-{
-	if(background==0 && read)
-		return colors::readTweetColor;
-	else if(background==0 && !read)
-		return colors::unreadTweetColor;
-	else if(background==1 && read)
-		return colors::readTweetColor2;
-	else if(background==1 && !read)
-		return colors::unreadTweetColor2;
-	else if(background==2)
-		return colors::hoverTweetColor;
-}
-int favoriteTweet(void *data)
-{
-	Tweet *tweet=(Tweet*)data;
-	string tmpString;
-	while((tmpString=twit->favoriteCreate(tweet->id))=="");
-	debug("fav: %s\n",tmpString.c_str());
-	tweet->favorited=1;
-	return 0;
-}
-
-int unfavoriteTweet(void *data)
-{
-	Tweet *tweet=(Tweet*)data;
-	string tmpString;
-	while((tmpString=twit->favoriteDestroy(tweet->id))=="");
-	debug("unfav: %s\n",tmpString.c_str());
-	tweet->favorited=0;
-	return 0;
-}
-int retweetTweet(void *data)
-{
-	Tweet *tweet=(Tweet*)data;
-	string tmpString;
-	while((tmpString=twit->retweetCreate(tweet->id))=="");
-	debug("retweet: %s\n",tmpString.c_str());
-	if(tweet->_type==1)
-	{
-		Retweet *retweet=(Retweet*)tweet;
-		retweet->original()->retweeted=1;
-	}
-	tweet->retweeted=1;
-	return 0;
-}
-
-int deleteTweet(void *data)
-{
-	Tweet *tweet=(Tweet*)data;
-	string tmpString;
-	while((tmpString=twit->statusDestroyById(tweet->id))=="");
-	debug("delete: %s\n",tmpString.c_str());
-	return 0;
 }
 
 
@@ -1274,7 +1234,7 @@ void UnquoteHTML
           } /*switch*/
         if (GotCharCode)
           {
-            WriteUTF8(Out, CharCode);   
+            WriteUTF8(Out, CharCode);
             MatchState = NoMatch;
           }
         else if (! ProcessedChar && MatchState == NoMatch)

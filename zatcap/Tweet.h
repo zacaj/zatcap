@@ -66,6 +66,7 @@ class TweetInstance
 {
 public:
 	Tweet *tweet;
+	SDL_Surface *pic;
 	textPos *p;
 	vector<int> widths;
 	int background;

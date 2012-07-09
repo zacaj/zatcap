@@ -157,7 +157,7 @@ uchar rid( FILE *fp )
 #else
 void wuchar( uchar n,FILE *fp )
 {
-	fprintf(fp,"%i\n",n);
+	fprintf(fp,"%i\n",(int)n);
 }
 
 void wfloat( float n,FILE *fp )
@@ -201,6 +201,7 @@ std::string rstr( FILE *fp )
 {
 	uint l=ruint(fp);
 	string r;
+	r.reserve(l);
 	for(int i=0;i<l;i++)
 	{
 		r.push_back(fgetc(fp));

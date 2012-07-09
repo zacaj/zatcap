@@ -4,18 +4,25 @@
 #include "twitter.h"
 #include "utf8.h"
 using namespace colors;
-
+SDL_mutex *fontMutex;
 inline TTF_Font* getFont(int size)//makes me cringe, make better somehow, possible alternative TTF_* method?
 {
+	SDL_LockMutex(fontMutex);
 	map<int,TTF_Font *>::iterator it=fonts.find(size);
 	if(it==fonts.end())
 	{
 		TTF_Font *font=TTF_OpenFont("resources/font.ttf",size);
 		fonts.insert(pair<unsigned int,TTF_Font *>(size,font));
+		SDL_UnlockMutex(fontMutex);
+		assert(font);
 		return font;
 	}
 	else
+	{
+		assert(it->second);
+		SDL_UnlockMutex(fontMutex);
 		return it->second;
+	}
 }
 
 SDL_Surface* drawTexts(const char* string,int size,int fR, int fG, int fB)
