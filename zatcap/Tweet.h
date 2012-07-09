@@ -2,7 +2,7 @@
 
 #include "zatcap.h"
 #include "twitter.h"
-
+class TweetInstance;
 class Tweet
 {
 public:
@@ -31,6 +31,7 @@ public:
 	}
 	User *_user;
 	virtual int draw(int x,int y,int w,int background);
+	virtual int draw(TweetInstance *instance,int w);
 	virtual int drawButtons(int x,int y,int w,int h,bool highlighted,SDL_Surface* _screen=NULL);
 	virtual void write(FILE *fp);
 };
@@ -59,6 +60,7 @@ public:
 	}
 
 	virtual int draw( int x,int y,int w,int background );
+	virtual int draw(TweetInstance *instance,int w);
 	virtual void write(FILE *fp);
 };
 

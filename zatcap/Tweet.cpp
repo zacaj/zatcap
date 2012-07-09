@@ -20,56 +20,56 @@ Uint32 getBackgroundColor(int background,int read)
 
 #define drawEntities { \
 { \
-	SDL_Surface* pic=tweet->user()->pic(); \
-	p=new textPos[tweet->entities.size()*2]; \
-	for(int i=0;i<tweet->entities.size();i++) \
+	SDL_Surface* pic=user()->pic(); \
+	instance->p=new textPos[entities.size()*2]; \
+	for(int i=0;i<entities.size();i++) \
 	{ \
-		p[i*2].pos=tweet->entities[i]->start; \
-		p[i*2].x=-10000; \
-		p[i*2+1].pos=tweet->entities[i]->end; \
-		p[i*2+1].x=-10000; \
+		instance->p[i*2].pos=entities[i]->start; \
+		instance->p[i*2].x=-10000; \
+		instance->p[i*2+1].pos=entities[i]->end; \
+		instance->p[i*2+1].x=-10000; \
 	} \
-	height=drawTextWrappedp(tweet->text.c_str(),x+7+pic->w+8,height+1,textWidth,13,NULL,0,p,tweet->entities.size()*2,widths,256,256,256,tempSurface); \
-	for(int i=0;i<tweet->entities.size();i++) \
+	height=drawTextWrappedp(text.c_str(),x+7+pic->w+8,height+1,textWidth,13,NULL,0,instance->p,entities.size()*2,instance->widths,256,256,256,tempSurface); \
+	for(int i=0;i<entities.size();i++) \
 	{ \
-		if(p[i*2].y==p[i*2+1].y) \
+		if(instance->p[i*2].y==instance->p[i*2+1].y) \
 		{ \
 			bool hover=0; \
-			if(colors::entityColorR[tweet->entities[i]->type+hover*3]!=colors::textColorR || colors::entityColorR[tweet->entities[i]->type+hover*3]!=colors::entityColorR[tweet->entities[i]->type+hover*3] || colors::entityColorB[tweet->entities[i]->type+hover*3]!=colors::textColorB) \
+			if(colors::entityColorR[entities[i]->type+hover*3]!=colors::textColorR || colors::entityColorR[entities[i]->type+hover*3]!=colors::entityColorR[entities[i]->type+hover*3] || colors::entityColorB[entities[i]->type+hover*3]!=colors::textColorB) \
 			{ \
-				boxColor(tempSurface,p[i*2].x,p[i*2].y,p[i*2+1].x,p[i*2].y+p[i*2].h,getBackgroundColor(background,tweet->read)); \
-				drawText(tweet->entities[i]->text.c_str(),p[i*2].x,p[i*2].y,13,entityColorR[tweet->entities[i]->type+hover*3],entityColorG[tweet->entities[i]->type+hover*3],entityColorB[tweet->entities[i]->type+hover*3],tempSurface); \
+				boxColor(tempSurface,instance->p[i*2].x,instance->p[i*2].y,instance->p[i*2+1].x,instance->p[i*2].y+instance->p[i*2].h,getBackgroundColor(instance->background,read)); \
+				drawText(entities[i]->text.c_str(),instance->p[i*2].x,instance->p[i*2].y,13,entityColorR[entities[i]->type+hover*3],entityColorG[entities[i]->type+hover*3],entityColorB[entities[i]->type+hover*3],tempSurface); \
 			} \
 			if(!settings::underlineLinksWhenHovered) \
 			{ \
-				boxColor(tempSurface,p[i*2].x,p[i*2].y+13,p[i*2+1].x,p[i*2].y+13+1,colors::entityUnderlineColor[tweet->entities[i]->type+hover*3]); \
+				boxColor(tempSurface,instance->p[i*2].x,instance->p[i*2].y+13,instance->p[i*2+1].x,instance->p[i*2].y+13+1,colors::entityUnderlineColor[entities[i]->type+hover*3]); \
 			} \
 		} \
 		else \
 		{ \
-	/*boxRGBA(screen,p[i*2].x,p[i*2].y,x+7+pic->w+8+widths[p[i*2].line],p[i*2].y+p[i*2].h,255,0,255,64);
-	//boxRGBA(screen,x+7+pic->w+8,p[i*2+1].y,p[i*2+1].x,p[i*2+1].y+p[i*2+1].h,255,0,255,64);*/ \
+	/*boxRGBA(screen,instance->p[i*2].x,instance->p[i*2].y,x+7+pic->w+8+widths[instance->p[i*2].line],instance->p[i*2].y+instance->p[i*2].h,255,0,255,64);
+	//boxRGBA(screen,x+7+pic->w+8,instance->p[i*2+1].y,instance->p[i*2+1].x,instance->p[i*2+1].y+instance->p[i*2+1].h,255,0,255,64);*/ \
 			bool hover=0; \
-			if(colors::entityColorR[tweet->entities[i]->type+hover*3]!=colors::textColorR || colors::entityColorR[tweet->entities[i]->type+hover*3]!=colors::entityColorR[tweet->entities[i]->type+hover*3] || colors::entityColorB[tweet->entities[i]->type+hover*3]!=colors::textColorB) \
+			if(colors::entityColorR[entities[i]->type+hover*3]!=colors::textColorR || colors::entityColorR[entities[i]->type+hover*3]!=colors::entityColorR[entities[i]->type+hover*3] || colors::entityColorB[entities[i]->type+hover*3]!=colors::textColorB) \
 			{ \
-				if(p[i*2].w) \
+				if(instance->p[i*2].w) \
 				{ \
-					boxColor(tempSurface,p[i*2].x,	p[i*2].y,	x+7+pic->w+8+widths[p[i*2].line],	p[i*2].y+p[i*2].h,	getBackgroundColor(background,tweet->read)); \
-					drawText(tweet->entities[i]->text.substr(0,p[i*2].w).c_str(),p[i*2].x,p[i*2].y,13,entityColorR[tweet->entities[i]->type+hover*3],entityColorG[tweet->entities[i]->type+hover*3],entityColorB[tweet->entities[i]->type+hover*3],tempSurface); \
+					boxColor(tempSurface,instance->p[i*2].x,	instance->p[i*2].y,	x+7+pic->w+8+instance->widths[instance->p[i*2].line],	instance->p[i*2].y+instance->p[i*2].h,	getBackgroundColor(instance->background,read)); \
+					drawText(entities[i]->text.substr(0,instance->p[i*2].w).c_str(),instance->p[i*2].x,instance->p[i*2].y,13,entityColorR[entities[i]->type+hover*3],entityColorG[entities[i]->type+hover*3],entityColorB[entities[i]->type+hover*3],tempSurface); \
 				} \
-				if(p[i*2+1].w) \
+				if(instance->p[i*2+1].w) \
 				{ \
-					boxColor(tempSurface,x+7+pic->w+8,	p[i*2+1].y,	p[i*2+1].x,	p[i*2+1].y+p[i*2+1].h,getBackgroundColor(background,tweet->read)); \
-					drawText(tweet->entities[i]->text.substr(p[i*2].w,tweet->entities[i]->text.size()-p[i*2].w).c_str(),x+7+pic->w+8,p[i*2+1].y,13,entityColorR[tweet->entities[i]->type+hover*3],entityColorG[tweet->entities[i]->type+hover*3],entityColorB[tweet->entities[i]->type+hover*3],tempSurface); \
+					boxColor(tempSurface,x+7+pic->w+8,	instance->p[i*2+1].y,	instance->p[i*2+1].x,	instance->p[i*2+1].y+instance->p[i*2+1].h,getBackgroundColor(instance->background,read)); \
+					drawText(entities[i]->text.substr(instance->p[i*2].w,entities[i]->text.size()-instance->p[i*2].w).c_str(),x+7+pic->w+8,instance->p[i*2+1].y,13,entityColorR[entities[i]->type+hover*3],entityColorG[entities[i]->type+hover*3],entityColorB[entities[i]->type+hover*3],tempSurface); \
 				} \
 			} \
 			if(!settings::underlineLinksWhenHovered) \
 			{ \
-				boxColor(tempSurface,p[i*2].x,p[i*2].y+13,x+7+pic->w+8+widths[p[i*2].line],p[i*2].y+13+1,colors::entityUnderlineColor[tweet->entities[i]->type+hover*3]); \
-				boxColor(tempSurface,x+7+pic->w+8,p[i*2+1].y+13,p[i*2+1].x,p[i*2+1].y+13+1,colors::entityUnderlineColor[tweet->entities[i]->type+hover*3]); \
+				boxColor(tempSurface,instance->p[i*2].x,instance->p[i*2].y+13,x+7+pic->w+8+instance->widths[instance->p[i*2].line],instance->p[i*2].y+13+1,colors::entityUnderlineColor[entities[i]->type+hover*3]); \
+				boxColor(tempSurface,x+7+pic->w+8,instance->p[i*2+1].y+13,instance->p[i*2+1].x,instance->p[i*2+1].y+13+1,colors::entityUnderlineColor[entities[i]->type+hover*3]); \
 			} \
 		} \
-	/*boxRGB(screen,p[i*2].x,p[i*2].y,p[i*2].x+1,p[i*2].y+p[i*2].h,255,0,255); boxRGB(screen,p[i*2+1].x,p[i*2+1].y,p[i*2+1].x+1,p[i*2+1].y+p[i*2+1].h,0,255,255); */ \
+	/*boxRGB(screen,instance->p[i*2].x,instance->p[i*2].y,instance->p[i*2].x+1,instance->p[i*2].y+instance->p[i*2].h,255,0,255); boxRGB(screen,instance->p[i*2+1].x,instance->p[i*2+1].y,instance->p[i*2+1].x+1,instance->p[i*2+1].y+instance->p[i*2+1].h,0,255,255); */ \
 	} \
 	}} \
 
@@ -130,7 +130,7 @@ Uint32 getBackgroundColor(int background,int read)
 	} \
 	/*boxRGB(screen,p[i*2].x,p[i*2].y,p[i*2].x+1,p[i*2].y+p[i*2].h,255,0,255); boxRGB(screen,p[i*2+1].x,p[i*2+1].y,p[i*2+1].x+1,p[i*2+1].y+p[i*2+1].h,0,255,255); */ \
 	} \
-}} \
+}} 
 
 int Tweet::draw( int x,int y,int w,int background)
 {
@@ -185,9 +185,58 @@ draw:
 }
 
 
+int Tweet::draw( TweetInstance *instance,int w )
+{
+	int x=0,y=0;
+	SDL_Surface *pic=user()->pic();
+	int height=0;
+	bool first=settings::tweetBackgrounds;
+	int textWidth=w-7-pic->w-5-7-13-16;
+draw:
+	int nameWidth=200;
+	//SDL_FillRect(tempSurface,0,0);
+	height=drawTextWrappedw(user()->username.c_str(),x+7+pic->w+5,y+2,nameWidth,15,first,usernameTextColorR,usernameTextColorG,usernameTextColorB,tempSurface);
+	char date[1000];
+	if(timeTweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
+	{
+		tm *t=localtime(&timeTweetedInSeconds);
+		strftime(date,1000,"%I:%M",t);
+		if(date[0]=='0')
+			strcpy(date,date+1);
+	}
+	else
+		strftime(date,1000,settings::dateFormat.c_str(),&timeTweeted);
+	int timeWidth=drawTextr(date,x+w-15,y+5,13,timeTextColorR,timeTextColorG,timeTextColorB,tempSurface);//time
+	int heightBeforeText=height;
+	{{drawEntities}}
+	if(height<pic->h+10+y)
+		height=pic->h+10+y;
+	if(height<y+48+18+3)
+		height=y+48+18+3;
+	int newx;
+	instance->buttonX=x;
+	instance->buttonY=y;
+	instance->buttonHeight=height;
+	newx=drawButtons(x,y,w,height,0);
+	if(newx<textWidth+(x+7+pic->w+8))
+	{
+		textWidth=newx-(x+7+pic->w+8)-2;
+	}
+	if(first)
+	{
+		boxColor(tempSurface,x,y,x+w-4,height,getBackgroundColor(instance->background,read));
+		first=0;
+		goto draw;//cringe, I know, I know.  Now STFU
+	}
+	drawSprite(pic,tempSurface,0,0,x+5,y+5,pic->w,pic->h);
+	instance->surface=SDL_CreateRGBSurface(SDL_HWSURFACE,w,height,32,tempSurface->format->Rmask,tempSurface->format->Gmask,tempSurface->format->Bmask,tempSurface->format->Amask);
+	drawSprite(tempSurface,instance->surface,0,0,0,0,w,height);
+	return 0;
+}
+
+
 int Retweet::draw( int x,int y,int w,int background )
 {
-	background=!read;
 	SDL_Surface *pic=user()->pic();
 	int height=y;
 	bool first=settings::tweetBackgrounds;
@@ -265,6 +314,79 @@ draw:
 	return height;
 }
 
+int Retweet::draw( TweetInstance *instance,int w )
+{
+	int x=0,y=0;
+	SDL_Surface *pic=user()->pic();
+	int height=0;
+	bool first=settings::tweetBackgrounds;
+	int textWidth=w-7-pic->w-5-7-13-16;
+draw:
+	int nameWidth=200;
+	//SDL_FillRect(tempSurface,0,0);
+	height=drawTextWrappedw(user()->username.c_str(),x+7+pic->w+5,y+2,nameWidth,15,first,usernameTextColorR,usernameTextColorG,usernameTextColorB,tempSurface);
+	char date[1000];
+	if(timeTweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
+	{
+		tm *t=localtime(&timeTweetedInSeconds);
+		strftime(date,1000,"%I:%M",t);
+		if(date[0]=='0')
+			strcpy(date,date+1);
+	}
+	else
+		strftime(date,1000,settings::dateFormat.c_str(),&timeTweeted);
+	int timeWidth=drawTextr(date,x+w-15,y+5,13,timeTextColorR,timeTextColorG,timeTextColorB,tempSurface);//time
+	int heightBeforeText=height;
+	if(timeRetweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
+	{
+		tm *t=localtime(&timeRetweetedInSeconds);
+		strftime(date,1000,"%I:%M",t);
+		if(date[0]=='0')
+			strcpy(date,date+1);
+	}
+	else
+		strftime(date,1000,settings::dateFormat.c_str(),&timeRetweeted);
+	char str[200];
+	if(nRetweet<=1)
+		sprintf(str,"retweeted by %s at %s",retweetedBy->username.c_str(),date);
+	else
+		sprintf(str,"retweeted by %s at %s (x%i)",retweetedBy->username.c_str(),date,nRetweet);
+	int retweetWidth=w-7-pic->w-5-7-13-3-nameWidth+5;
+	drawTextWrappedw(str,((x+7+user()->pic()->w+5)+nameWidth+5),y+5,retweetWidth,12,1,retweetTextColorR,retweetTextColorG,retweetTextColorB,tempSurface);//get width
+	if(retweetWidth+x+7+user()->pic()->w+5+nameWidth+5>x+w-15-timeWidth)//on top of time
+		height=drawTextWrapped(str,x+7+user()->pic()->w+5,height,w-7-pic->w-5-7-13-3,12,first,retweetTextColorR,retweetTextColorG,retweetTextColorB,tempSurface);
+	else
+		height=drawTextWrapped(str,x+7+user()->pic()->w+5+nameWidth+5,y+5,w-7-pic->w-5-7-13-3-nameWidth-5,12,first,retweetTextColorR,retweetTextColorG,retweetTextColorB,tempSurface);
+	{{drawEntities}}
+
+	if(height<pic->h+10+y)
+		height=pic->h+10+y;
+	if(height<y+48+18+3)
+		height=y+48+18+3;
+	int newx;
+	instance->buttonX=x;
+	instance->buttonY=y;
+	instance->buttonHeight=height;
+	newx=drawButtons(x,y,w,height,0);
+	if(newx<textWidth+(x+7+pic->w+8))
+	{
+		textWidth=newx-(x+7+pic->w+8)-2;
+	}
+	if(first)
+	{
+		boxColor(tempSurface,x,y,x+w-4,height,getBackgroundColor(instance->background,read));
+		first=0;
+		goto draw;//cringe, I know, I know.  Now STFU
+	}
+	pic=user()->mediumPic();
+	drawSprite(pic,tempSurface,0,0,x+5,y+5,pic->w,pic->h);
+	pic=retweetedBy->smallPic();
+	drawSprite(pic,tempSurface,0,0,x+5+48-pic->w,y+5+48-pic->h,pic->w,pic->h);
+	//drawSprite(pic,tempSurface,0,0,x+5,y+5,pic->w,pic->h);
+	instance->surface=SDL_CreateRGBSurface(SDL_HWSURFACE,w,height,32,tempSurface->format->Rmask,tempSurface->format->Gmask,tempSurface->format->Bmask,tempSurface->format->Amask);
+	drawSprite(tempSurface,instance->surface,0,0,0,0,w,height);
+	return 0;
+}
 int favoriteTweet(void *data)
 {
 	Tweet *tweet=(Tweet*)data;
@@ -416,52 +538,7 @@ TweetInstance::TweetInstance( Tweet *_tweet,int w,int _background  )	:
 	tweet(_tweet),
 	background(_background)
 {
-	int x=0,y=0;
-	SDL_Surface *pic=tweet->user()->pic();
-	int height=0;
-	bool first=settings::tweetBackgrounds;
-	int textWidth=w-7-pic->w-5-7-13-16;
-draw:
-	int nameWidth=200;
-	//SDL_FillRect(tempSurface,0,0);
-	height=drawTextWrappedw(tweet->user()->username.c_str(),x+7+pic->w+5,y+2,nameWidth,15,first,usernameTextColorR,usernameTextColorG,usernameTextColorB,tempSurface);
-	char date[1000];
-	if(tweet->timeTweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
-	{
-		tm *t=localtime(&tweet->timeTweetedInSeconds);
-		strftime(date,1000,"%I:%M",t);
-		if(date[0]=='0')
-			strcpy(date,date+1);
-	}
-	else
-		strftime(date,1000,settings::dateFormat.c_str(),&tweet->timeTweeted);
-	int timeWidth=drawTextr(date,x+w-15,y+5,13,timeTextColorR,timeTextColorG,timeTextColorB,tempSurface);//time
-	int heightBeforeText=height;
-	{{drawEntities}}
-	if(height<pic->h+10+y)
-		height=pic->h+10+y;
-	if(height<y+48+18+3)
-		height=y+48+18+3;
-	int mx,my;
-	SDL_GetMouseState(&mx,&my);
-	int newx;
-	buttonX=x;
-	buttonY=y;
-	buttonHeight=height;
-		newx=tweet->drawButtons(x,y,w,height,0);
-	if(newx<textWidth+(x+7+pic->w+8))
-	{
-		textWidth=newx-(x+7+pic->w+8)-2;
-	}
-	if(first)
-	{
-		boxColor(tempSurface,x,y,x+w-4,height,getBackgroundColor(background,tweet->read));
-		first=0;
-		goto draw;//cringe, I know, I know.  Now STFU
-	}
-	drawSprite(pic,tempSurface,0,0,x+5,y+5,pic->w,pic->h);
-	surface=SDL_CreateRGBSurface(SDL_HWSURFACE,w,height,32,tempSurface->format->Rmask,tempSurface->format->Gmask,tempSurface->format->Bmask,tempSurface->format->Amask);
-	drawSprite(tempSurface,surface,0,0,0,0,w,height);
+	tweet->draw(this,w);
 	needsRefresh=0;
 	pic=tweet->user()->pic();
 }

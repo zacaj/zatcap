@@ -1,3 +1,3 @@
-username = zacaj_
-token key = 181191283-TRmTAwNMpym6dlS6oVnX30tk6hzs4Y4vabofRGzH
-token secret = NGuiyVPA19mQz2WPGBYLcPd3u1uNh2CyWrziuxG5Y
+username = zacaj2
+token key = 533546294-OlBZ8ldx6chMtG3wRwN0Ls4uF9cu7dHzZJ1rVzyM
+token secret = LtCtIj3urfinaDjMnWJJEW3MHF4ipAQeROXqSyM65M

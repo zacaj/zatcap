@@ -104,7 +104,9 @@ public:
 #else
 		string cmd=settings::browserCommand+" \"https://twitter.com/"+username+"\"";
 #endif
+		printf("Command to be run: \n%s\n\nOutput from command (empty if successful):\n\n",cmd.c_str());
 		system(cmd.c_str());
+		printf("\n<end of output>\n");
 	}
 	void write(FILE *fp)
 	{
