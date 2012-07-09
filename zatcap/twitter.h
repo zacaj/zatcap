@@ -99,7 +99,11 @@ public:
 	string username;
 	void click()
 	{
+#ifdef USE_WINDOWS
+		string cmd=string("cmd /C \"\"")+settings::browserCommand+"\" \"https://twitter.com/"+username+"\"\"";
+#else
 		string cmd=settings::browserCommand+" \"https://twitter.com/"+username+"\"";
+#endif
 		system(cmd.c_str());
 	}
 	void write(FILE *fp)

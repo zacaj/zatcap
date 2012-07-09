@@ -160,3 +160,5 @@ bool fileExists(string path);
 #define MOUSEPREPRESS -7
 
 extern SDL_mutex *fontMutex;
+string getFile(string path);
+string getPath(string path);

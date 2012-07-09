@@ -847,3 +847,36 @@ bool fileExists( string path )
 	}
 	return 0;
 }
+
+string getFile(string path)
+{
+	int i;
+	for(i=path.size()-1;i>=0;i--)
+	{
+		if(path[i]=='/' || path[i]=='\\')
+			break;
+	}
+	if(i!=0)
+	{
+		i++;
+		return(path.substr(i,path.length()-i));
+	}
+	else
+		return path;
+}
+string getPath(string path)
+{
+	int i;
+	for(i=path.size()-1;i>=0;i--)
+	{
+		if(path[i]=='/' || path[i]=='\\')
+			break;
+	}
+	if(i!=0)
+	{
+		i++;
+		return(path.substr(0,i));
+	}
+	else
+		return path;
+}
