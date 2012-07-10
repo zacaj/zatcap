@@ -187,7 +187,7 @@ void readTweetFile(string path)
 								tweet->entities.push_back(entity);
 							}
 						}
-						addTweet(tweet);debugHere();
+						addTweet(&tweet);debugHere();
 					}
 					break;
 					tweets;
@@ -227,7 +227,7 @@ void readTweetFile(string path)
 						fread(&retweet->timeRetweeted,sizeof(struct tm),1,fp);
 						if(version==4) fgetc(fp);
 						retweet->timeRetweetedInSeconds=mktime(&retweet->timeRetweeted);debugHere();
-						addTweet(retweet);debugHere();
+						addTweet((Tweet**)(&retweet));debugHere();
 					}
 					break;
 				}
@@ -305,18 +305,20 @@ string getFile(string path)
 
 void deleteTweet( string id )
 {debugHere();
-	while(tweetsInUse);debugHere();
-	tweetsInUse=1;
+	SDL_LockMutex(tweetsMutex);
 	map<string,Tweet*>::iterator tweet=tweets.find(id);
 	if(tweet==tweets.end())
 		return;
 	for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)
+	{
+		SDL_UnlockMutex(tweetsMutex);
 		it->second->deleteTweet(tweet->first);
-	delete tweet->second;debugHere();
+		SDL_LockMutex(tweetsMutex);
+	}
+	//debug delete tweet->second;debugHere();
 	tweets.erase(tweet);debugHere();
-	tweetsInUse=0;debugHere();
+	SDL_UnlockMutex(tweetsMutex);
 }
-bool tweetsInUse=0;
 Tweet* getTweet( string id )
 {
 	if(tweets.find(id)!=tweets.end())
@@ -410,30 +412,31 @@ int loadOlderTweets(void *data)
 	loadingTweets=0;
 	return 0;
 }
-
-void addTweet( Tweet *tweet )
+SDL_mutex *tweetsMutex;
+void addTweet( Tweet** tweet )
 {debugHere();
-	while(tweetsInUse);
-	tweetsInUse=1;debugHere();
-	map<string,Tweet*>::iterator tw=tweets.find(tweet->id);
+SDL_LockMutex(tweetsMutex);
+	map<string,Tweet*>::iterator tw=tweets.find((*tweet)->id);
 	if(tw==tweets.end())
 	{
-		tweets[tweet->id]=tweet;
+		tweets[(*tweet)->id]=*tweet;
 
 		for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
-			it->second->newTweet(tweet);
+			it->second->newTweet(*tweet);
 	}
 	else
 	{debugHere();
 		for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
 			it->second->deleteTweet(tw->first);
-		delete tw->second;
-		tw->second=NULL;
-		tweets.erase(tw);
-		tweetsInUse=0;debugHere();
-		addTweet(tweet);debugHere();
+		*tw->second=**tweet;
+		*tweet=tw->second;
+		//delete tw->second;
+		//tw->second=NULL;
+		//tweets.erase(tw);
+		//tweetsInUse=0;debugHere();
+		//addTweet(tweet);debugHere();
 	}
-	tweetsInUse=0;debugHere();
+	SDL_UnlockMutex(tweetsMutex);
 }
 
 int loadProfilePic(void *ptr)
@@ -733,6 +736,10 @@ Tweet* processTweet(Json::Value jtweet)
 		time_t ott=mtimegm(&otm);
 		tweet->timeTweeted=*localtime(&ott);
 		tweet->id=jtweet["id_str"].asString();
+		if(jtweet["in_reply_to_status_id_str"].isNull())
+			tweet->replyTo=NULL;
+		else
+			tweet->replyTo=getTweet(jtweet["in_reply_to_status_id_str"].asString());
 	}
 	else//is a rt
 	{
@@ -760,11 +767,15 @@ Tweet* processTweet(Json::Value jtweet)
 			retweet->id=jtweet["id_str"].asString();
 		retweet->nRetweet=jtweet["retweet_count"].asInt();
 		retweet->timeRetweetedInSeconds=mktime(&retweet->timeRetweeted);debugHere();
+		if(original["in_reply_to_status_id_str"].isNull())
+			tweet->replyTo=NULL;
+		else
+			tweet->replyTo=getTweet(original["in_reply_to_status_id_str"].asString());
 	}
 	tweet->timeTweetedInSeconds=mktime(&tweet->timeTweeted);debugHere();
 	if(tweet->user()->username==username)
 		tweet->read=1;
-	addTweet(tweet);debugHere();
+	addTweet(&tweet);debugHere();
 	return tweet;
 }
 typedef struct

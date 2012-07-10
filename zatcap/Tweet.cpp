@@ -192,6 +192,7 @@ int Tweet::draw( TweetInstance *instance,int w )
 	int height=0;
 	bool first=settings::tweetBackgrounds;
 	int textWidth=w-7-pic->w-5-7-13-16;
+	SDL_LockMutex(tempSurfaceMutex);
 draw:
 	int nameWidth=200;
 	//SDL_FillRect(tempSurface,0,0);
@@ -231,6 +232,7 @@ draw:
 	drawSprite(pic,tempSurface,0,0,x+5,y+5,pic->w,pic->h);
 	instance->surface=SDL_CreateRGBSurface(SDL_HWSURFACE,w,height,32,tempSurface->format->Rmask,tempSurface->format->Gmask,tempSurface->format->Bmask,tempSurface->format->Amask);
 	drawSprite(tempSurface,instance->surface,0,0,0,0,w,height);
+	SDL_UnlockMutex(tempSurfaceMutex);
 	return 0;
 }
 
@@ -243,7 +245,7 @@ int Retweet::draw( int x,int y,int w,int background )
 	int textWidth=w-7-pic->w-5-7-13-16;
 draw:
 	int nameWidth=200;
-	height=drawTextWrappedw(user()->username.c_str(),x+7+pic->w+5,y+2,nameWidth,15,first,usernameTextColorR,usernameTextColorG,usernameTextColorB);
+	height=drawTextWrappedw(user()->username.c_str(),x+7+pic->w+5,y+2,nameWidth,15,first,usernameTextColorR,usernameTextColorG,usernameTextColorB,tempSurface);
 	char date[1000];
 	if(timeTweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
 	{
@@ -254,7 +256,7 @@ draw:
 	}
 	else
 		strftime(date,1000,settings::dateFormat.c_str(),&timeTweeted);
-	int timeWidth=drawTextr(date,x+w-15,y+4,13,timeTextColorR,timeTextColorG,timeTextColorB);//time
+	int timeWidth=drawTextr(date,x+w-15,y+4,13,timeTextColorR,timeTextColorG,timeTextColorB,tempSurface);//time
 
 	if(timeRetweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
 	{
@@ -321,6 +323,7 @@ int Retweet::draw( TweetInstance *instance,int w )
 	int height=0;
 	bool first=settings::tweetBackgrounds;
 	int textWidth=w-7-pic->w-5-7-13-16;
+	SDL_LockMutex(tempSurfaceMutex);
 draw:
 	int nameWidth=200;
 	//SDL_FillRect(tempSurface,0,0);
@@ -385,6 +388,7 @@ draw:
 	//drawSprite(pic,tempSurface,0,0,x+5,y+5,pic->w,pic->h);
 	instance->surface=SDL_CreateRGBSurface(SDL_HWSURFACE,w,height,32,tempSurface->format->Rmask,tempSurface->format->Gmask,tempSurface->format->Bmask,tempSurface->format->Amask);
 	drawSprite(tempSurface,instance->surface,0,0,0,0,w,height);
+	SDL_UnlockMutex(tempSurfaceMutex);
 	return 0;
 }
 int favoriteTweet(void *data)
@@ -487,8 +491,8 @@ int Tweet::drawButtons( int _x,int _y,int w,int h,bool highlighted,SDL_Surface* 
 				}
 			}
 		}
+		y+=16;
 	}
-	y+=16;
 	if(y+19>_y+h)	{y=_y+18;x-=16;	}
 	if(highlighted)
 	{
@@ -501,9 +505,17 @@ int Tweet::drawButtons( int _x,int _y,int w,int h,bool highlighted,SDL_Surface* 
 			keyboardInputReceiver=textbox;
 			textbox->cursorPos=textbox->str.size();
 		}
+		y+=16;
 	}
-	y+=16;
-	y+=16;
+	if(y+19>_y+h)	{y=_y+18;x-=16;	}
+	if(highlighted && replyTo!=NULL)
+	{
+		drawSprite(convo[hoverButton(x,y,16,16)],_screen,0,0,x,y,16,16);
+		if(doButton(x,y,16,16))
+		{
+			return TOGGLECONVODISPLAY;
+		}
+	}
 	return x;
 }
 
@@ -541,12 +553,19 @@ TweetInstance::TweetInstance( Tweet *_tweet,int w,int _background  )	:
 	tweet->draw(this,w);
 	needsRefresh=0;
 	pic=tweet->user()->pic();
+	if(tweet->replyTo!=NULL)
+		replyTo=new TweetInstance(tweet->replyTo,w,!background);
+	else
+		replyTo=NULL;
+	drawReply=0;
 }
 
-void TweetInstance::draw( int x,int y )	
+int TweetInstance::draw( int x,int y )	
 {
+	int h=0;
 	drawSprite(surface,screen,0,0,x,y,surface->w,surface->h);
 	{{drawEntities2}}
+	h+=surface->h;
 	int mx,my;
 	SDL_GetMouseState(&mx,&my);
 	int newx;
@@ -554,12 +573,24 @@ void TweetInstance::draw( int x,int y )
 	{
 		//	background=2;
 		newx=tweet->drawButtons(x,y,surface->w,surface->h,1);
+		if(newx<0)
+		{
+			switch(newx)
+			{
+			case TOGGLECONVODISPLAY:
+				drawReply=!drawReply;
+				break;
+			}
+		}
 	}
 	if(hoverButton(x+5,y+5,48,48))
 		drawSprite(reply[2],screen,0,0,x+5,y+5,reply[2]->w,reply[2]->h);
+	if(drawReply)
+		h+=replyTo->draw(x+5,y+h)+15;
 
 	if(tweet->user()->pic()!=pic)
 		needsRefresh=1;
+	return h;
 }
 
 TweetInstance::~TweetInstance()

@@ -112,8 +112,8 @@ void Column::draw()
 			delete instance;
 			instance=it->second;
 		}
-		instance->draw(columnHorizontalRenderAt,y);
-		y+=instance->surface->h;
+		y+=instance->draw(columnHorizontalRenderAt,y);
+		//y+=instance->surface->h;
 		int y2=y-oldy;
 		if(oldy+y2>screen->h-footerHeight)
 			y2+=screen->h-footerHeight-(y2+oldy);

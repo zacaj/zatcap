@@ -136,9 +136,10 @@ int doButton(int x,int y,int w,int h,int button=SDL_BUTTON_LEFT );
 extern SDL_Surface* favorite[3];
 extern SDL_Surface* retweet[3];
 extern SDL_Surface* reply[3];
-extern SDL_Surface* deleteButton[2];
+extern SDL_Surface* deleteButton[3];
 extern SDL_Surface* refresh[2];
 extern SDL_Surface* top[2];
+extern SDL_Surface* convo[2];
 
 void boxRGB(SDL_Surface* screen,int x1,int y1,int x2,int y2,int r,int g,int b,int a=255);
 void boxColor(SDL_Surface* screen,int x1,int y1,int x2,int y2,Uint32 color);
@@ -160,5 +161,6 @@ bool fileExists(string path);
 #define MOUSEPREPRESS -7
 
 extern SDL_mutex *fontMutex;
+extern SDL_mutex *tempSurfaceMutex;
 string getFile(string path);
 string getPath(string path);

@@ -148,9 +148,9 @@ void deleteTweet(string id);
 
 //string=id
 extern map<string,Tweet*> tweets;
-void addTweet(Tweet *tweet);
+void addTweet(Tweet** tweet);
+extern SDL_mutex *tweetsMutex;
 
-extern bool tweetsInUse;
 
 void parseRestTweets(string json);
 

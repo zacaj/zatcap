@@ -3,6 +3,7 @@
 #include "zatcap.h"
 #include "twitter.h"
 class TweetInstance;
+
 class Tweet
 {
 public:
@@ -16,6 +17,7 @@ public:
 		_user=NULL;
 		_type=0;
 		read=0;
+		replyTo=NULL;
 	}
 	struct tm timeTweeted;
 	time_t timeTweetedInSeconds;
@@ -23,6 +25,7 @@ public:
 	bool retweeted;
 	int read;
 	vector<Entity *> entities;
+	Tweet *replyTo;
 	User* user()
 	{
 		if(_user==NULL)
@@ -35,7 +38,7 @@ public:
 	virtual int drawButtons(int x,int y,int w,int h,bool highlighted,SDL_Surface* _screen=NULL);
 	virtual void write(FILE *fp);
 };
-
+#define TOGGLECONVODISPLAY -1
 class Retweet:public Tweet
 {
 public:	
@@ -51,6 +54,7 @@ public:
 		_type=1;
 		_original=NULL;
 		read=0;
+		replyTo=NULL;
 	}
 	Tweet* original()
 	{debugHere();
@@ -68,14 +72,16 @@ class TweetInstance
 {
 public:
 	Tweet *tweet;
+	TweetInstance *replyTo;
 	SDL_Surface *pic;
 	textPos *p;
 	vector<int> widths;
+	bool drawReply;
 	int background;
 	SDL_Surface *surface;
 	int buttonX,buttonY,buttonHeight;
 	TweetInstance(Tweet *_tweet,int w,int _background );
 	~TweetInstance();
-	void draw(int x,int y);
+	int draw(int x,int y);
 	bool needsRefresh;
 };

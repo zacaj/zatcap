@@ -43,9 +43,10 @@ SDL_Surface* arrowUp;
 SDL_Surface* favorite[3];
 SDL_Surface* retweet[3];
 SDL_Surface* reply[3];
-SDL_Surface* deleteButton[2];
+SDL_Surface* deleteButton[3];
  SDL_Surface* refresh[2];
  SDL_Surface* top[2];
+ SDL_Surface* convo[2];
 SDL_Surface* tempSurface;
 string tempString;
 Process *keyboardInputReceiver;
@@ -121,6 +122,7 @@ int collectDeviousData(void *p)
 	curl_easy_cleanup(curl);
 	return 0;
 }
+SDL_mutex *tempSurfaceMutex;
 size_t callback_func(void *ptr, size_t size, size_t count, void *userdata);
 void loadUser(twitCurl *twit)
 {
@@ -321,10 +323,13 @@ int main(int argc, char* argv[])
 	assert(reply[2]=IMG_Load("resources/reply_large.png"));
 	assert(deleteButton[0]=IMG_Load("resources/delete.png"));
 	assert(deleteButton[1]=IMG_Load("resources/delete_hover.png"));
+	assert(deleteButton[2]=IMG_Load("resources/delete_hover2.png"));
 	assert(refresh[0]=IMG_Load("resources/refresh.png"));
 	assert(refresh[1]=IMG_Load("resources/refresh_hover.png"));
 	assert(top[0]=IMG_Load("resources/top.png"));
 	assert(top[1]=IMG_Load("resources/top_hover.png"));
+	assert(convo[0]=IMG_Load("resources/convo.png"));
+	assert(convo[1]=IMG_Load("resources/convo_hover.png"));
 
 
 	SDL_Thread *thread=SDL_CreateThread(twitterInit,&twit);debug("%i\n",__LINE__);
@@ -332,6 +337,8 @@ int main(int argc, char* argv[])
 	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up
 	fclose(fopen("stream debug.txt","w"));
 	fontMutex=SDL_CreateMutex();
+	tempSurfaceMutex=SDL_CreateMutex();
+	tweetsMutex=SDL_CreateMutex();
 
 	{
 		Textbox *textbox=new Textbox();
