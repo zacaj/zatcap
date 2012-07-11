@@ -297,7 +297,7 @@ bool Textbox::keyboardEvent( int key,int pressed,int mod )
 	int handled=0;
 	if(pressed)
 	{
-		if(key==SDLK_RETURN && (mod&KMOD_SHIFT||settings::tweetOnEnter))
+		if(key==SDLK_RETURN && (mod&KMOD_SHIFT^settings::tweetOnEnter))
 		{
 			doTweet();
 			return 1;
@@ -424,9 +424,14 @@ bool Textbox::keyboardEvent( int key,int pressed,int mod )
 				handled=2;
 				break;
 			case SDLK_RETURN:
-				strGoingToChange();
-				str.insert(ITR cursorPos++,'\n');
-				handled=1;
+				//if(!settings::tweetOnEnter)
+				{
+					strGoingToChange();
+					str.insert(ITR cursorPos++,'\n');
+					handled=1;
+				}
+				//else
+				//	doTweet();
 				break;
 			}
 			updateScreen=1;
