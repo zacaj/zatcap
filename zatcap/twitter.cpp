@@ -44,8 +44,8 @@ int twitterInit( void  *_twit )
 	if(settings::tweetsToLoadOnStartup)
 	{debugHere();
 		string tmpString;debugHere();
-		//assert((tmpString=twit->timelineHomeGet(false,true,settings::tweetsToLoadOnStartup,"",""))!="");debugHere();//settings::tweetsToLoadOnStartup+50
-		while((tmpString=twit->timelineUserGet(false,true,settings::tweetsToLoadOnStartup,""))=="");debugHere();//settings::tweetsToLoadOnStartup+50
+		while((tmpString=twit->timelineHomeGet(false,true,settings::tweetsToLoadOnStartup,"",""))=="");debugHere();//settings::tweetsToLoadOnStartup+50
+		//while((tmpString=twit->timelineUserGet(false,true,settings::tweetsToLoadOnStartup,""))=="");debugHere();//settings::tweetsToLoadOnStartup+50
 		parseRestTweets(tmpString);debugHere();
 	}
 #endif

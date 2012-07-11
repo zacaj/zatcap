@@ -29,7 +29,7 @@ Uint32 getBackgroundColor(int background,int read)
 		instance->p[i*2+1].pos=entities[i]->end; \
 		instance->p[i*2+1].x=-10000; \
 	} \
-	height=drawTextWrappedp(text.c_str(),x+7+pic->w+8,height+1,textWidth,13,NULL,0,instance->p,entities.size()*2,instance->widths,256,256,256,tempSurface); \
+	height=drawTextWrappedp(text.c_str(),x+7+pic->w+8,height+1,textWidth,settings::textSize,NULL,0,instance->p,entities.size()*2,instance->widths,256,256,256,tempSurface); \
 	for(int i=0;i<entities.size();i++) \
 	{ \
 		if(instance->p[i*2].y==instance->p[i*2+1].y) \
@@ -38,11 +38,11 @@ Uint32 getBackgroundColor(int background,int read)
 			if(colors::entityColorR[entities[i]->type+hover*3]!=colors::textColorR || colors::entityColorR[entities[i]->type+hover*3]!=colors::entityColorR[entities[i]->type+hover*3] || colors::entityColorB[entities[i]->type+hover*3]!=colors::textColorB) \
 			{ \
 				boxColor(tempSurface,instance->p[i*2].x,instance->p[i*2].y,instance->p[i*2+1].x,instance->p[i*2].y+instance->p[i*2].h,getBackgroundColor(instance->background,read)); \
-				drawText(entities[i]->text.c_str(),instance->p[i*2].x,instance->p[i*2].y,13,entityColorR[entities[i]->type+hover*3],entityColorG[entities[i]->type+hover*3],entityColorB[entities[i]->type+hover*3],tempSurface); \
+				drawText(entities[i]->text.c_str(),instance->p[i*2].x,instance->p[i*2].y,settings::textSize,entityColorR[entities[i]->type+hover*3],entityColorG[entities[i]->type+hover*3],entityColorB[entities[i]->type+hover*3],tempSurface); \
 			} \
 			if(!settings::underlineLinksWhenHovered) \
 			{ \
-				boxColor(tempSurface,instance->p[i*2].x,instance->p[i*2].y+13,instance->p[i*2+1].x,instance->p[i*2].y+13+1,colors::entityUnderlineColor[entities[i]->type+hover*3]); \
+				boxColor(tempSurface,instance->p[i*2].x,instance->p[i*2].y+settings::textSize,instance->p[i*2+1].x,instance->p[i*2].y+settings::textSize+1,colors::entityUnderlineColor[entities[i]->type+hover*3]); \
 			} \
 		} \
 		else \
@@ -55,18 +55,18 @@ Uint32 getBackgroundColor(int background,int read)
 				if(instance->p[i*2].w) \
 				{ \
 					boxColor(tempSurface,instance->p[i*2].x,	instance->p[i*2].y,	x+7+pic->w+8+instance->widths[instance->p[i*2].line],	instance->p[i*2].y+instance->p[i*2].h,	getBackgroundColor(instance->background,read)); \
-					drawText(entities[i]->text.substr(0,instance->p[i*2].w).c_str(),instance->p[i*2].x,instance->p[i*2].y,13,entityColorR[entities[i]->type+hover*3],entityColorG[entities[i]->type+hover*3],entityColorB[entities[i]->type+hover*3],tempSurface); \
+					drawText(entities[i]->text.substr(0,instance->p[i*2].w).c_str(),instance->p[i*2].x,instance->p[i*2].y,settings::textSize,entityColorR[entities[i]->type+hover*3],entityColorG[entities[i]->type+hover*3],entityColorB[entities[i]->type+hover*3],tempSurface); \
 				} \
 				if(instance->p[i*2+1].w) \
 				{ \
 					boxColor(tempSurface,x+7+pic->w+8,	instance->p[i*2+1].y,	instance->p[i*2+1].x,	instance->p[i*2+1].y+instance->p[i*2+1].h,getBackgroundColor(instance->background,read)); \
-					drawText(entities[i]->text.substr(instance->p[i*2].w,entities[i]->text.size()-instance->p[i*2].w).c_str(),x+7+pic->w+8,instance->p[i*2+1].y,13,entityColorR[entities[i]->type+hover*3],entityColorG[entities[i]->type+hover*3],entityColorB[entities[i]->type+hover*3],tempSurface); \
+					drawText(entities[i]->text.substr(instance->p[i*2].w,entities[i]->text.size()-instance->p[i*2].w).c_str(),x+7+pic->w+8,instance->p[i*2+1].y,settings::textSize,entityColorR[entities[i]->type+hover*3],entityColorG[entities[i]->type+hover*3],entityColorB[entities[i]->type+hover*3],tempSurface); \
 				} \
 			} \
 			if(!settings::underlineLinksWhenHovered) \
 			{ \
-				boxColor(tempSurface,instance->p[i*2].x,instance->p[i*2].y+13,x+7+pic->w+8+instance->widths[instance->p[i*2].line],instance->p[i*2].y+13+1,colors::entityUnderlineColor[entities[i]->type+hover*3]); \
-				boxColor(tempSurface,x+7+pic->w+8,instance->p[i*2+1].y+13,instance->p[i*2+1].x,instance->p[i*2+1].y+13+1,colors::entityUnderlineColor[entities[i]->type+hover*3]); \
+				boxColor(tempSurface,instance->p[i*2].x,instance->p[i*2].y+settings::textSize,x+7+pic->w+8+instance->widths[instance->p[i*2].line],instance->p[i*2].y+settings::textSize+1,colors::entityUnderlineColor[entities[i]->type+hover*3]); \
+				boxColor(tempSurface,x+7+pic->w+8,instance->p[i*2+1].y+settings::textSize,instance->p[i*2+1].x,instance->p[i*2+1].y+settings::textSize+1,colors::entityUnderlineColor[entities[i]->type+hover*3]); \
 			} \
 		} \
 	/*boxRGB(screen,instance->p[i*2].x,instance->p[i*2].y,instance->p[i*2].x+1,instance->p[i*2].y+instance->p[i*2].h,255,0,255); boxRGB(screen,instance->p[i*2+1].x,instance->p[i*2+1].y,instance->p[i*2+1].x+1,instance->p[i*2+1].y+instance->p[i*2+1].h,0,255,255); */ \
@@ -85,11 +85,11 @@ Uint32 getBackgroundColor(int background,int read)
 				if(colors::entityColorR[tweet->entities[i]->type+hover*3]!=colors::textColorR || colors::entityColorR[tweet->entities[i]->type+hover*3]!=colors::entityColorR[tweet->entities[i]->type+hover*3] || colors::entityColorB[tweet->entities[i]->type+hover*3]!=colors::textColorB) \
 				{ \
 					boxColor(screen,p[i*2].x+x,p[i*2].y+y,p[i*2+1].x+x,p[i*2].y+p[i*2].h+y,getBackgroundColor(background,tweet->read)); \
-					drawText(tweet->entities[i]->text.c_str(),p[i*2].x+x,p[i*2].y+y,13,entityColorR[tweet->entities[i]->type+hover*3],entityColorG[tweet->entities[i]->type+hover*3],entityColorB[tweet->entities[i]->type+hover*3]); \
+					drawText(tweet->entities[i]->text.c_str(),p[i*2].x+x,p[i*2].y+y,settings::textSize,entityColorR[tweet->entities[i]->type+hover*3],entityColorG[tweet->entities[i]->type+hover*3],entityColorB[tweet->entities[i]->type+hover*3]); \
 				} \
 			if(hover && settings::underlineLinksWhenHovered) \
 			{ \
-				boxColor(screen,p[i*2].x+x,p[i*2].y+13+y,p[i*2+1].x+x,p[i*2].y+13+1+y,colors::entityUnderlineColor[tweet->entities[i]->type+hover*3]); \
+				boxColor(screen,p[i*2].x+x,p[i*2].y+settings::textSize+y,p[i*2+1].x+x,p[i*2].y+settings::textSize+1+y,colors::entityUnderlineColor[tweet->entities[i]->type+hover*3]); \
 			} \
 			if(doButton(p[i*2].x+x,p[i*2].y+y,p[i*2+1].x-p[i*2].x,p[i*2].h)) \
 			{ \
@@ -108,18 +108,18 @@ Uint32 getBackgroundColor(int background,int read)
 				if(p[i*2].w) \
 				{ \
 					boxColor(screen,p[i*2].x+x,	p[i*2].y+y,	x+7+pic->w+8+widths[p[i*2].line],	p[i*2].y+p[i*2].h+y,	getBackgroundColor(background,tweet->read)); \
-					drawText(tweet->entities[i]->text.substr(0,p[i*2].w).c_str(),p[i*2].x+x,p[i*2].y+y,13,entityColorR[tweet->entities[i]->type+hover*3],entityColorG[tweet->entities[i]->type+hover*3],entityColorB[tweet->entities[i]->type+hover*3]); \
+					drawText(tweet->entities[i]->text.substr(0,p[i*2].w).c_str(),p[i*2].x+x,p[i*2].y+y,settings::textSize,entityColorR[tweet->entities[i]->type+hover*3],entityColorG[tweet->entities[i]->type+hover*3],entityColorB[tweet->entities[i]->type+hover*3]); \
 				} \
 				if(p[i*2+1].w) \
 				{ \
 					boxColor(screen,x+7+pic->w+8,	p[i*2+1].y+y,	p[i*2+1].x+x,	p[i*2+1].y+p[i*2+1].h+y,getBackgroundColor(background,tweet->read)); \
-					drawText(tweet->entities[i]->text.substr(p[i*2].w,tweet->entities[i]->text.size()-p[i*2].w).c_str(),x+7+pic->w+8,p[i*2+1].y+y,13,entityColorR[tweet->entities[i]->type+hover*3],entityColorG[tweet->entities[i]->type+hover*3],entityColorB[tweet->entities[i]->type+hover*3]); \
+					drawText(tweet->entities[i]->text.substr(p[i*2].w,tweet->entities[i]->text.size()-p[i*2].w).c_str(),x+7+pic->w+8,p[i*2+1].y+y,settings::textSize,entityColorR[tweet->entities[i]->type+hover*3],entityColorG[tweet->entities[i]->type+hover*3],entityColorB[tweet->entities[i]->type+hover*3]); \
 				} \
 			} \
 		if(hover && settings::underlineLinksWhenHovered) \
 		{ \
-			boxColor(screen,p[i*2].x+x,p[i*2].y+13+y,x+7+pic->w+8+widths[p[i*2].line],p[i*2].y+13+1+y,colors::entityUnderlineColor[tweet->entities[i]->type+hover*3]); \
-			boxColor(screen,x+7+pic->w+8,p[i*2+1].y+13+y,p[i*2+1].x+x,p[i*2+1].y+13+1+y,colors::entityUnderlineColor[tweet->entities[i]->type+hover*3]); \
+			boxColor(screen,p[i*2].x+x,p[i*2].y+settings::textSize+y,x+7+pic->w+8+widths[p[i*2].line],p[i*2].y+settings::textSize+1+y,colors::entityUnderlineColor[tweet->entities[i]->type+hover*3]); \
+			boxColor(screen,x+7+pic->w+8,p[i*2+1].y+settings::textSize+y,p[i*2+1].x+x,p[i*2+1].y+settings::textSize+1+y,colors::entityUnderlineColor[tweet->entities[i]->type+hover*3]); \
 		} \
 		if(	doButton(p[i*2].x+x,	p[i*2].y+y,	x+7+pic->w+8+widths[p[i*2].line]-p[i*2].x,	p[i*2].h) \
 			||	doButton(x+7+pic->w+8,	p[i*2+1].y+y,	p[i*2+1].x-(x+7+pic->w+8),	p[i*2+1].h) \
@@ -140,7 +140,7 @@ int Tweet::draw( int x,int y,int w,int background)
 	int textWidth=w-7-pic->w-5-7-13-16;
 draw:
 	int nameWidth=200;
-	height=drawTextWrappedw(user()->username.c_str(),x+7+pic->w+5,y+2,nameWidth,15,first,usernameTextColorR,usernameTextColorG,usernameTextColorB);
+	height=drawTextWrappedw(user()->username.c_str(),x+7+pic->w+5,y+2,nameWidth,settings::userNameTextSize,first,usernameTextColorR,usernameTextColorG,usernameTextColorB);
 	char date[1000];
 	if(timeTweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
 	{
@@ -151,7 +151,7 @@ draw:
 	}
 	else
 		strftime(date,1000,settings::dateFormat.c_str(),&timeTweeted);
-	int timeWidth=drawTextr(date,x+w-15,y+5,13,timeTextColorR,timeTextColorG,timeTextColorB);//time
+	int timeWidth=drawTextr(date,x+w-15,y+5,settings::timeSize,timeTextColorR,timeTextColorG,timeTextColorB);//time
 	int heightBeforeText=height;
 	//{{drawEntities}}
 	if(height<pic->h+10+y)
@@ -196,7 +196,7 @@ int Tweet::draw( TweetInstance *instance,int w )
 draw:
 	int nameWidth=200;
 	//SDL_FillRect(tempSurface,0,0);
-	height=drawTextWrappedw(user()->username.c_str(),x+7+pic->w+5,y+2,nameWidth,15,first,usernameTextColorR,usernameTextColorG,usernameTextColorB,tempSurface);
+	height=drawTextWrappedw(user()->username.c_str(),x+7+pic->w+5,y+2,nameWidth,settings::userNameTextSize,first,usernameTextColorR,usernameTextColorG,usernameTextColorB,tempSurface);
 	char date[1000];
 	if(timeTweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
 	{
@@ -207,7 +207,7 @@ draw:
 	}
 	else
 		strftime(date,1000,settings::dateFormat.c_str(),&timeTweeted);
-	int timeWidth=drawTextr(date,x+w-15,y+5,13,timeTextColorR,timeTextColorG,timeTextColorB,tempSurface);//time
+	int timeWidth=drawTextr(date,x+w-15,y+5,settings::timeSize,timeTextColorR,timeTextColorG,timeTextColorB,tempSurface);//time
 	int heightBeforeText=height;
 	{{drawEntities}}
 	if(height<pic->h+10+y)
@@ -247,7 +247,7 @@ int Retweet::draw( int x,int y,int w,int background )
 	int textWidth=w-7-pic->w-5-7-13-16;
 draw:
 	int nameWidth=200;
-	height=drawTextWrappedw(user()->username.c_str(),x+7+pic->w+5,y+2,nameWidth,15,first,usernameTextColorR,usernameTextColorG,usernameTextColorB,tempSurface);
+	height=drawTextWrappedw(user()->username.c_str(),x+7+pic->w+5,y+2,nameWidth,settings::userNameTextSize,first,usernameTextColorR,usernameTextColorG,usernameTextColorB,tempSurface);
 	char date[1000];
 	if(timeTweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
 	{
@@ -258,7 +258,7 @@ draw:
 	}
 	else
 		strftime(date,1000,settings::dateFormat.c_str(),&timeTweeted);
-	int timeWidth=drawTextr(date,x+w-15,y+4,13,timeTextColorR,timeTextColorG,timeTextColorB,tempSurface);//time
+	int timeWidth=drawTextr(date,x+w-15,y+4,settings::timeSize,timeTextColorR,timeTextColorG,timeTextColorB,tempSurface);//time
 
 	if(timeRetweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
 	{
@@ -275,11 +275,11 @@ draw:
 	else
 		sprintf(str,"retweeted by %s at %s (x%i)",retweetedBy->username.c_str(),date,nRetweet);
 	int retweetWidth=w-7-pic->w-5-7-13-3-nameWidth+5;
-	drawTextWrappedw(str,((x+7+user()->pic()->w+5)+nameWidth+5),y+5,retweetWidth,12,1,retweetTextColorR,retweetTextColorG,retweetTextColorB,tempSurface);//get width
+	drawTextWrappedw(str,((x+7+user()->pic()->w+5)+nameWidth+5),y+5,retweetWidth,settings::retweetTextSize,1,retweetTextColorR,retweetTextColorG,retweetTextColorB,tempSurface);//get width
 	if(retweetWidth+x+7+user()->pic()->w+5+nameWidth+5>x+w-15-timeWidth)//on top of time
-		height=drawTextWrapped(str,x+7+user()->pic()->w+5,height,w-7-pic->w-5-7-13-3,12,first,retweetTextColorR,retweetTextColorG,retweetTextColorB);
+		height=drawTextWrapped(str,x+7+user()->pic()->w+5,height,w-7-pic->w-5-7-13-3,settings::retweetTextSize,first,retweetTextColorR,retweetTextColorG,retweetTextColorB);
 	else
-		height=drawTextWrapped(str,x+7+user()->pic()->w+5+nameWidth+5,y+5,w-7-pic->w-5-7-13-3-nameWidth-5,12,first,retweetTextColorR,retweetTextColorG,retweetTextColorB);
+		height=drawTextWrapped(str,x+7+user()->pic()->w+5+nameWidth+5,y+5,w-7-pic->w-5-7-13-3-nameWidth-5,settings::retweetTextSize,first,retweetTextColorR,retweetTextColorG,retweetTextColorB);
 	//drawEntities
 
 	if(height<pic->h+10+y)
@@ -329,7 +329,7 @@ int Retweet::draw( TweetInstance *instance,int w )
 draw:
 	int nameWidth=200;
 	//SDL_FillRect(tempSurface,0,0);
-	height=drawTextWrappedw(user()->username.c_str(),x+7+pic->w+5,y+2,nameWidth,15,first,usernameTextColorR,usernameTextColorG,usernameTextColorB,tempSurface);
+	height=drawTextWrappedw(user()->username.c_str(),x+7+pic->w+5,y+2,nameWidth,settings::userNameTextSize,first,usernameTextColorR,usernameTextColorG,usernameTextColorB,tempSurface);
 	char date[1000];
 	if(timeTweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
 	{
@@ -340,7 +340,7 @@ draw:
 	}
 	else
 		strftime(date,1000,settings::dateFormat.c_str(),&timeTweeted);
-	int timeWidth=drawTextr(date,x+w-15,y+5,13,timeTextColorR,timeTextColorG,timeTextColorB,tempSurface);//time
+	int timeWidth=drawTextr(date,x+w-15,y+5,settings::timeSize,timeTextColorR,timeTextColorG,timeTextColorB,tempSurface);//time
 	int heightBeforeText=height;
 	if(timeRetweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
 	{
@@ -357,11 +357,11 @@ draw:
 	else
 		sprintf(str,"RT by %s at %s (x%i)",retweetedBy->username.c_str(),date,nRetweet);
 	int retweetWidth=w-7-pic->w-5-7-13-3-nameWidth+5;
-	drawTextWrappedw(str,((x+7+user()->pic()->w+5)+nameWidth+5),y+5,retweetWidth,12,1,retweetTextColorR,retweetTextColorG,retweetTextColorB,tempSurface);//get width
+	drawTextWrappedw(str,((x+7+user()->pic()->w+5)+nameWidth+5),y+5,retweetWidth,settings::retweetTextSize,1,retweetTextColorR,retweetTextColorG,retweetTextColorB,tempSurface);//get width
 	if(retweetWidth+x+7+user()->pic()->w+5+nameWidth+5>x+w-15-timeWidth)//on top of time
-		height=drawTextWrapped(str,x+7+user()->pic()->w+5,height,w-7-pic->w-5-7-13-3,12,first,retweetTextColorR,retweetTextColorG,retweetTextColorB,tempSurface);
+		height=drawTextWrapped(str,x+7+user()->pic()->w+5,height,w-7-pic->w-5-7-13-3,settings::retweetTextSize,first,retweetTextColorR,retweetTextColorG,retweetTextColorB,tempSurface);
 	else
-		height=drawTextWrapped(str,x+7+user()->pic()->w+5+nameWidth+5,y+5,w-7-pic->w-5-7-13-3-nameWidth-5,12,first,retweetTextColorR,retweetTextColorG,retweetTextColorB,tempSurface);
+		height=drawTextWrapped(str,x+7+user()->pic()->w+5+nameWidth+5,y+5,w-7-pic->w-5-7-13-3-nameWidth-5,settings::retweetTextSize,first,retweetTextColorR,retweetTextColorG,retweetTextColorB,tempSurface);
 	{{drawEntities}}
 
 	if(height<pic->h+10+y)

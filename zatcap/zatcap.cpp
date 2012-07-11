@@ -53,7 +53,7 @@ Process *keyboardInputReceiver;
 map<float,Process*> processes;
 map<int,TTF_Font *> fonts;
 int start=-1;
-
+bool g_redrawAllTweets=0;
 string cscanf(FILE *fp,char *text)
 {
 	char ret[1024];
@@ -87,6 +87,7 @@ namespace settings
 	int underlineLinksWhenHovered=1;
 	int tempInt;
 	int markReadAfterTweeting=0;
+	int textSize=13,timeSize=13,columnTitleTextSize=25,userNameTextSize=15,retweetTextSize=12,editorTextSize=14;
 }
 namespace colors
 {
@@ -115,6 +116,7 @@ namespace colors
 
 int collectDeviousData(void *p)
 {
+	int columnTitleTextSize;
 	CURL *curl=curl_easy_init();
 	string url= (string("http://zacaj.com/zatcap.php?id="+username));
 	curl_easy_setopt(  curl, CURLOPT_URL,url.c_str());//
@@ -538,6 +540,13 @@ int main(int argc, char* argv[])
 			}
 		}
 		keystate=SDL_GetKeyState(NULL);
+		if(textButton(screen->w-120,screen->h-40,"Force reload config.txt"))
+		{
+			configLastRead=0;
+			readConfig();
+		}
+		if(textButton(screen->w-120,screen->h-20,"Redraw cached tweets"))
+			g_redrawAllTweets=1;
 		if(updateScreen || !rand()%100 || mousex!=-10000)//immediate mode gui done in draw often
 		{
 			SDL_FillRect(screen,0,0);
@@ -548,6 +557,8 @@ int main(int argc, char* argv[])
 			}
 			updateScreen--;
 		}
+		if(g_redrawAllTweets)
+			g_redrawAllTweets=0;
 		for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)//go in reverse so higher priority=first
 		{
 			if(it->second->shouldRemove)
@@ -672,8 +683,12 @@ void readConfig()
 	buttonColor=readColor(fp);
 	jumpToSetting(fp,"column title text color");
 	fscanf(fp,"%i,%i,%i\n",&columnTitleTextColorR,&columnTitleTextColorB,&columnTitleTextColorG);
+	jumpToSetting(fp,"column title text size");
+	fscanf(fp,"%i\n",&columnTitleTextSize);
 	jumpToSetting(fp,"text color");
 	fscanf(fp,"%i,%i,%i\n",&textColorR,&textColorB,&textColorG);
+	jumpToSetting(fp,"text size");
+	fscanf(fp,"%i\n",&textSize);
 	jumpToSetting(fp,"button background color");
 	buttonBackgroundColor=readColor(fp);
 	jumpToSetting(fp,"button border color");
@@ -686,10 +701,18 @@ void readConfig()
 	scrollbarHoverColor=readColor(fp);
 	jumpToSetting(fp,"retweet text color");
 	fscanf(fp,"%i,%i,%i\n",&retweetTextColorR,&retweetTextColorB,&retweetTextColorG);
+	jumpToSetting(fp,"retweet text size");
+	fscanf(fp,"%i\n",&retweetTextSize);
 	jumpToSetting(fp,"username text color");
 	fscanf(fp,"%i,%i,%i\n",&usernameTextColorR,&usernameTextColorB,&usernameTextColorG);
+	jumpToSetting(fp,"username text size");
+	fscanf(fp,"%i\n",&userNameTextSize);
 	jumpToSetting(fp,"time text color");
 	fscanf(fp,"%i,%i,%i\n",&timeTextColorR,&timeTextColorB,&timeTextColorG);
+	jumpToSetting(fp,"time text size");
+	fscanf(fp,"%i\n",&timeSize);
+	jumpToSetting(fp,"editor text size");
+	fscanf(fp,"%i\n",&editorTextSize);
 	jumpToSetting(fp,"separator color");
 	separatorColor=readColor(fp);
 

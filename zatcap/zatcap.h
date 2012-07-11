@@ -58,6 +58,7 @@ namespace settings
 	extern int underlineLinksWhenHovered;
 	extern int tempInt;
 	extern int markReadAfterTweeting;
+	extern int textSize,timeSize,columnTitleTextSize,userNameTextSize,retweetTextSize,editorTextSize;
 }
 namespace colors
 {
@@ -157,6 +158,8 @@ char* getClipboardText();
 extern int mousex,mousey;
 
 bool fileExists(string path);
+
+extern bool g_redrawAllTweets;
 
 #define MOUSEPREPRESS -7
 

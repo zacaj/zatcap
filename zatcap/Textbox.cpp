@@ -173,7 +173,7 @@ bool Textbox::mouseButtonEvent( int x,int y,int button,int pressed )
 			if(keyboardInputReceiver!=this)
 				keyboardInputReceiver=this;
 			{
-				cursorPos=_drawTextWrapped(str.c_str(),this->x+4,this->y+4,this->w-8,14,0,x,y,255,255,255,(SDL_Surface*)1);
+				cursorPos=_drawTextWrapped(str.c_str(),this->x+4,this->y+4,this->w-8,settings::editorTextSize,0,x,y,255,255,255,(SDL_Surface*)1);
 				cursorBlink=10;
 			}
 		}
@@ -197,7 +197,7 @@ void Textbox::draw()
 	int cx=-10000,cy;
 	SDL_Surface* text=SDL_CreateRGBSurface(SDL_SWSURFACE,w,16*140,32,screen->format->Rmask,screen->format->Gmask,screen->format->Bmask,screen->format->Amask);
 	SDL_FillRect(text,0,SDL_MapRGB(text->format,30,30,30));
-	_drawTextWrapped(str.c_str(),4,4,w-8,14,cursorPos,cx,cy,255,255,255,text);
+	_drawTextWrapped(str.c_str(),4,4,w-8,settings::textSize,cursorPos,cx,cy,255,255,255,text);
 	if(cx==-10000)
 	{
 		cx=4;
@@ -395,11 +395,11 @@ bool Textbox::keyboardEvent( int key,int pressed,int mod )
 			case SDLK_UP:
 				{
 					int cx=-10000,cy;
-					_drawTextWrapped(str.c_str(),x+4,y+4,w-8,14,cursorPos,cx,cy,255,255,255,screen);
+					_drawTextWrapped(str.c_str(),x+4,y+4,w-8,settings::editorTextSize,cursorPos,cx,cy,255,255,255,screen);
 					cx+=3;
 					cy-=TTF_FontLineSkip(getFont(14));
 					if(cy>y-4)
-						cursorPos=_drawTextWrapped(str.c_str(),this->x+4,this->y+4,this->w-8,14,0,cx,cy,255,255,255,(SDL_Surface*)1);
+						cursorPos=_drawTextWrapped(str.c_str(),this->x+4,this->y+4,this->w-8,settings::editorTextSize,0,cx,cy,255,255,255,(SDL_Surface*)1);
 					else
 						cursorPos=0;
 					handled=1;
@@ -408,10 +408,10 @@ bool Textbox::keyboardEvent( int key,int pressed,int mod )
 			case SDLK_DOWN:
 				{
 					int cx=-10000,cy;
-					_drawTextWrapped(str.c_str(),x+4,y+4,w-8,14,cursorPos,cx,cy,255,255,255,screen);
+					_drawTextWrapped(str.c_str(),x+4,y+4,w-8,settings::editorTextSize,cursorPos,cx,cy,255,255,255,screen);
 					cx+=3;
 					cy+=TTF_FontLineSkip(getFont(14));
-					cursorPos=_drawTextWrapped(str.c_str(),this->x+4,this->y+4,this->w-8,14,0,cx,cy,255,255,255,(SDL_Surface*)1);
+					cursorPos=_drawTextWrapped(str.c_str(),this->x+4,this->y+4,this->w-8,settings::editorTextSize,0,cx,cy,255,255,255,(SDL_Surface*)1);
 					handled=1;
 					break;
 				}

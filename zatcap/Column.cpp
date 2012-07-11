@@ -62,7 +62,7 @@ void Column::draw()
 					minimized=0;
 				}
 			}
-			SDL_Surface *otext=drawTexts(columnName.c_str(),25,columnTitleTextColorR,columnTitleTextColorG,columnTitleTextColorB);
+			SDL_Surface *otext=drawTexts(columnName.c_str(),settings::columnTitleTextSize,columnTitleTextColorR,columnTitleTextColorG,columnTitleTextColorB);
 			SDL_Surface *text=rotateSurface90Degrees(otext,3);
 			drawSprite(text,screen,0,0,columnHorizontalRenderAt+(32-text->w)/2,COLUMNHEADERHEIGHT,text->w,text->h);
 			SDL_FreeSurface(text);
@@ -80,7 +80,7 @@ void Column::draw()
 	int tweetsDrawn=0;
 	int firstDrawn=-1,i=0;
 	if(m_tweets.size()==0)
-		drawTextWrappedc(emptyColumnText.c_str(),columnHorizontalRenderAt+w/2,100,w-30,14);
+		drawTextWrappedc(emptyColumnText.c_str(),columnHorizontalRenderAt+w/2,100,w-30,settings::editorTextSize);
 	TweetInstance *lastInstance=NULL;
 	for(auto it=m_tweets.rbegin();it!=m_tweets.rend();it++,i++)
 	{
@@ -102,7 +102,7 @@ void Column::draw()
 			}
 		}
 		int oldy=y;
-		if(instance->needsRefresh || redrawAllTweets)
+		if(instance->needsRefresh || redrawAllTweets || g_redrawAllTweets)
 		{
 			if(lastInstance==NULL)
 				it->second=new TweetInstance(instance->tweet,rw,instance->background);
@@ -163,7 +163,7 @@ void Column::draw()
 			drawSprite(arrowDown,screen,0,0,columnHorizontalRenderAt+w-3-8,screen->h-8,8,8);
 		}*///todo
 	}
-	drawText(columnName.c_str(),columnHorizontalRenderAt+4,COLUMNHEADERHEIGHT-30,25,200,200,200);
+	drawText(columnName.c_str(),columnHorizontalRenderAt+4,COLUMNHEADERHEIGHT-30,settings::columnTitleTextSize,200,200,200);
 	{//minimize
 		int bx=columnHorizontalRenderAt+w-15,by=COLUMNHEADERHEIGHT-24;
 		if(doButton(bx,by,16,16))
