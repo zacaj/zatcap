@@ -457,7 +457,7 @@ retry:
 	if(!fileExists(path2))
 	{
 		CURL *curl= curl_easy_init();
-		printf("Downloading @%s's avatar (%s)\n",pic->name.c_str(),path.c_str());
+		debug("Downloading @%s's avatar (%s)\n",pic->name.c_str(),path.c_str());
 		assert(curl);
 		{
 			FILE *fp = fopen(path.c_str(),"wb");
@@ -506,7 +506,7 @@ retry:
 		(*img)=zoomSurface((*img),48.f/ (*img)->w,48.f/ (*img)->h,1);debugHere();//haha @ needing space after /
 	}debugHere();
 	processUserPics(pic->user);debugHere();
-	printf("Downloaded @%s's avatar (%s)\n",pic->name.c_str(),path2.c_str());
+	debug("Downloaded @%s's avatar (%s)\n",pic->name.c_str(),path2.c_str());
 	aviDownloader->busy=0;
 	aviDownloader->pics.erase(aviDownloader->pics.begin());
 	delete ptr;debugHere();

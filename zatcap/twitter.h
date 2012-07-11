@@ -74,9 +74,7 @@ public:
 	string displayUrl;
 	void click()
 	{
-		printf("%s\n",realUrl.c_str());
-		string cmd=settings::browserCommand+" \""+realUrl+"\"";
-		system(cmd.c_str());
+		msystem("\""+settings::browserCommand+"\" \""+realUrl+"\"");
 	}
 	void write(FILE *fp)
 	{
@@ -99,14 +97,7 @@ public:
 	string username;
 	void click()
 	{
-#ifdef USE_WINDOWS
-		string cmd=string("cmd /C \"\"")+settings::browserCommand+"\" \"https://twitter.com/"+username+"\"\"";
-#else
-		string cmd=settings::browserCommand+" \"https://twitter.com/"+username+"\"";
-#endif
-		printf("Command to be run: \n%s\n\nOutput from command (empty if successful):\n\n",cmd.c_str());
-		system(cmd.c_str());
-		printf("\n<end of output>\n");
+		msystem("\""+settings::browserCommand+"\" \"https://twitter.com/"+username+"\"");
 	}
 	void write(FILE *fp)
 	{
@@ -128,8 +119,9 @@ public:
 	string name;
 	void click()
 	{
-		string cmd=settings::browserCommand+" \"https://twitter.com/search?q=%23"+name.substr(1,name.size()-1)+"\"";
-		system(cmd.c_str());
+		msystem("\""+settings::browserCommand+"\" \"https://twitter.com/search?q=%23"+name.substr(1,name.size()-1)+"\"");
+		//s/tring cmd=settings::browserCommand+" \"https://twitter.com/search?q=%23"+name.substr(1,name.size()-1)+"\"";
+		//system(cmd.c_str());
 	}
 	void write(FILE *fp)
 	{

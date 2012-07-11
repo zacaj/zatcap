@@ -167,3 +167,7 @@ extern SDL_mutex *fontMutex;
 extern SDL_mutex *tempSurfaceMutex;
 string getFile(string path);
 string getPath(string path);
+
+extern int version;
+
+void msystem(string str);

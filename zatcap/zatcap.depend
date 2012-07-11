@@ -61,7 +61,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1342040438 /media/sf_source/zatcap/zatcap/zatcap.h
+1342045042 /media/sf_source/zatcap/zatcap/zatcap.h
 	"twitcurl.h"
 	"curl.h"
 	<string>
@@ -337,7 +337,7 @@
 	"Tweet.h"
 	<SDL_mutex.h>
 
-1341878887 /media/sf_source/zatcap/zatcap/twitter.h
+1342042615 /media/sf_source/zatcap/zatcap/twitter.h
 	"zatcap.h"
 	<time.h>
 	<assert.h>
@@ -472,7 +472,7 @@
 1268379095 /media/sf_src/jsoncpp-src-0.5.0/include/json/mfeatures.h
 	"forwards.h"
 
-1342040843 source:/media/sf_source/zatcap/zatcap/twitter.cpp
+1342043606 source:/media/sf_source/zatcap/zatcap/twitter.cpp
 	"twitter.h"
 	"zatcap.h"
 	"twitcurl.h"
@@ -489,8 +489,9 @@
 	<stdio.h>
 	<dirent.h>
 	<iosfwd>
+	"AvitarDownloader.h"
 
-1341878856 source:/media/sf_source/zatcap/zatcap/zatcap.cpp
+1342041042 source:/media/sf_source/zatcap/zatcap/zatcap.cpp
 	"stdafx.h"
 	"twitcurl.h"
 	"curl.h"
@@ -564,8 +565,15 @@
 	"zatcap.h"
 	"twitter.h"
 
-1342039997 source:/media/sf_source/zatcap/zatcap/Tweet.cpp
+1342041597 source:/media/sf_source/zatcap/zatcap/Tweet.cpp
 	"Tweet.h"
 	"zatcap.h"
 	"Textbox.h"
+
+1342042930 /media/sf_source/zatcap/zatcap/AvitarDownloader.h
+	"process.h"
+	"twitter.h"
+
+1342042985 source:/media/sf_source/zatcap/zatcap/AvitarDownloader.cpp
+	"AvitarDownloader.h"
 

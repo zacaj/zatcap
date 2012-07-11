@@ -33,9 +33,12 @@
 extern SDL_Surface *defaultSmallUserPic;
 extern SDL_Surface *defaultMediumUserPic;
 Process *mouseDragReceiver;
-
+int version=
+#include "../Debug/version.txt"
+	;
 int updateScreen=1;
 Uint8 *keystate;
+bool newVersion=0;
 Textbox *tweetbox;
 string username;
 SDL_Surface* arrowDown;
@@ -53,6 +56,49 @@ Process *keyboardInputReceiver;
 map<float,Process*> processes;
 map<int,TTF_Font *> fonts;
 int start=-1;
+/* XPM */
+static const char *arrow[] = {
+	/* width height num_colors chars_per_pixel */
+	"    32    32        3            1",
+	/* colors */
+	"X c #000000",
+	". c #ffffff",
+	"  c None",
+	/* pixels */
+	"X                               ",
+	"XX                              ",
+	"X.X                             ",
+	"X..X                            ",
+	"X...X                           ",
+	"X....X                          ",
+	"X.....X                         ",
+	"X......X                        ",
+	"X.......X                       ",
+	"X........X                      ",
+	"X.....XXXXX                     ",
+	"X..X..X                         ",
+	"X.X X..X                        ",
+	"XX  X..X                        ",
+	"X    X..X                       ",
+	"     X..X                       ",
+	"      X..X                      ",
+	"      X..X                      ",
+	"       XX                       ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"0,0"
+};
 bool g_redrawAllTweets=0;
 string cscanf(FILE *fp,char *text)
 {
@@ -114,14 +160,52 @@ namespace colors
 	Uint32 entityUnderlineColor[6];
 }
 
+size_t function( char *ptr, size_t size, size_t nmemb, void *userdata)
+{
+	return size*nmemb;
+}
+
+void msystem( string str )
+{
+
+#ifdef USE_WINDOWS
+	string cmd=string("cmd /C \"")+str+"\"";
+#else
+	string cmd=str;
+#endif
+	printf("Command to be run: \n%s\n\nOutput from command (empty if successful):\n\n",cmd.c_str());
+	system(cmd.c_str());
+	printf("\n<end of output>\n");
+}
+
 int collectDeviousData(void *p)
 {
 	int columnTitleTextSize;
 	CURL *curl=curl_easy_init();
 	string url= (string("http://zacaj.com/zatcap.php?id="+username));
 	curl_easy_setopt(  curl, CURLOPT_URL,url.c_str());//
+	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, function);
 	curl_easy_perform(curl);
 	curl_easy_cleanup(curl);
+	{
+		CURL *curl2=curl_easy_init();
+		assert(curl2);
+		string url= (string("http://zacaj.com/zatcap/zatcap-"+i2s(version+1)+".zip"));
+		curl_easy_setopt(  curl2, CURLOPT_URL,url.c_str());//
+		curl_easy_setopt(curl2, CURLOPT_WRITEFUNCTION, function);
+		curl_easy_setopt(curl2, CURLOPT_NOBODY, 1);
+		curl_easy_setopt(curl2, CURLOPT_HEADER, 1);
+		curl_easy_setopt(curl2, CURLOPT_FAILONERROR , 1);
+		//curl_easy_setopt(  curl2, CURLOPT_VERBOSE, 1 );
+		CURLcode res;
+		res=curl_easy_perform(curl2);
+		if(res != CURLE_OK)
+			fprintf(stderr, "curl_easy_perform() failed: %s\n",
+			curl_easy_strerror(res));
+		else
+			newVersion=1;
+		curl_easy_cleanup(curl2);
+	}
 	return 0;
 }
 SDL_mutex *tempSurfaceMutex;
@@ -277,6 +361,7 @@ int saveTweetPtr(void *data)
 	saveTweets();
 	return 0;
 }
+static SDL_Cursor *init_system_cursor(const char *image[]);
 time_t configLastRead=0;
 int main(int argc, char* argv[])
 {
@@ -289,7 +374,7 @@ int main(int argc, char* argv[])
 	fclose(fopen("debug.txt","w"));
 	system("mkdir profilepics");
 	debug("starting...\n");
-	printf("Version: %s\n",VERSION);
+	printf("Version: a%i\n",version);
 	SDL_Init(SDL_INIT_EVERYTHING);debug("%i\n",__LINE__);
 	cursor=IDC_ARROW;
 	sysinit();
@@ -302,6 +387,7 @@ int main(int argc, char* argv[])
 	twitCurl *twit=NULL;
 	TTF_Init();debug("%i\n",__LINE__);
 	SDL_WM_SetCaption( "Zacaj's Amazing Twitter Client for Awesome People", NULL );
+	SDL_SetCursor(init_system_cursor(arrow));
 	//SetCursor(LoadCursor(NULL, IDC_ARROW));
 	IMG_Init(IMG_INIT_JPG|IMG_INIT_PNG);debug("%i\n",__LINE__);
 	debug("%i %i\n",__LINE__,fopen(string("profilepics/"+settings::defaultUserPicPath).c_str(),"r"));
@@ -396,8 +482,8 @@ int main(int argc, char* argv[])
 	int t=0;
 	while(!quit)
 	{
-		if(cursor!=IDC_ARROW)
-			SetCursor(LoadCursor(NULL, cursor));
+		//if(cursor!=IDC_ARROW)
+		//	SetCursor(LoadCursor(NULL, cursor));
 
 		time(&currentTime);
 		if(mousex!=-10000)
@@ -558,6 +644,8 @@ int main(int argc, char* argv[])
 			if(textButton(screen->w-125,screen->h-20,"Redraw cached tweets"))
 				g_redrawAllTweets=1;
 			updateScreen--;
+			if(newVersion)
+				drawText("A new version is available, download at zacaj.com/zatcap/",5,screen->h-40,13);
 		}
 		for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)//go in reverse so higher priority=first
 		{
@@ -909,4 +997,38 @@ string getPath(string path)
 	}
 	else
 		return path;
+}
+
+static SDL_Cursor *init_system_cursor(const char *image[])
+{
+	int i, row, col;
+	Uint8 data[4*32];
+	Uint8 mask[4*32];
+	int hot_x, hot_y;
+
+	i = -1;
+	for ( row=0; row<32; ++row ) {
+		for ( col=0; col<32; ++col ) {
+			if ( col % 8 ) {
+				data[i] <<= 1;
+				mask[i] <<= 1;
+			} else {
+				++i;
+				data[i] = mask[i] = 0;
+			}
+			switch (image[4+row][col]) {
+			case 'X':
+				data[i] |= 0x01;
+				mask[i] |= 0x01;
+				break;
+			case '.':
+				mask[i] |= 0x01;
+				break;
+			case ' ':
+				break;
+			}
+		}
+	}
+	sscanf(image[4+row], "%d,%d", &hot_x, &hot_y);
+	return SDL_CreateCursor(data, mask, 32, 32, hot_x, hot_y);
 }
