@@ -540,13 +540,8 @@ int main(int argc, char* argv[])
 			}
 		}
 		keystate=SDL_GetKeyState(NULL);
-		if(textButton(screen->w-120,screen->h-40,"Force reload config.txt"))
-		{
-			configLastRead=0;
-			readConfig();
-		}
-		if(textButton(screen->w-120,screen->h-20,"Redraw cached tweets"))
-			g_redrawAllTweets=1;
+		if(g_redrawAllTweets)
+			g_redrawAllTweets=0;
 		if(updateScreen || !rand()%100 || mousex!=-10000)//immediate mode gui done in draw often
 		{
 			SDL_FillRect(screen,0,0);
@@ -555,10 +550,15 @@ int main(int argc, char* argv[])
 			{
 				it->second->draw();
 			}
+			if(textButton(screen->w-125,screen->h-40,"Force reload config.txt"))
+			{
+				configLastRead=0;
+				readConfig();
+			}
+			if(textButton(screen->w-125,screen->h-20,"Redraw cached tweets"))
+				g_redrawAllTweets=1;
 			updateScreen--;
 		}
-		if(g_redrawAllTweets)
-			g_redrawAllTweets=0;
 		for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)//go in reverse so higher priority=first
 		{
 			if(it->second->shouldRemove)

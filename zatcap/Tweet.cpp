@@ -353,9 +353,9 @@ draw:
 		strftime(date,1000,settings::dateFormat.c_str(),&timeRetweeted);
 	char str[200];
 	if(nRetweet<=1)
-		sprintf(str,"RT by %s at %s",retweetedBy->username.c_str(),date);
+		sprintf(str,"retweeted by %s at %s",retweetedBy->username.c_str(),date);
 	else
-		sprintf(str,"RT by %s at %s (x%i)",retweetedBy->username.c_str(),date,nRetweet);
+		sprintf(str,"retweeted by %s at %s (x%i)",retweetedBy->username.c_str(),date,nRetweet);
 	int retweetWidth=w-7-pic->w-5-7-13-3-nameWidth+5;
 	drawTextWrappedw(str,((x+7+user()->pic()->w+5)+nameWidth+5),y+5,retweetWidth,settings::retweetTextSize,1,retweetTextColorR,retweetTextColorG,retweetTextColorB,tempSurface);//get width
 	if(retweetWidth+x+7+user()->pic()->w+5+nameWidth+5>x+w-15-timeWidth)//on top of time
