@@ -17,7 +17,6 @@ public:
 		_user=NULL;
 		_type=0;
 		read=0;
-		replyTo=NULL;
 	}
 	struct tm timeTweeted;
 	time_t timeTweetedInSeconds;
@@ -25,7 +24,7 @@ public:
 	bool retweeted;
 	int read;
 	vector<Entity *> entities;
-	Tweet *replyTo;
+	string replyTo;
 	User* user()
 	{
 		if(_user==NULL)
@@ -55,7 +54,6 @@ public:
 		_type=1;
 		_original=NULL;
 		read=0;
-		replyTo=NULL;
 	}
 	Tweet* original()
 	{debugHere();

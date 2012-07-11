@@ -31,7 +31,7 @@ void HomeColumn::newTweet( Tweet *tweet )
 		return;
 	SDL_LockMutex(drawingMutex);
 	m_tweets[tweet->id]=new TweetInstance(tweet,rw,onOff);
-	if(scroll!=0)
+	if(scroll>100)
 	{
 		scroll+=m_tweets[tweet->id]->surface->h;
 	}

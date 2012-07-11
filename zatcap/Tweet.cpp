@@ -513,7 +513,7 @@ int Tweet::drawButtons( int _x,int _y,int w,int h,bool highlighted,SDL_Surface* 
 		y+=16;
 	}
 	if(y+19>_y+h)	{y=_y+18;x-=16;	}
-	if(highlighted && replyTo!=NULL)
+	if(highlighted && replyTo.size())
 	{
 		drawSprite(convo[hoverButton(x,y,16,16)],_screen,0,0,x,y,16,16);
 		if(doButton(x,y,16,16))
@@ -572,11 +572,8 @@ TweetInstance::TweetInstance( Tweet *_tweet,int w,int _background  )	:
 {
 	tweet->draw(this,w);
 	needsRefresh=0;
-	if(tweet->replyTo!=NULL)
-		replyTo=new TweetInstance(tweet->replyTo,w,!background);
-	else
-		replyTo=NULL;
 	drawReply=0;
+	replyTo=NULL;
 }
 
 int TweetInstance::draw( int x,int y )	
@@ -606,8 +603,12 @@ int TweetInstance::draw( int x,int y )
 	if(hoverButton(x+5,y+5,48,48))
 		drawSprite(reply[2],screen,0,0,x+5,y+5,reply[2]->w,reply[2]->h);
 	if(drawReply)
-		h+=replyTo->draw(x+5,y+h)+15;
-
+	{
+		if(replyTo==NULL && tweet->replyTo.size())
+			replyTo=new TweetInstance(getTweet(tweet->replyTo),surface->w-12,!background);
+		if(replyTo!=NULL)
+			h+=replyTo->draw(x+12,y+h)+0;
+	}
 	return h;
 }
 

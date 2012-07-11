@@ -109,11 +109,11 @@ void Column::draw()
 			else
 				it->second=new TweetInstance(instance->tweet,rw,!lastInstance->background);
 
+			it->second->drawReply=instance->drawReply;
 			delete instance;
 			instance=it->second;
 		}
 		y+=instance->draw(columnHorizontalRenderAt,y);
-		//y+=instance->surface->h;
 		int y2=y-oldy;
 		if(oldy+y2>screen->h-footerHeight)
 			y2+=screen->h-footerHeight-(y2+oldy);
@@ -177,13 +177,13 @@ void Column::draw()
 	}
 	{
 		char str[100];
-		sprintf(str,"%i",m_tweets.size());
-		drawText(str,columnHorizontalRenderAt+w-80,COLUMNHEADERHEIGHT-30,13,255,255,255);
+		sprintf(str,"Tweets: %i",m_tweets.size());
+		drawText(str,columnHorizontalRenderAt+w-120,COLUMNHEADERHEIGHT-30,13,255,255,255);
 	}/**/
 	{
 		char str[100];
-		sprintf(str,"%i",scroll);
-		drawText(str,columnHorizontalRenderAt+w-120,COLUMNHEADERHEIGHT-30,13,255,255,255);
+		sprintf(str,"d%i",scroll);
+		drawText(str,columnHorizontalRenderAt+w-150,COLUMNHEADERHEIGHT-30,13,255,255,255);
 	}/**/
 	{//top
 		int bx=columnHorizontalRenderAt+w-20-24-top[0]->w;

@@ -721,9 +721,9 @@ Tweet* processTweet(Json::Value jtweet)
 		tweet->timeTweeted=*localtime(&ott);
 		tweet->id=jtweet["id_str"].asString();
 		if(jtweet["in_reply_to_status_id_str"].isNull())
-			tweet->replyTo=NULL;
+			tweet->replyTo="";
 		else
-			tweet->replyTo=getTweet(jtweet["in_reply_to_status_id_str"].asString());
+			tweet->replyTo=jtweet["in_reply_to_status_id_str"].asString();
 	}
 	else//is a rt
 	{
@@ -752,9 +752,9 @@ Tweet* processTweet(Json::Value jtweet)
 		retweet->nRetweet=jtweet["retweet_count"].asInt();
 		retweet->timeRetweetedInSeconds=mktime(&retweet->timeRetweeted);debugHere();
 		if(original["in_reply_to_status_id_str"].isNull())
-			tweet->replyTo=NULL;
+			tweet->replyTo="";
 		else
-			tweet->replyTo=getTweet(original["in_reply_to_status_id_str"].asString());
+			tweet->replyTo=(original["in_reply_to_status_id_str"].asString());
 	}
 	tweet->timeTweetedInSeconds=mktime(&tweet->timeTweeted);debugHere();
 	if(tweet->user()->username==username)
