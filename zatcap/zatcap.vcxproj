@@ -83,6 +83,7 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AvitarDownloader.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Column.h" />
     <ClInclude Include="file.h" />
@@ -100,6 +101,7 @@
     <ClInclude Include="zatcap.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AvitarDownloader.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Column.cpp" />
     <ClCompile Include="file.cpp" />

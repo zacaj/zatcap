@@ -159,3 +159,5 @@ Tweet* processTweet(Json::Value jtweet);
 void saveTweets();
 
 int loadOlderTweets(void *data);
+class AvitarDownloader;
+extern AvitarDownloader *aviDownloader;

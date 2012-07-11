@@ -15,6 +15,8 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <iosfwd>
+#include "AvitarDownloader.h"
+AvitarDownloader *aviDownloader;
 using namespace colors;
 map<string,Tweet*> tweets;
 map<string,User*> users;
@@ -38,6 +40,10 @@ int twitterInit( void  *_twit )
 	loadUser(twit);
 	loggedIn=1;
 	((MentionColumn*)processes[2.5])->term=username;
+	{
+		aviDownloader=new AvitarDownloader();
+		processes[4578.6]=aviDownloader;
+	}
 	wait->text="Loading older tweets";
 	updateScreen=1;debugHere();
 #if 1
@@ -139,6 +145,7 @@ void readTweetFile(string path)
 	case 2:
 	case 3:
 	case 4:
+	case 5:
 		{
 			int n=ruint(fp);
 			for(int i=0;i<n;i++)
@@ -158,7 +165,8 @@ void readTweetFile(string path)
 						tweet->id=rstr(fp);
 						if(version>=5)
 						{
-
+							tweet->timeTweetedInSeconds=ruint(fp);
+							tweet->timeTweeted=*localtime(&tweet->timeTweetedInSeconds);
 						}
 						else
 						{
@@ -195,9 +203,17 @@ void readTweetFile(string path)
 					{
 						Retweet *retweet=new Retweet;
 						retweet->id=rstr(fp);
-						fread(&retweet->timeTweeted,sizeof(int),9,fp);
-						if(version==4) fgetc(fp);
-						retweet->timeTweetedInSeconds=mktime(&retweet->timeTweeted);
+						if(version>=5)
+						{
+							retweet->timeTweetedInSeconds=ruint(fp);
+							retweet->timeTweeted=*localtime(&retweet->timeTweetedInSeconds);
+						}
+						else
+						{
+							fread(&retweet->timeTweeted,sizeof(int),9,fp);
+							if(version==4) fgetc(fp);
+							retweet->timeTweetedInSeconds=mktime(&retweet->timeTweeted);
+						}
 						retweet->text=rstr(fp);
 						retweet->userid=rstr(fp);
 						retweet->_user=getUser(retweet->userid);
@@ -223,10 +239,18 @@ void readTweetFile(string path)
 						retweet->originalID=rstr(fp);
 						retweet->nRetweet=ruint(fp);
 						retweet->_original=getTweet(retweet->originalID);
-						//tweetsMissing.push_back(retweet);
-						fread(&retweet->timeRetweeted,sizeof(struct tm),1,fp);
-						if(version==4) fgetc(fp);
-						retweet->timeRetweetedInSeconds=mktime(&retweet->timeRetweeted);debugHere();
+						if(version>=5)
+						{
+							retweet->timeRetweetedInSeconds=ruint(fp);
+							retweet->timeRetweeted=*localtime(&retweet->timeTweetedInSeconds);
+						}
+						else
+						{
+							fread(&retweet->timeRetweeted,sizeof(int),9,fp);
+							if(version==4) fgetc(fp);
+							retweet->timeRetweetedInSeconds=mktime(&retweet->timeTweeted);
+						}
+						//retweet->timeRetweetedInSeconds=mktime(&retweet->timeRetweeted);debugHere();
 						addTweet((Tweet**)(&retweet));debugHere();
 					}
 					break;
@@ -270,13 +294,6 @@ void parseRestTweets( string json )
 	}
 }
 
-struct profilepic
-{
-	SDL_Surface **img;
-	string url;
-	string name;
-	User *user;
-};
 
 size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 	debugHere();
@@ -345,7 +362,7 @@ void saveTweets()
 				rename((string("tweets/")+prefix).c_str(),(string("tweets/")+prefix+".backup").c_str());
 			}
 			fp=fopen((string("tweets/")+prefix).c_str(),"wb");
-			wuchar(4,fp);//version
+			wuchar(5,fp);//version
 			wuint(n,fp);
 			for(map<string,Tweet*>::iterator it=bottom;it!=top;it++)
 			{
@@ -432,61 +449,66 @@ int loadProfilePic(void *ptr)
 {
 	profilepic *pic=(profilepic*)ptr;
 	SDL_Surface** img=(SDL_Surface**)pic->img;
-	printf("Downloading @%s's avatar\n",pic->name.c_str());
 retry:
 	debugHere();
-	CURL *curl= curl_easy_init();
 	string r=pic->name;
-	string path="profilepics/temp"+r+getFile(pic->url);
-	assert(curl);
+	string path="profilepics/temp"+i2s((rand()+time(NULL)+clock())%100)+r+getFile(pic->url);
+	string path2="profilepics/"+pic->name+"."+getExt(getFile(pic->url));debugHere();
+	if(!fileExists(path2))
 	{
-		FILE *fp = fopen(path.c_str(),"wb");
-		debug("%i %s\n",fp,path.c_str());
-		debugHere();
-		curl_easy_setopt(curl, CURLOPT_URL, pic->url.c_str());
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
-		curl_easy_perform(curl);
-		/* always cleanup */
-		curl_easy_cleanup(curl);
-		debugHere();
-		if(ftell(fp)<5)
+		CURL *curl= curl_easy_init();
+		printf("Downloading @%s's avatar (%s)\n",pic->name.c_str(),path.c_str());
+		assert(curl);
 		{
+			FILE *fp = fopen(path.c_str(),"wb");
+			debug("%i %s\n",fp,path.c_str());
+			debugHere();
+			curl_easy_setopt(curl, CURLOPT_URL, pic->url.c_str());
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
+			curl_easy_perform(curl);
+			/* always cleanup */
+			curl_easy_cleanup(curl);
+			debugHere();
+			if(ftell(fp)<5)
+			{
+				debugHere();
+				fclose(fp);
+				goto retry;
+			}
 			debugHere();
 			fclose(fp);
+		}
+		SDL_Surface* temp=loadImage(path);debugHere();
+		if(temp!=NULL)
+		{debugHere();
+			rename(path.c_str(),path2.c_str());debugHere();
+			*img=temp;//loadImage(path2);
+			//SDL_FreeSurface(temp);debugHere();
+			if(pic->user->_pic==NULL)
+				goto retry;
+			debugHere();
+		}
+		else
+		{
+			if(temp==NULL)
+				printf("loading failed of %s?\n",path.c_str());
+			else
+				printf("ERROR: hey look zacaj was lazy and didnt implement support for other size profile pictures hoping it would never come up, go punch him in the face!\n");
+			*img=NULL;
 			goto retry;
 		}
-		debugHere();
-		fclose(fp);
-	}
-	SDL_Surface* temp=loadImage(path);debugHere();
-	if(temp!=NULL)
-	{debugHere();
-		string path2="profilepics/"+pic->name+"."+getExt(getFile(pic->url));debugHere();
-		rename(path.c_str(),path2.c_str());debugHere();
-		*img=temp;//loadImage(path2);
-		if((*img)->w!=48 || (*img)->h!=48)
-		{
-			//SDL_FreeSurface(temp);
-			temp=(*img);debugHere();
-			(*img)=zoomSurface((*img),48.f/ (*img)->w,48.f/ (*img)->h,1);debugHere();//haha @ needing space after /
-			SDL_FreeSurface(temp);debugHere();
-		}debugHere();
-		if(pic->user->_pic==NULL)
-			goto retry;
-		debugHere();
-		processUserPics(pic->user);debugHere();
 	}
 	else
+		*img=loadImage(path2);
+	if((*img)->w!=48 || (*img)->h!=48)
 	{
-		if(temp==NULL)
-			printf("loading failed of %s?\n",path.c_str());
-		else
-			printf("ERROR: hey look zacaj was lazy and didnt implement support for other size profile pictures hoping it would never come up, go punch him in the face!\n");
-		*img=NULL;
-		goto retry;
-	}
-	printf("Downloaded @%s's avatar\n",pic->name.c_str());
+		(*img)=zoomSurface((*img),48.f/ (*img)->w,48.f/ (*img)->h,1);debugHere();//haha @ needing space after /
+	}debugHere();
+	processUserPics(pic->user);debugHere();
+	printf("Downloaded @%s's avatar (%s)\n",pic->name.c_str(),path2.c_str());
+	aviDownloader->busy=0;
+	aviDownloader->pics.erase(aviDownloader->pics.begin());
 	delete ptr;debugHere();
 	return 0;
 }
@@ -524,7 +546,7 @@ User * getUser(Json::Value root)
 		pic->url=root["profile_image_url"].asString();
 		pic->name=user->username;
 		pic->user=user;debugHere();
-		SDL_CreateThread(loadProfilePic,pic);
+		aviDownloader->pics.push_back(pic);
 	}
 	user->save();
 	users[id]=user;debugHere();
@@ -575,7 +597,8 @@ User * getUser( string id )
 			pic->url=user->picURL;
 			pic->name=user->username;
 			pic->user=user;debugHere();
-			SDL_CreateThread(loadProfilePic,pic);
+			aviDownloader->pics.push_back(pic);
+			//SDL_CreateThread(loadProfilePic,pic);
 		}debugHere();
 		fclose(fp);debugHere();
 		return user;

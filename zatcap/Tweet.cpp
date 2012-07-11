@@ -528,7 +528,8 @@ void Tweet::write( FILE *fp )
 {
 	wuchar(_type,fp);
 	wstr(id,fp);
-	fwrite(&timeTweeted,sizeof(int),9,fp);
+	wuint(timeTweetedInSeconds,fp);
+	//fwrite(&timeTweeted,sizeof(int),9,fp);
 	fputc('\n',fp);
 	wstr(text,fp);
 	wstr(userid,fp);
@@ -562,7 +563,8 @@ void Retweet::write( FILE *fp )
 	wstr(retweetedBy->id,fp);
 	wstr(originalID,fp);
 	wuint(nRetweet,fp);
-	fwrite(&timeRetweeted,sizeof(int),9,fp);
+	wuint(timeRetweetedInSeconds,fp);
+//	fwrite(&timeRetweeted,sizeof(int),9,fp);
 	fputc('\n',fp);
 }
 
