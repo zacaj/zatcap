@@ -36,6 +36,7 @@ public:
 	virtual int draw(int x,int y,int w,int background);
 	virtual int draw(TweetInstance *instance,int w);
 	virtual int drawButtons(int x,int y,int w,int h,bool highlighted,SDL_Surface* _screen=NULL);
+	virtual int cachedDraw(TweetInstance *instance);
 	virtual void write(FILE *fp);
 };
 #define TOGGLECONVODISPLAY -1
@@ -65,6 +66,7 @@ public:
 
 	virtual int draw( int x,int y,int w,int background );
 	virtual int draw(TweetInstance *instance,int w);
+	virtual int cachedDraw(TweetInstance *instance);
 	virtual void write(FILE *fp);
 };
 
@@ -74,6 +76,7 @@ public:
 	Tweet *tweet;
 	TweetInstance *replyTo;
 	SDL_Surface *pic;
+	SDL_Surface *pic2;
 	textPos *p;
 	vector<int> widths;
 	bool drawReply;

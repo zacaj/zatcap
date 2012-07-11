@@ -3,8 +3,19 @@
 
 HomeColumn::HomeColumn(float w ):Column(w,"timeline")
 {
-	emptyColumnText="No one wants to talk to you";
-	emptyColumnText="Now with unanonymous data collection!";
+	int r=rand()%3;
+	switch(r)
+	{
+	case 0:
+		emptyColumnText="No tweets loaded yet";
+		break;
+	case 1:
+		emptyColumnText="No one wants to talk to you";
+		break;
+	case 2:
+		emptyColumnText="Now with unanonymous data collection!";
+		break;
+	}
 	updateScreen=1;
 }
 

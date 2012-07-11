@@ -4,7 +4,19 @@
 MentionColumn::MentionColumn(string _term, int w ):Column(w,"mentions")
 {
 	term=_term;
-	emptyColumnText="No one loves you";
+	int r=rand()%3;
+	switch(r)
+	{
+	case 0:
+		emptyColumnText="No tweets loaded yet";
+		break;
+	case 1:
+		emptyColumnText="No one loves you";
+		break;
+	case 2:
+		emptyColumnText="Minecraft stole these from me!";
+		break;
+	}
 	updateScreen=1;
 }
 

@@ -286,22 +286,6 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 }
 string getExt(string);
 void processUserPics(User *user);
-string getFile(string path)
-{
-	int i;
-	for(i=path.size()-1;i>=0;i--)
-	{
-		if(path[i]=='/' || path[i]=='\\')
-			break;
-	}
-	if(i!=0)
-	{
-		i++;
-		return(path.substr(i,path.length()-i));
-	}
-	else
-		return path;
-}
 
 void deleteTweet( string id )
 {debugHere();

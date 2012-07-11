@@ -222,6 +222,7 @@ draw:
 	if(newx<textWidth+(x+7+pic->w+8))
 	{
 		textWidth=newx-(x+7+pic->w+8)-2;
+		goto draw;//cringe, I know, I know.  Now STFU
 	}
 	if(first)
 	{
@@ -233,6 +234,7 @@ draw:
 	instance->surface=SDL_CreateRGBSurface(SDL_HWSURFACE,w,height,32,tempSurface->format->Rmask,tempSurface->format->Gmask,tempSurface->format->Bmask,tempSurface->format->Amask);
 	drawSprite(tempSurface,instance->surface,0,0,0,0,w,height);
 	SDL_UnlockMutex(tempSurfaceMutex);
+	instance->pic=user()->pic();
 	return 0;
 }
 
@@ -351,9 +353,9 @@ draw:
 		strftime(date,1000,settings::dateFormat.c_str(),&timeRetweeted);
 	char str[200];
 	if(nRetweet<=1)
-		sprintf(str,"retweeted by %s at %s",retweetedBy->username.c_str(),date);
+		sprintf(str,"RT by %s at %s",retweetedBy->username.c_str(),date);
 	else
-		sprintf(str,"retweeted by %s at %s (x%i)",retweetedBy->username.c_str(),date,nRetweet);
+		sprintf(str,"RT by %s at %s (x%i)",retweetedBy->username.c_str(),date,nRetweet);
 	int retweetWidth=w-7-pic->w-5-7-13-3-nameWidth+5;
 	drawTextWrappedw(str,((x+7+user()->pic()->w+5)+nameWidth+5),y+5,retweetWidth,12,1,retweetTextColorR,retweetTextColorG,retweetTextColorB,tempSurface);//get width
 	if(retweetWidth+x+7+user()->pic()->w+5+nameWidth+5>x+w-15-timeWidth)//on top of time
@@ -374,6 +376,7 @@ draw:
 	if(newx<textWidth+(x+7+pic->w+8))
 	{
 		textWidth=newx-(x+7+pic->w+8)-2;
+		goto draw;//cringe, I know, I know.  Now STFU
 	}
 	if(first)
 	{
@@ -389,6 +392,8 @@ draw:
 	instance->surface=SDL_CreateRGBSurface(SDL_HWSURFACE,w,height,32,tempSurface->format->Rmask,tempSurface->format->Gmask,tempSurface->format->Bmask,tempSurface->format->Amask);
 	drawSprite(tempSurface,instance->surface,0,0,0,0,w,height);
 	SDL_UnlockMutex(tempSurfaceMutex);
+	instance->pic=user()->mediumPic();
+	instance->pic2=user()->smallPic();
 	return 0;
 }
 int favoriteTweet(void *data)
@@ -535,6 +540,21 @@ void Tweet::write( FILE *fp )
 		entities[i]->write(fp);
 }
 
+int Tweet::cachedDraw( TweetInstance *instance )
+{
+	if(user()->pic()!=instance->pic)
+		instance->needsRefresh=1;
+	return 0;
+}
+
+int Retweet::cachedDraw( TweetInstance *instance )
+{
+	if(user()->mediumPic()!=instance->pic)
+		instance->needsRefresh=1;
+	if(user()->smallPic()!=instance->pic2)
+		instance->needsRefresh=1;
+	return 0;
+}
 
 void Retweet::write( FILE *fp )
 {
@@ -552,7 +572,6 @@ TweetInstance::TweetInstance( Tweet *_tweet,int w,int _background  )	:
 {
 	tweet->draw(this,w);
 	needsRefresh=0;
-	pic=tweet->user()->pic();
 	if(tweet->replyTo!=NULL)
 		replyTo=new TweetInstance(tweet->replyTo,w,!background);
 	else
@@ -565,6 +584,7 @@ int TweetInstance::draw( int x,int y )
 	int h=0;
 	drawSprite(surface,screen,0,0,x,y,surface->w,surface->h);
 	{{drawEntities2}}
+	tweet->cachedDraw(this);
 	h+=surface->h;
 	int mx,my;
 	SDL_GetMouseState(&mx,&my);
@@ -588,8 +608,6 @@ int TweetInstance::draw( int x,int y )
 	if(drawReply)
 		h+=replyTo->draw(x+5,y+h)+15;
 
-	if(tweet->user()->pic()!=pic)
-		needsRefresh=1;
 	return h;
 }
 
