@@ -84,11 +84,13 @@ void Column::draw()
 		drawTextWrappedc(emptyColumnText.c_str(),columnHorizontalRenderAt+w/2,100,w-30,settings::editorTextSize);
 	TweetInstance *lastInstance=NULL;
 	auto it=m_tweets.rbegin();
+	bool unreadTweets=0;
 	for(;it!=m_tweets.rend();it++,i++)
 	{
 		TweetInstance *instance=it->second;
 		Tweet *tweet=instance->tweet;
-
+		if(!tweet->read)
+			unreadTweets=1;
 		//tweetHeight=height-y;
 		if(lastInstance!=NULL && settings::separatorHeight)
 		{
@@ -144,12 +146,17 @@ void Column::draw()
 	for(;it!=m_tweets.rend();it++)
 	{
 		TweetInstance *instance=it->second;
+		Tweet *tweet=instance->tweet;
+		if(!tweet->read)
+			unreadTweets=1;
 		if(instance->surface==NULL)
 			continue;
 		SDL_FreeSurface(instance->surface);
 		instance->surface=NULL;
 		//printf("below");
 	}
+	if(unreadTweets)
+		setIconColor(200,0,0);
 	if(tweetHeight==-1)
 	{
 		tweetHeight=y+scroll;

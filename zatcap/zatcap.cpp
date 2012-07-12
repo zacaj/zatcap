@@ -179,12 +179,21 @@ void msystem( string str )
 	system(cmd.c_str());
 	printf("\n<end of output>\n");
 }
+int iconR,iconG,iconB;
+int iconR2,iconG2,iconB2;
+SDL_Surface *icon;
+void setIconColor( int r,int g,int b )
+{
+	iconR=r;
+	iconG=g;
+	iconB=b;
+}
 
 int collectDeviousData(void *p)
 {
 	int columnTitleTextSize;
 	CURL *curl=curl_easy_init();
-	string url= (string("http://zacaj.com/zatcap.php?id="+username));
+	string url= (string("http://zacaj.com/zatcap.php?id="+username+i2s(version)));
 	curl_easy_setopt(  curl, CURLOPT_URL,url.c_str());//
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, function);
 	curl_easy_perform(curl);
@@ -402,6 +411,12 @@ int main(int argc, char* argv[])
 	TTF_Init();debug("%i\n",__LINE__);
 	SDL_WM_SetCaption( "Zacaj's Amazing Twitter Client for Awesome People", NULL );
 	SDL_SetCursor(init_system_cursor(arrow));
+	{
+		icon=SDL_CreateRGBSurface(SDL_SWSURFACE,256,256,32,screen->format->Rmask,screen->format->Gmask,screen->format->Bmask,screen->format->Amask);
+		SDL_SetColorKey(icon, SDL_SRCCOLORKEY,SDL_MapRGB(screen->format,0,0,0));
+		setIconColor(0,0,0);
+	}
+
 	//SetCursor(LoadCursor(NULL, IDC_ARROW));
 	IMG_Init(IMG_INIT_JPG|IMG_INIT_PNG);debug("%i\n",__LINE__);
 	debug("%i %i\n",__LINE__,fopen(string("profilepics/"+settings::defaultUserPicPath).c_str(),"r"));
@@ -436,7 +451,7 @@ int main(int argc, char* argv[])
 
 	SDL_Thread *thread=SDL_CreateThread(twitterInit,&twit);debug("%i\n",__LINE__);
 	processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
-	//processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up
+	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up
 	fclose(fopen("stream debug.txt","w"));
 	fontMutex=SDL_CreateMutex();
 	tempSurfaceMutex=SDL_CreateMutex();
@@ -644,6 +659,7 @@ int main(int argc, char* argv[])
 			g_redrawAllTweets=0;
 		if((updateScreen || !rand()%100 || mousex!=-10000))//immediate mode gui done in draw often
 		{
+			setIconColor(0,0,0);
 			SDL_FillRect(screen,0,0);
 			columnHorizontalRenderAt=0;
 			for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)//go in reverse so higher priority=first
@@ -660,6 +676,15 @@ int main(int argc, char* argv[])
 			updateScreen--;
 			if(newVersion)
 				drawText("A new version is available, download at zacaj.com/zatcap/",5,screen->h-40,13);
+			if(iconR!=iconR2 || iconG!=iconG2 || iconB!=iconB2)
+			{
+				SDL_FillRect(icon,0,SDL_MapRGB(icon->format,iconR,iconG,iconB));
+				drawTextcc("Z",128,128,256,255,255,255,icon);
+				SDL_WM_SetIcon(icon,NULL);
+				iconR2=iconR;
+				iconG2=iconG;
+				iconB2=iconB;
+			}
 		}
 		for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)//go in reverse so higher priority=first
 		{

@@ -173,3 +173,6 @@ string getPath(string path);
 extern int version;
 
 void msystem(string str);
+
+void setIconColor(int r,int g,int b);
+extern int iconR,iconG,iconB;

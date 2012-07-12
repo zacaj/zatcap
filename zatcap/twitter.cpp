@@ -39,7 +39,7 @@ int twitterInit( void  *_twit )
 	printf("Logging in...\n");
 	loadUser(twit);
 	loggedIn=1;
-	//((MentionColumn*)processes[2.5])->term=username;
+	((MentionColumn*)processes[2.5])->term=username;
 	{
 		aviDownloader=new AvitarDownloader();
 		processes[4578.6]=aviDownloader;
@@ -582,13 +582,13 @@ User * getUser( string id )
 		return users[id];
 	if(fileExists(string("users/")+id))
 	{debugHere();
-		User *user=new User;
-		FILE *fp=fopen((string("users/")+id).c_str(),"rb");
-		assert(fp);
-		user->id=id;
-		user->username=rstr(fp);
-		user->name=rstr(fp);
-		user->picURL=rstr(fp);
+		User *user=new User;debugHere();
+		FILE *fp=fopen((string("users/")+id).c_str(),"rb");debugHere();
+		assert(fp);debugHere();
+		user->id=id;debugHere();
+		user->username=rstr(fp);debugHere();
+		user->name=rstr(fp);debugHere();
+		user->picURL=rstr(fp);debugHere();
 		FILE *fp2;debugHere();
 		if((fp2=fopen(user->getPicPath().c_str(),"r")))
 		{debugHere();
