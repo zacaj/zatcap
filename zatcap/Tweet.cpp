@@ -637,7 +637,7 @@ TweetInstance::~TweetInstance()
 
 void TweetInstance::refresh( int w )
 {
-	printf("redraw");
+	//printf("redraw");
 	if(surface)
 		SDL_FreeSurface(surface);
 	widths.clear();

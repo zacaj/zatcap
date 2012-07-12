@@ -436,7 +436,7 @@ int main(int argc, char* argv[])
 
 	SDL_Thread *thread=SDL_CreateThread(twitterInit,&twit);debug("%i\n",__LINE__);
 	processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
-	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up
+	//processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up
 	fclose(fopen("stream debug.txt","w"));
 	fontMutex=SDL_CreateMutex();
 	tempSurfaceMutex=SDL_CreateMutex();
@@ -642,7 +642,7 @@ int main(int argc, char* argv[])
 		keystate=SDL_GetKeyState(NULL);
 		if(g_redrawAllTweets)
 			g_redrawAllTweets=0;
-		if(updateScreen || !rand()%100 || mousex!=-10000)//immediate mode gui done in draw often
+		if((updateScreen || !rand()%100 || mousex!=-10000))//immediate mode gui done in draw often
 		{
 			SDL_FillRect(screen,0,0);
 			columnHorizontalRenderAt=0;

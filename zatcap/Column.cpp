@@ -29,6 +29,7 @@ Column::~Column(void)
 using namespace colors;
 void Column::draw()
 {
+	//return;
 	SDL_LockMutex(drawingMutex);
 	if(scroll<0)
 		scroll=0;
@@ -105,15 +106,6 @@ void Column::draw()
 		int oldy=y;
 		if(redrawAllTweets || g_redrawAllTweets)
 		{
-			/*if(lastInstance==NULL)
-				it->second=new TweetInstance(instance->tweet,rw,instance->background);
-			else
-				it->second=new TweetInstance(instance->tweet,rw,!lastInstance->background);
-
-			it->second->drawReply=instance->drawReply;
-			delete instance;
-			instance=it->second;*/
-		//	printf("told");
 			instance->refresh(instance->w);
 		}
 		y+=instance->draw(columnHorizontalRenderAt,y);

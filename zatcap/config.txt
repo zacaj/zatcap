@@ -13,7 +13,7 @@ user info file = user.txt
 ##  to load as many tweets as required to reach the tweets saved
 ##    from the last launch, put -1
 # default: 800
-tweets to load = 10
+tweets to load = 0
 
 # how long to keep tweets stored on disk, in days
 ##  tweets older than this will be deleted
@@ -82,7 +82,7 @@ add sfz = 0
 separator bar height = 1
 
 # default: 1
-enable streaming = 1
+enable streaming = 0
 
 # time between automatic tweet backups, in seconds
 ##  set to 0 to disable auto backup

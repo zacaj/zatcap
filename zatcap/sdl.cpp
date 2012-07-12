@@ -555,5 +555,6 @@ bool textButton(int x,int y,char *str)
 	else
 		rectangleColor(screen,x,y,x+text->w+4,y+text->h+4,buttonColor);
 	drawSprite(text,screen,0,0,x+2,y+2,text->w,text->h);
+	SDL_FreeSurface(text);
 	return doButton(x,y,text->w+4,text->h+4);
 }
