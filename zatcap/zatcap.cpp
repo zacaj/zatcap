@@ -134,6 +134,7 @@ namespace settings
 	int tempInt;
 	int markReadAfterTweeting=0;
 	int textSize=13,timeSize=13,columnTitleTextSize=25,userNameTextSize=15,retweetTextSize=12,editorTextSize=14;
+	int pinLogin=0;
 }
 namespace colors
 {
@@ -258,7 +259,17 @@ void loadUser(twitCurl *twit)
 			twit->getOAuth().setConsumerSecret("fMzPJj4oFBgSlW1Ma2r79Y1kE0t7S7r1lvQXBnXSk");
 			string authURL;
 			assert(twit->oAuthRequestToken(authURL)!="");
-			if(twit->oAuthHandlePIN(authURL)=="")
+			if(settings::pinLogin)
+			{
+				string url;
+				twit->oAuthRequestToken(url);
+				printf("Please go to %s and enter the pin\n",url.c_str());
+				char pin[100];
+				scanf("%s",pin);
+				printf("Pin entered: %s\n",pin);
+				twit->getOAuth().setOAuthPin(pin);
+			}
+			else if(twit->oAuthHandlePIN(authURL)=="")
 			{
 				printf("Login failure\n");
 				system("pause");
@@ -751,6 +762,8 @@ void readConfig()
 	fscanf(fp,"%i\n",&settings::tempInt);
 	jumpToSetting(fp,"mark all tweets as read after tweeting");
 	fscanf(fp,"%i\n",&settings::markReadAfterTweeting);
+	jumpToSetting(fp,"pin login");
+	fscanf(fp,"%i\n",&pinLogin);
 
 	using namespace colors;
 	jumpToSetting(fp,"unread tweet color");

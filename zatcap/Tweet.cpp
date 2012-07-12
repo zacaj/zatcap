@@ -193,8 +193,9 @@ int Tweet::draw( TweetInstance *instance,int w )
 	bool first=settings::tweetBackgrounds;
 	int textWidth=w-7-pic->w-5-7-13-16;
 	SDL_LockMutex(tempSurfaceMutex);
+	SDL_FillRect(tempSurface,0,0);
 draw:
-	int nameWidth=200;
+	int nameWidth=textWidth;
 	//SDL_FillRect(tempSurface,0,0);
 	height=drawTextWrappedw(user()->username.c_str(),x+7+pic->w+5,y+2,nameWidth,settings::userNameTextSize,first,usernameTextColorR,usernameTextColorG,usernameTextColorB,tempSurface);
 	char date[1000];
@@ -226,13 +227,14 @@ draw:
 	}
 	if(first)
 	{
-		boxColor(tempSurface,x,y,x+w-4,height,getBackgroundColor(instance->background,read));
+		boxColor(tempSurface,x,y,x+w-8,height,getBackgroundColor(instance->background,read));
 		first=0;
 		goto draw;//cringe, I know, I know.  Now STFU
 	}
 	drawSprite(pic,tempSurface,0,0,x+5,y+5,pic->w,pic->h);
 	instance->surface=SDL_CreateRGBSurface(SDL_HWSURFACE,w,height,32,tempSurface->format->Rmask,tempSurface->format->Gmask,tempSurface->format->Bmask,tempSurface->format->Amask);
 	drawSprite(tempSurface,instance->surface,0,0,0,0,w,height);
+	SDL_FillRect(tempSurface,0,0);
 	SDL_UnlockMutex(tempSurfaceMutex);
 	instance->pic=user()->pic();
 	return 0;
@@ -326,6 +328,7 @@ int Retweet::draw( TweetInstance *instance,int w )
 	bool first=settings::tweetBackgrounds;
 	int textWidth=w-7-pic->w-5-7-13-16;
 	SDL_LockMutex(tempSurfaceMutex);
+	SDL_FillRect(tempSurface,0,0);
 draw:
 	int nameWidth=200;
 	//SDL_FillRect(tempSurface,0,0);
@@ -391,6 +394,7 @@ draw:
 	//drawSprite(pic,tempSurface,0,0,x+5,y+5,pic->w,pic->h);
 	instance->surface=SDL_CreateRGBSurface(SDL_HWSURFACE,w,height,32,tempSurface->format->Rmask,tempSurface->format->Gmask,tempSurface->format->Bmask,tempSurface->format->Amask);
 	drawSprite(tempSurface,instance->surface,0,0,0,0,w,height);
+	SDL_FillRect(tempSurface,0,0);
 	SDL_UnlockMutex(tempSurfaceMutex);
 	instance->pic=user()->mediumPic();
 	instance->pic2=user()->smallPic();

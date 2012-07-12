@@ -189,7 +189,9 @@ bool openUserStream(twitCurl *twit)
 	curl_easy_setopt( curl, CURLOPT_PROXYAUTH, (long)CURLAUTH_ANY );
 	curl_easy_setopt(  curl, CURLOPT_HTTPGET, 1 );//
 	curl_easy_setopt(  curl, CURLOPT_VERBOSE, 1 );
-	curl_easy_setopt( curl, CURLOPT_CAINFO,"resources/cacert.pem");//
+	curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYHOST, 0 );
+	curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYPEER, 0);
+	//curl_easy_setopt( curl, CURLOPT_CAINFO,"resources/cacert.pem");//
 	curl_easy_setopt(  curl, CURLOPT_URL, url);//
 	curl_easy_setopt( curl, CURLOPT_WRITEFUNCTION, callback_func);
 	string *str=new string();
@@ -199,7 +201,7 @@ bool openUserStream(twitCurl *twit)
 	//todo errors
 	if(CURLE_OK == curl_easy_perform(curl))
 	{
-	
+
 	}
 	streaming=0;
 	/*curl_easy_setopt(  curl, CURLOPT_VERBOSE, 0 );

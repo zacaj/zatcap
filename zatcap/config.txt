@@ -92,6 +92,9 @@ backup tweet time = 0
 # default: 1
 show url underline only when hovering = 1
 
+# default: 0
+pin login = 0
+
 
 
 browser command = C:\Users\Zack\AppData\Local\Google\Chrome\Application\chrome.exe
