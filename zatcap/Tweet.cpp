@@ -548,16 +548,16 @@ void Tweet::write( FILE *fp )
 int Tweet::cachedDraw( TweetInstance *instance )
 {
 	if(user()->pic()!=instance->pic)
-		instance->needsRefresh=1;
+		instance->refresh(instance->w);
 	return 0;
 }
 
 int Retweet::cachedDraw( TweetInstance *instance )
 {
 	if(user()->mediumPic()!=instance->pic)
-		instance->needsRefresh=1;
+		instance->refresh(instance->w);
 	if(user()->smallPic()!=instance->pic2)
-		instance->needsRefresh=1;
+		instance->refresh(instance->w);
 	return 0;
 }
 
@@ -572,18 +572,21 @@ void Retweet::write( FILE *fp )
 	fputc('\n',fp);
 }
 
-TweetInstance::TweetInstance( Tweet *_tweet,int w,int _background  )	:
+TweetInstance::TweetInstance( Tweet *_tweet,int _w,int _background  )	:
 	tweet(_tweet),
 	background(_background)
 {
-	tweet->draw(this,w);
-	needsRefresh=0;
-	drawReply=0;
+	w=_w;
+	surface=NULL;
 	replyTo=NULL;
+	drawReply=0;
+	//refresh(w);
 }
 
 int TweetInstance::draw( int x,int y )	
 {
+	if(surface==NULL)
+		refresh(w);
 	int h=0;
 	drawSprite(surface,screen,0,0,x,y,surface->w,surface->h);
 	{{drawEntities2}}
@@ -629,5 +632,19 @@ TweetInstance::~TweetInstance()
 	{
 		delete p; 
 		p=NULL;
+	}
+}
+
+void TweetInstance::refresh( int w )
+{
+	printf("redraw");
+	if(surface)
+		SDL_FreeSurface(surface);
+	widths.clear();
+	tweet->draw(this,w);
+	if(replyTo!=NULL)
+	{
+		delete replyTo;
+		replyTo=NULL;
 	}
 }

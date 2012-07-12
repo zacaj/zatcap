@@ -76,6 +76,7 @@ public:
 	SDL_Surface *pic;
 	SDL_Surface *pic2;
 	textPos *p;
+	int w;
 	vector<int> widths;
 	bool drawReply;
 	int background;
@@ -84,5 +85,5 @@ public:
 	TweetInstance(Tweet *_tweet,int w,int _background );
 	~TweetInstance();
 	int draw(int x,int y);
-	bool needsRefresh;
+	void refresh(int w);
 };

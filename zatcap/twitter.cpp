@@ -443,6 +443,12 @@ SDL_LockMutex(tweetsMutex);
 		//addTweet(tweet);debugHere();
 	}
 	SDL_UnlockMutex(tweetsMutex);
+	if(tweets.size()>settings::maxTweets)
+	{
+		auto it=tweets.end();
+		//while(tweets.size()>settings::maxTweets)
+		//	deleteTweet(it->second->id);
+	}
 }
 
 int loadProfilePic(void *ptr)

@@ -82,7 +82,8 @@ void Column::draw()
 	if(m_tweets.size()==0)
 		drawTextWrappedc(emptyColumnText.c_str(),columnHorizontalRenderAt+w/2,100,w-30,settings::editorTextSize);
 	TweetInstance *lastInstance=NULL;
-	for(auto it=m_tweets.rbegin();it!=m_tweets.rend();it++,i++)
+	auto it=m_tweets.rbegin();
+	for(;it!=m_tweets.rend();it++,i++)
 	{
 		TweetInstance *instance=it->second;
 		Tweet *tweet=instance->tweet;
@@ -98,20 +99,22 @@ void Column::draw()
 			if(lastInstance->background==instance->background)
 			{
 				instance->background=!instance->background;
-				instance->needsRefresh=1;
+				instance->refresh(instance->w);
 			}
 		}
 		int oldy=y;
-		if(instance->needsRefresh || redrawAllTweets || g_redrawAllTweets)
+		if(redrawAllTweets || g_redrawAllTweets)
 		{
-			if(lastInstance==NULL)
+			/*if(lastInstance==NULL)
 				it->second=new TweetInstance(instance->tweet,rw,instance->background);
 			else
 				it->second=new TweetInstance(instance->tweet,rw,!lastInstance->background);
 
 			it->second->drawReply=instance->drawReply;
 			delete instance;
-			instance=it->second;
+			instance=it->second;*/
+		//	printf("told");
+			instance->refresh(instance->w);
 		}
 		y+=instance->draw(columnHorizontalRenderAt,y);
 		int y2=y-oldy;
@@ -123,7 +126,7 @@ void Column::draw()
 				for(auto rit=it;rit!=m_tweets.rend();rit++)
 				{
 					rit->second->tweet->read=1;
-					rit->second->needsRefresh=1;
+					rit->second->refresh(rit->second->w);
 				}
 			}
 		if(y>COLUMNHEADERHEIGHT)
@@ -132,10 +135,28 @@ void Column::draw()
 			if(firstDrawn==-1)
 				firstDrawn=i;
 		}
+		else if(instance->surface!=NULL)
+		{
+			SDL_FreeSurface(instance->surface);
+			instance->surface=NULL;
+			//printf("above");
+		}
 		if(y>screen->h-footerHeight && tweetHeight!=-1)
+		{
+			it++;
 			break;
-		onOff=!onOff;
+		}
+		//onOff=!onOff;
 		lastInstance=instance;
+	}
+	for(;it!=m_tweets.rend();it++)
+	{
+		TweetInstance *instance=it->second;
+		if(instance->surface==NULL)
+			continue;
+		SDL_FreeSurface(instance->surface);
+		instance->surface=NULL;
+		//printf("below");
 	}
 	if(tweetHeight==-1)
 	{

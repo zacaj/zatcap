@@ -135,6 +135,7 @@ namespace settings
 	int markReadAfterTweeting=0;
 	int textSize=13,timeSize=13,columnTitleTextSize=25,userNameTextSize=15,retweetTextSize=12,editorTextSize=14;
 	int pinLogin=0;
+	int maxTweets=1000;
 }
 namespace colors
 {
@@ -246,6 +247,8 @@ void loadUser(twitCurl *twit)
 			fseek(fp,0,SEEK_SET);
 			username=cscanf(fp,"username = %s\n");
 			password=cscanf(fp,"password = %s\n");debug("%i username: %s\n",__LINE__,username.c_str());
+			debug("length %i,%i\n",username.size(),password.size());
+		//	debug("%i pass: %s\n",__LINE__,password.c_str());
 			if(!username.size() || !password.size())
 			{
 				printf("ERROR:  Could not read credentials from %s (user info file specified in config.txt)\n");
@@ -764,6 +767,8 @@ void readConfig()
 	fscanf(fp,"%i\n",&settings::markReadAfterTweeting);
 	jumpToSetting(fp,"pin login");
 	fscanf(fp,"%i\n",&pinLogin);
+	jumpToSetting(fp,"max tweets in ram");
+	fscanf(fp,"%i\n",&maxTweets);
 
 	using namespace colors;
 	jumpToSetting(fp,"unread tweet color");

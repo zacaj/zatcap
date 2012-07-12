@@ -60,6 +60,7 @@ namespace settings
 	extern int markReadAfterTweeting;
 	extern int textSize,timeSize,columnTitleTextSize,userNameTextSize,retweetTextSize,editorTextSize;
 	extern int pinLogin;
+	extern int maxTweets;
 }
 namespace colors
 {
