@@ -427,8 +427,8 @@ SDL_LockMutex(tweetsMutex);
 	}
 	else
 	{debugHere();
-		for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
-			it->second->deleteTweet(tw->first);
+		//for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
+		//	it->second->deleteTweet(tw->first);
 		(*tweet)->read=tw->second->read;
 		if(tw->second->favorited)
 			(*tweet)->favorited=1;

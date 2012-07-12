@@ -75,6 +75,7 @@ public:
 	TweetInstance *replyTo;
 	SDL_Surface *pic;
 	SDL_Surface *pic2;
+	bool read;
 	textPos *p;
 	int w;
 	vector<int> widths;

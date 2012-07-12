@@ -577,6 +577,7 @@ TweetInstance::TweetInstance( Tweet *_tweet,int _w,int _background  )	:
 	background(_background)
 {
 	w=_w;
+	read=tweet->read;
 	surface=NULL;
 	replyTo=NULL;
 	drawReply=0;
@@ -585,7 +586,7 @@ TweetInstance::TweetInstance( Tweet *_tweet,int _w,int _background  )	:
 
 int TweetInstance::draw( int x,int y )	
 {
-	if(surface==NULL)
+	if(surface==NULL || read!=tweet->read)
 		refresh(w);
 	int h=0;
 	drawSprite(surface,screen,0,0,x,y,surface->w,surface->h);

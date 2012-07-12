@@ -189,7 +189,7 @@ bool openUserStream(twitCurl *twit)
 	curl_easy_setopt( curl, CURLOPT_PROXYAUTH, (long)CURLAUTH_ANY );
 	curl_easy_setopt(  curl, CURLOPT_HTTPGET, 1 );//
 	curl_easy_setopt(  curl, CURLOPT_VERBOSE, 1 );
-	curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYHOST, 0 );
+	//curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYHOST, 0 );
 	curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYPEER, 0);
 	//curl_easy_setopt( curl, CURLOPT_CAINFO,"resources/cacert.pem");//
 	curl_easy_setopt(  curl, CURLOPT_URL, url);//

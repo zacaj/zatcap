@@ -56,6 +56,7 @@ int homeColumnRefresh(void *data)
 		while((tmpString=twit->timelineHomeGet(false,true,20,"",""))=="");
 	}
 	parseRestTweets(tmpString);
+	printf("refresh completed\n");
 	return 0;
 }
 
