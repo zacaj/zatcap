@@ -50,7 +50,7 @@ retweetee pic size = 36
 arrows on scroll bar = 1
 
 # default: 20
-scroll speed = 20
+scroll speed = 22
 
 # how to format the date
 ## see http://www.cplusplus.com/reference/clibrary/ctime/strftime/
@@ -79,7 +79,7 @@ add sfz = 0
 # the height of the bar separating unread and read tweets
 ##  set this to 0 to 'disable' it
 # default: 0
-separator bar height = 1
+separator bar height = 0
 
 # default: 1
 enable streaming = 1
@@ -87,7 +87,7 @@ enable streaming = 1
 # time between automatic tweet backups, in seconds
 ##  set to 0 to disable auto backup
 # default: 3600
-backup tweet time = 0
+backup tweet time = 3600
 
 # default: 1
 show url underline only when hovering = 1
@@ -95,6 +95,7 @@ show url underline only when hovering = 1
 # default: 0
 pin login = 0
 
+# not working currently, ignore
 # default: 1000
 max tweets in ram = 10
 

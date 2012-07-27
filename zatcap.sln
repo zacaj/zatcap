@@ -3,6 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zatcap", "zatcap\zatcap.vcxproj", "{F878EE3D-51C4-48B3-AA0A-84D13ADCED69}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CDC424CD-2EE3-4E6C-B1D6-C50F4F523356}"
+	ProjectSection(SolutionItems) = preProject
+		Performance4.psess = Performance4.psess
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32

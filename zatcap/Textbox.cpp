@@ -268,6 +268,7 @@ void Textbox::doTweet()
 {
 	if(str.size()<=140 && str.size() && loggedIn)
 	{
+		printf("sending tweet... ");
 		if(str.size()<135 && settings::addSFZ)
 			str+="\n#sfz";
 		tweetData *data=new tweetData;

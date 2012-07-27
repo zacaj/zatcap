@@ -108,6 +108,7 @@ void Column::draw()
 		int oldy=y;
 		if(redrawAllTweets || g_redrawAllTweets)
 		{
+			instance->w=rw;
 			instance->refresh(instance->w);
 		}
 		y+=instance->draw(columnHorizontalRenderAt,y);
