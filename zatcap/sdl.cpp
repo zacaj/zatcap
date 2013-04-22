@@ -14,12 +14,12 @@ inline TTF_Font* getFont(int size)//makes me cringe, make better somehow, possib
 		TTF_Font *font=TTF_OpenFont("resources/font.ttf",size);
 		fonts.insert(pair<unsigned int,TTF_Font *>(size,font));
 		SDL_UnlockMutex(fontMutex);
-		assert(font);
+		assert_(font);
 		return font;
 	}
 	else
 	{
-		assert(it->second);
+		assert_(it->second);
 		SDL_UnlockMutex(fontMutex);
 		return it->second;
 	}

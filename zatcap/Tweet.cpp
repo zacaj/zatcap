@@ -193,7 +193,7 @@ int Tweet::draw( TweetInstance *instance,int w )
 	bool first=settings::tweetBackgrounds;
 	int textWidth=w-7-pic->w-5-7-13-16;
 	SDL_LockMutex(tempSurfaceMutex);
-	SDL_FillRect(tempSurface,0,0);
+	//SDL_FillRect(tempSurface,0,0);
 draw:
 	int nameWidth=textWidth;
 	//SDL_FillRect(tempSurface,0,0);
@@ -234,7 +234,7 @@ draw:
 	drawSprite(pic,tempSurface,0,0,x+5,y+5,pic->w,pic->h);
 	instance->surface=SDL_CreateRGBSurface(SDL_HWSURFACE,w,height,32,tempSurface->format->Rmask,tempSurface->format->Gmask,tempSurface->format->Bmask,tempSurface->format->Amask);
 	drawSprite(tempSurface,instance->surface,0,0,0,0,w,height);
-	SDL_FillRect(tempSurface,0,0);
+	//SDL_FillRect(tempSurface,0,0);
 	SDL_UnlockMutex(tempSurfaceMutex);
 	instance->pic=user()->pic();
 	return 0;

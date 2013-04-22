@@ -137,7 +137,7 @@ void readTweetFile(string path)
 {
 	printf("Reading %s\n",path.c_str());debugHere();
 	FILE *fp=fopen(path.c_str(),"rb");
-	assert(fp);
+	assert_(fp);
 	uchar version=ruchar(fp);
 	vector<Retweet*> tweetsMissing;
 	switch(version)
@@ -274,7 +274,7 @@ void parseRestTweets( string json )
 	FILE *fp=fopen("test.json","wb");
 	fwrite(json.c_str(),json.size(),1,fp);
 	fclose(fp);
-	assert(reader.parse(json,root));debugHere();
+	assert_(reader.parse(json,root));debugHere();
 	if(root.isArray())
 	{
 		int s=root.size();
@@ -464,7 +464,7 @@ retry:
 	{
 		CURL *curl= curl_easy_init();
 		debug("Downloading @%s's avatar (%s)\n",pic->name.c_str(),path.c_str());
-		assert(curl);
+		assert_(curl);
 		{
 			FILE *fp = fopen(path.c_str(),"wb");
 			debug("%i %s\n",fp,path.c_str());
@@ -584,7 +584,7 @@ User * getUser( string id )
 	{debugHere();
 		User *user=new User;debugHere();
 		FILE *fp=fopen((string("users/")+id).c_str(),"rb");debugHere();
-		assert(fp);debugHere();
+		assert_(fp);debugHere();
 		user->id=id;debugHere();
 		user->username=rstr(fp);debugHere();
 		user->name=rstr(fp);debugHere();

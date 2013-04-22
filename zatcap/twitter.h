@@ -3,7 +3,6 @@
 //void=twitCurl
 int twitterInit(void *twit);
 #include <time.h>
-#include <assert.h>
 #include "file.h"
 class Tweet;
 class Retweet;

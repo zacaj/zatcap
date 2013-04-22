@@ -24,7 +24,7 @@
 #include "Button.h"
 #include <SDL_syswm.h>
 #include "Textbox.h"
-#ifdef WINDOWS
+#ifdef USE_WINDOWS
 #include <direct.h>
 #else
 #include <sys/stat.h>
@@ -200,7 +200,7 @@ int collectDeviousData(void *p)
 	curl_easy_cleanup(curl);
 	{
 		CURL *curl2=curl_easy_init();
-		assert(curl2);
+		assert_(curl2);
 		string url= (string("http://zacaj.com/zatcap/zatcap-"+i2s(version+1)+".zip"));
 		curl_easy_setopt(  curl2, CURLOPT_URL,url.c_str());//
 		curl_easy_setopt(curl2, CURLOPT_WRITEFUNCTION, function);
@@ -270,7 +270,7 @@ void loadUser(twitCurl *twit)
 			twit->getOAuth().setConsumerKey("1Ysjec2smtfSHfTaZeOAA");
 			twit->getOAuth().setConsumerSecret("fMzPJj4oFBgSlW1Ma2r79Y1kE0t7S7r1lvQXBnXSk");
 			string authURL;
-			assert(twit->oAuthRequestToken(authURL)!="");
+			assert_(twit->oAuthRequestToken(authURL)!="");
 			if(settings::pinLogin)
 			{
 				string url;
@@ -288,7 +288,7 @@ void loadUser(twitCurl *twit)
 				exit(0);
 			}//use pin?
 
-			assert(twit->oAuthAccessToken()!="");
+			assert_(twit->oAuthAccessToken()!="");
 
 			string key,secret;
 			twit->getOAuth().getOAuthTokenKey(key);
@@ -343,7 +343,7 @@ void sysinit()
 
 char* getClipboardText()
 {
-	assert(OpenClipboard(NULL));
+	assert_(OpenClipboard(NULL));
 	{
 		HANDLE hData = GetClipboardData(CF_TEXT);
 		char * buffer = (char*)GlobalLock(hData);
@@ -388,9 +388,9 @@ static SDL_Cursor *init_system_cursor(const char *image[]);
 time_t configLastRead=0;
 int main(int argc, char* argv[])
 {
-	assert(sizeof(uint)==4);
-	assert(sizeof(uchar)==1);
-	assert(sizeof(float)==4);
+	assert_(sizeof(uint)==4);
+	assert_(sizeof(uchar)==1);
+	assert_(sizeof(float)==4);
 	bool candy=1;
 	if(!candy)
 		exit(EXIT_FAILURE);
@@ -427,26 +427,26 @@ int main(int argc, char* argv[])
 
 	}debug("%i\n",__LINE__);
 
-	assert(arrowDown=IMG_Load("resources/arrowDown.PNG"));
-	assert(arrowUp=IMG_Load("resources/arrowUp.PNG"));
-	assert(favorite[0]=IMG_Load("resources/favorite.png"));
-	assert(favorite[1]=IMG_Load("resources/favorite_hover.png"));
-	assert(favorite[2]=IMG_Load("resources/favorite_on.png"));
-	assert(retweet[0]=IMG_Load("resources/retweet.png"));
-	assert(retweet[1]=IMG_Load("resources/retweet_hover.png"));
-	assert(retweet[2]=IMG_Load("resources/retweet_on.png"));
-	assert(reply[0]=IMG_Load("resources/reply.png"));
-	assert(reply[1]=IMG_Load("resources/reply_hover.png"));
-	assert(reply[2]=IMG_Load("resources/reply_large.png"));
-	assert(deleteButton[0]=IMG_Load("resources/delete.png"));
-	assert(deleteButton[1]=IMG_Load("resources/delete_hover.png"));
-	assert(deleteButton[2]=IMG_Load("resources/delete_hover2.png"));
-	assert(refresh[0]=IMG_Load("resources/refresh.png"));
-	assert(refresh[1]=IMG_Load("resources/refresh_hover.png"));
-	assert(top[0]=IMG_Load("resources/top.png"));
-	assert(top[1]=IMG_Load("resources/top_hover.png"));
-	assert(convo[0]=IMG_Load("resources/convo.png"));
-	assert(convo[1]=IMG_Load("resources/convo_hover.png"));
+	assert_(arrowDown=IMG_Load("resources/arrowDown.PNG"));
+	assert_(arrowUp=IMG_Load("resources/arrowUp.PNG"));
+	assert_(favorite[0]=IMG_Load("resources/favorite.png"));
+	assert_(favorite[1]=IMG_Load("resources/favorite_hover.png"));
+	assert_(favorite[2]=IMG_Load("resources/favorite_on.png"));
+	assert_(retweet[0]=IMG_Load("resources/retweet.png"));
+	assert_(retweet[1]=IMG_Load("resources/retweet_hover.png"));
+	assert_(retweet[2]=IMG_Load("resources/retweet_on.png"));
+	assert_(reply[0]=IMG_Load("resources/reply.png"));
+	assert_(reply[1]=IMG_Load("resources/reply_hover.png"));
+	assert_(reply[2]=IMG_Load("resources/reply_large.png"));
+	assert_(deleteButton[0]=IMG_Load("resources/delete.png"));
+	assert_(deleteButton[1]=IMG_Load("resources/delete_hover.png"));
+	assert_(deleteButton[2]=IMG_Load("resources/delete_hover2.png"));
+	assert_(refresh[0]=IMG_Load("resources/refresh.png"));
+	assert_(refresh[1]=IMG_Load("resources/refresh_hover.png"));
+	assert_(top[0]=IMG_Load("resources/top.png"));
+	assert_(top[1]=IMG_Load("resources/top_hover.png"));
+	assert_(convo[0]=IMG_Load("resources/convo.png"));
+	assert_(convo[1]=IMG_Load("resources/convo_hover.png"));
 
 
 	SDL_Thread *thread=SDL_CreateThread(twitterInit,&twit);debug("%i\n",__LINE__);

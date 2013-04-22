@@ -30,11 +30,13 @@ void HomeColumn::newTweet( Tweet *tweet )
 	if(tweet->_type<0)
 		return;
 	SDL_LockMutex(drawingMutex);
-	m_tweets[tweet->id]=new TweetInstance(tweet,rw,onOff);
-	if(scroll>100)
+	TweetInstance *instance=new TweetInstance(tweet,rw,onOff);
+	m_tweets[tweet->id]=instance;
+	/*if(scroll>100)
 	{
-		scroll+=m_tweets[tweet->id]->surface->h;
-	}
+		SDL_Surface *surface=instance->surface;
+		scroll+=instance->surface->h;
+	}*/
 	updateScreen=1;
 	//printf("o %i\n",tweetHeight);
 	tweetHeight=-1;

@@ -92,7 +92,7 @@ namespace colors
 FILE *fopenf(string path,char *mode);
 
 extern time_t currentTime;
-
+#define assert_(a) a
 void loadUser(twitCurl *twit);
 extern Uint8 *keystate;
 extern string tempString;
