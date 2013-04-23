@@ -1,14 +1,11 @@
 #pragma once
 #include "zatcap.h"
 //void=twitCurl
-int twitterInit(void *twit);
+void twitterInit(void *twit);
 #include <time.h>
 #include "file.h"
 class Tweet;
 class Retweet;
-extern SDL_Surface *defaultUserPic;
-extern SDL_Surface *defaultSmallUserPic;
-extern SDL_Surface *defaultMediumUserPic;
 extern bool loggedIn;
 extern string replyId;
 extern twitCurl *twit;
@@ -21,29 +18,9 @@ public:
 	string id;
 	User()
 	{
-		_pic=_smallPic=_mediumPic=NULL;
+		_pic="defaultpic.png";
 	}
-	SDL_Surface *_pic;
-	SDL_Surface *_smallPic;
-	SDL_Surface *_mediumPic;
-	SDL_Surface* pic()
-	{
-		if(_pic!=NULL)
-			return _pic;
-		return defaultUserPic;
-	}
-	SDL_Surface* smallPic()
-	{
-		if(_smallPic!=NULL)
-			return _smallPic;
-		return defaultSmallUserPic;
-	}
-	SDL_Surface* mediumPic()
-	{
-		if(_mediumPic!=NULL)
-			return _mediumPic;
-		return defaultMediumUserPic;
-	}
+	string _pic;
 	string picURL;
 	string getPicPath();
 	void save();
@@ -140,7 +117,7 @@ void deleteTweet(string id);
 //string=id
 extern map<string,Tweet*> tweets;
 void addTweet(Tweet** tweet);
-extern SDL_mutex *tweetsMutex;
+extern Mutex tweetsMutex;
 
 
 void parseRestTweets(string json);

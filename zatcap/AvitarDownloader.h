@@ -4,7 +4,7 @@
 
 struct profilepic
 {
-	SDL_Surface **img;
+///	SDL_Surface **img;
 	string url;
 	string name;
 	User *user;

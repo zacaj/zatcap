@@ -1,6 +1,5 @@
 #pragma once
 #include "process.h"
-#include <SDL_video.h>
 
 class Button;
 typedef void (*buttonDrawFunc)(Button*,void*);
@@ -8,7 +7,7 @@ typedef bool (*buttonClickFunc)(Button*,int,void*);
 
 struct DualSurface
 {
-	SDL_Surface* imgs[2];
+	string imgs[2];
 };
 
 class Button :

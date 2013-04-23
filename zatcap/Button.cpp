@@ -5,7 +5,7 @@
 void buttonGenericDraw(Button *button,void *data)
 {
 	DualSurface *dual=(DualSurface*)(data);
-	drawSprite(dual->imgs[button->highlighted],screen,0,0,button->x,button->y,dual->imgs[button->highlighted]->w,dual->imgs[button->highlighted]->h);
+///	drawSprite(dual->imgs[button->highlighted],screen,0,0,button->x,button->y,dual->imgs[button->highlighted]->w,dual->imgs[button->highlighted]->h);
 }
 
 bool buttonGenericToggle( Button *button,int n,void *data )

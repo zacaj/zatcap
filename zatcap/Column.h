@@ -28,7 +28,7 @@ public:
 	virtual ~Column(void);
 	virtual void update();
 	virtual void draw();
-	SDL_mutex *drawingMutex;
+	Mutex drawingMutex;
 	virtual void newTweet(Tweet *tweet)=0;
 
 	virtual bool mouseButtonEvent( int x,int y,int button,int pressed );
@@ -36,6 +36,7 @@ public:
 	virtual void deleteTweet(string id);
 	bool drawRefreshButton();
 	bool redrawAllTweets;
+	void add(Tweet* tweet);
 };
 
 extern int columnHorizontalScroll;

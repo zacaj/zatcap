@@ -12,6 +12,7 @@ public:
 	string originalText;
 	string id;
 	string userid;
+	string html;
 	Tweet()
 	{
 		_user=NULL;
@@ -34,9 +35,10 @@ public:
 	User *_user;
 	virtual int draw(int x,int y,int w,int background);
 	virtual int draw(TweetInstance *instance,int w);
-	virtual int drawButtons(int x,int y,int w,int h,bool highlighted,SDL_Surface* _screen=NULL);
+	virtual int drawButtons(int x,int y,int w,int h,bool highlighted);
 	virtual int cachedDraw(TweetInstance *instance);
 	virtual void write(FILE *fp);
+	virtual string getHtml() ;
 };
 #define TOGGLECONVODISPLAY -1
 class Retweet:public Tweet
@@ -73,15 +75,13 @@ class TweetInstance
 public:
 	Tweet *tweet;
 	TweetInstance *replyTo;
-	SDL_Surface *pic;
-	SDL_Surface *pic2;
+	string pic;
+	string pic2;
 	bool read;
-	textPos *p;
 	int w;
 	vector<int> widths;
 	bool drawReply;
 	int background;
-	SDL_Surface *surface;
 	int buttonX,buttonY,buttonHeight;
 	TweetInstance(Tweet *_tweet,int w,int _background );
 	~TweetInstance();

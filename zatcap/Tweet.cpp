@@ -1,10 +1,10 @@
 #include "Tweet.h"
 #include "zatcap.h"
-#include "Textbox.h"
+#include "Awesomium.h"
 using namespace colors;
 
 
-Uint32 getBackgroundColor(int background,int read)
+string getBackgroundColor(int background,int read)
 {
 	if(background==0 && read)
 		return colors::readTweetColor;
@@ -134,7 +134,7 @@ Uint32 getBackgroundColor(int background,int read)
 
 int Tweet::draw( int x,int y,int w,int background)
 {
-	SDL_Surface *pic=user()->pic();
+/*	SDL_Surface *pic=user()->pic();
 	int height=y;
 	bool first=settings::tweetBackgrounds;
 	int textWidth=w-7-pic->w-5-7-13-16;
@@ -180,19 +180,20 @@ draw:
 	}
 	drawSprite(pic,screen,0,0,x+5,y+5,pic->w,pic->h);
 	if(hoverButton(x+5,y+5,48,48))
-		drawSprite(reply[2],screen,0,0,x+5,y+5,reply[2]->w,reply[2]->h);
-	return height;
+		drawSprite(reply[2],screen,0,0,x+5,y+5,reply[2]->w,reply[2]->h);*
+	return height;*/
+	return 0;
 }
 
 
 int Tweet::draw( TweetInstance *instance,int w )
 {
-	int x=0,y=0;
+	/*int x=0,y=0;
 	SDL_Surface *pic=user()->pic();
 	int height=0;
 	bool first=settings::tweetBackgrounds;
 	int textWidth=w-7-pic->w-5-7-13-16;
-	SDL_LockMutex(tempSurfaceMutex);
+	enterMutex(tempSurfaceMutex);
 	//SDL_FillRect(tempSurface,0,0);
 draw:
 	int nameWidth=textWidth;
@@ -235,15 +236,15 @@ draw:
 	instance->surface=SDL_CreateRGBSurface(SDL_HWSURFACE,w,height,32,tempSurface->format->Rmask,tempSurface->format->Gmask,tempSurface->format->Bmask,tempSurface->format->Amask);
 	drawSprite(tempSurface,instance->surface,0,0,0,0,w,height);
 	//SDL_FillRect(tempSurface,0,0);
-	SDL_UnlockMutex(tempSurfaceMutex);
-	instance->pic=user()->pic();
+	leaveMutex(tempSurfaceMutex);
+	instance->pic=user()->pic();*/
 	return 0;
 }
 
 
 int Retweet::draw( int x,int y,int w,int background )
 {
-	SDL_Surface *pic=user()->pic();
+	/*SDL_Surface *pic=user()->pic();
 	int height=y;
 	bool first=settings::tweetBackgrounds;
 	int textWidth=w-7-pic->w-5-7-13-16;
@@ -317,17 +318,18 @@ draw:
 	drawSprite(pic,screen,0,0,x+5,y+5,pic->w,pic->h);
 	pic=retweetedBy->smallPic();
 	drawSprite(pic,screen,0,0,x+5+48-pic->w,y+5+48-pic->h,pic->w,pic->h);
-	return height;
+	return height;*/
+	return 0;
 }
 
 int Retweet::draw( TweetInstance *instance,int w )
 {
-	int x=0,y=0;
+	/*int x=0,y=0;
 	SDL_Surface *pic=user()->pic();
 	int height=0;
 	bool first=settings::tweetBackgrounds;
 	int textWidth=w-7-pic->w-5-7-13-16;
-	SDL_LockMutex(tempSurfaceMutex);
+	enterMutex(tempSurfaceMutex);
 	SDL_FillRect(tempSurface,0,0);
 draw:
 	int nameWidth=200;
@@ -395,7 +397,7 @@ draw:
 	instance->surface=SDL_CreateRGBSurface(SDL_HWSURFACE,w,height,32,tempSurface->format->Rmask,tempSurface->format->Gmask,tempSurface->format->Bmask,tempSurface->format->Amask);
 	drawSprite(tempSurface,instance->surface,0,0,0,0,w,height);
 	SDL_FillRect(tempSurface,0,0);
-	SDL_UnlockMutex(tempSurfaceMutex);
+	leaveMutex(tempSurfaceMutex);
 	instance->pic=user()->mediumPic();
 	instance->pic2=user()->smallPic();
 	return 0;
@@ -406,7 +408,7 @@ int favoriteTweet(void *data)
 	string tmpString;
 	while((tmpString=twit->favoriteCreate(tweet->id))=="");
 	debug("fav: %s\n",tmpString.c_str());
-	tweet->favorited=1;
+	tweet->favorited=1;*/
 	return 0;
 }
 
@@ -443,10 +445,10 @@ int deleteTweet(void *data)
 	return 0;
 }
 
-int Tweet::drawButtons( int _x,int _y,int w,int h,bool highlighted,SDL_Surface* _screen )
-{
-	if(_screen==NULL)
-		_screen=screen;
+int Tweet::drawButtons( int _x,int _y,int w,int h,bool highlighted )
+{/*
+	///if(_screen==NULL)
+	////	_screen=screen;
 	int x=_x+w-15-16;
 	int y=_y+18;
 	{
@@ -525,7 +527,8 @@ int Tweet::drawButtons( int _x,int _y,int w,int h,bool highlighted,SDL_Surface* 
 			return TOGGLECONVODISPLAY;
 		}
 	}
-	return x;
+	return x;*/
+	return 0;
 }
 
 void Tweet::write( FILE *fp )
@@ -547,17 +550,30 @@ void Tweet::write( FILE *fp )
 
 int Tweet::cachedDraw( TweetInstance *instance )
 {
-	if(user()->pic()!=instance->pic)
-		instance->refresh(instance->w);
+///	if(user()->pic()!=instance->pic)
+	///	instance->refresh(instance->w);
 	return 0;
+}
+
+std::string Tweet::getHtml()
+{
+	if(html.empty())
+	{
+		string content=f2s("resources/column.html");
+		replace(content,string("$ID"),id);
+		replace(content,string("$TEXT"),text);
+		replace(content,string("USERNAMe"),username);
+		html=content;
+	}
+	return html;
 }
 
 int Retweet::cachedDraw( TweetInstance *instance )
 {
-	if(user()->mediumPic()!=instance->pic)
+	/*if(user()->mediumPic()!=instance->pic)
 		instance->refresh(instance->w);
 	if(user()->smallPic()!=instance->pic2)
-		instance->refresh(instance->w);
+		instance->refresh(instance->w);*/
 	return 0;
 }
 
@@ -578,7 +594,7 @@ TweetInstance::TweetInstance( Tweet *_tweet,int _w,int _background  )	:
 {
 	w=_w;
 	read=tweet->read;
-	surface=NULL;
+	//surface=NULL;
 	replyTo=NULL;
 	drawReply=0;
 	//refresh(w);
@@ -586,7 +602,7 @@ TweetInstance::TweetInstance( Tweet *_tweet,int _w,int _background  )	:
 
 int TweetInstance::draw( int x,int y )	
 {
-	if(surface==NULL || read!=tweet->read)
+	/*if(surface==NULL || read!=tweet->read)
 		refresh(w);
 	int h=0;
 	drawSprite(surface,screen,0,0,x,y,surface->w,surface->h);
@@ -619,12 +635,13 @@ int TweetInstance::draw( int x,int y )
 		if(replyTo!=NULL)
 			h+=replyTo->draw(x+12,y+h)+0;
 	}
-	return h;
+	return h;*/
+	return 0;
 }
 
 TweetInstance::~TweetInstance()
 {
-	if(surface)
+	/*if(surface)
 	{
 		SDL_FreeSurface(surface);
 		surface=NULL;
@@ -633,14 +650,14 @@ TweetInstance::~TweetInstance()
 	{
 		delete p; 
 		p=NULL;
-	}
+	}*/
 }
 
 void TweetInstance::refresh( int w )
 {
 	//printf("redraw");
-	if(surface)
-		SDL_FreeSurface(surface);
+	//if(surface)
+	//	SDL_FreeSurface(surface);
 	widths.clear();
 	tweet->draw(this,w);
 	if(replyTo!=NULL)

@@ -8,7 +8,7 @@ public:
 	int ticks;
 	void *data;
 	int maxTicks;
-	 int (*fn)(void*);
+	 void (*fn)(void*);
 	TimedEventProcess();
 	~TimedEventProcess(void);
 

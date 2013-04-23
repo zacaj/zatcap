@@ -49,14 +49,13 @@ struct ParseStream
 	Json::Value root;
 	string str;
 };
-int parseStreamThread(void *ptr)
+void parseStreamThread(void *ptr)
 {
 	ParseStream *str=(ParseStream*)ptr;
 	parseStream(str->root,str->str);
 	delete ptr;
-	return 0;
 }
-int loadMissingTweets(void *data)
+void loadMissingTweets(void *data)
 {
 	printf("Loading missing tweets\n");
 	string tmpString;debugHere();
@@ -67,13 +66,12 @@ int loadMissingTweets(void *data)
 	else
 		while((tmpString=twit->timelineHomeGet(false,true,settings::tweetsToLoadOnStartup,"",""))=="");
 	parseRestTweets(tmpString);debugHere();
-	return 0;
 }
 size_t callback_func(void *ptr, size_t size, size_t count, void *userdata)
 {
 	if(streaming<=0)
 	{
-		SDL_CreateThread(loadMissingTweets,NULL);
+		startThread(loadMissingTweets,NULL);
 	}
 	streaming=60*45;debugHere();
 	string str=(char*)ptr;
@@ -102,7 +100,7 @@ size_t callback_func(void *ptr, size_t size, size_t count, void *userdata)
 			ParseStream *strm=new ParseStream;
 			strm->root=root;
 			strm->str=s;
-			SDL_CreateThread(parseStreamThread,strm);//parseStream(root,s);debugHere();
+			startThread(parseStreamThread,strm);//parseStream(root,s);debugHere();
 			lpos=pos;debugHere();
 		} //i will be so amazed if this actually works
 	}
@@ -120,7 +118,7 @@ size_t callback_func(void *ptr, size_t size, size_t count, void *userdata)
 			ParseStream *strm=new ParseStream;
 			strm->root=root;
 			strm->str=str2;
-			SDL_CreateThread(parseStreamThread,strm);
+			startThread(parseStreamThread,strm);
 			//parseStream(root,str2);debugHere();
 			((string*)userdata)->clear();debugHere();
 		}
@@ -218,7 +216,7 @@ bool openUserStream(twitCurl *twit)
 	printf("ERROR\nERROR\nERROR\nERROR\nERROR:Stream connection lost, reconnecting after %ims wait...\nERROR\nERROR\nERROR\nERROR\n",delay);
 	delete str;
 	curl_easy_cleanup(curl);
-	SDL_Delay(delay);
+	Sleep(delay);
 	delay*=2;
 	return openUserStream(twit);
 }

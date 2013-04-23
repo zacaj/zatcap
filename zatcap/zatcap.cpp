@@ -11,94 +11,43 @@
 #include "stream.h"
 #include "zatcap.h"
 #include "WaitIndicator.h"
-#include <SDL.h>
-#include <SDL_thread.h>
 #include <assert.h>
 #include "HomeColumn.h"
 #include <time.h>
 #include <string.h>
 #include <sys/stat.h>
 #include "MentionColumn.h"
-#include <SDL_image.h>
-#include <SDL_rotozoom.h>
 #include "Button.h"
-#include <SDL_syswm.h>
-#include "Textbox.h"
+#include <windows.h>
+#include <Awesomium/WebCore.h>
+#include <Awesomium/BitmapSurface.h>
+#include <Awesomium/STLHelpers.h>
+#include <string>
+using namespace Awesomium;
+#include <map>
+#include <Awesomium/DataSource.h>
+#include <functional>
 #ifdef USE_WINDOWS
 #include <direct.h>
 #else
 #include <sys/stat.h>
 #endif
 #include "TimedEventProcess.h"
-extern SDL_Surface *defaultSmallUserPic;
-extern SDL_Surface *defaultMediumUserPic;
 Process *mouseDragReceiver;
 int version=
 #include "../Debug/version.txt"
 	;
+#include "Awesomium.h"
+#include <process.h>
 int updateScreen=1;
-Uint8 *keystate;
 bool newVersion=0;
 Textbox *tweetbox;
 string username;
-SDL_Surface* arrowDown;
-SDL_Surface* arrowUp;
-SDL_Surface* favorite[3];
-SDL_Surface* retweet[3];
-SDL_Surface* reply[3];
-SDL_Surface* deleteButton[3];
- SDL_Surface* refresh[2];
- SDL_Surface* top[2];
- SDL_Surface* convo[2];
-SDL_Surface* tempSurface;
+
 string tempString;
 Process *keyboardInputReceiver;
 map<float,Process*> processes;
-map<int,TTF_Font *> fonts;
 int start=-1;
-/* XPM */
-static const char *arrow[] = {
-	/* width height num_colors chars_per_pixel */
-	"    32    32        3            1",
-	/* colors */
-	"X c #000000",
-	". c #ffffff",
-	"  c None",
-	/* pixels */
-	"X                               ",
-	"XX                              ",
-	"X.X                             ",
-	"X..X                            ",
-	"X...X                           ",
-	"X....X                          ",
-	"X.....X                         ",
-	"X......X                        ",
-	"X.......X                       ",
-	"X........X                      ",
-	"X.....XXXXX                     ",
-	"X..X..X                         ",
-	"X.X X..X                        ",
-	"XX  X..X                        ",
-	"X    X..X                       ",
-	"     X..X                       ",
-	"      X..X                      ",
-	"      X..X                      ",
-	"       XX                       ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"                                ",
-	"0,0"
-};
 bool g_redrawAllTweets=0;
 string cscanf(FILE *fp,char *text)
 {
@@ -107,8 +56,7 @@ string cscanf(FILE *fp,char *text)
 	return ret;
 }
 
-SDL_Surface *screen=NULL;
-int quit=0;
+int done=0;
 namespace settings
 {
 	string userInfoFile="user.txt";
@@ -139,30 +87,30 @@ namespace settings
 }
 namespace colors
 {
-	 Uint32 unreadTweetColor;
-	 Uint32 readTweetColor;
-	 Uint32 hoverTweetColor;
-	 Uint32 columnBackgroundColor;
-	 Uint32 buttonHoverColor;
-	Uint32 buttonColor;
+	 string unreadTweetColor;
+	 string readTweetColor;
+	 string hoverTweetColor;
+	 string columnBackgroundColor;
+	 string buttonHoverColor;
+	string buttonColor;
 	int columnTitleTextColorR,columnTitleTextColorG,columnTitleTextColorB;
 	int textColorR,textColorG,textColorB;
-	Uint32 buttonBackgroundColor;
-	Uint32 buttonBorderColor;
-	Uint32 scrollbarBackgroundColor;
-	Uint32 scrollbarColor;
-	Uint32 scrollbarHoverColor;
+	string buttonBackgroundColor;
+	string buttonBorderColor;
+	string scrollbarBackgroundColor;
+	string scrollbarColor;
+	string scrollbarHoverColor;
 	int retweetTextColorR,retweetTextColorG,retweetTextColorB;
 	int usernameTextColorR,usernameTextColorG,usernameTextColorB;
 	int timeTextColorR,timeTextColorG,timeTextColorB;
-	Uint32 unreadTweetColor2;
-	Uint32 readTweetColor2;
-	Uint32 separatorColor;
+	string unreadTweetColor2;
+	string readTweetColor2;
+	string separatorColor;
 	int entityColorR[6],entityColorG[6],entityColorB[6];
-	Uint32 entityUnderlineColor[6];
+	string entityUnderlineColor[6];
 }
 
-size_t function( char *ptr, size_t size, size_t nmemb, void *userdata)
+size_t dfunction( char *ptr, size_t size, size_t nmemb, void *userdata)
 {
 	return size*nmemb;
 }
@@ -181,7 +129,6 @@ void msystem( string str )
 }
 int iconR,iconG,iconB;
 int iconR2,iconG2,iconB2;
-SDL_Surface *icon;
 void setIconColor( int r,int g,int b )
 {
 	iconR=r;
@@ -189,13 +136,13 @@ void setIconColor( int r,int g,int b )
 	iconB=b;
 }
 
-int collectDeviousData(void *p)
+void collectDeviousData(void *p)
 {
 	int columnTitleTextSize;
 	CURL *curl=curl_easy_init();
 	string url= (string("http://zacaj.com/zatcap.php?id="+username+i2s(version)));
 	curl_easy_setopt(  curl, CURLOPT_URL,url.c_str());//
-	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, function);
+	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, dfunction);
 	curl_easy_perform(curl);
 	curl_easy_cleanup(curl);
 	{
@@ -203,7 +150,7 @@ int collectDeviousData(void *p)
 		assert_(curl2);
 		string url= (string("http://zacaj.com/zatcap/zatcap-"+i2s(version+1)+".zip"));
 		curl_easy_setopt(  curl2, CURLOPT_URL,url.c_str());//
-		curl_easy_setopt(curl2, CURLOPT_WRITEFUNCTION, function);
+		curl_easy_setopt(curl2, CURLOPT_WRITEFUNCTION, dfunction);
 		curl_easy_setopt(curl2, CURLOPT_NOBODY, 1);
 		curl_easy_setopt(curl2, CURLOPT_HEADER, 1);
 		curl_easy_setopt(curl2, CURLOPT_FAILONERROR , 1);
@@ -217,17 +164,43 @@ int collectDeviousData(void *p)
 			newVersion=1;
 		curl_easy_cleanup(curl2);
 	}
+}
+WNDCLASSEX wc;
+HWND hwnd;
+MSG Msg;
+WebCore *web_core;
+WebSession *session;
+WebView *view;
+size_t callback_func(void *ptr, size_t size, size_t count, void *userdata);
+void quit()
+{
+	view->Destroy();
+	session->Release();
+	WebCore::Shutdown();
+
+}
+LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	switch(msg)
+	{
+	case WM_CLOSE:
+		DestroyWindow(hwnd);
+		break;
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		break;
+	default:
+		return DefWindowProc(hwnd, msg, wParam, lParam);
+	}
 	return 0;
 }
-SDL_mutex *tempSurfaceMutex;
-size_t callback_func(void *ptr, size_t size, size_t count, void *userdata);
 void loadUser(twitCurl *twit)
 {
 	FILE *fp=fopen("user.txt","r");
 	if(!fp)
 	{
 		printf("ERROR:  Could not read %s (user info file specified in config.txt)\n");
-		SDL_Quit();
+		quit();
 		system("pause");
 		exit(0);
 	}
@@ -261,7 +234,7 @@ void loadUser(twitCurl *twit)
 			if(!username.size() || !password.size())
 			{
 				printf("ERROR:  Could not read credentials from %s (user info file specified in config.txt)\n");
-				SDL_Quit();
+				quit();
 				system("pause");
 				exit(0);
 			}
@@ -285,6 +258,7 @@ void loadUser(twitCurl *twit)
 			{
 				printf("Login failure\n");
 				system("pause");
+				quit();
 				exit(0);
 			}//use pin?
 
@@ -310,8 +284,8 @@ void loadUser(twitCurl *twit)
 	if(root["reset_time"].isNull())
 	{
 		printf("ERROR:  log in failure (is your password correct in %s?)\n",settings::userInfoFile.c_str());
-		SDL_Quit();
 		system("pause");
+		quit();
 		exit(0);
 	}
 	printf("Successfully logged in to twitter account: %s\n",username.c_str());debugHere();
@@ -326,7 +300,6 @@ void loadUser(twitCurl *twit)
 }
 
 void readConfig();
-extern SDL_Surface *defaultUserPic;
 
 int mousex=-10000,mousey,mousebutton;
 
@@ -379,18 +352,21 @@ char* getClipboardText()
     return "Not implemented yet, because fragmentation";
 }
 #endif
-int saveTweetPtr(void *data)
+void saveTweetPtr(void *data)
 {
 	saveTweets();
-	return 0;
 }
-static SDL_Cursor *init_system_cursor(const char *image[]);
 time_t configLastRead=0;
-int main(int argc, char* argv[])
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+				   LPSTR lpCmdLine, int nCmdShow)
 {
 	assert_(sizeof(uint)==4);
 	assert_(sizeof(uchar)==1);
 	assert_(sizeof(float)==4);
+	{
+
+		freopen("log.txt","w",stdout);
+	}
 	bool candy=1;
 	if(!candy)
 		exit(EXIT_FAILURE);
@@ -398,66 +374,73 @@ int main(int argc, char* argv[])
 	system("mkdir profilepics");
 	debug("starting...\n");
 	printf("Version: a%i\n",version);
-	SDL_Init(SDL_INIT_EVERYTHING);debug("%i\n",__LINE__);
 	cursor=IDC_ARROW;
 	sysinit();
 	readConfig();debug("%i\n",__LINE__);
 	configLastRead=0;
-	screen=SDL_SetVideoMode(settings::windowWidth,settings::windowHeight,32,SDL_SWSURFACE| SDL_RESIZABLE);debug("%i\n",__LINE__);
 	readConfig();debug("%i\n",__LINE__);//read a second time to load colors
 	//sysinit();
-	tempSurface=SDL_CreateRGBSurface(SDL_SWSURFACE,3000,1000,32,screen->format->Rmask,screen->format->Gmask,screen->format->Bmask,screen->format->Amask);
+	tweetsMutex=createMutex();
 	twitCurl *twit=NULL;
-	TTF_Init();debug("%i\n",__LINE__);
-	SDL_WM_SetCaption( "Zacaj's Amazing Twitter Client for Awesome People", NULL );
-	SDL_SetCursor(init_system_cursor(arrow));
 	{
-		icon=SDL_CreateRGBSurface(SDL_SWSURFACE,256,256,32,screen->format->Rmask,screen->format->Gmask,screen->format->Bmask,screen->format->Amask);
-		SDL_SetColorKey(icon, SDL_SRCCOLORKEY,SDL_MapRGB(screen->format,0,0,0));
-		setIconColor(0,0,0);
+		//Step 1: Registering the Window Class
+		wc.cbSize        = sizeof(WNDCLASSEX);
+		wc.style         = 0;
+		wc.lpfnWndProc   = WndProc;
+		wc.cbClsExtra    = 0;
+		wc.cbWndExtra    = 0;
+		wc.hInstance     = hInstance;
+		wc.hIcon         = LoadIcon(NULL, IDI_APPLICATION);
+		wc.hCursor       = LoadCursor(NULL, IDC_ARROW);
+		wc.hbrBackground = (HBRUSH)(COLOR_WINDOW+1);
+		wc.lpszMenuName  = NULL;
+		wc.lpszClassName = L"ZATCAP html";
+		wc.hIconSm       = LoadIcon(NULL, IDI_APPLICATION);
+
+		if(!RegisterClassEx(&wc))
+		{
+			MessageBox(NULL, L"Window Registration Failed!", L"Error!",
+				MB_ICONEXCLAMATION | MB_OK);
+			return 0;
+		}
+
+		// Step 2: Creating the Window
+		hwnd = CreateWindowEx(
+			WS_EX_CLIENTEDGE,
+			L"ZATCAP html",
+			L"The title of my window",
+			WS_OVERLAPPEDWINDOW,
+			CW_USEDEFAULT, CW_USEDEFAULT, 1024, 768,
+			NULL, NULL, hInstance, NULL);
+
+		if(hwnd == NULL)
+		{
+			MessageBox(NULL, L"Window Creation Failed!", L"Error!",
+				MB_ICONEXCLAMATION | MB_OK);
+			return 0;
+		}
+
+		ShowWindow(hwnd, nCmdShow);
+		UpdateWindow(hwnd);
 	}
-
-	//SetCursor(LoadCursor(NULL, IDC_ARROW));
-	IMG_Init(IMG_INIT_JPG|IMG_INIT_PNG);debug("%i\n",__LINE__);
-	debug("%i %i\n",__LINE__,fopen(string("profilepics/"+settings::defaultUserPicPath).c_str(),"r"));
-	defaultUserPic=loadImage("resources/"+settings::defaultUserPicPath);debug("%i defaultUserPic=%i\n",__LINE__,defaultUserPic);
 	{
-		defaultSmallUserPic=zoomSurface(defaultUserPic,(float)settings::retweeterPicSize/defaultUserPic->w,(float)settings::retweeterPicSize/defaultUserPic->h,1);debug("%i\n",__LINE__);
-		defaultMediumUserPic=zoomSurface(defaultUserPic,(float)settings::retweeteePicSize/defaultUserPic->w,(float)settings::retweeteePicSize/defaultUserPic->h,1);debug("%i\n",__LINE__);
-
-	}debug("%i\n",__LINE__);
-
-	assert_(arrowDown=IMG_Load("resources/arrowDown.PNG"));
-	assert_(arrowUp=IMG_Load("resources/arrowUp.PNG"));
-	assert_(favorite[0]=IMG_Load("resources/favorite.png"));
-	assert_(favorite[1]=IMG_Load("resources/favorite_hover.png"));
-	assert_(favorite[2]=IMG_Load("resources/favorite_on.png"));
-	assert_(retweet[0]=IMG_Load("resources/retweet.png"));
-	assert_(retweet[1]=IMG_Load("resources/retweet_hover.png"));
-	assert_(retweet[2]=IMG_Load("resources/retweet_on.png"));
-	assert_(reply[0]=IMG_Load("resources/reply.png"));
-	assert_(reply[1]=IMG_Load("resources/reply_hover.png"));
-	assert_(reply[2]=IMG_Load("resources/reply_large.png"));
-	assert_(deleteButton[0]=IMG_Load("resources/delete.png"));
-	assert_(deleteButton[1]=IMG_Load("resources/delete_hover.png"));
-	assert_(deleteButton[2]=IMG_Load("resources/delete_hover2.png"));
-	assert_(refresh[0]=IMG_Load("resources/refresh.png"));
-	assert_(refresh[1]=IMG_Load("resources/refresh_hover.png"));
-	assert_(top[0]=IMG_Load("resources/top.png"));
-	assert_(top[1]=IMG_Load("resources/top_hover.png"));
-	assert_(convo[0]=IMG_Load("resources/convo.png"));
-	assert_(convo[1]=IMG_Load("resources/convo_hover.png"));
-
-
-	SDL_Thread *thread=SDL_CreateThread(twitterInit,&twit);debug("%i\n",__LINE__);
+		web_core = WebCore::Initialize(WebConfig());
+		session=web_core->CreateWebSession(WSLit("session"),WebPreferences());
+		view = web_core->CreateWebView(1024, 768,session,kWebViewType_Window);
+		view->set_parent_window(hwnd);
+		htmlSource=new HtmlSource();
+		session->AddDataSource(WSLit("zatcap"), htmlSource);
+		session->AddDataSource(WSLit("resource"),new DirectorySource("resources"));
+		htmlSource->data[WSLit("index")]="<div style=\"width: 100%;height:100%;\"><div id='columns' style=\"width:100%; height:auto;\"></div><div id='bottom' style=\"width:100%; height: 150px; border: 1px solid blue;\"></div></div>";
+		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
+		methodHandler=new MethodHandler(view,web_core);
+	}
 	processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
 	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up
 	fclose(fopen("stream debug.txt","w"));
-	fontMutex=SDL_CreateMutex();
-	tempSurfaceMutex=SDL_CreateMutex();
-	tweetsMutex=SDL_CreateMutex();
+	startThread(twitterInit,&twit);
 
-	{
+	/*{
 		Textbox *textbox=new Textbox();
 		textbox->w=300;
 		textbox->x=screen->w-textbox->w;
@@ -466,7 +449,7 @@ int main(int argc, char* argv[])
 		textbox->h=footerHeight-20;
 		processes[30.45645]=textbox;
 		tweetbox=textbox;
-	}
+	}*/
 	{
 		if(settings::backupTime)
 		{
@@ -505,218 +488,25 @@ int main(int argc, char* argv[])
 		}
 		addTweet(tweet);
 	}/**/
-	SDL_EnableUNICODE(1);//todo make these only enable when typing?
-	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY,SDL_DEFAULT_REPEAT_INTERVAL);
 //	SDL_CreateCursor()
 	int t=0;
-	while(!quit)
+	while(!done)
 	{
-		//if(cursor!=IDC_ARROW)
-		//	SetCursor(LoadCursor(NULL, cursor));
-
 		time(&currentTime);
-		if(mousex!=-10000)
+		while (PeekMessage(&Msg, NULL, 0, 0, PM_REMOVE))
 		{
-			//if(ev.button.y<screen->h-80) //todo no tweet bar yet
+			if (Msg.message == WM_QUIT)
+				done=1;
+			else
 			{
-				map<float,Process*>::reverse_iterator end=processes.rend();
-				for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
-					if(it->second->mouseButtonEvent(mousex,mousey,mousebutton,1))
-						break;
-			}
-			mousex=-10000;
-		}
-		if(start!=-1)
-		{
-			t=SDL_GetTicks()-start;
-			if(t>0 && t<17)
-				SDL_Delay(17-t);
-		}
-		start=SDL_GetTicks();
-		SDL_Event ev;
-		while(SDL_PollEvent(&ev))
-		{
-			switch(ev.type)
-			{
-			case SDL_KEYDOWN:
-				{
-					switch(ev.key.keysym.sym)
-					{
-					case SDLK_ESCAPE:
-						quit=1;//not permenant
-						break;
-					default:
-						{
-							if(keyboardInputReceiver==NULL)
-							{
-								//todo maybe if it actually comes up
-							}
-							else
-							{
-								if(ev.key.keysym.unicode>30)
-									keyboardInputReceiver->keyboardEvent(ev.key.keysym.unicode,1,ev.key.keysym.mod);
-								else
-									keyboardInputReceiver->keyboardEvent(ev.key.keysym.sym,1,ev.key.keysym.mod);
-							}
-						}
-						break;
-					}
-				}
-				break;
-			case SDL_KEYUP:
-				if(keyboardInputReceiver==NULL)
-				{
-					//todo maybe if it actually comes up
-				}
-				else
-				{
-					if(ev.key.keysym.unicode)
-						keyboardInputReceiver->keyboardEvent(ev.key.keysym.unicode,0,ev.key.keysym.mod);
-					else
-						keyboardInputReceiver->keyboardEvent(ev.key.keysym.sym,0,ev.key.keysym.mod);
-				}
-				break;
-			case SDL_QUIT:
-				quit=1;
-				break;
-			case SDL_VIDEORESIZE:
-				screen=SDL_SetVideoMode(ev.resize.w,ev.resize.h,32,SDL_SWSURFACE| SDL_RESIZABLE);
-				updateScreen=2;
-				printf("Window resized to %ix%i\n",screen->w,screen->h);
-				break;
-			case SDL_ACTIVEEVENT:
-				switch(ev.active.type)
-				{
-				case SDL_APPMOUSEFOCUS :
-				case SDL_APPACTIVE :
-					//debugHere();
-					if(ev.active.gain)
-						readConfig();
-					//debugHere();
-				break;
-				}
-				break;
-			case SDL_MOUSEBUTTONDOWN:
-				if(ev.button.button!=SDL_BUTTON_WHEELDOWN && ev.button.button!=SDL_BUTTON_WHEELUP)
-				{
-					mousex=ev.button.x;
-					mousey=ev.button.y;
-					mousebutton=ev.button.button;
-					if(mousey>screen->h-footerHeight)//todo horrible hack
-					{
-						map<float,Process*>::reverse_iterator end=processes.rend();
-						for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
-							if(it->second->mouseButtonEvent(mousex,mousey,mousebutton,1))
-							{
-								mousex=-10000;
-								break;
-							}
-					}
-				}
-				else
-				{
-					mousex=-10000;
-					map<float,Process*>::reverse_iterator end=processes.rend();
-					for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
-						if(it->second->mouseButtonEvent(ev.button.x,ev.button.y,ev.button.button,1))
-						{
-							break;
-						}
-				}
-				updateScreen=1;
-				break;
-			case SDL_MOUSEBUTTONUP:
-				//if(ev.button.y<screen->h-80) //todo no tweet bar yet
-				{
-					ev.button.x-=columnHorizontalScroll;
-					for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
-						if(it->second->mouseButtonEvent(ev.button.x,ev.button.y,ev.button.button,0))
-							break;
-				}
-				updateScreen=1;
-				break;
-			case SDL_MOUSEMOTION:
-				{
-					if(ev.motion.state==SDL_PRESSED)
-					{
-						if(mouseDragReceiver!=NULL)
-							mouseDragReceiver->mouseButtonEvent(ev.motion.xrel,ev.motion.yrel,-1,1);
-					}
-					else
-					{
-						//ev.motion.x-=columnHorizontalScroll;
-						for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
-							if(it->second->mouseButtonEvent(ev.motion.x,ev.motion.y,-1,0))
-								break;
-					}
-				}
-				//updateScreen=1;
-				break;
+				TranslateMessage(&Msg);
+				DispatchMessage(&Msg);
 			}
 		}
-		keystate=SDL_GetKeyState(NULL);
-		if(g_redrawAllTweets)
-			g_redrawAllTweets=0;
-		if((updateScreen || !rand()%100 || mousex!=-10000))//immediate mode gui done in draw often
-		{
-			setIconColor(0,0,0);
-			SDL_FillRect(screen,0,0);
-			columnHorizontalRenderAt=0;
-			for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)//go in reverse so higher priority=first
-			{
-				it->second->draw();
-			}
-			if(textButton(screen->w-125,screen->h-40,"Force reload config.txt"))
-			{
-				configLastRead=0;
-				readConfig();
-			}
-			if(textButton(screen->w-125,screen->h-20,"Redraw cached tweets"))
-				g_redrawAllTweets=1;
-			updateScreen--;
-			if(newVersion)
-				drawText("A new version is available, download at zacaj.com/zatcap/",5,screen->h-40,13);
-			if(iconR!=iconR2 || iconG!=iconG2 || iconB!=iconB2)
-			{
-				SDL_FillRect(icon,0,SDL_MapRGB(icon->format,iconR,iconG,iconB));
-				drawTextcc("Z",128,128,256,255,255,255,icon);
-				SDL_WM_SetIcon(icon,NULL);
-				iconR2=iconR;
-				iconG2=iconG;
-				iconB2=iconB;
-			}
-		}
-		for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)//go in reverse so higher priority=first
-		{
-			if(it->second->shouldRemove)
-			{
-				//processes.erase(processes.begin()+i);
-				map<float,Process*>::iterator it2=it;
-				it++;
-				Process *process=it2->second;
-				processes.erase(it2->first);//may invalidate it?
-				delete process;
-				if(it==processes.end())
-					break;
-				continue;
-			}
-			it->second->update();
-		}
-		if(streaming)
-		{
-			boxRGB(screen,0,0,3,3,rand(),rand(),rand(),255);
-			streaming--;
-		}
-		{
-			boxRGB(screen,screen->w-100,0,screen->w,30,0,0,0);
-			char str[100];
-			sprintf(str,"MSPF: %4i",t);
-			drawTextr(str,screen->w,0,12);
-		}
-		SDL_Flip(screen);
+		web_core->Update();
 	}
 	//todo saveTweets();
-	SDL_Quit();
+	quit();
 	return 0;
 }
 
@@ -728,13 +518,13 @@ void jumpToSetting(FILE *fp,string str)
 	fscanf(fp," = ");
 }
 
-Uint32 readColor(FILE *fp)
+string readColor(FILE *fp)
 {
 	int r,g,b;
 	fscanf(fp,"%i,%i,%i\n",&r,&g,&b);
-	if(!screen)
-		return 0;
-	return SDL_MapRGB(screen->format,r,g,b);
+	char str[100];
+	sprintf_s(str,100,"#%2x%2x%2x",r,g,b);
+	return str;
 }
 
 void readConfig()
@@ -968,7 +758,7 @@ void debug(const char* msg, ...)
 bool hoverButton( int x,int y,int w,int h )
 {
 	int mx,my;
-	SDL_GetMouseState(&mx,&my);
+	//SDL_GetMouseState(&mx,&my);
 	if(mx>x && mx<x+w && my>y && my<y+h)
 		return 1;
 	return 0;
@@ -1042,36 +832,36 @@ string getPath(string path)
 		return path;
 }
 
-static SDL_Cursor *init_system_cursor(const char *image[])
+void startThread(void(*functionPointer)(void*),void *data)
 {
-	int i, row, col;
-	Uint8 data[4*32];
-	Uint8 mask[4*32];
-	int hot_x, hot_y;
+	_beginthread(functionPointer,0,data);
+}
 
-	i = -1;
-	for ( row=0; row<32; ++row ) {
-		for ( col=0; col<32; ++col ) {
-			if ( col % 8 ) {
-				data[i] <<= 1;
-				mask[i] <<= 1;
-			} else {
-				++i;
-				data[i] = mask[i] = 0;
-			}
-			switch (image[4+row][col]) {
-			case 'X':
-				data[i] |= 0x01;
-				mask[i] |= 0x01;
-				break;
-			case '.':
-				mask[i] |= 0x01;
-				break;
-			case ' ':
-				break;
-			}
-		}
+Mutex createMutex()
+{
+	Mutex ret;
+	InitializeCriticalSection(&ret);
+	return ret;
+}
+void deleteMutex(Mutex &mutex)
+{
+	DeleteCriticalSection(&mutex);
+}
+void enterMutex(Mutex &mutex)
+{
+	EnterCriticalSection(&mutex);
+}
+void leaveMutex(Mutex &mutex)
+{
+	LeaveCriticalSection(&mutex);
+}
+
+void replace( std::string& str, const std::string& oldStr, const std::string& newStr )
+{
+	size_t pos = 0;
+	while((pos = str.find(oldStr, pos)) != std::string::npos)
+	{
+		str.replace(pos, oldStr.length(), newStr);
+		pos += newStr.length();
 	}
-	sscanf(image[4+row], "%d,%d", &hot_x, &hot_y);
-	return SDL_CreateCursor(data, mask, 32, 32, hot_x, hot_y);
 }

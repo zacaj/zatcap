@@ -21,7 +21,7 @@ void TimedEventProcess::update()
 	if(ticks++>maxTicks)
 	{
 		ticks=0;
-		SDL_CreateThread(fn,this);
+		startThread(fn,this);
 	}
 }
 

@@ -1,6 +1,9 @@
 #include "Column.h"
 #include "twitter.h"
 #include <SDL_rotozoom.h>
+#include "algorithm"
+#include "zatcap.h"
+#include "Awesomium.h"
 
 int columnHorizontalScroll=0;
 int columnHorizontalRenderAt=0;
@@ -16,28 +19,43 @@ Column::Column(float _w ,string _name)
 	minimized=0;
 	tweetHeight=-1;
 	emptyColumnText="No tweets";
-	drawingMutex=SDL_CreateMutex();
+	drawingMutex=createMutex();
 	onOff=0;
 	redrawAllTweets=0;
+	string column=f2s("resources/column.html");
+	replace(column,string("$COLUMNNAME"),columnName);
+view->ExecuteJavascript(FS("var t=document.createElement('span');"
+		"t.innerHTML=\""+column+"\";"
+		"document.getElementById('columns').appendChild(t);"),WSLit(""));
+	Error err=view->last_error();
+	printf("");
 }
 
 
+void Column::add( Tweet* tweet )
+{
+
+	view->ExecuteJavascript(FS("var t=document.createElement('span');"
+		"t.innerHTML=\""+tweet->getHtml()+"\";"
+		"document.getElementById('"+columnName+"').appendChild(t);"),WSLit(""));
+}
+
 Column::~Column(void)
 {
-	SDL_DestroyMutex(drawingMutex);
+	deleteMutex(drawingMutex);
 }
 using namespace colors;
 void Column::draw()
 {
-	//return;
-	SDL_LockMutex(drawingMutex);
+	/*//return;
+	enterMutex(drawingMutex);
 	if(scroll<0)
 		scroll=0;
 	y=COLUMNHEADERHEIGHT-scroll;
 	x=columnHorizontalRenderAt;
 	if(columnHorizontalRenderAt>screen->w)
 	{	
-		SDL_UnlockMutex(drawingMutex);
+		leaveMutex(drawingMutex);
 		return;
 	}
 	{
@@ -69,7 +87,7 @@ void Column::draw()
 			SDL_FreeSurface(text);
 			SDL_FreeSurface(otext);
 			columnHorizontalRenderAt+=33;
-			SDL_UnlockMutex(drawingMutex);
+			leaveMutex(drawingMutex);
 			return;
 		}
 		else
@@ -178,11 +196,7 @@ void Column::draw()
 
 		boxColor(screen,columnHorizontalRenderAt,0,columnHorizontalRenderAt+w,COLUMNHEADERHEIGHT,columnBackgroundColor);//header bg
 
-		/*if(settings::arrowsOnScrollbar)
-		{
-			drawSprite(arrowUp,screen,0,0,columnHorizontalRenderAt+w-3-8,COLUMNHEADERHEIGHT,8,8);
-			drawSprite(arrowDown,screen,0,0,columnHorizontalRenderAt+w-3-8,screen->h-8,8,8);
-		}*///todo
+	
 	}
 	drawText(columnName.c_str(),columnHorizontalRenderAt+4,COLUMNHEADERHEIGHT-30,settings::columnTitleTextSize,200,200,200);
 	{//minimize
@@ -200,19 +214,19 @@ void Column::draw()
 		char str[100];
 		sprintf(str,"Tweets: %i",m_tweets.size());
 		drawText(str,columnHorizontalRenderAt+w-120,COLUMNHEADERHEIGHT-30,13,255,255,255);
-	}/**/
+	}
 	{
 		char str[100];
 		sprintf(str,"d%i",scroll);
 		drawText(str,columnHorizontalRenderAt+w-150,COLUMNHEADERHEIGHT-30,13,255,255,255);
-	}/**/
+	}
 	{//top
 		int bx=columnHorizontalRenderAt+w-20-24-top[0]->w;
 		int by=COLUMNHEADERHEIGHT-25;
 		drawSprite(top[hoverButton(bx,by,top[0]->w,top[0]->h)],screen,0,0,bx,by,top[0]->w,top[0]->h);
 		if(doButton(bx,by,16,16))
 			scroll=0;
-	}/**/
+	}
 	if(y<screen->h-COLUMNHEADERHEIGHT-footerHeight)
 	{
 		scroll-=screen->h-y-COLUMNHEADERHEIGHT-footerHeight;
@@ -220,13 +234,13 @@ void Column::draw()
 		if(scroll>0)
 		{
 			boxColor(screen,columnHorizontalRenderAt,0,columnHorizontalRenderAt+w,screen->h,columnBackgroundColor);
-			SDL_UnlockMutex(drawingMutex);
+			leaveMutex(drawingMutex);
 			return draw();//erase and draw again to prevent jitter
 		}
 	}
 	columnHorizontalRenderAt+=w;
-	SDL_UnlockMutex(drawingMutex);
-	redrawAllTweets=0;
+	leaveMutex(drawingMutex);
+	redrawAllTweets=0;*/
 }
 
 void Column::update()
@@ -236,7 +250,7 @@ void Column::update()
 
 bool Column::mouseButtonEvent( int x,int y,int button,int pressed )
 {
-	int mx,my;
+	/*int mx,my;
 	SDL_GetMouseState(&mx,&my);
 	if(button!=-1)
 	{
@@ -316,28 +330,30 @@ bool Column::mouseButtonEvent( int x,int y,int button,int pressed )
 		scroll-=settings::scrollSpeed;
 		updateScreen=1;
 	}
+	return 0;*/
 	return 0;
 }
 
 void Column::deleteTweet(string id)
 {
-	SDL_LockMutex(drawingMutex);
+	/*enterMutex(drawingMutex);
 	if(m_tweets.find(id)!=m_tweets.end())
 	{
 		m_tweets.erase(m_tweets.find(id));
 		updateScreen=1;
 	}
-	SDL_UnlockMutex(drawingMutex);
+	leaveMutex(drawingMutex);*/
 }
 
 bool Column::drawRefreshButton()
 {
-	if(!minimized)
+	/*if(!minimized)
 	{
 		int bx=columnHorizontalRenderAt-20-refresh[0]->w;
 		int by=COLUMNHEADERHEIGHT-25;
 		drawSprite(refresh[hoverButton(bx,by,refresh[0]->w,refresh[0]->h)],screen,0,0,bx,by,refresh[0]->w,refresh[0]->h);
 		return doButton(bx,by,refresh[0]->w,refresh[0]->h);
 	}
+	return 0;*/
 	return 0;
 }

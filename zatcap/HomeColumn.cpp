@@ -16,7 +16,7 @@ HomeColumn::HomeColumn(float w ):Column(w,"timeline")
 		emptyColumnText="Now with unanonymous data collection!";
 		break;
 	}
-	updateScreen=1;
+	//updateScreen=1;
 }
 
 
@@ -29,21 +29,22 @@ void HomeColumn::newTweet( Tweet *tweet )
 {
 	if(tweet->_type<0)
 		return;
-	SDL_LockMutex(drawingMutex);
+	//enterMutex(drawingMutex);
 	TweetInstance *instance=new TweetInstance(tweet,rw,onOff);
 	m_tweets[tweet->id]=instance;
+	add(tweet);
 	/*if(scroll>100)
 	{
 		SDL_Surface *surface=instance->surface;
 		scroll+=instance->surface->h;
 	}*/
-	updateScreen=1;
+	//updateScreen=1;
 	//printf("o %i\n",tweetHeight);
 	tweetHeight=-1;
-	SDL_UnlockMutex(drawingMutex);
+	//leaveMutex(drawingMutex);
 }
 
-int homeColumnRefresh(void *data)
+void homeColumnRefresh(void *data)
 {
 	HomeColumn *col=(HomeColumn*)data;
 	string tmpString;
@@ -59,12 +60,11 @@ int homeColumnRefresh(void *data)
 	}
 	parseRestTweets(tmpString);
 	printf("refresh completed\n");
-	return 0;
 }
 
 void HomeColumn::draw()
 {
 	Column::draw();
 	if(drawRefreshButton())
-		SDL_CreateThread(homeColumnRefresh,this);
+		startThread(homeColumnRefresh,this);
 }

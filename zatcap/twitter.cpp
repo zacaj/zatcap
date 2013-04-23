@@ -10,7 +10,6 @@
 #include "MentionColumn.h"
 #include "Tweet.h"
 #include <SDL_rotozoom.h>
-#include "Textbox.h"
 #include "file.h"
 #include <stdio.h>
 #include <dirent.h>
@@ -27,7 +26,7 @@ SDL_Surface *defaultUserPic;
 SDL_Surface *defaultSmallUserPic;
 SDL_Surface *defaultMediumUserPic;
 string replyId="";
-int twitterInit( void  *_twit )
+void twitterInit( void  *_twit )
 {
 	twit=new twitCurl();
 	*((void**)_twit)=twit;
@@ -45,7 +44,6 @@ int twitterInit( void  *_twit )
 		processes[4578.6]=aviDownloader;
 	}
 	wait->text="Loading older tweets";
-	updateScreen=1;debugHere();
 #if 1
 	if(settings::tweetsToLoadOnStartup)
 	{debugHere();
@@ -59,7 +57,6 @@ int twitterInit( void  *_twit )
 	if(settings::enableStreaming)
 		openUserStream(twit);
 		debugHere();
-	return 1;
 }
 
 int get_utc_offset() {
@@ -301,24 +298,32 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 	size_t written = fwrite(ptr, size, nmemb, stream);
 	return written;
 }
-string getExt(string);
+string getExt(string path)
+{
+	size_t pos=path.rfind('.');
+	if(pos!=path.npos)
+		return(path.substr(pos+1,path.size()-pos-1));
+	else
+		return "";
+}
+
 void processUserPics(User *user);
 
 void deleteTweet( string id )
 {debugHere();
-	SDL_LockMutex(tweetsMutex);
+	enterMutex(tweetsMutex);
 	map<string,Tweet*>::iterator tweet=tweets.find(id);
 	if(tweet==tweets.end())
 		return;
 	for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)
 	{
-		SDL_UnlockMutex(tweetsMutex);
+		leaveMutex(tweetsMutex);
 		it->second->deleteTweet(tweet->first);
-		SDL_LockMutex(tweetsMutex);
+		enterMutex(tweetsMutex);
 	}
 	//debug delete tweet->second;debugHere();
 	tweets.erase(tweet);debugHere();
-	SDL_UnlockMutex(tweetsMutex);
+	leaveMutex(tweetsMutex);
 }
 Tweet* getTweet( string id )
 {
@@ -413,10 +418,10 @@ int loadOlderTweets(void *data)
 	loadingTweets=0;
 	return 0;
 }
-SDL_mutex *tweetsMutex;
+Mutex tweetsMutex;
 void addTweet( Tweet** tweet )
 {debugHere();
-SDL_LockMutex(tweetsMutex);
+enterMutex(tweetsMutex);
 	map<string,Tweet*>::iterator tw=tweets.find((*tweet)->id);
 	if(tw==tweets.end())
 	{
@@ -442,7 +447,7 @@ SDL_LockMutex(tweetsMutex);
 		//tweetsInUse=0;debugHere();
 		//addTweet(tweet);debugHere();
 	}
-	SDL_UnlockMutex(tweetsMutex);
+	leaveMutex(tweetsMutex);
 	if(tweets.size()>settings::maxTweets)
 	{
 		auto it=tweets.end();
@@ -451,10 +456,10 @@ SDL_LockMutex(tweetsMutex);
 	}
 }
 
-int loadProfilePic(void *ptr)
+void loadProfilePic(void *ptr)
 {
 	profilepic *pic=(profilepic*)ptr;
-	SDL_Surface** img=(SDL_Surface**)pic->img;
+///	SDL_Surface** img=(SDL_Surface**)pic->img;
 retry:
 	debugHere();
 	string r=pic->name;
@@ -485,17 +490,17 @@ retry:
 			debugHere();
 			fclose(fp);
 		}
-		SDL_Surface* temp=loadImage(path);debugHere();
-		if(temp!=NULL)
+//		SDL_Surface* temp=loadImage(path);debugHere();
+		//if(temp!=NULL)
 		{debugHere();
 			rename(path.c_str(),path2.c_str());debugHere();
-			*img=temp;//loadImage(path2);
+			//*img=temp;//loadImage(path2);
 			//SDL_FreeSurface(temp);debugHere();
-			if(pic->user->_pic==NULL)
-				goto retry;
+//			if(pic->user->_pic==NULL)
+				//goto retry;
 			debugHere();
 		}
-		else
+		/*else
 		{
 			if(temp==NULL)
 				printf("loading failed of %s?\n",path.c_str());
@@ -503,26 +508,25 @@ retry:
 				printf("ERROR: hey look zacaj was lazy and didnt implement support for other size profile pictures hoping it would never come up, go punch him in the face!\n");
 			*img=NULL;
 			goto retry;
-		}
+		}*/
 	}
-	else
-		*img=loadImage(path2);
-	if((*img)->w!=48 || (*img)->h!=48)
+	//else
+	//	*img=loadImage(path2);
+	/*if((*img)->w!=48 || (*img)->h!=48)
 	{
 		(*img)=zoomSurface((*img),48.f/ (*img)->w,48.f/ (*img)->h,1);debugHere();//haha @ needing space after /
 	}debugHere();
-	processUserPics(pic->user);debugHere();
+	processUserPics(pic->user);debugHere();*/
 	debug("Downloaded @%s's avatar (%s)\n",pic->name.c_str(),path2.c_str());
 	aviDownloader->busy=0;
 	aviDownloader->pics.erase(aviDownloader->pics.begin());
 	delete ptr;debugHere();
-	return 0;
 }
 
 void processUserPics(User *user)
-{
-	user->_smallPic=zoomSurface(user->_pic,(float)settings::retweeterPicSize/user->_pic->w,(float)settings::retweeterPicSize/user->_pic->h,1);
-	user->_mediumPic=zoomSurface(user->_pic,(float)settings::retweeteePicSize/user->_pic->w,(float)settings::retweeteePicSize/user->_pic->h,1);
+{//
+	//user->_smallPic=zoomSurface(user->_pic,(float)settings::retweeterPicSize/user->_pic->w,(float)settings::retweeterPicSize/user->_pic->h,1);
+	///->_mediumPic=zoomSurface(user->_pic,(float)settings::retweeteePicSize/user->_pic->w,(float)settings::retweeteePicSize/user->_pic->h,1);
 }
 
 User * getUser(Json::Value root)
@@ -541,14 +545,14 @@ User * getUser(Json::Value root)
 	FILE *fp;
 	if((fp=fopen(user->getPicPath().c_str(),"r")))
 	{debugHere();
-		user->_pic=loadImage(user->getPicPath());debugHere();
-		processUserPics(user);debugHere();
+//		user->_pic=loadImage(user->getPicPath());debugHere();
+		//processUserPics(user);debugHere();
 		fclose(fp);
 	}
 	else//todo should check for updates
 	{
 		profilepic *pic=new profilepic;
-		pic->img=&user->_pic;
+	//	pic->img=&user->_pic;
 		pic->url=root["profile_image_url"].asString();
 		pic->name=user->username;
 		pic->user=user;debugHere();
@@ -558,7 +562,7 @@ User * getUser(Json::Value root)
 	users[id]=user;debugHere();
 	return user;
 }
-int fixUser(void *ptr)
+void fixUser(void *ptr)
 {
 	TimedEventProcess *u=(TimedEventProcess*)ptr;
 	User *user=(User*)u->data;
@@ -572,7 +576,6 @@ int fixUser(void *ptr)
 		getUser(root);
 		u->shouldRemove=1;
 	}
-	return 0;
 }
 
 User * getUser( string id )
@@ -592,14 +595,14 @@ User * getUser( string id )
 		FILE *fp2;debugHere();
 		if((fp2=fopen(user->getPicPath().c_str(),"r")))
 		{debugHere();
-			user->_pic=loadImage(user->getPicPath());debugHere();
+//			user->_pic=loadImage(user->getPicPath());debugHere();
 			processUserPics(user);debugHere();
 			fclose(fp2);
 		}
 		else//todo should check for updates
 		{
 			profilepic *pic=new profilepic;
-			pic->img=&user->_pic;
+//			pic->img=&user->_pic;
 			pic->url=user->picURL;
 			pic->name=user->username;
 			pic->user=user;debugHere();
