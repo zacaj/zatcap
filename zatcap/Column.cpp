@@ -22,11 +22,9 @@ Column::Column(float _w ,string _name)
 	drawingMutex=createMutex();
 	onOff=0;
 	redrawAllTweets=0;
-	string column=f2s("resources/column.html");
+	string column=escape(f2s("resources/column.html"));
 	replace(column,string("$COLUMNNAME"),columnName);
-view->ExecuteJavascript(FS("var t=document.createElement('span');"
-		"t.innerHTML=\""+column+"\";"
-		"document.getElementById('columns').appendChild(t);"),WSLit(""));
+view->ExecuteJavascript(FS("document.getElementById('columns').appendChild(nodeFromHtml(\""+column+"\"));"),WSLit(""));
 	Error err=view->last_error();
 	printf("");
 }

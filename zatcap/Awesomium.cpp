@@ -25,7 +25,8 @@ HtmlSource::HtmlSource()
 void DirectorySource::OnRequest( int request_id, const WebString& name )
 {
 	FILE *fp;
-	fopen_s(&fp,(path+ToString(name)).c_str(),"rb");
+	string p=path+ToString(name);
+	fopen_s(&fp,(p).c_str(),"rb");
 	fseek(fp,0,SEEK_END);
 	fpos_t len=ftell(fp);
 	fseek(fp,0,SEEK_SET);

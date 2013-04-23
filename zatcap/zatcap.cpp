@@ -276,6 +276,7 @@ void loadUser(twitCurl *twit)
 		}
 	}
 	string tmpString;
+	printf("...\n");
 	if((tmpString=twit->accountRateLimitGet())=="")
 		loadUser(twit);
 	Json::Value root;
@@ -430,8 +431,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		view->set_parent_window(hwnd);
 		htmlSource=new HtmlSource();
 		session->AddDataSource(WSLit("zatcap"), htmlSource);
-		session->AddDataSource(WSLit("resource"),new DirectorySource("resources"));
-		htmlSource->data[WSLit("index")]="<div style=\"width: 100%;height:100%;\"><div id='columns' style=\"width:100%; height:auto;\"></div><div id='bottom' style=\"width:100%; height: 150px; border: 1px solid blue;\"></div></div>";
+		session->AddDataSource(WSLit("resource"),new DirectorySource("resources\\"));
+		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> </head><body>"+f2s("resources/index.html")+"</bpdy>";
 		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
 		methodHandler=new MethodHandler(view,web_core);
 	}
@@ -864,4 +865,14 @@ void replace( std::string& str, const std::string& oldStr, const std::string& ne
 		str.replace(pos, oldStr.length(), newStr);
 		pos += newStr.length();
 	}
+}
+
+std::string escape( string &str )
+{
+	string special="\"\'\\";
+	for(int i=0;i<str.size();i++)
+		for(int j=0;j<special.size();j++)
+			if(str[i]==special[j])
+				str.insert(str.begin()+i++,'\\');
+	return str;
 }
