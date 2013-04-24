@@ -409,7 +409,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		hwnd = CreateWindowEx(
 			WS_EX_CLIENTEDGE,
 			L"ZATCAP html",
-			L"The title of my window",
+			L"Zacaj's (third) Amazing Twitter Client for Awesome People",
 			WS_OVERLAPPEDWINDOW,
 			CW_USEDEFAULT, CW_USEDEFAULT, 1024, 768,
 			NULL, NULL, hInstance, NULL);
