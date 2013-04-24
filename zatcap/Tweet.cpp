@@ -563,6 +563,7 @@ std::string Tweet::getHtml()
 		replace(content,string("$ID"),id);
 		replace(content,string("$TEXT"),text);
 		replace(content,string("$USERNAME"),user()->username);
+		replace(content,string("FULLNAME"),user()->name);
 		replace(content,string("$AVATAR"),user()->picURL);
 		html=content;
 	}
