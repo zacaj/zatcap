@@ -43,4 +43,5 @@ extern MethodHandler *methodHandler;
 extern WebCore *web_core;
 extern WebSession *session;
 extern WebView *view;
-WebString FS(string &str);
+WebString FS(string str);
+void runJS(string js);

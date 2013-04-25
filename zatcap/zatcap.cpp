@@ -18,7 +18,6 @@
 #include <sys/stat.h>
 #include "MentionColumn.h"
 #include "Button.h"
-#include <windows.h>
 #include <Awesomium/WebCore.h>
 #include <Awesomium/BitmapSurface.h>
 #include <Awesomium/STLHelpers.h>
@@ -28,9 +27,12 @@ using namespace Awesomium;
 #include <Awesomium/DataSource.h>
 #include <functional>
 #ifdef USE_WINDOWS
+#include <windows.h>
+#include <process.h>
 #include <direct.h>
 #else
 #include <sys/stat.h>
+#include <GL/glew.h>
 #endif
 #include "TimedEventProcess.h"
 Process *mouseDragReceiver;
@@ -38,7 +40,6 @@ int version=
 #include "../Debug/version.txt"
 	;
 #include "Awesomium.h"
-#include <process.h>
 int updateScreen=1;
 bool newVersion=0;
 Textbox *tweetbox;
@@ -165,20 +166,13 @@ void collectDeviousData(void *p)
 		curl_easy_cleanup(curl2);
 	}
 }
+#ifdef USE_WINDOWS
 WNDCLASSEX wc;
 HWND hwnd;
 MSG Msg;
 WebCore *web_core;
 WebSession *session;
 WebView *view;
-size_t callback_func(void *ptr, size_t size, size_t count, void *userdata);
-void quit()
-{
-	view->Destroy();
-	session->Release();
-	WebCore::Shutdown();
-
-}
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch(msg)
@@ -193,6 +187,15 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		return DefWindowProc(hwnd, msg, wParam, lParam);
 	}
 	return 0;
+}
+#endif
+size_t callback_func(void *ptr, size_t size, size_t count, void *userdata);
+void quit()
+{
+	view->Destroy();
+	session->Release();
+	WebCore::Shutdown();
+
 }
 void loadUser(twitCurl *twit)
 {
@@ -335,7 +338,10 @@ char* getClipboardText()
 }
 
 #endif
+
+extern Mutex jsMutex;
 #ifdef LINUX
+#include "linux.cpp"
 void SetCursor(int c)
 {
 
@@ -358,8 +364,13 @@ void saveTweetPtr(void *data)
 	saveTweets();
 }
 time_t configLastRead=0;
+extern vector<string> jsToRun;
+#ifdef USE_WINDOWS
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				   LPSTR lpCmdLine, int nCmdShow)
+				   #else
+int main(int argc,char **argv)
+#endif
 {
 	assert_(sizeof(uint)==4);
 	assert_(sizeof(uchar)==1);
@@ -383,6 +394,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	//sysinit();
 	tweetsMutex=createMutex();
 	twitCurl *twit=NULL;
+	#ifdef USE_WINDOWS
 	{
 		//Step 1: Registering the Window Class
 		wc.cbSize        = sizeof(WNDCLASSEX);
@@ -424,17 +436,43 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		ShowWindow(hwnd, nCmdShow);
 		UpdateWindow(hwnd);
 	}
+#endif
+#ifdef LINUX
+    {
+        sdlInit();
+    }
+    #endif
+	jsMutex=createMutex();
 	{
 		web_core = WebCore::Initialize(WebConfig());
 		session=web_core->CreateWebSession(WSLit("session"),WebPreferences());
+#ifdef USE_WINDOWS
 		view = web_core->CreateWebView(1024, 768,session,kWebViewType_Window);
 		view->set_parent_window(hwnd);
+#endif
+#ifdef LINUX
+
+        web_core->set_surface_factory(new GLTextureSurfaceFactory());
+        view = web_core->CreateWebView(1024, 768,session);
+#endif
 		htmlSource=new HtmlSource();
 		session->AddDataSource(WSLit("zatcap"), htmlSource);
 		session->AddDataSource(WSLit("resource"),new DirectorySource("resources\\"));
 		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> </head><body>"+f2s("resources/index.html")+"</bpdy>";
 		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
 		methodHandler=new MethodHandler(view,web_core);
+		methodHandler->reg(WSLit("debug"),[](JSArray args)
+			{
+				string i=ToString(args[0].ToString());
+				printf("\n",0);
+		});
+		methodHandler->reg(WSLit("print"),[](JSArray args)
+		{
+			string i=ToString(args[0].ToString());
+#ifdef USE_WINDOWS
+			OutputDebugStringA(i.c_str());
+#endif
+		});
 	}
 	processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
 	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up
@@ -494,6 +532,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	while(!done)
 	{
 		time(&currentTime);
+#ifdef USE_WINDOWS
 		while (PeekMessage(&Msg, NULL, 0, 0, PM_REMOVE))
 		{
 			if (Msg.message == WM_QUIT)
@@ -504,7 +543,25 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				DispatchMessage(&Msg);
 			}
 		}
+#endif
+#ifdef LINUX
+        sdlUpdate(done);
+#endif
+		enterMutex(jsMutex);
+		for(auto it:jsToRun)
+		{
+			view->ExecuteJavascriptWithResult(FS(it),WSLit(""));
+			Error err=view->last_error();
+			printf("");
+		}
+		jsToRun.clear();
+		leaveMutex(jsMutex);
 		web_core->Update();
+#ifdef USE_WINDOWS
+		Sleep(20);
+#else
+		SDL_Delay(20);
+#endif
 	}
 	//todo saveTweets();
 	quit();
@@ -524,7 +581,7 @@ string readColor(FILE *fp)
 	int r,g,b;
 	fscanf(fp,"%i,%i,%i\n",&r,&g,&b);
 	char str[100];
-	sprintf_s(str,100,"#%2x%2x%2x",r,g,b);
+	sprintf(str,"#%2x%2x%2x",r,g,b);
 	return str;
 }
 
@@ -832,12 +889,32 @@ string getPath(string path)
 	else
 		return path;
 }
-
+#ifdef LINUX
+struct threadData
+{
+    void(*functionPointer)(void*);
+    void *d;
+};
+void *threadStarter(void *p)
+{
+    threadData *d=(threadData*)p;
+    d->functionPointer(d->d);
+    delete d;
+}
+#endif
 void startThread(void(*functionPointer)(void*),void *data)
 {
+    #ifdef USE_WINDOWS
 	_beginthread(functionPointer,0,data);
+	#else
+    pthread_t tid;
+    threadData *dat=new threadData;
+    dat->functionPointer=functionPointer;
+    dat->d=data;
+	pthread_create(&tid,NULL,threadStarter,dat);
+	#endif
 }
-
+#ifdef USE_WINDOWS
 Mutex createMutex()
 {
 	Mutex ret;
@@ -856,7 +933,25 @@ void leaveMutex(Mutex &mutex)
 {
 	LeaveCriticalSection(&mutex);
 }
-
+#endif
+#ifdef LINUX
+Mutex createMutex()
+{
+    return SDL_CreateMutex();
+}
+void deleteMutex(Mutex &mutex)
+{
+    SDL_DestroyMutex(mutex);
+}
+void enterMutex(Mutex &mutex)
+{
+    SDL_LockMutex(mutex);
+}
+void leaveMutex(Mutex &mutex)
+{
+    SDL_UnlockMutex(mutex);
+}
+#endif
 void replace( std::string& str, const std::string& oldStr, const std::string& newStr )
 {
 	size_t pos = 0;

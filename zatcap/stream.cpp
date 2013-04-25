@@ -216,7 +216,11 @@ bool openUserStream(twitCurl *twit)
 	printf("ERROR\nERROR\nERROR\nERROR\nERROR:Stream connection lost, reconnecting after %ims wait...\nERROR\nERROR\nERROR\nERROR\n",delay);
 	delete str;
 	curl_easy_cleanup(curl);
+	#ifdef USE_WINDOWS
 	Sleep(delay);
+	#else
+	SDL_Delay(delay);
+	#endif
 	delay*=2;
 	return openUserStream(twit);
 }

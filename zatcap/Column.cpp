@@ -22,9 +22,10 @@ Column::Column(float _w ,string _name)
 	drawingMutex=createMutex();
 	onOff=0;
 	redrawAllTweets=0;
-	string column=escape(f2s("resources/column.html"));
+	string src=f2s("resources/column.html");
+	string column=escape(src);
 	replace(column,string("$COLUMNNAME"),columnName);
-view->ExecuteJavascript(FS("document.getElementById('columns').appendChild(nodeFromHtml(\""+column+"\"));"),WSLit(""));
+    view->ExecuteJavascriptWithResult(FS("document.getElementById('columns').appendChild(nodeFromHtml(\""+column+"\"));"),WSLit(""));
 	Error err=view->last_error();
 	printf("");
 }
@@ -32,10 +33,7 @@ view->ExecuteJavascript(FS("document.getElementById('columns').appendChild(nodeF
 
 void Column::add( Tweet* tweet )
 {
-
-	view->ExecuteJavascript(FS("var t=document.createElement('span');"
-		"t.innerHTML=\""+tweet->getHtml()+"\";"
-		"document.getElementById('"+columnName+"').appendChild(t);"),WSLit(""));
+	runJS("addTweet('"+columnName+"',\""+tweet->getHtml()+"\","+ tweet->id +");");
 }
 
 Column::~Column(void)
@@ -52,7 +50,7 @@ void Column::draw()
 	y=COLUMNHEADERHEIGHT-scroll;
 	x=columnHorizontalRenderAt;
 	if(columnHorizontalRenderAt>screen->w)
-	{	
+	{
 		leaveMutex(drawingMutex);
 		return;
 	}
@@ -194,7 +192,7 @@ void Column::draw()
 
 		boxColor(screen,columnHorizontalRenderAt,0,columnHorizontalRenderAt+w,COLUMNHEADERHEIGHT,columnBackgroundColor);//header bg
 
-	
+
 	}
 	drawText(columnName.c_str(),columnHorizontalRenderAt+4,COLUMNHEADERHEIGHT-30,settings::columnTitleTextSize,200,200,200);
 	{//minimize

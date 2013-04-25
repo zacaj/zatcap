@@ -17,6 +17,7 @@ extern int done;
 #define dprintf printf
 
 #ifdef LINUX
+#include <SDL/SDL.h>
 #define LPCWSTR int
 #define IDC_SIZEWE 1
 #define IDC_ARROW 0
@@ -133,8 +134,12 @@ extern int iconR,iconG,iconB;
 void startThread(void(*functionPointer)(void*),void *data);
 void delayedThreadStart(void(*functionPointer)(void*),void *data,float delay);
 
-//#ifdef USE_WIN
+#ifdef USE_WINDOWS
 typedef CRITICAL_SECTION Mutex;
+#endif
+#ifdef LINUX
+typedef SDL_mutex* Mutex;
+#endif
 Mutex createMutex();
 void deleteMutex(Mutex &mutex);
 void enterMutex(Mutex &mutex);

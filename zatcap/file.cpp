@@ -216,7 +216,7 @@ std::string f2s( string path )
 	FILE *fp=fopen(path.c_str(),"rb");
 	while(!feof(fp))
 		ret.push_back(fgetc(fp));
-	ret.pop_back();
+	ret.erase(--ret.end());
 	return ret;
 }
 

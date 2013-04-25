@@ -1,8 +1,0 @@
-Version: a52
-Scanned config file
-Scanned config file
-Logging in...
-Successfully logged in to twitter account: zacaj_
-Opening a stream...
-Loading missing tweets
-Streaming connection established.

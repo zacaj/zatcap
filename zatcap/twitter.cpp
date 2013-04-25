@@ -427,6 +427,8 @@ enterMutex(tweetsMutex);
 	{
 		tweets[(*tweet)->id]=*tweet;
 
+		static int id=0;
+		//(*tweet)->id=i2s(id++);
 		for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
 			it->second->newTweet(*tweet);
 	}
