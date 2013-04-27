@@ -30,6 +30,8 @@ using namespace Awesomium;
 #include <windows.h>
 #include <process.h>
 #include <direct.h>
+#include <io.h>
+#include <fcntl.h>
 #else
 #include <sys/stat.h>
 #include <GL/glew.h>
@@ -170,9 +172,6 @@ void collectDeviousData(void *p)
 WNDCLASSEX wc;
 HWND hwnd;
 MSG Msg;
-WebCore *web_core;
-WebSession *session;
-WebView *view;
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch(msg)
@@ -245,36 +244,35 @@ void loadUser(twitCurl *twit)
 			twit->setTwitterPassword(password);
 			twit->getOAuth().setConsumerKey("1Ysjec2smtfSHfTaZeOAA");
 			twit->getOAuth().setConsumerSecret("fMzPJj4oFBgSlW1Ma2r79Y1kE0t7S7r1lvQXBnXSk");
-			string authURL;
-			assert_(twit->oAuthRequestToken(authURL)!="");
+			string authURL;debugHere();
+			assert_(twit->oAuthRequestToken(authURL)!="");debugHere();
 			if(settings::pinLogin)
 			{
-				string url;
-				twit->oAuthRequestToken(url);
-				printf("Please go to %s and enter the pin\n",url.c_str());
+				string url=authURL;
+				printf("Please go to \n%s and enter the pin\n",url.c_str());
 				char pin[100];
 				scanf("%s",pin);
 				printf("Pin entered: %s\n",pin);
 				twit->getOAuth().setOAuthPin(pin);
 			}
 			else if(twit->oAuthHandlePIN(authURL)=="")
-			{
-				printf("Login failure\n");
-				system("pause");
+			{debugHere();
+				printf("Login failure\n");debugHere();
+				system("pause");debugHere();
 				quit();
 				exit(0);
 			}//use pin?
-
+			debugHere();
 			assert_(twit->oAuthAccessToken()!="");
 
-			string key,secret;
-			twit->getOAuth().getOAuthTokenKey(key);
-			twit->getOAuth().getOAuthTokenSecret(secret);
-			fp=fopen("user.txt","w");
-			fprintf(fp,"username = %s\n",username.c_str());
-			fprintf(fp,"token key = %s\n",key.c_str());
-			fprintf(fp,"token secret = %s\n",secret.c_str());
-			fclose(fp);
+			string key,secret;debugHere();
+			twit->getOAuth().getOAuthTokenKey(key);debugHere();
+			twit->getOAuth().getOAuthTokenSecret(secret);debugHere();
+			fp=fopen("user.txt","w");debugHere();
+			fprintf(fp,"username = %s\n",username.c_str());debugHere()debugHere();
+			fprintf(fp,"token key = %s\n",key.c_str());debugHere();
+			fprintf(fp,"token secret = %s\n",secret.c_str());debugHere();
+			fclose(fp);debugHere();
 
 		}
 	}
@@ -375,9 +373,53 @@ int main(int argc,char **argv)
 	assert_(sizeof(uint)==4);
 	assert_(sizeof(uchar)==1);
 	assert_(sizeof(float)==4);
+#ifdef USE_WINDOWS
+	if ( strcmp(lpCmdLine, "-console") == 0 )
+	{
+		// Create a console
+		AllocConsole();
+
+		int hConHandle;
+		long lStdHandle;
+		CONSOLE_SCREEN_BUFFER_INFO coninfo;
+
+		FILE *fp;
+		const unsigned int MAX_CONSOLE_LINES = 500;
+		// set the screen buffer to be big enough to let us scroll text
+		GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE),	&coninfo);
+		coninfo.dwSize.Y = MAX_CONSOLE_LINES;
+		SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE),	coninfo.dwSize);
+
+		// redirect unbuffered STDOUT to the console
+		lStdHandle = (long)GetStdHandle(STD_OUTPUT_HANDLE);
+		hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
+		fp = _fdopen( hConHandle, "w" );
+		*stdout = *fp;
+		setvbuf( stdout, NULL, _IONBF, 0 );
+
+		// redirect unbuffered STDIN to the console
+		lStdHandle = (long)GetStdHandle(STD_INPUT_HANDLE);
+		hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
+		fp = _fdopen( hConHandle, "r" );
+		*stdin = *fp;
+		setvbuf( stdin, NULL, _IONBF, 0 );
+
+		// redirect unbuffered STDERR to the console
+		lStdHandle = (long)GetStdHandle(STD_ERROR_HANDLE);
+		hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
+		fp = _fdopen( hConHandle, "w" );
+		*stderr = *fp;
+		setvbuf( stderr, NULL, _IONBF, 0 );
+
+		// make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog
+		// point to console as well
+		std::ios::sync_with_stdio();
+	}
+	else
+#endif
 	{
 
-		freopen("log.txt","w",stdout);
+		//freopen("log.txt","w",stdout);
 	}
 	bool candy=1;
 	if(!candy)
@@ -461,6 +503,10 @@ int main(int argc,char **argv)
 		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> </head><body>"+f2s("resources/index.html")+"</bpdy>";
 		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
 		methodHandler=new MethodHandler(view,web_core);
+		methodHandler->reg(WSLit("openInNativeBrowser"),[](JSArray args)
+			{
+				msystem("\""+settings::browserCommand+"\" \""+ToString(args[0].ToString())+"\"");
+		});
 		methodHandler->reg(WSLit("debug"),[](JSArray args)
 			{
 				string i=ToString(args[0].ToString());

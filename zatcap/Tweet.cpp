@@ -561,9 +561,10 @@ std::string Tweet::getHtml()
 	{
 		string content=f2s("resources/tweet.html");
 		replace(content,string("$ID"),id);
-		replace(content,string("$TEXT"),text);
-		replace(content,string("$USERNAME"),user()->username);
-		replace(content,string("FULLNAME"),user()->name);
+		string htmlText=text;
+		replace(content,string("$TEXT"),escape(htmlText));
+		replace(content,string("$USERNAME"),escape(user()->username));
+		replace(content,string("FULLNAME"),escape(user()->name));
 		replace(content,string("$AVATAR"),user()->picURL);
 		html=content;
 	}

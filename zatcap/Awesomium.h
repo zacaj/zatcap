@@ -9,21 +9,34 @@ using namespace Awesomium;
 #include <Awesomium/DataSource.h>
 #include <functional>
 using namespace std;
-class HtmlSource : public DataSource
+class HtmlSource : public Awesomium::DataSource
 {
 public:
 	map<WebString,string> data;
 	HtmlSource();
 
-	virtual void OnRequest(int request_id,
-		const WebString& path);
+	void OnRequest(int request_id,
+		const WebString& path)
+{
+	auto it=data.find(path);
+	if(it==data.end())
+		SendResponse(request_id,
+		data[WSLit("error")].size(),
+		(unsigned char*)(data[WSLit("error")].c_str()),
+		WSLit("text/html"));
+	else
+		SendResponse(request_id,
+		it->second.size(),
+		(unsigned char*)(it->second.c_str()),
+		WSLit("text/html"));
+}
 };
 class DirectorySource:public DataSource
 {
 public:
 	string path;
 	DirectorySource(string _path);
-	virtual void OnRequest(int request_id, const WebString& name);
+	void OnRequest(int request_id, const WebString& name);
 };
 class MethodHandler:public JSMethodHandler
 {

@@ -597,9 +597,10 @@
 	<json/reader.h>
 	<SDL/SDL.h>
 
-1366844622 source:/media/sf_source/zatcap html/zatcap/Awesomium.cpp
+1367065866 source:/media/sf_source/zatcap html/zatcap/Awesomium.cpp
 	"stdafx.h"
 	"Awesomium.h"
+	"zatcap.h"
 
 1335723374 /media/sf_source/zatcap html/zatcap/stdafx.h
 	"targetver.h"
@@ -609,7 +610,7 @@
 1334276296 /media/sf_source/zatcap html/zatcap/targetver.h
 	<SDKDDKVer.h>
 
-1366842394 /media/sf_source/zatcap html/zatcap/Awesomium.h
+1367065863 /media/sf_source/zatcap html/zatcap/Awesomium.h
 	<Awesomium/WebCore.h>
 	<Awesomium/BitmapSurface.h>
 	<Awesomium/STLHelpers.h>
@@ -618,7 +619,7 @@
 	<Awesomium/DataSource.h>
 	<functional>
 
-1366843640 source:/media/sf_source/zatcap html/zatcap/Column.cpp
+1366925090 source:/media/sf_source/zatcap html/zatcap/Column.cpp
 	"Column.h"
 	"twitter.h"
 	<SDL_rotozoom.h>
@@ -745,7 +746,7 @@
 
 1334960909 /media/sf_source/zatcap html/zatcap/stream.h
 
-1366676627 source:/media/sf_source/zatcap html/zatcap/twitter.cpp
+1366926152 source:/media/sf_source/zatcap html/zatcap/twitter.cpp
 	"twitter.h"
 	"zatcap.h"
 	"twitcurl.h"
@@ -767,7 +768,7 @@
 	"process.h"
 	"twitter.h"
 
-1366843607 source:/media/sf_source/zatcap html/zatcap/zatcap.cpp
+1367065831 source:/media/sf_source/zatcap html/zatcap/zatcap.cpp
 	"stdafx.h"
 	"twitcurl.h"
 	"curl.h"
@@ -795,6 +796,8 @@
 	<windows.h>
 	<process.h>
 	<direct.h>
+	<io.h>
+	<fcntl.h>
 	<sys/stat.h>
 	<GL/glew.h>
 	"TimedEventProcess.h"
@@ -808,7 +811,7 @@
 	<SDL.h>
 	"gl_texture_surface.h"
 
-1366834726 source:/media/sf_source/zatcap html/zatcap/Tweet.cpp
+1366925169 source:/media/sf_source/zatcap html/zatcap/Tweet.cpp
 	"Tweet.h"
 	"zatcap.h"
 	"Awesomium.h"

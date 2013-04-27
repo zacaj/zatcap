@@ -423,6 +423,7 @@ void addTweet( Tweet** tweet )
 {debugHere();
 enterMutex(tweetsMutex);
 	map<string,Tweet*>::iterator tw=tweets.find((*tweet)->id);
+	debug("New tweet: %s\n",(*tweet)->text.c_str());
 	if(tw==tweets.end())
 	{
 		tweets[(*tweet)->id]=*tweet;
@@ -681,7 +682,7 @@ Tweet* processTweet(Json::Value jtweet)
 	ostringstream os;
 	UnquoteHTML(is,os);debugHere();
 	tweet->_user=getUser(juser);debugHere();
-	tweet->text=os.str();
+	tweet->text=tmp;//os.str();//
 	tweet->originalText=os.str();
 	map<int,Entity*> entities;
 	if(!jtweet["entities"].isNull())
@@ -699,7 +700,8 @@ Tweet* processTweet(Json::Value jtweet)
 					url->realUrl=entity["url"].asString();
 				url->start=entity["indices"][0u].asInt();
 				url->end=entity["indices"][1u].asInt();
-				url->text=url->displayUrl;
+				url->text="<a href='"+url->realUrl+"'>"+url->displayUrl+"</a>";
+				url->text="<a href='javascript:;' onclick=\"cpp.openInNativeBrowser('"+url->realUrl+"');\">"+url->displayUrl+"</a>";
 				tweet->entities.push_back(url);
 				entities[url->start]=url;
 			}
@@ -715,7 +717,7 @@ Tweet* processTweet(Json::Value jtweet)
 				entity->id=jentity["id_str"].asString();
 				entity->start=jentity["indices"][0u].asInt();
 				entity->end=jentity["indices"][1u].asInt();
-				entity->text=entity->username;
+				entity->text="<a href='#' onclick=\"cpp.openInNativeBrowser('https://twitter.com/"+entity->username+"');\">"+entity->username+"</a>";
 				tweet->entities.push_back(entity);
 				entities[entity->start]=entity;
 			}
@@ -729,7 +731,7 @@ Tweet* processTweet(Json::Value jtweet)
 				entity->name="#"+jentity["text"].asString();
 				entity->start=jentity["indices"][0u].asInt();
 				entity->end=jentity["indices"][1u].asInt();
-				entity->text=entity->name;
+				entity->text="<a href='javascript:;' onclick=\"cpp.openInNativeBrowser('https://twitter.com/search?q=%23"+entity->name.substr(1,entity->name.size()-1)+"');\">"+entity->name+"</a>";
 				tweet->entities.push_back(entity);
 				entities[entity->start]=entity;
 			}

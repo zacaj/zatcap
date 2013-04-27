@@ -3,20 +3,10 @@
 #include "zatcap.h"
 HtmlSource *htmlSource;
 MethodHandler *methodHandler;
-void HtmlSource::OnRequest( int request_id, const WebString& path )
-{
-	auto it=data.find(path);
-	if(it==data.end())
-		SendResponse(request_id,
-		data[WSLit("error")].size(),
-		(unsigned char*)(data[WSLit("error")].c_str()),
-		WSLit("text/html"));
-	else
-		SendResponse(request_id,
-		it->second.size(),
-		(unsigned char*)(it->second.c_str()),
-		WSLit("text/html"));
-}
+WebCore *web_core;
+WebSession *session;
+WebView *view;
+
 
 HtmlSource::HtmlSource()
 {
