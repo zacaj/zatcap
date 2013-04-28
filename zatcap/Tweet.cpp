@@ -399,27 +399,25 @@ draw:
 	SDL_FillRect(tempSurface,0,0);
 	leaveMutex(tempSurfaceMutex);
 	instance->pic=user()->mediumPic();
-	instance->pic2=user()->smallPic();
+	instance->pic2=user()->smallPic();*/
 	return 0;
 }
-int favoriteTweet(void *data)
+void favoriteTweet( void *data )
 {
 	Tweet *tweet=(Tweet*)data;
 	string tmpString;
 	while((tmpString=twit->favoriteCreate(tweet->id))=="");
 	debug("fav: %s\n",tmpString.c_str());
-	tweet->favorited=1;*/
-	return 0;
+	tweet->favorited=1;
 }
 
-int unfavoriteTweet(void *data)
+void unfavoriteTweet(void *data)
 {
 	Tweet *tweet=(Tweet*)data;
 	string tmpString;
 	while((tmpString=twit->favoriteDestroy(tweet->id))=="");
 	debug("unfav: %s\n",tmpString.c_str());
 	tweet->favorited=0;
-	return 0;
 }
 int retweetTweet(void *data)
 {
@@ -555,7 +553,7 @@ int Tweet::cachedDraw( TweetInstance *instance )
 	return 0;
 }
 
-std::string Tweet::getHtml()
+std::string Tweet::getHtml(string columnName)
 {
 	if(html.empty())
 	{
@@ -566,6 +564,7 @@ std::string Tweet::getHtml()
 		replace(content,string("$USERNAME"),escape(user()->username));
 		replace(content,string("FULLNAME"),escape(user()->name));
 		replace(content,string("$AVATAR"),user()->picURL);
+		replace(content,string("$COLUMN"),columnName);
 		html=content;
 	}
 	return html;

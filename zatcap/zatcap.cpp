@@ -507,6 +507,14 @@ int main(int argc,char **argv)
 			{
 				msystem("\""+settings::browserCommand+"\" \""+ToString(args[0].ToString())+"\"");
 		});
+		methodHandler->reg(WSLit("favorite"),[](JSArray args)
+			{
+				startThread(favoriteTweet,getTweet(ToString(args[0].ToString())));
+		});
+		methodHandler->reg(WSLit("unfavorite"),[](JSArray args)
+		{
+			startThread(unfavoriteTweet,getTweet(ToString(args[0].ToString())));
+		});
 		methodHandler->reg(WSLit("debug"),[](JSArray args)
 			{
 				string i=ToString(args[0].ToString());
@@ -519,6 +527,7 @@ int main(int argc,char **argv)
 			OutputDebugStringA(i.c_str());
 #endif
 		});
+		
 	}
 	processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
 	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up
@@ -982,17 +991,17 @@ void replace( std::string& str, const std::string& oldStr, const std::string& ne
 
 std::string escape( string &str )
 {
-	string special="\"\'\\\n\r";
+	string special="\"\'\n\r";
 	for(int i=0;i<str.size();i++)
 		for(int j=0;j<special.size();j++)
 		{
-			if(str[i]==special[j])
+			if(str[i]==special[j] && (i==0 || str[i-1]!='\\'))
 			{
 				str.insert(str.begin()+i++,'\\');
-			if(special[j]=='\n')
-				str[i++]='n';
-			if(special[j]=='\r')
-				str[i++]='r';
+				if(special[j]=='\n')
+					str[i]='n';
+				if(special[j]=='\r')
+					str[i]='r';
 			}
 		}
 	return str;

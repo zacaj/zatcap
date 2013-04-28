@@ -31,7 +31,7 @@ Column::Column(float _w ,string _name)
 
 void Column::add( Tweet* tweet )
 {
-	runJS("addTweetHtml('"+columnName+"',\""+tweet->getHtml()+"\","+ tweet->id +");");
+	runJS("addTweetHtml('"+columnName+"',\""+escape(tweet->getHtml(columnName))+"\","+ tweet->id +");");
 }
 
 Column::~Column(void)

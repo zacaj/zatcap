@@ -38,7 +38,7 @@ public:
 	virtual int drawButtons(int x,int y,int w,int h,bool highlighted);
 	virtual int cachedDraw(TweetInstance *instance);
 	virtual void write(FILE *fp);
-	virtual string getHtml() ;
+	virtual string getHtml(string columnName) ;
 };
 #define TOGGLECONVODISPLAY -1
 class Retweet:public Tweet
@@ -88,3 +88,5 @@ public:
 	int draw(int x,int y);
 	void refresh(int w);
 };
+void favoriteTweet(void *data);
+void unfavoriteTweet(void *data);
