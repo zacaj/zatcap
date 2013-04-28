@@ -546,34 +546,6 @@ int main(int argc,char **argv)
 		}
 		//atexit(saveTweets);
 	}
-	/*{
-		Tweet *tweet=new Tweet;
-		tweet->text="@zacaj2 support.amd.com/us/gpudownload… #hashtag blah @zacaj2 support.amd.com/us/gpudownload…";
-		tweet->userid="533546294";
-		tweet->id="201332280944369666";
-		tweet->timeTweetedInSeconds=time(NULL);
-		tweet->timeTweeted=*localtime(&tweet->timeTweetedInSeconds);
-		{
-			URLEntity *url=new URLEntity;
-			url->displayUrl="support.amd.com/us/gpudownload…";
-			url->text="support.amd.com/us/gpudownload…";
-			url->realUrl="http://support.amd.com/us/gpudownload/windows/Pages/radeonaiw_vista64.aspx#1"	;
-			url->start=64;
-			url->end=97;
-			tweet->entities.push_back(url);
-		}
-		{
-			URLEntity *url=new URLEntity;
-			url->displayUrl="support.amd.com/us/gpudownload…";
-			url->text="support.amd.com/us/gpudownload…";
-			url->realUrl="http://support.amd.com/us/gpudownload/windows/Pages/radeonaiw_vista64.aspx#1"	;
-			url->start=8;
-			url->end=41;
-			tweet->entities.push_back(url);
-		}
-		addTweet(tweet);
-	}/**/
-//	SDL_CreateCursor()
 	int t=0;
 	while(!done)
 	{
@@ -1010,10 +982,18 @@ void replace( std::string& str, const std::string& oldStr, const std::string& ne
 
 std::string escape( string &str )
 {
-	string special="\"\'\\";
+	string special="\"\'\\\n\r";
 	for(int i=0;i<str.size();i++)
 		for(int j=0;j<special.size();j++)
+		{
 			if(str[i]==special[j])
+			{
 				str.insert(str.begin()+i++,'\\');
+			if(special[j]=='\n')
+				str[i++]='n';
+			if(special[j]=='\r')
+				str[i++]='r';
+			}
+		}
 	return str;
 }

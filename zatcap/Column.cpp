@@ -25,10 +25,7 @@ Column::Column(float _w ,string _name)
 	string src=f2s("resources/column.html");
 	string column=escape(src);
 	replace(column,string("$COLUMNNAME"),columnName);
-	replace(column,string("$COLUMNTOPSENSOR"),"<div id='"+columnName+"TopSensor' style='height: 0;'></div>");
-    view->ExecuteJavascriptWithResult(FS("document.getElementById('columns').appendChild(nodeFromHtml(\""+column+"\"));"),WSLit(""));
-	Error err=view->last_error();
-	printf("");
+	runJS("document.getElementById('columns').appendChild(nodeFromHtml(\""+column+"\"));document.getElementById('"+columnName+"').pendingTweets=new Array();");
 }
 
 
