@@ -29,14 +29,14 @@ public:
 	virtual void update();
 	virtual void draw();
 	Mutex drawingMutex;
-	virtual void newTweet(Tweet *tweet)=0;
+	virtual void newTweet(Item *tweet)=0;
 
 	virtual bool mouseButtonEvent( int x,int y,int button,int pressed );
 
 	virtual void deleteTweet(string id);
 	bool drawRefreshButton();
 	bool redrawAllTweets;
-	void add(Tweet* tweet);
+	void add(Item* tweet);
 };
 
 extern int columnHorizontalScroll;

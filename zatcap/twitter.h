@@ -6,6 +6,7 @@ void twitterInit(void *twit);
 #include "file.h"
 class Tweet;
 class Retweet;
+class Item;
 extern bool loggedIn;
 extern string replyId;
 extern twitCurl *twit;
@@ -108,7 +109,7 @@ public:
 	}
 };
 
-Tweet* getTweet(string id);
+Item* getTweet(string id);
 
 
 

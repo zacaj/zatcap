@@ -25,7 +25,7 @@ MentionColumn::~MentionColumn(void)
 {
 }
 
-void MentionColumn::newTweet( Tweet *tweet )
+void MentionColumn::newTweet( Item *tweet )
 {
 	if(tweet->text.find(term)!=string::npos)
 	{

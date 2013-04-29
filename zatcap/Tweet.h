@@ -3,7 +3,8 @@
 #include "zatcap.h"
 #include "twitter.h"
 class TweetInstance;
-
+#define FAVORITE 2
+#define FOLLOW 3
 class Item
 {
 public:
@@ -15,6 +16,7 @@ public:
 	time_t timeTweetedInSeconds;
 	int read;
 	virtual string getHtml(string columnName) =0;
+	virtual void write(FILE *fp)=0;
 };
 
 class Favorite:public Item
@@ -24,12 +26,31 @@ public:
 	string action;
 	Favorite(string _text,string _id,User *_favoriter,string _action)
 	{
+		_type=FAVORITE;
 		action=_action;
 		text=_text;
 		id=_id+"fav";
 		favoriter=_favoriter;
 	}
 	virtual string getHtml( string columnName );
+
+	virtual void write( FILE *fp );
+
+};
+class Follow:public Item
+{
+public:
+	User *follower;
+	string action;
+	Follow(User *_follower)
+	{
+		_type=FOLLOW;
+		id="follow"+_follower->id;
+		follower=_follower;
+	}
+	virtual string getHtml( string columnName );
+
+	virtual void write( FILE *fp );
 
 };
 
@@ -83,7 +104,7 @@ public:
 	{debugHere();
 	if(_original!=NULL)
 		return _original;
-	return _original=getTweet(originalID);
+	return _original=(Tweet*)getTweet(originalID);
 	}
 
 	virtual int draw( int x,int y,int w,int background );
@@ -98,7 +119,7 @@ public:
 class TweetInstance
 {
 public:
-	Tweet *tweet;
+	Item *tweet;
 	TweetInstance *replyTo;
 	string pic;
 	string pic2;
@@ -108,7 +129,7 @@ public:
 	bool drawReply;
 	int background;
 	int buttonX,buttonY,buttonHeight;
-	TweetInstance(Tweet *_tweet,int w,int _background );
+	TweetInstance(Item *_tweet,int w,int _background );
 	~TweetInstance();
 	int draw(int x,int y);
 	void refresh(int w);

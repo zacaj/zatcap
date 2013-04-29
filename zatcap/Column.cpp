@@ -29,9 +29,9 @@ Column::Column(float _w ,string _name)
 }
 
 
-void Column::add( Tweet* tweet )
+void Column::add( Item* tweet )
 {
-	runJS("addTweetHtml('"+columnName+"',\""+escape(tweet->getHtml(columnName))+"\","+ tweet->id +");");
+	runJS("addTweetHtml('"+columnName+"',\""+escape(tweet->getHtml(columnName))+"\",'"+ tweet->id +"');");
 }
 
 Column::~Column(void)

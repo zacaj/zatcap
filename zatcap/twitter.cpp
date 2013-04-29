@@ -17,7 +17,7 @@
 #include "AvitarDownloader.h"
 AvitarDownloader *aviDownloader;
 using namespace colors;
-map<string,Tweet*> tweets;
+map<string,Item*> tweets;
 map<string,User*> users;
 twitCurl *twit=NULL;
 bool loggedIn=0;
@@ -192,7 +192,7 @@ void readTweetFile(string path)
 								tweet->entities.push_back(entity);
 							}
 						}
-						addTweet(&tweet);debugHere();
+						addTweet((Item**)&tweet);debugHere();
 					}
 					break;
 					tweets;
@@ -235,7 +235,7 @@ void readTweetFile(string path)
 						retweet->retweetedBy=getUser(rstr(fp));
 						retweet->originalID=rstr(fp);
 						retweet->nRetweet=ruint(fp);
-						retweet->_original=getTweet(retweet->originalID);
+						retweet->_original=(Retweet*)getTweet(retweet->originalID);
 						if(version>=5)
 						{
 							retweet->timeRetweetedInSeconds=ruint(fp);
@@ -248,7 +248,7 @@ void readTweetFile(string path)
 							retweet->timeRetweetedInSeconds=mktime(&retweet->timeTweeted);
 						}
 						//retweet->timeRetweetedInSeconds=mktime(&retweet->timeRetweeted);debugHere();
-						addTweet((Tweet**)(&retweet));debugHere();
+						addTweet((Item**)(Tweet**)(&retweet));debugHere();
 					}
 					break;
 				}
@@ -312,7 +312,7 @@ void processUserPics(User *user);
 void deleteTweet( string id )
 {debugHere();
 	enterMutex(tweetsMutex);
-	map<string,Tweet*>::iterator tweet=tweets.find(id);
+	map<string,Item*>::iterator tweet=tweets.find(id);
 	if(tweet==tweets.end())
 		return;
 	for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)
@@ -325,7 +325,7 @@ void deleteTweet( string id )
 	tweets.erase(tweet);debugHere();
 	leaveMutex(tweetsMutex);
 }
-Tweet* getTweet( string id )
+Item* getTweet( string id )
 {
 	if(tweets.find(id)!=tweets.end())
 		return tweets[id];
@@ -351,9 +351,9 @@ void saveTweets()
 	printf("Saving tweets\n");
 	if(tweets.empty())
 		return;
-	map<string,Tweet*>::iterator top=--tweets.end();
+	map<string,Item*>::iterator top=--tweets.end();
 	string prefix=removeLast(top->first);
-	map<string,Tweet*>::iterator bottom=tweets.upper_bound(prefix);
+	map<string,Item*>::iterator bottom=tweets.upper_bound(prefix);
 	top++;
 	while(1)
 	{
@@ -369,7 +369,7 @@ void saveTweets()
 			fp=fopen((string("tweets/")+prefix).c_str(),"wb");
 			wuchar(5,fp);//version
 			wuint(n,fp);
-			for(map<string,Tweet*>::iterator it=bottom;it!=top;it++)
+			for(map<string,Item*>::iterator it=bottom;it!=top;it++)
 			{
 				it->second->write(fp);
 			}
@@ -438,11 +438,14 @@ enterMutex(tweetsMutex);debugHere();
 		//for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
 		//	it->second->deleteTweet(tw->first);
 		(*tweet)->read=tw->second->read;
-		if(tw->second->favorited)
-			(*tweet)->favorited=1;
-		if(tw->second->retweeted)
-			(*tweet)->retweeted=1;
-		*tw->second=**tweet;
+		if(tw->second->_type<2)
+		{
+			if(((Tweet*)tw->second)->favorited)
+				((Tweet*)(*tweet))->favorited=1;
+			if(((Tweet*)tw->second)->retweeted)
+				((Tweet*)(*tweet))->retweeted=1;
+			*tw->second=**tweet;
+		}
 		*tweet=tw->second;
 		//delete tw->second;
 		//tw->second=NULL;
@@ -800,7 +803,7 @@ Tweet* processTweet(Json::Value jtweet)
 	tweet->timeTweetedInSeconds=mktime(&tweet->timeTweeted);debugHere();
 	if(tweet->user()->username==username)
 		tweet->read=1;
-	addTweet(&tweet);debugHere();
+	addTweet((Item**)&tweet);debugHere();
 	return tweet;
 }
 typedef struct

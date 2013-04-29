@@ -1,6 +1,7 @@
 #include "stream.h"
 #include "zatcap.h"
 #include "twitter.h"
+#include "Tweet.h"
 
 int streaming=0;
 void parseStream(Json::Value root,string str)
@@ -28,7 +29,16 @@ void parseStream(Json::Value root,string str)
 		{
 			if(target->username==username)
 			{
-
+				Favorite *fav=new Favorite(root["target_object"]["text"].asString(),root["target_object"]["id_str"].asString(),source,type+"d");
+				addTweet((Item**)&fav);
+			}
+		}
+		if(type=="follow")
+		{
+			if(target->username==username)
+			{
+				Follow *fav=new Follow(source);
+				addTweet((Item**)&fav);
 			}
 		}
 	}

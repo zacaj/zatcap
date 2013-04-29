@@ -25,7 +25,7 @@ HomeColumn::~HomeColumn(void)
 }
 
 
-void HomeColumn::newTweet( Tweet *tweet )
+void HomeColumn::newTweet( Item *tweet )
 {
 	if(tweet->_type<0)
 		return;

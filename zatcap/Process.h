@@ -1,7 +1,7 @@
 #pragma once
 class Tweet;
 #include "zatcap.h"
-
+class Item;
 class Process
 {
 public:
@@ -12,7 +12,7 @@ public:
 	virtual ~Process(){};
 	virtual void update()=0;
 	virtual void draw()=0;
-	virtual void newTweet(Tweet *tweet){}
+	virtual void newTweet(Item *tweet){}
 	/**
 		\param button If -1, a mouse motion
 

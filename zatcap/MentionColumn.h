@@ -9,7 +9,7 @@ public:
 	MentionColumn(string name,int w);
 	~MentionColumn(void);
 
-	virtual void newTweet( Tweet *tweet );
+	virtual void newTweet( Item *tweet );
 
 	virtual void draw();
 

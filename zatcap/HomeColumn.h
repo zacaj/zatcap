@@ -8,7 +8,7 @@ class HomeColumn :
 public:
 	HomeColumn(float w);
 	virtual ~HomeColumn(void);
-	virtual void newTweet( Tweet *tweet );
+	virtual void newTweet( Item *tweet );
 
 	virtual void draw();
 

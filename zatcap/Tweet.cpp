@@ -616,7 +616,7 @@ std::string Retweet::getHtml( string columnName )
 	return html;
 }
 
-TweetInstance::TweetInstance( Tweet *_tweet,int _w,int _background  )	:
+TweetInstance::TweetInstance( Item *_tweet,int _w,int _background  )	:
 	tweet(_tweet),
 	background(_background)
 {
@@ -687,7 +687,7 @@ void TweetInstance::refresh( int w )
 	//if(surface)
 	//	SDL_FreeSurface(surface);
 	widths.clear();
-	tweet->draw(this,w);
+	//tweet->draw(this,w);
 	if(replyTo!=NULL)
 	{
 		delete replyTo;
@@ -699,7 +699,7 @@ std::string Favorite::getHtml( string columnName )
 {
 	if(html.empty())
 	{
-		string content=f2s("resources/tweet.html");
+		string content=f2s("resources/favorite.html");
 		replace(content,string("$ID"),id);
 		string htmlText=text;
 		replace(content,string("$TEXT"),escape(htmlText));
@@ -711,4 +711,31 @@ std::string Favorite::getHtml( string columnName )
 		html=content;
 	}
 	return html;
+}
+
+void Favorite::write( FILE *fp )
+{
+	throw std::exception("The method or operation is not implemented.");
+}
+
+std::string Follow::getHtml( string columnName )
+{
+	if(html.empty())
+	{
+		string content=f2s("resources/follow.html");
+		replace(content,string("$ID"),id);
+		string htmlText=text;
+		replace(content,string("$TEXT"),escape(htmlText));
+		replace(content,string("$USERNAME"),escape(follower->username));
+		replace(content,string("$FULLNAME"),escape(follower->name));
+		replace(content,string("$AVATAR"),follower->picURL);
+		replace(content,string("$COLUMN"),columnName);
+		html=content;
+	}
+	return html;
+}
+
+void Follow::write( FILE *fp )
+{
+	throw std::exception("The method or operation is not implemented.");
 }
