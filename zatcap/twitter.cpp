@@ -265,7 +265,7 @@ void readTweetFile(string path)
 	fclose(fp);debugHere();
 }
 void parseRestTweets( string json )
-{
+{debugHere();
 	Json::Reader reader;
 	Json::Value root;
 	FILE *fp=fopen("test.json","wb");
@@ -421,8 +421,8 @@ int loadOlderTweets(void *data)
 Mutex tweetsMutex;
 void addTweet( Tweet** tweet )
 {debugHere();
-enterMutex(tweetsMutex);
-	map<string,Tweet*>::iterator tw=tweets.find((*tweet)->id);
+enterMutex(tweetsMutex);debugHere();
+	map<string,Tweet*>::iterator tw=tweets.find((*tweet)->id);debugHere();
 	debug("New tweet: %s\n",(*tweet)->text.c_str());
 	if(tw==tweets.end())
 	{

@@ -90,3 +90,5 @@ public:
 };
 void favoriteTweet(void *data);
 void unfavoriteTweet(void *data);
+void retweetTweet(void *data);
+void deleteTweet(void *data);

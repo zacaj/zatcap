@@ -419,7 +419,7 @@ void unfavoriteTweet(void *data)
 	debug("unfav: %s\n",tmpString.c_str());
 	tweet->favorited=0;
 }
-int retweetTweet(void *data)
+void retweetTweet(void *data)
 {
 	Tweet *tweet=(Tweet*)data;
 	string tmpString;
@@ -431,16 +431,14 @@ int retweetTweet(void *data)
 		retweet->original()->retweeted=1;
 	}
 	tweet->retweeted=1;
-	return 0;
 }
 
-int deleteTweet(void *data)
+void deleteTweet(void *data)
 {
 	Tweet *tweet=(Tweet*)data;
 	string tmpString;
 	while((tmpString=twit->statusDestroyById(tweet->id))=="");
 	debug("delete: %s\n",tmpString.c_str());
-	return 0;
 }
 
 int Tweet::drawButtons( int _x,int _y,int w,int h,bool highlighted )
@@ -565,6 +563,10 @@ std::string Tweet::getHtml(string columnName)
 		replace(content,string("FULLNAME"),escape(user()->name));
 		replace(content,string("$AVATAR"),user()->picURL);
 		replace(content,string("$COLUMN"),columnName);
+		if(user()->username==username)
+			replace(content,string("$HIDENOTMINE"),"inline");
+		else
+			replace(content,string("$HIDENOTMINE"),"none");
 		html=content;
 	}
 	return html;

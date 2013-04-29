@@ -515,6 +515,14 @@ int main(int argc,char **argv)
 		{
 			startThread(unfavoriteTweet,getTweet(ToString(args[0].ToString())));
 		});
+		methodHandler->reg(WSLit("retweet"),[](JSArray args)
+		{
+			startThread(retweetTweet,getTweet(ToString(args[0].ToString())));
+		});
+		methodHandler->reg(WSLit("_delete"),[](JSArray args)
+		{
+			startThread(deleteTweet,getTweet(ToString(args[0].ToString())));
+		});
 		methodHandler->reg(WSLit("debug"),[](JSArray args)
 			{
 				string i=ToString(args[0].ToString());
@@ -527,7 +535,7 @@ int main(int argc,char **argv)
 			OutputDebugStringA(i.c_str());
 #endif
 		});
-		
+
 	}
 	processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
 	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up
@@ -989,7 +997,7 @@ void replace( std::string& str, const std::string& oldStr, const std::string& ne
 	}
 }
 
-std::string escape( string &str )
+std::string escape( string str )
 {
 	string special="\"\'\n\r";
 	for(int i=0;i<str.size();i++)

@@ -145,4 +145,4 @@ void deleteMutex(Mutex &mutex);
 void enterMutex(Mutex &mutex);
 void leaveMutex(Mutex &mutex);
 void replace(std::string& str, const std::string& oldStr, const std::string& newStr);
-string escape(string &str);
+string escape(string str);

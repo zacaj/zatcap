@@ -56,7 +56,7 @@ void parseStreamThread(void *ptr)
 	delete ptr;
 }
 void loadMissingTweets(void *data)
-{
+{debugHere();
 	printf("Loading missing tweets\n");
 	string tmpString;debugHere();
 	if(!tweets.empty())
