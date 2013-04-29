@@ -1,0 +1,30 @@
+.column 
+{
+	width: 300px; 
+	height: 100%; 
+	border: 1px solid red;
+	display: inline-block;
+    overflow:scroll;
+}
+body,html
+{
+	width: 100%;
+  height:100%;
+}
+#columns
+{
+	position:absolute;
+    left:0;
+	bottom:125px;
+    right:0;
+    top:0;
+    border: 1px solid blue;
+}
+#bottom
+{
+    position:absolute;
+    height:125px;
+    border: 1px solid blue;
+    bottom:0;
+    width:100%;
+}

@@ -362,6 +362,25 @@ void saveTweetPtr(void *data)
 	saveTweets();
 }
 time_t configLastRead=0;
+struct tweetData
+{
+	string str;
+	string replyId;
+	tweetData(string _str,string _r)
+	{
+		str=_str;
+		replyId=_r;
+	}
+};
+
+void sendTweet(void *_data)
+{
+	tweetData *data=(tweetData*)_data;
+	string str=data->str;
+	while(twit->statusUpdate(str,data->replyId)=="");
+	printf("Tweet sent successfully: %s (%s,%s)\n",str.c_str(),data->replyId.c_str(),replyId.c_str());
+	delete data;
+}
 extern vector<string> jsToRun;
 #ifdef USE_WINDOWS
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
@@ -500,8 +519,9 @@ int main(int argc,char **argv)
 		htmlSource=new HtmlSource();
 		session->AddDataSource(WSLit("zatcap"), htmlSource);
 		session->AddDataSource(WSLit("resource"),new DirectorySource("resources\\"));
-		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> </head><body>"+f2s("resources/index.html")+"</bpdy>";
+		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> </head><body onload=\"init();\">"+f2s("resources/index.html")+"</bpdy>";
 		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
+		runJS("init();");
 		methodHandler=new MethodHandler(view,web_core);
 		methodHandler->reg(WSLit("openInNativeBrowser"),[](JSArray args)
 			{
@@ -522,6 +542,12 @@ int main(int argc,char **argv)
 		methodHandler->reg(WSLit("_delete"),[](JSArray args)
 		{
 			startThread(deleteTweet,getTweet(ToString(args[0].ToString())));
+		});
+		methodHandler->reg(WSLit("sendTweet"),[](JSArray args)
+		{
+			string tweet=ToString(args[0].ToString());
+			string inReplyTo=ToString(args[1].ToString());
+			startThread(sendTweet,new tweetData(tweet,inReplyTo));
 		});
 		methodHandler->reg(WSLit("debug"),[](JSArray args)
 			{
