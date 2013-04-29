@@ -115,8 +115,8 @@ Tweet* getTweet(string id);
 void deleteTweet(string id);
 
 //string=id
-extern map<string,Tweet*> tweets;
-void addTweet(Tweet** tweet);
+extern map<string,Item*> tweets;
+void addTweet(Item** tweet);
 extern Mutex tweetsMutex;
 
 

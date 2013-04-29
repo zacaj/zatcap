@@ -4,26 +4,48 @@
 #include "twitter.h"
 class TweetInstance;
 
-class Tweet
+class Item
 {
 public:
 	char _type;
 	string text;
-	string originalText;
 	string id;
-	string userid;
 	string html;
+	struct tm timeTweeted;
+	time_t timeTweetedInSeconds;
+	int read;
+	virtual string getHtml(string columnName) =0;
+};
+
+class Favorite:public Item
+{
+public:
+	User *favoriter;
+	string action;
+	Favorite(string _text,string _id,User *_favoriter,string _action)
+	{
+		action=_action;
+		text=_text;
+		id=_id+"fav";
+		favoriter=_favoriter;
+	}
+	virtual string getHtml( string columnName );
+
+};
+
+class Tweet:public Item
+{
+public:
+	string originalText;
+	string userid;
 	Tweet()
 	{
 		_user=NULL;
 		_type=0;
 		read=0;
 	}
-	struct tm timeTweeted;
-	time_t timeTweetedInSeconds;
 	bool favorited;
 	bool retweeted;
-	int read;
 	vector<Entity *> entities;
 	string replyTo;
 	User* user()
@@ -68,6 +90,9 @@ public:
 	virtual int draw(TweetInstance *instance,int w);
 	virtual int cachedDraw(TweetInstance *instance);
 	virtual void write(FILE *fp);
+
+	virtual string getHtml( string columnName );
+
 };
 
 class TweetInstance

@@ -560,7 +560,7 @@ std::string Tweet::getHtml(string columnName)
 		string htmlText=text;
 		replace(content,string("$TEXT"),escape(htmlText));
 		replace(content,string("$USERNAME"),escape(user()->username));
-		replace(content,string("FULLNAME"),escape(user()->name));
+		replace(content,string("$FULLNAME"),escape(user()->name));
 		replace(content,string("$AVATAR"),user()->picURL);
 		replace(content,string("$COLUMN"),columnName);
 		if(user()->username==username)
@@ -590,6 +590,30 @@ void Retweet::write( FILE *fp )
 	wuint(timeRetweetedInSeconds,fp);
 //	fwrite(&timeRetweeted,sizeof(int),9,fp);
 	fputc('\n',fp);
+}
+
+std::string Retweet::getHtml( string columnName )
+{
+	if(html.empty())
+	{
+		string content=f2s("resources/retweet.html");
+		replace(content,string("$ID"),id);
+		replace(content,string("$ORIGINALID"),originalID);
+		string htmlText=text;
+		replace(content,string("$TEXT"),escape(htmlText));
+		replace(content,string("$USERNAME"),escape(user()->username));
+		replace(content,string("$RETWEETER"),escape(retweetedBy->username));
+		replace(content,string("$FULLNAME"),escape(user()->name));
+		replace(content,string("$AVATAR"),user()->picURL);
+		replace(content,string("$RTAVATAR"),retweetedBy->picURL);
+		replace(content,string("$COLUMN"),columnName);
+		if(retweetedBy->username==username)
+			replace(content,string("$HIDENOTMINE"),"inline");
+		else
+			replace(content,string("$HIDENOTMINE"),"none");
+		html=content;
+	}
+	return html;
 }
 
 TweetInstance::TweetInstance( Tweet *_tweet,int _w,int _background  )	:
@@ -669,4 +693,22 @@ void TweetInstance::refresh( int w )
 		delete replyTo;
 		replyTo=NULL;
 	}
+}
+
+std::string Favorite::getHtml( string columnName )
+{
+	if(html.empty())
+	{
+		string content=f2s("resources/tweet.html");
+		replace(content,string("$ID"),id);
+		string htmlText=text;
+		replace(content,string("$TEXT"),escape(htmlText));
+		replace(content,string("$USERNAME"),escape(favoriter->username));
+		replace(content,string("$FULLNAME"),escape(favoriter->name));
+		replace(content,string("$AVATAR"),favoriter->picURL);
+		replace(content,string("$COLUMN"),columnName);
+		replace(content,string("$ACTION"),action);
+		html=content;
+	}
+	return html;
 }

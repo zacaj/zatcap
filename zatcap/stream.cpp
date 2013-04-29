@@ -14,29 +14,43 @@ void parseStream(Json::Value root,string str)
 	{
 		processTweet(root);debugHere();
 	}
-	else if(!root["limit"].isNull())//limit notice
+	/*else if(!root["limit"].isNull())//limit notice
 	{
 		root=root["limit"];debugHere();
 
+	}*/
+	else if(!root["event"].isNull())//event
+	{
+		User *target=getUser(root["target"]);
+		User *source=getUser(root["source"]);
+		string type=root["event"].asString();
+		if(type=="favorite" || type=="unfavorite")
+		{
+			if(target->username==username)
+			{
+
+			}
+		}
 	}
 	else if(!root["delete"].isNull())//delete notice
 	{
 		deleteTweet(root["delete"]["status"]["id_str"].asString());debugHere();
 	}
-	else if(!root["target"].isNull())//todo events
+	/*else if(!root["target"].isNull())//todo events
 	{
 		debugHere();
 	}
 	else if(0)
 	{
 
-	}
+	}*/
 /*	else if(root.isObject())//make sure to put this at end
 	{
 		//printf("keep alive\n");
 	}*/
 	else
 	{debugHere();
+	debug("new stream message:\n%s\n",str.c_str());
  		FILE *fp=fopen("unhandled.txt","a+");
 		fprintf(fp,"couldnt handle (%s):\n%s\n\n\n",VERSION,str.c_str());
 		printf("\nERROR: Twitter message not handleable by ZATCAP, pleas email unhandled.txt to zatcap@zacaj.com!\n\n");

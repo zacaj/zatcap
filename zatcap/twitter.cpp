@@ -419,10 +419,10 @@ int loadOlderTweets(void *data)
 	return 0;
 }
 Mutex tweetsMutex;
-void addTweet( Tweet** tweet )
+void addTweet( Item** tweet )
 {debugHere();
 enterMutex(tweetsMutex);debugHere();
-	map<string,Tweet*>::iterator tw=tweets.find((*tweet)->id);debugHere();
+	map<string,Item*>::iterator tw=tweets.find((*tweet)->id);debugHere();
 	debug("New tweet: %s\n",(*tweet)->text.c_str());
 	if(tw==tweets.end())
 	{
