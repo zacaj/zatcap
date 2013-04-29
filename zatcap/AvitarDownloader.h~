@@ -1,5 +1,5 @@
 #pragma once
-#include "Process.h"
+#include "process.h"
 #include "twitter.h"
 
 struct profilepic
