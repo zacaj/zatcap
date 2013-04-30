@@ -184,6 +184,12 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
+	case WM_SIZE:
+		{
+			
+			view->Resize(LOWORD(lParam),HIWORD(lParam));
+		}
+		break;
 	default:
 		return DefWindowProc(hwnd, msg, wParam, lParam);
 	}
@@ -486,7 +492,7 @@ int main(int argc,char **argv)
 			L"ZATCAP html",
 			L"Zacaj's (third) Amazing Twitter Client for Awesome People",
 			WS_OVERLAPPEDWINDOW,
-			CW_USEDEFAULT, CW_USEDEFAULT, 1024, 768,
+			CW_USEDEFAULT, CW_USEDEFAULT, settings::windowWidth, settings::windowHeight,
 			NULL, NULL, hInstance, NULL);
 
 		if(hwnd == NULL)
@@ -510,7 +516,7 @@ int main(int argc,char **argv)
 		web_core = WebCore::Initialize(WebConfig());
 		session=web_core->CreateWebSession(WSLit("session"),WebPreferences());
 #ifdef USE_WINDOWS
-		view = web_core->CreateWebView(1024, 768,session,kWebViewType_Window);
+		view = web_core->CreateWebView(settings::windowWidth, settings::windowHeight,session,kWebViewType_Window);
 		view->set_parent_window(hwnd);
 #endif
 #ifdef LINUX

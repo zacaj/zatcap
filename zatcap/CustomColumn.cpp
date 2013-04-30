@@ -24,6 +24,7 @@ CustomColumn::CustomColumn(string name,string path):Column(0,name)
 		CHECK(Type);
 		CHECK(RT);
 		CHECK(String);
+		CHECK(By);
 	}
 }
 

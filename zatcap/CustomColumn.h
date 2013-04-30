@@ -90,6 +90,39 @@ public:
 	}
 	static string cmd(){return "rt";}
 };
+class By:public Rule
+{
+public:
+	string user;
+	By(string _user)
+	{
+		user=_user;
+
+	}
+	By(char a,FILE *fp)
+	{
+		add=a;
+		skipWhile(fp,' ');
+		back(fp);
+		char str[100];
+		fscanf(fp,"%s\n",str);
+		user=str;
+	}
+	bool check(Item *item)
+	{
+		switch(item->_type)
+		{
+		case 0:
+			Tweet *tweet=(Tweet*)item;
+			return tweet->user()->username==user;
+		case 1:
+			Retweet *retweet=(Retweet*)item;
+			return retweet->user()->username==user || retweet->retweetedBy->username==user;
+		default: return 0;
+		}
+	}
+	static string cmd(){return "by";}
+};
 class CustomColumn :
 	public Column
 {
