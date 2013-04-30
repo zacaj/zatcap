@@ -220,4 +220,9 @@ std::string f2s( string path )
 	return ret;
 }
 
+void back( FILE *fp )
+{
+	fseek(fp,-1,SEEK_CUR);
+}
+
 #endif

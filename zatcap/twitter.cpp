@@ -38,7 +38,7 @@ void twitterInit( void  *_twit )
 	printf("Logging in...\n");
 	loadUser(twit);
 	loggedIn=1;
-	((MentionColumn*)processes[2.5])->term=username;
+	//((MentionColumn*)processes[2.5])->term=username;
 	{
 		aviDownloader=new AvitarDownloader();
 		processes[4578.6]=aviDownloader;

@@ -42,6 +42,8 @@ int version=
 #include "../Debug/version.txt"
 	;
 #include "Awesomium.h"
+#include <dirent.h>
+#include "CustomColumn.h"
 int updateScreen=1;
 bool newVersion=0;
 Textbox *tweetbox;
@@ -563,8 +565,47 @@ int main(int argc,char **argv)
 		});
 
 	}
-	processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
-	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up
+	/*processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
+	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up*/
+	{
+		DIR *pDIR;
+		struct dirent *entry;
+		if( pDIR=opendir("columns") ){
+			while(entry = readdir(pDIR)){
+			    int d_namlen;
+			    #ifdef USE_WINDOWS
+			    d_namlen=entry->d_namelen;
+			    #else
+			    d_namlen=strlen(entry->d_name);
+			    #endif
+				if( strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0 )
+				{
+					struct stat s;
+					if( stat((string("columns/")+entry->d_name).c_str(),&s) == 0 )
+					{
+						if( s.st_mode & S_IFREG )
+						{
+							float n=0;
+							int a=0;
+							while(a<d_namlen && entry->d_name[a]!='_')
+							{
+								n+=entry->d_name[a]-'0';
+								n*=10;
+								a++;
+							}
+							a++;
+							string name;
+							while(a<d_namlen)
+								name.push_back(entry->d_name[a++]);
+							name.erase(name.end()-4,name.end());
+							processes[200+n]=new CustomColumn(name,(string("columns/")+entry->d_name));
+						}
+					}
+				}
+			}
+			closedir(pDIR);
+		}
+	}
 	fclose(fopen("stream debug.txt","w"));
 	startThread(twitterInit,&twit);
 

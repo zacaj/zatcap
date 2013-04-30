@@ -130,7 +130,7 @@ string getBackgroundColor(int background,int read)
 	} \
 	/*boxRGB(screen,p[i*2].x,p[i*2].y,p[i*2].x+1,p[i*2].y+p[i*2].h,255,0,255); boxRGB(screen,p[i*2+1].x,p[i*2+1].y,p[i*2+1].x+1,p[i*2+1].y+p[i*2+1].h,0,255,255); */ \
 	} \
-}} 
+}}
 
 int Tweet::draw( int x,int y,int w,int background)
 {
@@ -628,7 +628,7 @@ TweetInstance::TweetInstance( Item *_tweet,int _w,int _background  )	:
 	//refresh(w);
 }
 
-int TweetInstance::draw( int x,int y )	
+int TweetInstance::draw( int x,int y )
 {
 	/*if(surface==NULL || read!=tweet->read)
 		refresh(w);
@@ -676,7 +676,7 @@ TweetInstance::~TweetInstance()
 	}
 	if(p)
 	{
-		delete p; 
+		delete p;
 		p=NULL;
 	}*/
 }
@@ -715,7 +715,7 @@ std::string Favorite::getHtml( string columnName )
 
 void Favorite::write( FILE *fp )
 {
-	throw std::exception("The method or operation is not implemented.");
+	//throw std::exception("The method or operation is not implemented.");
 }
 
 std::string Follow::getHtml( string columnName )
@@ -737,5 +737,5 @@ std::string Follow::getHtml( string columnName )
 
 void Follow::write( FILE *fp )
 {
-	throw std::exception("The method or operation is not implemented.");
+	//throw std::exception("The method or operation is not implemented.");
 }

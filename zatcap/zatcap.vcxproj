@@ -139,6 +139,7 @@
     <ClInclude Include="Awesomium.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Column.h" />
+    <ClInclude Include="CustomColumn.h" />
     <ClInclude Include="file.h" />
     <ClInclude Include="HomeColumn.h" />
     <ClInclude Include="MentionColumn.h" />
@@ -158,6 +159,7 @@
     <ClCompile Include="Awesomium.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Column.cpp" />
+    <ClCompile Include="CustomColumn.cpp" />
     <ClCompile Include="file.cpp" />
     <ClCompile Include="HomeColumn.cpp" />
     <ClCompile Include="json_reader.cpp" />

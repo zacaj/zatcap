@@ -17,6 +17,7 @@ uint ruint(FILE *fp);
 float rfloat(FILE *fp);
 string rstr(FILE *fp);
 string f2s(string path);
+void back(FILE *fp);
 #ifdef WASCII
 #define wid(a,b) fprintf(b,"%s(%i)\n",#a,a)
 #else

@@ -3,7 +3,7 @@ CFLAGS=-c -Wall -Wall -std=c++0x -fno-rtti -I../libtwitcurl -I ../libtwitcurl/cu
 
 LDFLAGS= -L/usr/lib -lSDLmain -lSDL -lSDL_gfx -lSDL_image -lSDL_ttf -lcurl /usr/lib/libGLEW.a -lawesomium-1-7 -lGL ../libtwitcurl/libtwitcurl.a
 
-SOURCES=AvitarDownloader.cpp Awesomium.cpp Button.cpp Column.cpp HomeColumn.cpp MentionColumn.cpp TimedEventProcess.cpp Tweet.cpp WaitIndicator.cpp file.cpp gl_texture_surface.cpp json_reader.cpp json_value.cpp json_writer.cpp stream.cpp twitter.cpp zatcap.cpp
+SOURCES=AvitarDownloader.cpp Awesomium.cpp Button.cpp Column.cpp HomeColumn.cpp MentionColumn.cpp TimedEventProcess.cpp Tweet.cpp WaitIndicator.cpp file.cpp gl_texture_surface.cpp json_reader.cpp json_value.cpp json_writer.cpp stream.cpp twitter.cpp zatcap.cpp CustomColumn.cpp
 OBJECTS=$(patsubst %.cpp,linux/obj/%.o,$(SOURCES))
 EXECUTABLE=../DebugRelease/zatcap
 
