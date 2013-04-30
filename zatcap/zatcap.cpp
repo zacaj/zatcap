@@ -574,7 +574,7 @@ int main(int argc,char **argv)
 			while(entry = readdir(pDIR)){
 			    int d_namlen;
 			    #ifdef USE_WINDOWS
-			    d_namlen=entry->d_namelen;
+			    d_namlen=entry->d_namlen;
 			    #else
 			    d_namlen=strlen(entry->d_name);
 			    #endif
