@@ -128,5 +128,6 @@ Tweet* processTweet(Json::Value jtweet);
 void saveTweets();
 
 int loadOlderTweets(void *data);
+time_t mtimegm( struct tm * timeptr );
 class AvitarDownloader;
 extern AvitarDownloader *aviDownloader;

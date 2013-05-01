@@ -113,15 +113,39 @@ public:
 		switch(item->_type)
 		{
 		case 0:
-			Tweet *tweet=(Tweet*)item;
-			return tweet->user()->username==user;
+			{
+				Tweet *tweet=(Tweet*)item;
+				return tweet->user()->username==user;
+			}
 		case 1:
-			Retweet *retweet=(Retweet*)item;
-			return retweet->user()->username==user || retweet->retweetedBy->username==user;
+			{
+				Retweet *retweet=(Retweet*)item;
+				return retweet->user()->username==user || retweet->retweetedBy->username==user;
+			}
 		default: return 0;
 		}
 	}
 	static string cmd(){return "by";}
+};
+class Favorited:public Rule
+{
+public:
+	Favorited()
+	{
+	}
+	Favorited(char a,FILE *fp)
+	{
+		add=a;
+		fscanf(fp,"\n");
+	}
+	bool check(Item *item)
+	{
+		if(item->_type>1)
+			return 0;
+		Tweet *tweet=(Tweet*)item;
+		return tweet->favorited;
+	}
+	static string cmd(){return "fav";}
 };
 class CustomColumn :
 	public Column

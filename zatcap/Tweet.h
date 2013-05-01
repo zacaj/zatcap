@@ -24,13 +24,14 @@ class Favorite:public Item
 public:
 	User *favoriter;
 	string action;
-	Favorite(string _text,string _id,User *_favoriter,string _action)
+	Favorite(string _text,string _id,User *_favoriter,string _action,struct tm _time)
 	{
 		_type=FAVORITE;
 		action=_action;
 		text=_text;
 		id=_id+"fav";
 		favoriter=_favoriter;
+		timeTweeted=_time;
 	}
 	virtual string getHtml( string columnName );
 
@@ -42,11 +43,12 @@ class Follow:public Item
 public:
 	User *follower;
 	string action;
-	Follow(User *_follower)
+	Follow(User *_follower,struct tm _time)
 	{
 		_type=FOLLOW;
 		id="follow"+_follower->id;
 		follower=_follower;
+		timeTweeted=_time;
 	}
 	virtual string getHtml( string columnName );
 

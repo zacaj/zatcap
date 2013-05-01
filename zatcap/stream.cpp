@@ -25,19 +25,26 @@ void parseStream(Json::Value root,string str)
 		User *target=getUser(root["target"]);
 		User *source=getUser(root["source"]);
 		string type=root["event"].asString();
+		struct tm otm=convertTimeStringToTM(root["created_at"].asString());
+		time_t ott=mtimegm(&otm);
+		struct tm timeTweeted=*localtime(&ott);
 		if(type=="favorite" || type=="unfavorite")
 		{
 			if(target->username==username)
 			{
-				Favorite *fav=new Favorite(root["target_object"]["text"].asString(),root["target_object"]["id_str"].asString(),source,type+"d");
+				Favorite *fav=new Favorite(root["target_object"]["text"].asString(),root["target_object"]["id_str"].asString(),source,type+"d",timeTweeted);
 				addTweet((Item**)&fav);
+			}
+			else
+			{
+				((Tweet*)getTweet(root["target_object"]["id_str"].asString()))->favorited=type=="favorite";
 			}
 		}
 		if(type=="follow")
 		{
 			if(target->username==username)
 			{
-				Follow *fav=new Follow(source);
+				Follow *fav=new Follow(source,timeTweeted);
 				addTweet((Item**)&fav);
 			}
 		}
