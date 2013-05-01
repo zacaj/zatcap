@@ -140,7 +140,30 @@ void setIconColor( int r,int g,int b )
 	iconG=g;
 	iconB=b;
 }
-
+size_t urlfunction( char *ptr, size_t size, size_t nmemb, void *userdata)
+{
+	string *str=(string*)userdata;
+	str->append(ptr,size*nmemb);
+	return size*nmemb;
+}
+int curl_debug_callback2(CURL *curl,curl_infotype infotype,char *data,size_t size,void *userptr);
+string getSite(string url)
+{
+	CURL *curl=curl_easy_init();
+	curl_easy_setopt(  curl, CURLOPT_URL,url.c_str());//
+	string *ret=new string();
+	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, urlfunction);
+	curl_easy_setopt(curl,CURLOPT_WRITEDATA,(void*)ret);
+	curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_easy_setopt( curl, CURLOPT_DEBUGFUNCTION, curl_debug_callback2 );
+	curl_easy_setopt(  curl, CURLOPT_HTTPGET, 1 );//
+	curl_easy_setopt(  curl, CURLOPT_VERBOSE, 1 );
+	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1); 
+	//curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYHOST, 0 );
+	curl_easy_perform(curl);
+	curl_easy_cleanup(curl);
+	return *ret;
+}
 void collectDeviousData(void *p)
 {
 	int columnTitleTextSize;
@@ -527,7 +550,7 @@ int main(int argc,char **argv)
 		htmlSource=new HtmlSource();
 		session->AddDataSource(WSLit("zatcap"), htmlSource);
 		session->AddDataSource(WSLit("resource"),new DirectorySource("resources\\"));
-		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> </head><body onload=\"init();\">"+f2s("resources/index.html")+"</bpdy>";
+		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> </head><body onload=\"init();\" id='body'>"+f2s("resources/index.html")+"</body>";
 		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
 		runJS("init();");
 		methodHandler=new MethodHandler(view,web_core);
@@ -568,6 +591,24 @@ int main(int argc,char **argv)
 #ifdef USE_WINDOWS
 			OutputDebugStringA(i.c_str());
 #endif
+		});
+		methodHandler->reg(WSLit("handleImage"),[](JSArray args)
+			{
+				string ourl=ToString(args[0].ToString());
+				string url=ourl;
+				if(ourl.find("twitter.com")!=string::npos)
+				{
+					string src=getSite(ourl);
+					size_t pos=src.find("<img class=\"large media-slideshow-image\" alt=\"\" src=\"");
+					if(pos!=string::npos)
+					{
+						pos+=strlen("<img class=\"large media-slideshow-image\" alt=\"\" src=\"");
+						int a=pos;
+						url.clear();
+						while(a<src.size() && src[a]!='\"') url.push_back(src[a++]);
+					}
+				}
+				runJS("lightbox('"+url+"');");
 		});
 
 	}

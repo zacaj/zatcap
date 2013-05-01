@@ -665,6 +665,24 @@ void UnquoteHTML
 	std::istream & In,
 	std::ostream & Out
 	);
+bool urlIsPicture(string url)
+{
+	for(int i=0;i<url.size();i++)
+		url[i]=tolower(url[i]);
+	string ext=getExt(url);
+	if(ext=="jpg" || ext=="jpeg" || ext=="png" || ext=="bmp")
+		return 1;
+	if(url.find(".jpg")!=string::npos)
+		return 1;
+	if(url.find(".png")!=string::npos)
+		return 1;
+	if(url.find("pic.")!=string::npos)
+		return 1;
+	if(url.find("imgur.com")!=string::npos)
+		return 1;
+	//return 1;
+	return 0;
+}
 Tweet* processTweet(Json::Value jtweet)
 {
 	debugHere();
@@ -704,7 +722,29 @@ Tweet* processTweet(Json::Value jtweet)
 				url->start=entity["indices"][0u].asInt();
 				url->end=entity["indices"][1u].asInt();
 				url->text="<a href='"+url->realUrl+"'>"+url->displayUrl+"</a>";
-				url->text="<a href='javascript:;' onclick=\"cpp.openInNativeBrowser('"+url->realUrl+"');\">"+url->displayUrl+"</a>";
+				if(!urlIsPicture(url->realUrl))
+					url->text="<a href='javascript:;' onclick=\"cpp.openInNativeBrowser('"+url->realUrl+"');\">"+url->displayUrl+"</a>";
+				else
+					url->text="<a href='javascript:;' onclick=\"cpp.handleImage('"+url->realUrl+"');\">"+url->displayUrl+"</a>";
+				tweet->entities.push_back(url);
+				entities[url->start]=url;
+			}
+		}
+		if(!jtweet["entities"]["media"].isNull())
+		{
+			for(int i=jtweet["entities"]["media"].size()-1;i>=0;i--)//go backwards to handle multiple entities in a single tweet correctly
+			{
+				URLEntity *url=new URLEntity;
+				Json::Value entity=jtweet["entities"]["media"][i];
+				url->displayUrl=entity["display_url"].asString();
+				if(!entity["expanded_url"].isNull())
+					url->realUrl=entity["expanded_url"].asString();
+				else
+					url->realUrl=entity["media_url"].asString();
+				url->start=entity["indices"][0u].asInt();
+				url->end=entity["indices"][1u].asInt();
+				url->text="<a href='"+url->realUrl+"'>"+url->displayUrl+"</a>";
+				url->text="<a href='javascript:;' onclick=\"cpp.handleImage('"+url->realUrl+"');\">"+url->displayUrl+"</a>";
 				tweet->entities.push_back(url);
 				entities[url->start]=url;
 			}
