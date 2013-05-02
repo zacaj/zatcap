@@ -215,7 +215,8 @@ bool openUserStream(twitCurl *twit)
 			curl_easy_setopt( curl, CURLOPT_HTTPHEADER, pOAuthHeaderList );//
 		}
 	}
-	curl_easy_setopt( curl, CURLOPT_PROXY, NULL );
+	curl_easy_setopt( curl, CURLOPT_PROXY, "127.0.0.1:2908" );
+	curl_easy_setopt(curl, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
 	curl_easy_setopt( curl, CURLOPT_PROXYUSERPWD, NULL );
 	curl_easy_setopt( curl, CURLOPT_PROXYAUTH, (long)CURLAUTH_ANY );
 	curl_easy_setopt(  curl, CURLOPT_HTTPGET, 1 );//

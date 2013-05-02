@@ -209,7 +209,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_SIZE:
 		{
-			
+			if(view)
 			view->Resize(LOWORD(lParam),HIWORD(lParam));
 		}
 		break;

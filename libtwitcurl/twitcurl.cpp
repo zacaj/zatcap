@@ -1293,13 +1293,14 @@ void twitCurl::prepareCurlProxy(twitInstance *instance)
 		curl_easy_setopt( instance->m_curlHandle, CURLOPT_PROXY, NULL );
 		curl_easy_setopt( instance->m_curlHandle, CURLOPT_PROXYUSERPWD, NULL );
 		curl_easy_setopt( instance->m_curlHandle, CURLOPT_PROXYAUTH, (long)CURLAUTH_ANY );
-		return;
+		//return;
         /* Reset existing proxy details in cURL */
 
         /* Set proxy details in cURL */
         std::string proxyIpPort;
         utilMakeCurlParams( proxyIpPort, getProxyServerIp(), getProxyServerPort() );
         curl_easy_setopt( instance->m_curlHandle, CURLOPT_PROXY, proxyIpPort.c_str() );
+		curl_easy_setopt(instance->m_curlHandle, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
 
 		//curl_easy_setopt( instance->m_curlHandle, CURLOPT_CAINFO,"cacert.pem");
         /* Prepare username and password for proxy server */
@@ -1388,11 +1389,24 @@ void twitCurl::prepareCurlUserPass(twitInstance *instance)
 * @remarks: internal method
 *
 *--*/
+int curl_debug_callbacktwit(CURL *curl,curl_infotype infotype,char *data,size_t size,void *userptr)
+{
+//printf("%i:\n");
+//fwrite(data,size,1,stdout);
+//printf("\n");
+FILE *fp=fopen("stream debug2.txt","a+");
+fprintf(fp,"%i:\n");
+fwrite(data,size,1,fp);
+fprintf(fp,"\n\n\n");
+fclose(fp);
+return 0;
+}
 void twitCurl::prepareStandardParams(twitInstance *instance)
 {
     /* Restore any custom request we may have */
     curl_easy_setopt( instance->m_curlHandle, CURLOPT_CUSTOMREQUEST, NULL );
 
+	//curl_easy_setopt( instance->m_curlHandle, CURLOPT_DEBUGFUNCTION, curl_debug_callbacktwit);
     /* Clear callback and error buffers */
     clearCurlCallbackBuffers();
 

@@ -31,6 +31,8 @@ void twitterInit( void  *_twit )
 	twit=new twitCurl();
 	*((void**)_twit)=twit;
 	twit->setTwitterApiType(twitCurlTypes::eTwitCurlApiFormatJson);
+	twit->setProxyServerIp(string("127.0.0.1"));
+	twit->setProxyServerPort(string("2908"));
 	WaitIndicator *wait=new WaitIndicator("Signing in to Twitter...");
 	{
 		processes[102.4]=wait;
@@ -835,12 +837,14 @@ Tweet* processTweet(Json::Value jtweet)
 
 			{
 				struct tm otm=convertTimeStringToTM(original["created_at"].asString());
-				time_t ott=mtimegm(&otm);
+				time_t ott=mtimegm(&otm);
+
 				retweet->timeTweeted=*localtime(&ott);
 			}
 			{
 				struct tm otm=convertTimeStringToTM(jtweet["created_at"].asString());
-				time_t ott=mtimegm(&otm);
+				time_t ott=mtimegm(&otm);
+
 				retweet->timeRetweeted=*localtime(&ott);
 			}
 			debugHere();

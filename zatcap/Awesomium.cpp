@@ -5,7 +5,7 @@ HtmlSource *htmlSource;
 MethodHandler *methodHandler;
 WebCore *web_core;
 WebSession *session;
-WebView *view;
+WebView *view=NULL;
 
 
 HtmlSource::HtmlSource()
