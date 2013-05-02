@@ -25,6 +25,7 @@ CustomColumn::CustomColumn(string name,string path):Column(0,name)
 		CHECK(RT);
 		CHECK(String);
 		CHECK(By);
+		CHECK(Favorited);
 	}
 }
 
@@ -48,5 +49,7 @@ void CustomColumn::newTweet( Item *tweet )
 	}
 	if(!had)
 		return;
+	TweetInstance *instance=new TweetInstance(tweet,rw,onOff);
+	m_tweets[tweet->id]=instance;
 	add(tweet);
 }

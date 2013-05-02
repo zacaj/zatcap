@@ -114,7 +114,6 @@ Item* getTweet(string id);
 
 
 void deleteTweet(string id);
-
 //string=id
 extern map<string,Item*> tweets;
 void addTweet(Item** tweet);
@@ -131,3 +130,5 @@ int loadOlderTweets(void *data);
 time_t mtimegm( struct tm * timeptr );
 class AvitarDownloader;
 extern AvitarDownloader *aviDownloader;
+
+void refreshTweets(void *data);

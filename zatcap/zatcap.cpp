@@ -610,7 +610,10 @@ int main(int argc,char **argv)
 				}
 				runJS("lightbox('"+url+"');");
 		});
-
+		methodHandler->reg(WSLit("refresh"),[](JSArray args)
+		{
+			startThread(refreshTweets,NULL);
+		});
 	}
 	/*processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
 	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up*/

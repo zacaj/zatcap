@@ -408,7 +408,6 @@ void favoriteTweet( void *data )
 	string tmpString;
 	while((tmpString=twit->favoriteCreate(tweet->id))=="");
 	debug("fav: %s\n",tmpString.c_str());
-	tweet->favorited=1;
 }
 
 void unfavoriteTweet(void *data)
@@ -417,7 +416,6 @@ void unfavoriteTweet(void *data)
 	string tmpString;
 	while((tmpString=twit->favoriteDestroy(tweet->id))=="");
 	debug("unfav: %s\n",tmpString.c_str());
-	tweet->favorited=0;
 }
 void retweetTweet(void *data)
 {
@@ -553,7 +551,7 @@ int Tweet::cachedDraw( TweetInstance *instance )
 
 std::string Tweet::getHtml(string columnName)
 {
-	if(html.empty())
+	//if(html.empty())
 	{
 		string content=f2s("resources/tweet.html");
 		replace(content,string("$ID"),id);
@@ -607,7 +605,7 @@ void Retweet::write( FILE *fp )
 
 std::string Retweet::getHtml( string columnName )
 {
-	if(html.empty())
+	//if(html.empty())
 	{
 		string content=f2s("resources/retweet.html");
 		replace(content,string("$ID"),id);
@@ -723,7 +721,7 @@ void TweetInstance::refresh( int w )
 
 std::string Favorite::getHtml( string columnName )
 {
-	if(html.empty())
+	//if(html.empty())
 	{
 		string content=f2s("resources/favorite.html");
 		replace(content,string("$ID"),id);
@@ -759,7 +757,7 @@ void Favorite::write( FILE *fp )
 
 std::string Follow::getHtml( string columnName )
 {
-	if(html.empty())
+	//if(html.empty())
 	{
 		string content=f2s("resources/follow.html");
 		replace(content,string("$ID"),id);

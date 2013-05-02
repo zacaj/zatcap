@@ -46,11 +46,7 @@ void twitterInit( void  *_twit )
 	wait->text="Loading older tweets";
 #if 1
 	if(settings::tweetsToLoadOnStartup)
-	{debugHere();
-		string tmpString;debugHere();
-		while((tmpString=twit->timelineHomeGet(false,true,settings::tweetsToLoadOnStartup,"",""))=="");debugHere();//settings::tweetsToLoadOnStartup+50
-		//while((tmpString=twit->timelineUserGet(false,true,settings::tweetsToLoadOnStartup,""))=="");debugHere();//settings::tweetsToLoadOnStartup+50
-		parseRestTweets(tmpString);debugHere();
+	{refreshTweets(0);debugHere();
 	}
 #endif
 	wait->shouldRemove=1;debugHere();
@@ -59,6 +55,29 @@ void twitterInit( void  *_twit )
 		debugHere();
 }
 
+void refreshTweets( void *data )
+{
+	{
+		string tmpString;debugHere();
+		while((tmpString=twit->timelineHomeGet(false,true,25,"",""))=="");
+		parseRestTweets(tmpString);debugHere();
+	}
+	{
+		string tmpString;debugHere();
+		while((tmpString=twit->mentionsGet("",""))=="");
+		parseRestTweets(tmpString);debugHere();
+	}
+	{
+		string tmpString;debugHere();
+		while((tmpString=twit->timelineFriendsGet())=="");
+		parseRestTweets(tmpString);debugHere();
+	}
+	{
+		string tmpString;debugHere();
+		while((tmpString=twit->favoriteGet())=="");
+		parseRestTweets(tmpString);debugHere();
+	}
+}
 int get_utc_offset() {
 
   time_t zero = 24*60*60L;
@@ -438,15 +457,12 @@ enterMutex(tweetsMutex);debugHere();
 		//for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
 		//	it->second->deleteTweet(tw->first);
 		(*tweet)->read=tw->second->read;
-		if(tw->second->_type<2)
-		{
-			if(((Tweet*)tw->second)->favorited)
-				((Tweet*)(*tweet))->favorited=1;
-			if(((Tweet*)tw->second)->retweeted)
-				((Tweet*)(*tweet))->retweeted=1;
-			*tw->second=**tweet;
-		}
-		*tweet=tw->second;
+		leaveMutex(tweetsMutex);
+		deleteTweet(((Tweet*)(*tweet))->id);
+		enterMutex(tweetsMutex);
+		tweets[(*tweet)->id]=*tweet;
+		for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
+			it->second->newTweet(*tweet);
 		//delete tw->second;
 		//tw->second=NULL;
 		//tweets.erase(tw);
@@ -1330,3 +1346,4 @@ void UnquoteHTML
           } /*if*/
       } /*for*/
   } /*UnquoteHTML*/
+

@@ -66,9 +66,11 @@ public:
 		_user=NULL;
 		_type=0;
 		read=0;
+		isDM=0;
 	}
 	bool favorited;
 	bool retweeted;
+	bool isDM;
 	vector<Entity *> entities;
 	string replyTo;
 	User* user()

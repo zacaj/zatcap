@@ -330,13 +330,12 @@ bool Column::mouseButtonEvent( int x,int y,int button,int pressed )
 
 void Column::deleteTweet(string id)
 {
-	/*enterMutex(drawingMutex);
 	if(m_tweets.find(id)!=m_tweets.end())
 	{
 		m_tweets.erase(m_tweets.find(id));
-		updateScreen=1;
+		runJS("removeTweet('"+columnName+"','"+id+"');");
 	}
-	leaveMutex(drawingMutex);*/
+
 }
 
 bool Column::drawRefreshButton()
