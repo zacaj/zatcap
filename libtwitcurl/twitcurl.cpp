@@ -1293,7 +1293,8 @@ void twitCurl::prepareCurlProxy(twitInstance *instance)
 		curl_easy_setopt( instance->m_curlHandle, CURLOPT_PROXY, NULL );
 		curl_easy_setopt( instance->m_curlHandle, CURLOPT_PROXYUSERPWD, NULL );
 		curl_easy_setopt( instance->m_curlHandle, CURLOPT_PROXYAUTH, (long)CURLAUTH_ANY );
-		//return;
+		if(getProxyServerIp().empty())
+			return;
         /* Reset existing proxy details in cURL */
 
         /* Set proxy details in cURL */

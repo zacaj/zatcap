@@ -12,11 +12,9 @@
 #include "zatcap.h"
 #include "WaitIndicator.h"
 #include <assert.h>
-#include "HomeColumn.h"
 #include <time.h>
 #include <string.h>
 #include <sys/stat.h>
-#include "MentionColumn.h"
 #include "Button.h"
 #include <Awesomium/WebCore.h>
 #include <Awesomium/BitmapSurface.h>
@@ -39,7 +37,7 @@ using namespace Awesomium;
 #include "TimedEventProcess.h"
 Process *mouseDragReceiver;
 int version=
-#include "../Debug/version.txt"
+#include "../DebugRelease/version.txt"
 	;
 #include "Awesomium.h"
 #include <dirent.h>
@@ -89,6 +87,8 @@ namespace settings
 	int textSize=13,timeSize=13,columnTitleTextSize=25,userNameTextSize=15,retweetTextSize=12,editorTextSize=14;
 	int pinLogin=0;
 	int maxTweets=1000;
+	string proxyServer;
+	string proxyPort;
 }
 namespace colors
 {
@@ -151,6 +151,12 @@ string getSite(string url)
 {
 	CURL *curl=curl_easy_init();
 	curl_easy_setopt(  curl, CURLOPT_URL,url.c_str());//
+
+	if(settings::proxyServer!="none")
+	{
+		curl_easy_setopt( curl, CURLOPT_PROXY, (settings::proxyServer+":"+settings::proxyPort).c_str());
+		curl_easy_setopt(curl, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+	}
 	string *ret=new string();
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, urlfunction);
 	curl_easy_setopt(curl,CURLOPT_WRITEDATA,(void*)ret);
@@ -614,6 +620,26 @@ int main(int argc,char **argv)
 		{
 			startThread(refreshTweets,NULL);
 		});
+		methodHandler->reg(WSLit("source"),[](JSArray args)
+		{
+			FILE *fp=fopen("source.html","w");
+			string source=ToString(args[0].ToString());
+			fwrite(source.c_str(),source.size(),1,fp);
+			fclose(fp);
+		});
+		methodHandler->reg(WSLit("read"),[](JSArray args)
+		{
+			string id=ToString(args[0].ToString());
+			auto it=tweets.find(id);
+			for(;it!=tweets.begin();--it)
+			{
+				it->second->read=1;
+				for(auto c:it->second->instances)
+				{
+					runJS("document.getElementById('"+it->second->id+"_"+c->columnName+"').className='readtweet';");
+				}
+			}
+		});
 	}
 	/*processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
 	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up*/
@@ -680,9 +706,19 @@ int main(int argc,char **argv)
 		}
 		//atexit(saveTweets);
 	}
+	bool notSet=1;
 	int t=0;
 	while(!done)
 	{
+		if(notSet && loggedIn)
+		{
+
+			while (view->IsLoading())
+				web_core->Update();
+			JSObject v=view->CreateGlobalJavascriptObject(WSLit("globals")).ToObject();
+			v.SetProperty(WSLit("username"),JSValue(FS(username)));
+			notSet=0;
+		}
 		time(&currentTime);
 #ifdef USE_WINDOWS
 		while (PeekMessage(&Msg, NULL, 0, 0, PM_REMOVE))
@@ -709,6 +745,8 @@ int main(int argc,char **argv)
 		jsToRun.clear();
 		leaveMutex(jsMutex);
 		web_core->Update();
+		for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
+			it->second->update();
 #ifdef USE_WINDOWS
 		Sleep(20);
 #else
@@ -794,6 +832,10 @@ void readConfig()
 	fscanf(fp,"%i\n",&pinLogin);
 	jumpToSetting(fp,"max tweets in ram");
 	fscanf(fp,"%i\n",&maxTweets);
+	jumpToSetting(fp,"proxy server");
+	settings::proxyServer=cscanf(fp,"%s\n");
+	jumpToSetting(fp,"proxy port");
+	settings::proxyPort=cscanf(fp,"%s\n");
 
 	using namespace colors;
 	jumpToSetting(fp,"unread tweet color");

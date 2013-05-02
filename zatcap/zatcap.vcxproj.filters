@@ -41,12 +41,6 @@
     <ClInclude Include="Column.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HomeColumn.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MentionColumn.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -98,12 +92,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Column.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HomeColumn.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MentionColumn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">

@@ -141,8 +141,6 @@
     <ClInclude Include="Column.h" />
     <ClInclude Include="CustomColumn.h" />
     <ClInclude Include="file.h" />
-    <ClInclude Include="HomeColumn.h" />
-    <ClInclude Include="MentionColumn.h" />
     <ClInclude Include="Process.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -161,11 +159,9 @@
     <ClCompile Include="Column.cpp" />
     <ClCompile Include="CustomColumn.cpp" />
     <ClCompile Include="file.cpp" />
-    <ClCompile Include="HomeColumn.cpp" />
     <ClCompile Include="json_reader.cpp" />
     <ClCompile Include="json_value.cpp" />
     <ClCompile Include="json_writer.cpp" />
-    <ClCompile Include="MentionColumn.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="stream.cpp" />
     <ClCompile Include="Tweet.cpp" />

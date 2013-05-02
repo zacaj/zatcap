@@ -54,6 +54,8 @@ namespace settings
 	extern int textSize,timeSize,columnTitleTextSize,userNameTextSize,retweetTextSize,editorTextSize;
 	extern int pinLogin;
 	extern int maxTweets;
+	extern string proxyServer;
+	extern string proxyPort;
 }
 namespace colors
 {

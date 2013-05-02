@@ -7,13 +7,13 @@
 #include <assert.h>
 #include <json\writer.h>
 #include "TimedEventProcess.h"
-#include "MentionColumn.h"
 #include "Tweet.h"
 #include <SDL_rotozoom.h>
 #include "file.h"
 #include <stdio.h>
 #include <dirent.h>
 #include <iosfwd>
+#include "Awesomium.h"
 #include "AvitarDownloader.h"
 AvitarDownloader *aviDownloader;
 using namespace colors;
@@ -31,8 +31,11 @@ void twitterInit( void  *_twit )
 	twit=new twitCurl();
 	*((void**)_twit)=twit;
 	twit->setTwitterApiType(twitCurlTypes::eTwitCurlApiFormatJson);
-	twit->setProxyServerIp(string("127.0.0.1"));
-	twit->setProxyServerPort(string("2908"));
+	if(settings::proxyServer!="none")
+	{
+		twit->setProxyServerIp(settings::proxyServer);
+		twit->setProxyServerPort(settings::proxyPort);
+	}
 	WaitIndicator *wait=new WaitIndicator("Signing in to Twitter...");
 	{
 		processes[102.4]=wait;
@@ -51,6 +54,7 @@ void twitterInit( void  *_twit )
 	{refreshTweets(0);debugHere();
 	}
 #endif
+
 	wait->shouldRemove=1;debugHere();
 	if(settings::enableStreaming)
 		openUserStream(twit);
@@ -501,7 +505,7 @@ retry:
 			curl_easy_setopt(curl, CURLOPT_URL, pic->url.c_str());
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
-			curl_easy_perform(curl);
+			//curl_easy_perform(curl);
 			/* always cleanup */
 			curl_easy_cleanup(curl);
 			debugHere();
@@ -693,6 +697,8 @@ bool urlIsPicture(string url)
 	if(url.find(".jpg")!=string::npos)
 		return 1;
 	if(url.find(".png")!=string::npos)
+		return 1;
+	if(url.find(".gif")!=string::npos)
 		return 1;
 	if(url.find("pic.")!=string::npos)
 		return 1;

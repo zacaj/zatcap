@@ -2,9 +2,11 @@
 
 #include "zatcap.h"
 #include "twitter.h"
+#include <set>
 class TweetInstance;
 #define FAVORITE 2
 #define FOLLOW 3
+class Column;
 class Item
 {
 public:
@@ -17,6 +19,7 @@ public:
 	int read;
 	virtual string getHtml(string columnName) =0;
 	virtual void write(FILE *fp)=0;
+	set<Column*> instances;
 };
 
 class Favorite:public Item
