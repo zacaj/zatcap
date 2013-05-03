@@ -3,20 +3,24 @@
 	width: 30%; 
 	height: 100%; 
 	top: 0;
-	border: 1px solid red;
 	display: inline-block;
 	float: left;
     overflow:auto;
+	padding-right:11px;
 }
 .readtweet
 {
 	width: 100%; 
 	background-color: #DDDDDD;
+	padding: 6px;
+	display:inline-block;
 }
 .unreadtweet
 {
 	width: 100%; 
 	background-color: #FFFFFF;
+	padding: 6px;
+	display:inline-block;
 }
 .unreadtweet:hover
 {
@@ -25,6 +29,36 @@
 .readtweet:hover
 {
 	background-color: #EFEFEF;
+}
+.username
+{
+	font-size: 1.24em;
+}
+.time
+{
+	font-size: 1em;
+	float:right;
+}
+.avatar
+{
+	margin:4px auto;
+	width:48px;
+	height:48px;
+}
+.tweetleft
+{
+	float:left;
+	text-align:center;
+	margin-right:4px;
+}
+.tweetbuttons
+{
+	display:block;
+}
+.meta
+{
+	margin-top:3px;
+	margin-bottom:3px;
 }
 body,html
 {
