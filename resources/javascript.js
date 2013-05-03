@@ -14,10 +14,46 @@ function init()
 	};
 }
 var inReplyTo="";
+function moveCaretToEnd(el) {
+    if (typeof el.selectionStart == "number") {
+        el.selectionStart = el.selectionEnd = el.value.length;
+    } else if (typeof el.createTextRange != "undefined") {
+        el.focus();
+        var range = el.createTextRange();
+        range.collapse(false);
+        range.select();
+    }
+}
 function setReplyTo(id,author)
 {
+	var text=document.getElementById(id+'_text').innerHTML;
 	inReplyTo=id;
-	document.getElementById('tweetbox').value+=author+" ";
+	var to=new Array();
+	if(!globals || author!='@'+globals.username)
+		to.push(author);
+	for(var i=0;i<text.length;i++)
+	{
+		if(text.charAt(i)=='@')
+		{
+			var str='';
+			for(var j=i;j<text.length;j++)
+			{
+				var c=text.charCodeAt(j)
+				if((c<48 || (c>57 && c<65) || (c>90 && c<97) || c>122) && c!=95 && c!=64)
+					break;
+				str=str+text.charAt(j);
+			}
+			if(globals && str!='@'+globals.username && str.length>0 && to.indexOf(str)==-1)
+				to.push(str);
+			i=j;
+		}
+				
+	}
+	for(var i=0;i<to.length;i++)
+		document.getElementById('tweetbox').value+=to[i]+" ";
+	document.getElementById('tweetbox').focus();
+	moveCaretToEnd(document.getElementById('tweetbox'));
+	
 }
 function sendTweet(tweet)
 {
@@ -81,6 +117,11 @@ function addTweetHtml(columnName,tweetHtml,tweetId)
 			{
 		column.pendingTweets.push(n);}
 }
+function removeTweet(columnName,id)
+{
+//cpp.debug(id+"_"+columnName);
+	remove(id+"_"+columnName);
+}
 function checkScroll(columnName)
 {
 	var column=document.getElementById(columnName);
@@ -128,4 +169,12 @@ function doDelete(id,columnName)
 	{
 		cpp._delete(id);
 	}	
+}
+function remove(id)
+{
+    return (elem=document.getElementById(id)).parentNode.removeChild(elem);
+}
+function lightbox(url)
+{
+	document.getElementById('body').insertBefore(nodeFromHtml("<div id=\"light\" class=\"white_content\"><object data='"+url+"' style='width: 95%;height: 95%'>tada</object><center><a href='javascript:;' onclick=\"cpp.openInNativeBrowser('"+url+"');\">Open in browser</a></center></div><div id=\"fade\" class=\"black_overlay\" onclick=\"remove('light');remove('fade');\"></div>"),null);
 }
