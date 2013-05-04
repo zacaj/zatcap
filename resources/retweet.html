@@ -1,11 +1,20 @@
-<div id='$ID_$COLUMN' class="$READtweet"  onmouseover="document.getElementById('$ID_#COLUMN_buttons').style.visibility='visible';" onmouseout="document.getElementById('$ID_COLUMN_buttons').style.visibility='hidden';" onclick="cpp.read('$ID');">
-<img src='$AVATAR' />rt<img src='$RTAVATAR' />
-<div id="$ID_$COLUMN_buttons" style="visibility: hidden; display: inline;">
-<a href="javascript:setReplyTo('$ORIGINALID','@$USERNAME');"><img id='$ID_$COLUMN_reply' src='asset://resource/reply.png' onmouseover="if(this.src=='asset://resource/reply.png') this.src='asset://resource/reply_hover.png';"  onmouseout="if(this.src=='asset://resource/reply_hover.png') this.src='asset://resource/reply.png';"/></a>
-<a href="javascript:doRetweet('$ORIGINALID','$COLUMN');"><img id='$ID_$COLUMN_rt' src='asset://resource/retweet.png' onmouseover="if(this.src=='asset://resource/retweet.png') this.src='asset://resource/retweet_hover.png';"  onmouseout="if(this.src=='asset://resource/retweet_hover.png') this.src='asset://resource/retweet.png';"/></a>
-<a href="javascript:doFavorite('$ORIGINALID','$COLUMN');"><img id='$ID_$COLUMN_fav' src='asset://resource/favorite$FAVORITED.png' onmouseover="if(this.src=='asset://resource/favorite.png') this.src='asset://resource/favorite_hover.png';"  onmouseout="if(this.src=='asset://resource/favorite_hover.png') this.src='asset://resource/favorite.png';"/></a>
+<div id='$ID_$COLUMN'  class="$READtweet" onmouseover="document.getElementById('$ID_$COLUMN_buttons').style.visibility='visible';" onmouseout="document.getElementById('$ID_$COLUMN_buttons').style.visibility='hidden';" onclick="cpp.read('$ID');">
+<div class="tweetleft">
+<div class="rtavatarholder">
+<img class="retweetedavatar" src="$AVATAR" />
+<img class="retweeteravatar" src="$RTAVATAR" />
+</div>
+<div class="tweetbuttons"id="$ID_$COLUMN_buttons" style="visibility: hidden;">
+<a href="javascript:setReplyTo('$ID','@$USERNAME');"><img id='$ID_$COLUMN_reply' src='asset://resource/reply.png' onmouseover="if(this.src=='asset://resource/reply.png') this.src='asset://resource/reply_hover.png';"  onmouseout="if(this.src=='asset://resource/reply_hover.png') this.src='asset://resource/reply.png';"/></a>
+<a href="javascript:doRetweet('$ID','$COLUMN');"><img id='$ID_$COLUMN_rt' src='asset://resource/retweet.png' onmouseover="if(this.src=='asset://resource/retweet.png') this.src='asset://resource/retweet_hover.png';"  onmouseout="if(this.src=='asset://resource/retweet_hover.png') this.src='asset://resource/retweet.png';"/></a>
+<a href="javascript:doFavorite('$ID','$COLUMN');"><img id='$ID_$COLUMN_fav' src='asset://resource/favorite$FAVORITED.png' onmouseover="if(this.src=='asset://resource/favorite.png') this.src='asset://resource/favorite_hover.png';"  onmouseout="if(this.src=='asset://resource/favorite_hover.png') this.src='asset://resource/favorite.png';"/></a>
 <a href="javascript:doDelete('$ID','$COLUMN');" style="display:$HIDENOTMINE;"><img id='$ID_$COLUMN_del' src='asset://resource/delete.png' onmouseover="if(this.src=='asset://resource/delete.png') this.src='asset://resource/delete_hover.png';"  onmouseout="if(this.src=='asset://resource/delete_hover.png') this.src='asset://resource/delete.png';"/></a>
 </div>
-<h5>$USERNAME RT by $RETWEETER at $TIME</h5>
-<p class="text" id="$ID_text">$TEXT</p>
+</div>
+<div class="meta">
+<span class="username">$NAME (RT by $RETWEETER)</span>
+<span class="time">$TIME</span>
+
+</div>
+<span class="text" id="$ID_text">$TEXT</span>
 </div>

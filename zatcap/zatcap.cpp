@@ -640,6 +640,13 @@ int main(int argc,char **argv)
 				}
 			}
 		});
+		POINT pt;
+		pt.x=0;
+		pt.y=0;
+		ClientToScreen(hwnd,&pt);
+		RECT rect;
+		GetWindowRect(hwnd,&rect);
+		MoveWindow(hwnd,rect.left-(pt.x-rect.left),rect.top-(pt.y-rect.top),settings::windowWidth+(pt.x-rect.left)*2,settings::windowHeight+(pt.y-rect.top)+(pt.x-rect.left),0);
 	}
 	/*processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
 	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up*/
@@ -684,7 +691,7 @@ int main(int argc,char **argv)
 	}
 	fclose(fopen("stream debug.txt","w"));
 	startThread(twitterInit,&twit);
-
+	//addTweet(new Favorite("lorem ipsum est luditorium con meguieligum son locos","3453245234624563456",))
 	/*{
 		Textbox *textbox=new Textbox();
 		textbox->w=300;

@@ -130,6 +130,7 @@ std::string Tweet::getHtml(string columnName)
 			replace(content,string("$TIME"),escape(date));
 		}
 		replace(content,string("$USERNAME"),escape(user()->username));
+		replace(content,string("$NAME"),escape(user()->username));
 		replace(content,string("$FULLNAME"),escape(user()->name));
 		replace(content,string("$AVATAR"),user()->picURL);
 		replace(content,string("$COLUMN"),columnName);
@@ -174,6 +175,7 @@ std::string Retweet::getHtml( string columnName )
 		}
 		replace(content,string("$TEXT"),escape(htmlText));
 		replace(content,string("$USERNAME"),escape(user()->username));
+		replace(content,string("$NAME"),escape(user()->username));
 		replace(content,string("$RETWEETER"),escape(retweetedBy->username));
 		replace(content,string("$FULLNAME"),escape(user()->name));
 		replace(content,string("$AVATAR"),user()->picURL);

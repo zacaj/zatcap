@@ -5,7 +5,8 @@
 	top: 0;
 	display: inline-block;
 	float: left;
-    overflow:auto;
+    overflow-x:hidden;
+    overflow-y:auto;
 	padding-right:11px;
 }
 .readtweet
@@ -28,7 +29,7 @@
 }
 .readtweet:hover
 {
-	background-color: #EFEFEF;
+	background-color: #DFDFDF;
 }
 .username
 {
@@ -60,6 +61,30 @@
 	margin-top:3px;
 	margin-bottom:3px;
 }
+.rtavatarholder
+{
+	width:48px;
+	height: 48px;
+	position:relative;
+	margin: 0 auto;
+}
+.retweetedavatar
+{
+	width: 34px;
+height: 34px;
+position: absolute;
+top: 0;
+left: 0;
+}
+.retweeteravatar
+{
+	width: 23px;
+height: 23px;
+right: 0;
+bottom: 0;
+position: absolute;
+
+}
 body,html
 {
 	width: 100%;
@@ -72,18 +97,16 @@ overflow: hidden;
 {
 	position:absolute;
     left:0;
-	bottom:150px;
+	bottom:75px;
     top:0;
 	width:100%;
-    border: 1px solid blue;
     overflow-x:auto;
 	overflow-y:hidden;
 }
 #bottom
 {
     position:absolute;
-    height:125px;
-    border: 1px solid blue;
+    height:75px;
     bottom:0;
     width:100%;
 }

@@ -5,7 +5,7 @@
 <br />
 <img src="asset://resource/refresh.png" onmouseover="this.src='asset://resource/refresh_hover.png';" onmouseout="this.src='asset://resource/refresh.png';" onclick="cpp.refresh();" />
 <center>
-<textarea rows="4" cols="50" id="tweetbox" wrap="soft" onkeyup="updateTweetLength();"></textarea>
+<textarea rows="4" cols="50" id="tweetbox" wrap="soft" onkeyup="updateTweetLength();" style="resize: none; "></textarea>
 <span id="TweetLength" style="font-size: 175%;"></span>
 <button type="button" id="SendTweet" onclick="sendTweet();">Tweet</button>
 <button type="button" id="ClearTweet" onclick="document.getElementById('tweetbox').value='';">Clear</button>
