@@ -636,7 +636,7 @@ int main(int argc,char **argv)
 				it->second->read=1;
 				for(auto c:it->second->instances)
 				{
-					runJS("document.getElementById('"+it->second->id+"_"+c->columnName+"').className='readtweet';");
+					runJS("document.getElementById('"+it->second->id+"_"+c->columnName+"bg').className='readtweetbg';");
 				}
 			}
 		});

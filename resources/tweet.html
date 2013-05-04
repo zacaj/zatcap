@@ -1,4 +1,6 @@
-<div id='$ID_$COLUMN'  class="$READtweet" onmouseover="document.getElementById('$ID_$COLUMN_buttons').style.visibility='visible';" onmouseout="document.getElementById('$ID_$COLUMN_buttons').style.visibility='hidden';" onclick="cpp.read('$ID');">
+<div id='$ID_$COLUMN' class="tweetshell">
+<div id='$ID_$COLUMNbg' class="$READtweetbg"></div>
+<div  class="tweet" onmouseover="document.getElementById('$ID_$COLUMN_buttons').style.visibility='visible';" onmouseout="document.getElementById('$ID_$COLUMN_buttons').style.visibility='hidden';" onclick="cpp.read('$ID');">
 <div class="tweetleft">
 <img class="avatar" src="$AVATAR" />
 <div class="tweetbuttons"id="$ID_$COLUMN_buttons" style="visibility: hidden;">
@@ -13,5 +15,8 @@
 <span class="time">$TIME</span>
 
 </div>
+<div>
 <span class="text" id="$ID_text">$TEXT</span>
+</div>
+</div>
 </div>

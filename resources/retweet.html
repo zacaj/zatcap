@@ -1,4 +1,6 @@
-<div id='$ID_$COLUMN'  class="$READtweet" onmouseover="document.getElementById('$ID_$COLUMN_buttons').style.visibility='visible';" onmouseout="document.getElementById('$ID_$COLUMN_buttons').style.visibility='hidden';" onclick="cpp.read('$ID');">
+<div class="tweetshell">
+<div class="$READtweetbg"></div>
+<div id='$ID_$COLUMN'  class="tweet" onmouseover="document.getElementById('$ID_$COLUMN_buttons').style.visibility='visible';" onmouseout="document.getElementById('$ID_$COLUMN_buttons').style.visibility='hidden';" onclick="cpp.read('$ID');">
 <div class="tweetleft">
 <div class="rtavatarholder">
 <img class="retweetedavatar" src="$AVATAR" />
@@ -12,9 +14,12 @@
 </div>
 </div>
 <div class="meta">
-<span class="username">$NAME (RT by $RETWEETER)</span>
+<span class="username">$NAME</span> (RT by $RETWEETER)
 <span class="time">$TIME</span>
 
 </div>
+<div>
 <span class="text" id="$ID_text">$TEXT</span>
+</div>
+</div>
 </div>

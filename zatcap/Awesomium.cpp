@@ -16,7 +16,8 @@ HtmlSource::HtmlSource()
 void DirectorySource::OnRequest( int request_id, const WebString& name )
 {
 	FILE *fp;
-	string p=path+ToString(name);
+	string n=ToString(name);
+	string p=path+getFile(n);
 	fp=fopen((p).c_str(),"rb");
 	fseek(fp,0,SEEK_END);
 	unsigned int len=ftell(fp);
