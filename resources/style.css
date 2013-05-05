@@ -8,14 +8,14 @@
     overflow-y:auto;
 	background-color:transparent;
 	position:relative;
-	margin:0;
+	margin:0px;
 }
 .tweetshell
 {
 	width:100%;
 	position:relative;
 	background-color:transparent;
-	margin:0;
+	margin:0px;
 }
 .tweet
 {
@@ -26,18 +26,9 @@
 	position:relative;
 	z-index:2;
 	background-color:transparent;
-	margin:0;
+	margin:0px;
 }
 .readtweetbg
-{
-	background-color: #DDDDDD;
-	/*opacity:.45;*/
-	position:absolute;
-	width:100%;
-	height:100%;
-	z-index:1;
-}
-.unreadtweetbg
 {
 	background-color: #FFFFFF;
 	/*opacity:.45;*/
@@ -46,13 +37,22 @@
 	height:100%;
 	z-index:1;
 }
+.unreadtweetbg
+{
+	background-color: #EEEEEE;
+	/*opacity:.45;*/
+	position:absolute;
+	width:100%;
+	height:100%;
+	z-index:1;
+}
 .unreadtweetbg:hover
 {
-	background-color: #EFEFEF;
+	background-color: #DFDFDF;
 }
 .readtweetbg:hover
 {
-	background-color: #DFDFDF;
+	background-color: #EFEFEF;
 }
 .username
 {
@@ -93,16 +93,16 @@
 }
 .retweetedavatar
 {
-	width: 34px;
-height: 34px;
+	width: 66%;
+height: 66%;
 position: absolute;
 top: 0;
 left: 0;
 }
 .retweeteravatar
 {
-	width: 23px;
-height: 23px;
+	width: 47%;
+height: 47%;
 right: 0;
 bottom: 0;
 position: absolute;
@@ -116,6 +116,17 @@ body,html
 overflow: hidden;
 	/*background-image: url('asset:/resource/background.jpg');*/
 	margin:0;
+	box-model: border-box;
+	-webkit-box-model: border-box;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+#body
+{
+	box-model: border-box;
+	-webkit-box-model: border-box;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
 }
 #columns
 {
@@ -133,7 +144,7 @@ overflow: hidden;
     height:75px;
     bottom:0;
     width:100%;
-	background-color:#EEEEEE;
+	background-color:#CCCCCC;
 }
 
 
@@ -163,4 +174,14 @@ overflow: hidden;
 	z-index:1002;
 	overflow: auto;
 	display:block;
+}
+
+button
+{
+background-color:#EEEEEE;
+border: 1.5px solid #666666;
+color: #000;
+text-align: center;
+border-radius: 4px;
+padding: 1px 4px;
 }

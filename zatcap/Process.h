@@ -22,6 +22,6 @@ public:
 
 	virtual void deleteTweet( string id ){};
 
-
+	virtual bool isColumn(){return 0;}
 	bool shouldRemove;
 };

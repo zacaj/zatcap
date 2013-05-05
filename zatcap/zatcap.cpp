@@ -199,6 +199,20 @@ void collectDeviousData(void *p)
 		curl_easy_cleanup(curl2);
 	}
 }
+void addColumnButtons()
+{
+	for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)
+	{
+		if(it->second->isColumn())
+		{
+			Column *column=(Column*)it->second;
+			string html=f2s("resources/columnbutton.html");
+			replace(html,"$COLUMNNAME",column->columnName);
+			runJS("document.getElementById('columnButtonContainer').appendChild(nodeFromHtml('"+escape(html)+"'));");
+		}
+	}
+}
+int w=-1;
 #ifdef USE_WINDOWS
 WNDCLASSEX wc;
 HWND hwnd;
@@ -215,8 +229,24 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_SIZE:
 		{
+			if(LOWORD(lParam)<550 &&(w==-1 || w>=550))
+			{
+				runJS("document.getElementById('bottom').innerHTML='"+escape(f2s("resources/bottomnarrow.html"))+"';");
+				runJS("document.getElementById('bottom').style.height='120px';");
+				runJS("document.getElementById('columns').style.bottom='120px';");
+				runJS("document.getElementById('columns').style.overflow='hidden';");
+				addColumnButtons();
+			}
+			else if(LOWORD(lParam)>550 && (w==-1 || w<=550))
+			{
+				runJS("document.getElementById('bottom').innerHTML='"+escape(f2s("resources/bottom.html"))+"';");
+				runJS("document.getElementById('bottom').style.height='75px';");
+				runJS("document.getElementById('columns').style.bottom='75px';");
+				runJS("document.getElementById('columns').style.overflow='auto';");
+			}
 			if(view)
 			view->Resize(LOWORD(lParam),HIWORD(lParam));
+			w=LOWORD(lParam);
 		}
 		break;
 	default:
@@ -556,7 +586,9 @@ int main(int argc,char **argv)
 		htmlSource=new HtmlSource();
 		session->AddDataSource(WSLit("zatcap"), htmlSource);
 		session->AddDataSource(WSLit("resource"),new DirectorySource("resources\\"));
-		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> </head><body onload=\"init();\" id='body'>"+f2s("resources/index.html")+"</body>";
+		string index=f2s("resources/index.html");
+		replace(index,"$BOTTOM",f2s("resources/bottom.html"));
+		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> </head><body onload=\"init();\" id='body'>"+index+"</body>";
 		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
 		runJS("init();");
 		methodHandler=new MethodHandler(view,web_core);
@@ -715,6 +747,7 @@ int main(int argc,char **argv)
 	}
 	bool notSet=1;
 	int t=0;
+	addColumnButtons();
 	while(!done)
 	{
 		if(notSet && loggedIn)

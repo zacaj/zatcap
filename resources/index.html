@@ -1,13 +1,6 @@
 <div style="width: 100%; height:100%;">
 <div id='columns'></div>
 <div id='bottom'>
-<button type="button"  onclick="cpp.source(document.body.parentNode.outerHTML);">Source</button>
-<img src="asset://resource/refresh.png" onmouseover="this.src='asset://resource/refresh_hover.png';" onmouseout="this.src='asset://resource/refresh.png';" onclick="cpp.refresh();" />
-<center>
-<textarea rows="4" cols="50" id="tweetbox" wrap="soft" onkeyup="updateTweetLength();" style="resize: none; "></textarea>
-<span id="TweetLength" style="font-size: 175%;"></span>
-<button type="button" id="SendTweet" onclick="sendTweet();">Tweet</button>
-<button type="button" id="ClearTweet" onclick="document.getElementById('tweetbox').value='';">Clear</button>
-</center>
+$BOTTOM
 </div>
 </div>

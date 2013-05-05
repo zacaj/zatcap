@@ -24,7 +24,7 @@ public:
 	int scrollBarY;
 	int tweetHeight;
 	map<string,TweetInstance*> m_tweets;
-	Column(float w,string name);
+	void init(float w,string name);
 	virtual ~Column(void);
 	virtual void update();
 	virtual void draw();
@@ -37,6 +37,7 @@ public:
 	bool drawRefreshButton();
 	bool redrawAllTweets;
 	void add(Item* tweet);
+	bool isColumn(){return 1;}
 };
 
 extern int columnHorizontalScroll;

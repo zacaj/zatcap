@@ -8,7 +8,7 @@
 int columnHorizontalScroll=0;
 int columnHorizontalRenderAt=0;
 
-Column::Column(float _w ,string _name)
+void Column::init(float _w ,string _name)
 {
 	w=_w;
 	rw=w;
@@ -25,6 +25,7 @@ Column::Column(float _w ,string _name)
 	string src=f2s("resources/column.html");
 	string column=escape(src);
 	replace(column,string("$COLUMNNAME"),columnName);
+	replace(column,string("$WIDTH"),i2s(w));
 	runJS("document.getElementById('columns').appendChild(nodeFromHtml(\""+column+"\"));document.getElementById('"+columnName+"').pendingTweets=new Array();");
 }
 

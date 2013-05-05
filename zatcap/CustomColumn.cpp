@@ -1,9 +1,10 @@
 #include "CustomColumn.h"
 
 
-CustomColumn::CustomColumn(string name,string path):Column(0,name)
+CustomColumn::CustomColumn(string name,string path)
 {
 	FILE *fp=fopen(path.c_str(),"rb");
+	fscanf(fp,"%i\n",&w);
 	while(!feof(fp))
 	{
 		skipWhile(fp,' ');
@@ -27,6 +28,7 @@ CustomColumn::CustomColumn(string name,string path):Column(0,name)
 		CHECK(By);
 		CHECK(Favorited);
 	}
+	init(w,name);
 }
 
 
