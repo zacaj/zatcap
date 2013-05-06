@@ -6,4 +6,5 @@ notifications
 dynamic icon
 load/save tweets
 intervaic refresh
-single column
+autocompleyte
+mute

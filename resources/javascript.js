@@ -24,6 +24,12 @@ function moveCaretToEnd(el) {
         range.select();
     }
 }
+function isValidInUsername(c)
+{
+	if((c<48 || (c>57 && c<65) || (c>90 && c<97) || c>122) && c!=95)
+	return false;
+	return true;
+}
 function setReplyTo(id,author)
 {
 	var text=document.getElementById(id+'_text').innerHTML;
@@ -39,7 +45,7 @@ function setReplyTo(id,author)
 			for(var j=i;j<text.length;j++)
 			{
 				var c=text.charCodeAt(j)
-				if((c<48 || (c>57 && c<65) || (c>90 && c<97) || c>122) && c!=95 && c!=64)
+				if(!isValidInUsername(c) && c!=64)
 					break;
 				str=str+text.charAt(j);
 			}
@@ -62,9 +68,75 @@ function sendTweet(tweet)
 	cpp.sendTweet(tweet,inReplyTo);
 	document.getElementById('tweetbox').value="";
 }
+var completebox=null;
+var usernames=new Array();
 function updateTweetLength()
 {
 	document.getElementById('TweetLength').innerHTML=""+(140-document.getElementById('tweetbox').value.length);
+	var textbox=document.getElementById('tweetbox');
+	if(textbox.selectionStart!=0)
+	{
+		if(textbox.value.charAt(textbox.selectionStart-1)=='@')
+		{
+			var positioner = new maxkir.CursorPosition(textbox, 3);
+			var p=positioner.getPixelCoordinates();
+		//cpp.debug(''+textbox.offsetHeight+','+p[1]);
+			//document.getElementById('tweetboxcontainer').removeChild('completebox');
+			remove('completebox');
+			var n=nodeFromHtml("<div id='completebox' style='left: "+(p[0]+2)+"px; bottom:"+(textbox.offsetHeight-p[1]+4)+"px;'></div>");
+			document.getElementById('tweetboxcontainer').appendChild(n);
+			completebox=document.getElementById('completebox');
+			for(var i=0;i<usernames.length;i++)
+			{
+				var no=nodeFromHtml("<div class='completeboxitem' onclick='insertCompletion(\""+usernames[i]+"\");'>"+usernames[i]+"<br/></div>");
+				no.username=usernames[i];
+				if(i==0)
+					no.className="completeboxitemselected";
+				completebox.appendChild(no);
+			}
+		}
+		else if(completebox)
+		{
+			var str=textbox.value.substr(textbox.value.lastIndexOf('@',textbox.selectionStart-1)+1,textbox.selectionStart);
+			//cpp.debug(str);
+			for(var i=0;i<str.length;i++)
+				if(isValidInUsername(str.charCodeAt(i))==false)
+				{
+					remove('completebox');
+					completebox=null;
+					return;
+				}
+			var children=completebox.children;
+			var visible=0;
+			for(var i=0;i<children.length;i++)
+			{
+				if(children[i].username)
+				{
+					if(children[i].username.substr(0,str.length)==str)
+					{
+						children[i].style.display="inline-block";
+						visible++;
+					}
+					else
+						children[i].style.display="none";
+				}
+			}
+			if(visible==0)
+				completebox.style.display="none";
+			else
+				completebox.style.display="block";
+		}
+	}
+}
+function insertCompletion(text)
+{
+	var textbox=document.getElementById('tweetbox');
+	//cpp.debug(text);
+	var start=textbox.value.lastIndexOf('@',textbox.selectionStart-1)+1;
+	//cpp.debug("2");
+	var str=textbox.value.substr(0,start)+text+textbox.value.substr(textbox.selectionStart)+" ";
+	//cpp.debug(str);
+	textbox.value=str;
 }
 function nodeFromHtml(html)
 {
@@ -171,8 +243,10 @@ function doDelete(id,columnName)
 	}	
 }
 function remove(id)
-{
-    return (elem=document.getElementById(id)).parentNode.removeChild(elem);
+{	
+	var elem=document.getElementById(id);
+	if(elem)
+		elem.parentNode.removeChild(elem);
 }
 function lightbox(url)
 {

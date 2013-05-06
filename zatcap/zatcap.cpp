@@ -232,8 +232,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			if(LOWORD(lParam)<550 &&(w==-1 || w>=550))
 			{
 				runJS("document.getElementById('bottom').innerHTML='"+escape(f2s("resources/bottomnarrow.html"))+"';");
-				runJS("document.getElementById('bottom').style.height='120px';");
-				runJS("document.getElementById('columns').style.bottom='120px';");
+				runJS("document.getElementById('bottom').style.height='100px';");
+				runJS("document.getElementById('columns').style.bottom='100px';");
 				runJS("document.getElementById('columns').style.overflow='hidden';");
 				addColumnButtons();
 			}
@@ -440,6 +440,11 @@ struct tweetData
 	}
 };
 
+void addUsername( string name ) 
+{
+	runJS("usernames.push('"+name+"');");
+}
+
 void sendTweet(void *_data)
 {
 	tweetData *data=(tweetData*)_data;
@@ -588,7 +593,7 @@ int main(int argc,char **argv)
 		session->AddDataSource(WSLit("resource"),new DirectorySource("resources\\"));
 		string index=f2s("resources/index.html");
 		replace(index,"$BOTTOM",f2s("resources/bottom.html"));
-		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> </head><body onload=\"init();\" id='body'>"+index+"</body>";
+		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> <script type=\"text/javascript\" src=\"asset://resource/selection_range.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/string_splitter.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/cursor_position.js\"></script></head><body onload=\"init();\" id='body'>"+index+"</body>";
 		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
 		runJS("init();");
 		methodHandler=new MethodHandler(view,web_core);
@@ -748,6 +753,10 @@ int main(int argc,char **argv)
 	bool notSet=1;
 	int t=0;
 	addColumnButtons();
+	addUsername("zacaj_");
+	addUsername("zacaaj_");
+	addUsername("avian_flame");
+	addUsername("anticampr");
 	while(!done)
 	{
 		if(notSet && loggedIn)
