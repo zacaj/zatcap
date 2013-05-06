@@ -1,0 +1,32 @@
+<div style="display:table; width:100%;  height: 100%;">
+<center>
+<div style="display:table-row; width:100%;vertical-align:middle;" id="columnButtonContainer">
+
+</div>
+</center>
+<div style="display:table-row; width:100%;height:100%; position:relative;" id="tweetboxcontainer">
+<textarea style="display:table-row; width:100%; height:100%;" id="tweetbox" wrap="soft" onkeyup="updateTweetLength();"></textarea>
+</div>
+<div style="display:table-row; width:100%; height:15px;">
+<table style="width:100%; height: 100%; vertical-align:middle;display:table-row; ">
+    <tr>
+        <td style="text-align:center; width: 25%;
+    display: inline-block;">
+<img style="vertical-align: middle;" src="asset://resource/refresh.png" onmouseover="this.src='asset://resource/refresh_hover.png';" onmouseout="this.src='asset://resource/refresh.png';" onclick="cpp.refresh();">
+            </td>
+        <td style="text-align:center;width: 25%;
+    display: inline-block;">
+<button class="button" style="vertical-align: middle;" type="button" id="ClearTweet" onclick="document.getElementById('tweetbox').value='';">Clear</button>
+            </td>
+        <td style="text-align:center;width: 25%;vertical-align: middle;
+    display: inline-block;">
+<span id="TweetLength">140</span>
+            </td>
+        <td style="text-align:center;width: 25%;vertical-align: middle;
+    display: inline-block;">
+<button class="button" type="button" id="SendTweet" onclick="sendTweet();">Tweet</button>
+            </td>
+        </tr>
+</table>
+</div>
+</div>

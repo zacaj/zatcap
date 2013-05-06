@@ -83,6 +83,11 @@ void refreshTweets( void *data )
 		while((tmpString=twit->favoriteGet())=="");
 		parseRestTweets(tmpString);debugHere();
 	}
+	{
+		string tmpString;debugHere();
+		while((tmpString=twit->retweetsGet())=="");
+		parseRestTweets(tmpString);debugHere();
+	}
 }
 int get_utc_offset() {
 

@@ -69,6 +69,7 @@ namespace twitterDefaults
     const std::string TWITCURL_FRIENDS_TIMELINE_URL = "http://api.twitter.com/1/statuses/friends_timeline";
     const std::string TWITCURL_MENTIONS_URL = "http://api.twitter.com/1/statuses/mentions";
     const std::string TWITCURL_USERTIMELINE_URL = "http://api.twitter.com/1/statuses/user_timeline";
+    const std::string TWITCURL_RETWEETTIMELINE_URL = "https://api.twitter.com/1.1/statuses/retweets_of_me.json";
 
     /* Users URLs */
     const std::string TWITCURL_SHOWUSERS_URL = "http://api.twitter.com/1/users/show";
@@ -154,6 +155,7 @@ public:
     std::string timelineUserGet( bool trimUser /* in */, bool includeRetweets /* in */, unsigned int tweetCount /* in */, std::string userInfo = "" /* in */, bool isUserId = false /* in */ );
     std::string featuredUsersGet();
     std::string mentionsGet( std::string sinceId /* in */ ,std::string maxId);
+    std::string retweetsGet();
 
     /* Twitter user APIs */
     std::string userGet( std::string& userInfo /* in */, bool isUserId = false /* in */ );

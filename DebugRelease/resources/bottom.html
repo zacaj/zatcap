@@ -1,0 +1,44 @@
+
+<button class="button" style="display:none;" type="button" onclick="cpp.source(document.body.parentNode.outerHTML);">Source</button><center>
+<div style="width: 100%;
+text-align: center; height: 75px;">
+<div style="height: 100%;
+display: inline-block;
+text-align: left;
+padding: 0px;">
+
+<div style="
+text-align: right;
+height: 100%;
+display: inline-block;
+margin: 0px;">
+<button class="button" style="margin-bottom:12px;" type="button" id="ClearTweet" onclick="document.getElementById('tweetbox').value='';">Clear</button><br>
+<img style="margin-right:17px;margin-bottom:10px;" src="asset://resource/refresh.png" onmouseover="this.src='asset://resource/refresh_hover.png';" onmouseout="this.src='asset://resource/refresh.png';" onclick="cpp.refresh();">
+</div>
+
+<div style="height: 100%;
+display: inline-block; position:relative;
+margin: 0px;" id="tweetboxcontainer">
+<textarea rows="4" cols="50" id="tweetbox" wrap="soft" onkeyup="updateTweetLength();"></textarea>
+</div>
+
+<div style="height: 100%;
+display: inline-block;
+width: 60px;
+text-align:center;
+margin: 0px;">
+<div style="text-align:center;font-size: 175%;margin-top:10px;width:60px;position:relative;">
+<span id="TweetLength">140</span>
+</div>
+<div style="margin-top:10px; font-size: 115%;width:60px;position:relative;">
+<button type="button" id="SendTweet" onclick="sendTweet();">Tweet</button>
+</div>
+</div>
+
+</div>
+
+</div>
+<div style="display:inline-block; width:100%; display:none;" id="columnButtonContainer">
+
+</div>
+</center>

@@ -5,7 +5,7 @@
 *.psess
 *.vsp
 *.bmp
-*Debug*
+*Debug/*
 *ipch*
 *profilepics*
 *pics2*
@@ -15,6 +15,11 @@
 *.svn*
 *.o
 *goutput*
+*.dll
+*session*
+*.idb
+*.tlog
+*.so.*
 
 #################
 ## Eclipse

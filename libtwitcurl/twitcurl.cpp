@@ -459,6 +459,13 @@ std::string twitCurl::mentionsGet( std::string sinceId,std::string maxId )
     /* Perform GET */
     return performGet( buildUrl );
 }
+std::string twitCurl::retweetsGet()
+{
+	std::string buildUrl = twitterDefaults::TWITCURL_RETWEETTIMELINE_URL +
+		twitCurlDefaults::TWITCURL_EXTENSIONFORMATS[m_eApiFormatType]+twitCurlDefaults::TWITCURL_URL_SEP_QUES+twitCurlDefaults::TWITCURL_INCLUDEENTITIES;
+	/* Perform GET */
+	return performGet( buildUrl );
+}
 /*++
 * @method: twitCurl::timelineUserGet
 *
