@@ -1,10 +1,10 @@
 function init()
 {
 	updateTweetLength();
-	document.getElementById('tweetbox').onkeydown=function(e)
+}
+function tweetboxKeydown(e)
 	{
-			cpp.debug(''+e.keyCode);
-		/*if(completebox)
+		if(completebox)
 		{		
 			var c=completebox.children;
 			if(e.keyCode==38 && c.length>1)
@@ -16,6 +16,7 @@ function init()
 					{
 						c[i].className="completeboxitem";
 						last.className="completeboxitemselected";
+						e.preventDefault();
 						break;
 					}
 					last=c[i];
@@ -23,22 +24,24 @@ function init()
 			}
 			else if(e.keyCode==40 && c.length>1)
 			{
-				for(var i=0;i<c.length-1;i++)
+				for(var i=0;i<c.length-2;i++)
 				{
 					if(c[i].className=="completeboxitemselected")
 					{
 						c[i].className="completeboxitem";
 						c[i+1].className="completeboxitemselected";
+						e.preventDefault();
 						break;
 					}
 				}
 			}
 			else if(e.keyCode==13 && c.length>0)
 			{
-				for(var i=0;i<c.length-1;i++)
+				for(var i=0;i<c.length;i++)
 				{
 					if(c[i].className=="completeboxitemselected")
 					{
+						e.preventDefault();
 						insertCompletion(c[i].username);
 						break;
 					}
@@ -47,6 +50,7 @@ function init()
 			else if(e.keyCode==27)
 			{
 				remove('completebox');
+				e.preventDefault();
 			}
 		}
 		else if(e.which == 13 && e.shiftKey) 
@@ -57,9 +61,8 @@ function init()
 		{
 		   e.preventDefault(); //Stops enter from creating a new line
 		   sendTweet();
-		}*/
-	};
-}
+		}
+	}
 var inReplyTo="";
 function moveCaretToEnd(el) {
     if (typeof el.selectionStart == "number") {
@@ -123,26 +126,7 @@ function updateTweetLength()
 	var textbox=document.getElementById('tweetbox');
 	if(textbox.selectionStart!=0)
 	{
-		if(textbox.value.charAt(textbox.selectionStart-1)=='@')
-		{
-			var positioner = new maxkir.CursorPosition(textbox, 3);
-			var p=positioner.getPixelCoordinates();
-		//cpp.debug(''+textbox.offsetHeight+','+p[1]);
-			//document.getElementById('tweetboxcontainer').removeChild('completebox');
-			remove('completebox');
-			var n=nodeFromHtml("<div id='completebox' style='left: "+(p[0]+2)+"px; bottom:"+(textbox.offsetHeight-p[1]+4)+"px;'></div>");
-			document.getElementById('tweetboxcontainer').appendChild(n);
-			completebox=document.getElementById('completebox');
-			for(var i=0;i<usernames.length;i++)
-			{
-				var no=nodeFromHtml("<div class='completeboxitem' onclick='insertCompletion(\""+usernames[i]+"\");'>"+usernames[i]+"<br/></div>");
-				no.username=usernames[i];
-				if(i==0)
-					no.className="completeboxitemselected";
-				completebox.appendChild(no);
-			}
-		}
-		else if(completebox)
+		if(completebox)
 		{
 			var str=textbox.value.substr(textbox.value.lastIndexOf('@',textbox.selectionStart-1)+1,textbox.selectionStart);
 			//cpp.debug(str);
@@ -155,23 +139,59 @@ function updateTweetLength()
 				}
 			var children=completebox.children;
 			var visible=0;
+			var makeSelected=false;
 			for(var i=0;i<children.length;i++)
 			{
 				if(children[i].username)
 				{
 					if(children[i].username.substr(0,str.length)==str)
 					{
-						children[i].style.display="inline-block";
+						children[i].style.display="block";
+						if(makeSelected==true)
+						{
+							makeSelected=false;
+							children[i].className="completeboxitemselected"
+						}
 						visible++;
 					}
 					else
+					{
 						children[i].style.display="none";
+						if(children[i].className=="completeboxitemselected")
+						{
+							children[i].className="completeboxitem";
+							makeSelected=true;
+						}
+					}
 				}
+			}
+			if(makeSelected==true)
+			{
+				children[children.length-1].className="completeboxitemselected"
 			}
 			if(visible==0)
 				completebox.style.display="none";
 			else
 				completebox.style.display="block";
+		}
+		else if(textbox.value.charAt(textbox.selectionStart-1)=='@')
+		{
+			var positioner = new maxkir.CursorPosition(textbox, 3);
+			var p=positioner.getPixelCoordinates();
+		//cpp.debug(''+textbox.offsetHeight+','+p[1]);
+			//document.getElementById('tweetboxcontainer').removeChild('completebox');
+			remove('completebox');
+			var n=nodeFromHtml("<div id='completebox' style='left: "+(p[0]+2)+"px; bottom:"+(textbox.offsetHeight-p[1]+4)+"px;'></div>");
+			document.getElementById('tweetboxcontainer').appendChild(n);
+			completebox=document.getElementById('completebox');
+			for(var i=0;i<usernames.length;i++)
+			{
+				var no=nodeFromHtml("<div class='completeboxitem' onclick='insertCompletion(\""+usernames[i]+"\");'>"+usernames[i]+"</div>");
+				no.username=usernames[i];
+				if(i==0)
+					no.className="completeboxitemselected";
+				completebox.appendChild(no);
+			}
 		}
 	}
 }
@@ -184,6 +204,7 @@ function insertCompletion(text)
 	var str=textbox.value.substr(0,start)+text+textbox.value.substr(textbox.selectionStart)+" ";
 	//cpp.debug(str);
 	textbox.value=str;
+	updateTweetLength();
 }
 function nodeFromHtml(html)
 {

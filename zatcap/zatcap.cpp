@@ -235,6 +235,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 				runJS("document.getElementById('bottom').style.height='100px';");
 				runJS("document.getElementById('columns').style.bottom='100px';");
 				runJS("document.getElementById('columns').style.overflow='hidden';");
+				runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
 				addColumnButtons();
 			}
 			else if(LOWORD(lParam)>550 && (w==-1 || w<=550))
@@ -243,6 +244,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 				runJS("document.getElementById('bottom').style.height='75px';");
 				runJS("document.getElementById('columns').style.bottom='75px';");
 				runJS("document.getElementById('columns').style.overflow='auto';");
+				runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
 			}
 			if(view)
 			view->Resize(LOWORD(lParam),HIWORD(lParam));
@@ -753,10 +755,6 @@ int main(int argc,char **argv)
 	bool notSet=1;
 	int t=0;
 	addColumnButtons();
-	addUsername("zacaj_");
-	addUsername("zacaaj_");
-	addUsername("avian_flame");
-	addUsername("anticampr");
 	while(!done)
 	{
 		if(notSet && loggedIn)

@@ -176,7 +176,7 @@ overflow: hidden;
 .completeboxitem
 {
 	position:relative;
-	display:inline-block;
+	display:block;
 	width:100%;
 	margin:0px;
 	padding:0px;
@@ -188,7 +188,7 @@ overflow: hidden;
 {
 	background-color:#CDCDCD;
 	position:relative;
-	display:inline-block;
+	display:block;
 	width:100%;
 	margin:0px;
 	padding:0px;

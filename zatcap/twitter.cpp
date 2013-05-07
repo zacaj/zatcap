@@ -625,7 +625,7 @@ User * getUser( string id )
 		user->username=rstr(fp);debugHere();
 		user->name=rstr(fp);debugHere();
 		user->picURL=rstr(fp);debugHere();
-		FILE *fp2;debugHere();
+		/*FILE *fp2;debugHere();
 		if((fp2=fopen(user->getPicPath().c_str(),"r")))
 		{debugHere();
 //			user->_pic=loadImage(user->getPicPath());debugHere();
@@ -641,7 +641,7 @@ User * getUser( string id )
 			pic->user=user;debugHere();
 			aviDownloader->pics.push_back(pic);
 			//SDL_CreateThread(loadProfilePic,pic);
-		}debugHere();
+		}debugHere();*/
 		fclose(fp);debugHere();
 		return user;
 	}debugHere();

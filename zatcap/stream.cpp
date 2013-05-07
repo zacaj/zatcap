@@ -2,13 +2,15 @@
 #include "zatcap.h"
 #include "twitter.h"
 #include "Tweet.h"
-
+void addUsername(string str);
 int streaming=0;
 void parseStream(Json::Value root,string str)
 {debugHere();
 	if(!root["friends"].isNull() && root["friends"].isArray())//opening friends message
 	{
 		printf("Streaming connection established.\n");debugHere();
+		for(int i=0;i<root["friends"].size();i++)
+			addUsername(getUser(i2s(root["friends"][i].asInt()))->username);
 		//todo figure out a use for this like loading initial friends list or should that be done using rest api since streaming api might not be used and new users should be handled anyways...
 	}
 	else if(!root["text"].isNull() && !root["user"].isNull() && !root["favorited"].isNull())//is a tweet?
