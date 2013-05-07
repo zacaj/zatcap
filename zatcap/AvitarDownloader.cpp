@@ -15,7 +15,7 @@ void AvitarDownloader::update()
 {
 	if(pics.size() && !busy)
 	{
-		startThread(loadProfilePic,pics[0]);
+		//startThread(loadProfilePic,pics[0]);
 		busy=1;
 	}
 }

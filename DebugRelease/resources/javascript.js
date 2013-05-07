@@ -9,17 +9,23 @@ function tweetboxKeydown(e)
 			var c=completebox.children;
 			if(e.keyCode==38 && c.length>1)
 			{
-				var last=c[0];
-				for(var i=0;i<c.length;i++)
+				for(var i=1;i<c.length;i++)
 				{
 					if(c[i].className=="completeboxitemselected")
 					{
-						c[i].className="completeboxitem";
-						last.className="completeboxitemselected";
+						for(var j=i-1;j>=0;j--)
+						{
+							if(c[j].style.display!="none")
+							{
+								c[i].className="completeboxitem";
+								c[j].className="completeboxitemselected";
+								//c[j].scrollIntoView();
+								break;
+							}
+						}
 						e.preventDefault();
 						break;
 					}
-					last=c[i];
 				}
 			}
 			else if(e.keyCode==40 && c.length>1)
@@ -28,8 +34,16 @@ function tweetboxKeydown(e)
 				{
 					if(c[i].className=="completeboxitemselected")
 					{
-						c[i].className="completeboxitem";
-						c[i+1].className="completeboxitemselected";
+						for(var j=i+1;j<c.length;j++)
+						{
+							if(c[j].style.display!="none")
+							{
+								c[i].className="completeboxitem";
+								c[j].className="completeboxitemselected";
+								//c[j].scrollIntoView();
+								break;
+							}
+						}
 						e.preventDefault();
 						break;
 					}
@@ -138,7 +152,7 @@ function updateTweetLength()
 					return;
 				}
 			var children=completebox.children;
-			var visible=0;
+			var visible=-1;
 			var makeSelected=false;
 			for(var i=0;i<children.length;i++)
 			{
@@ -151,8 +165,9 @@ function updateTweetLength()
 						{
 							makeSelected=false;
 							children[i].className="completeboxitemselected"
+							//children[i].className.scrollIntoView();
 						}
-						visible++;
+						visible=i;
 					}
 					else
 					{
@@ -165,14 +180,18 @@ function updateTweetLength()
 					}
 				}
 			}
-			if(makeSelected==true)
-			{
-				children[children.length-1].className="completeboxitemselected"
-			}
-			if(visible==0)
+			
+			if(visible==-1)
 				completebox.style.display="none";
 			else
+			{
 				completebox.style.display="block";
+				if(makeSelected==true)
+				{
+					children[visible].className="completeboxitemselected"
+					children[visible].scrollIntoView();
+				}
+			}
 		}
 		else if(textbox.value.charAt(textbox.selectionStart-1)=='@')
 		{

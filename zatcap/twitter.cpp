@@ -642,7 +642,7 @@ User * getUser( string id )
 			aviDownloader->pics.push_back(pic);
 			//SDL_CreateThread(loadProfilePic,pic);
 		}debugHere();*/
-		fclose(fp);debugHere();
+		fclose(fp);debugHere();//loadProfilePic
 		return user;
 	}debugHere();
 	User *user=new User;
