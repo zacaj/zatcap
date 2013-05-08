@@ -5,9 +5,9 @@ class TimedEventProcess :
 	public Process
 {
 public:
-	int ticks;
+	float lastTime;
 	void *data;
-	int maxTicks;
+	float interval;
 	 void (*fn)(void*);
 	TimedEventProcess();
 	~TimedEventProcess(void);

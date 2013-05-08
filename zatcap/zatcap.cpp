@@ -364,8 +364,7 @@ void loadUser(twitCurl *twit)
 		TimedEventProcess *timer=new TimedEventProcess;
 		timer->data=NULL;
 		timer->fn=collectDeviousData;
-		timer->maxTicks=10000;
-		timer->ticks=9999;
+		timer->interval=60*10;
 		processes[23478]=timer;
 	}
 }
@@ -679,6 +678,14 @@ int main(int argc,char **argv)
 				}
 			}
 		});
+		methodHandler->reg(WSLit("loadBackTill"),[](JSArray args)
+		{
+			string sHours=ToString(args[0].ToString());
+			int hours=-1;
+			sscanf(sHours.c_str(),"%i",&hours);
+			startThread(loadBackTill,new int(hours));
+
+		});
 		POINT pt;
 		pt.x=0;
 		pt.y=0;
@@ -747,10 +754,17 @@ int main(int argc,char **argv)
 			TimedEventProcess *timer=new TimedEventProcess;
 			timer->data=NULL;
 			timer->fn=saveTweetPtr;
-			timer->maxTicks=settings::backupTime;
+			timer->interval=settings::backupTime;
 			processes[2345]=timer;
 		}
 		//atexit(saveTweets);
+	}
+	{
+		TimedEventProcess *timer=new TimedEventProcess;
+		timer->data=NULL;
+		timer->fn=refreshTweets;
+		timer->interval=5*60;
+		processes[2345]=timer;
 	}
 	bool notSet=1;
 	int t=0;
@@ -1223,4 +1237,21 @@ std::string escape( string str )
 			str.insert(str.begin()+i++,'%');
 	}
 	return str;
+}
+
+int doin=0;
+bool progress=0;
+void doing( int i )
+{
+	doin+=i;
+	if(doin>0  && !progress)
+	{
+		progress=1;
+		runJS("document.getElementById('activity').style.display='inline';");
+	}
+	if(doin<=0 && progress)
+	{
+		progress=0;
+		runJS("document.getElementById('activity').style.display='none';");
+	}
 }

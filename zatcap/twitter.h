@@ -120,7 +120,7 @@ void addTweet(Item** tweet);
 extern Mutex tweetsMutex;
 
 
-void parseRestTweets(string json);
+string parseRestTweets(string json);
 
 Tweet* processTweet(Json::Value jtweet);
 
@@ -132,3 +132,4 @@ class AvitarDownloader;
 extern AvitarDownloader *aviDownloader;
 
 void refreshTweets(void *data);
+void loadBackTill(void *data);

@@ -40,8 +40,11 @@ void twitterInit( void  *_twit )
 	{
 		processes[102.4]=wait;
 	}
+	loadOlderTweets(0);
 	printf("Logging in...\n");
+	doing(1);
 	loadUser(twit);
+	doing(-1);
 	loggedIn=1;
 	//((MentionColumn*)processes[2.5])->term=username;
 	{
@@ -51,18 +54,20 @@ void twitterInit( void  *_twit )
 	wait->text="Loading older tweets";
 #if 1
 	if(settings::tweetsToLoadOnStartup)
-	{refreshTweets(0);debugHere();
+	{startThread(refreshTweets,0);debugHere();
 	}
 #endif
 
 	wait->shouldRemove=1;debugHere();
 	if(settings::enableStreaming)
+
 		openUserStream(twit);
 		debugHere();
 }
 
 void refreshTweets( void *data )
 {
+	doing(1);
 	{
 		string tmpString;debugHere();
 		while((tmpString=twit->timelineHomeGet(false,true,25,"",""))=="");
@@ -88,6 +93,27 @@ void refreshTweets( void *data )
 		while((tmpString=twit->retweetsGet())=="");
 		parseRestTweets(tmpString);debugHere();
 	}
+	doing(-1);
+}
+void loadBackTill(void *data)
+{
+	doing(1);
+	int hours=*(int*)data;
+	int secs=hours*60*60;
+	int now=(--tweets.end())->second->timeTweetedInSeconds;
+	string oldestLoadedId="";
+	while(1)
+	{
+		string tmpString;debugHere();
+		while((tmpString=twit->timelineHomeGet(false,true,800,"",oldestLoadedId))=="");
+		oldestLoadedId=parseRestTweets(tmpString);debugHere();
+		if(oldestLoadedId.empty())
+			break;
+		Item *item=getTweet(oldestLoadedId);
+		if(now-secs>item->timeTweetedInSeconds)
+			break;
+	}
+	doing(-1);
 }
 int get_utc_offset() {
 
@@ -294,10 +320,11 @@ void readTweetFile(string path)
 	//	tweetsMissing[i]->_original=getTweet(tweetsMissing[i]->originalID);
 	fclose(fp);debugHere();
 }
-void parseRestTweets( string json )
+string parseRestTweets( string json )
 {debugHere();
 	Json::Reader reader;
 	Json::Value root;
+	string ret="";
 	FILE *fp=fopen("test.json","wb");
 	fwrite(json.c_str(),json.size(),1,fp);
 	fclose(fp);
@@ -312,6 +339,7 @@ void parseRestTweets( string json )
 			if(tweet.isNull())
 				continue;
 			processTweet(root[i]);debugHere();
+			ret=root[i]["id_str"].asString();
 		}
 	}
 	else
@@ -319,6 +347,7 @@ void parseRestTweets( string json )
 		tweets;
 		//confusion
 	}
+	return ret;
 }
 
 
@@ -453,7 +482,7 @@ void addTweet( Item** tweet )
 {debugHere();
 enterMutex(tweetsMutex);debugHere();
 	map<string,Item*>::iterator tw=tweets.find((*tweet)->id);debugHere();
-	debug("New tweet: %s\n",(*tweet)->text.c_str());
+	debug("New tweet: %s\n",escape((*tweet)->text).c_str());
 	if(tw==tweets.end())
 	{
 		tweets[(*tweet)->id]=*tweet;

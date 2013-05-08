@@ -1,0 +1,1 @@
+New tweet: <a href='#' onclick="cpp.openInNativeBrowser('https://twitter.com/@delta_vee');">@delta_vee</a> hrm...  width100% needed in this case...  <a href='javascript:;' onclick="cpp.openInNativeBrowser('http://jsfiddle.net/4QGhY/12/');">jsfiddle.net/4QGhY/12/</a>

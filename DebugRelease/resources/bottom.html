@@ -1,4 +1,8 @@
-
+<div style="position:absolute; bottom:0;float:left; vertical-align:bottom;">
+<button type="button" onclick="cpp.loadBackTill(document.getElementById('backtill').value);" style="float:left; vertical-align:bottom;">Load Old Tweets</button>
+<input type="text" placeholder="(hours)" id="backtill" size="4" onsubmit="cpp.loadBackTill(document.getElementById('backtill').value);"></input>
+</div>
+<img src="asset://resource/activity.gif" id="activity" style="position:absolute; float:right; vertical-align:bottom; bottom:0; right:0; display:none;" />
 <button class="button" style="display:none;" type="button" onclick="cpp.source(document.body.parentNode.outerHTML);">Source</button><center>
 <div style="width: 100%;
 text-align: center; height: 75px;">
