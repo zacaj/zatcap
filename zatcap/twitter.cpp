@@ -233,6 +233,7 @@ void readTweetFile(string path)
 						tweet->favorited=ruchar(fp);
 						tweet->retweeted=ruchar(fp);
 						tweet->read=ruchar(fp);debugHere();
+						//if(!tweet->read) nUnread++;
 						if(version>=3)
 						{
 							int nEntity=ruchar(fp);
@@ -273,6 +274,8 @@ void readTweetFile(string path)
 						retweet->favorited=ruchar(fp);
 						retweet->retweeted=ruchar(fp);
 						retweet->read=ruchar(fp);
+						//if(!retweet->read)
+						//	nUnread++;
 						if(version>=3)
 						{
 							int nEntity=ruchar(fp);
@@ -374,6 +377,8 @@ void deleteTweet( string id )
 	map<string,Item*>::iterator tweet=tweets.find(id);
 	if(tweet==tweets.end())
 		return;
+	if(!tweet->second->read)
+		nUnread--;
 	for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)
 	{
 		leaveMutex(tweetsMutex);
@@ -486,36 +491,28 @@ enterMutex(tweetsMutex);debugHere();
 	if(tw==tweets.end())
 	{
 		tweets[(*tweet)->id]=*tweet;
-
-		static int id=0;
-		//(*tweet)->id=i2s(id++);
+		if(!((*tweet)->read))
+			nUnread++;
 		for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
 			it->second->newTweet(*tweet);
 	}
 	else
 	{debugHere();
-		//for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
-		//	it->second->deleteTweet(tw->first);
-		(*tweet)->read=tw->second->read;
+		//nUnread-=(*tweet)->read-tw->second->read;
+		bool oldRead=tw->second->read;
 		leaveMutex(tweetsMutex);
 		deleteTweet(((Tweet*)(*tweet))->id);
-		enterMutex(tweetsMutex);
+		//enterMutex(tweetsMutex);
+
+		(*tweet)->read=oldRead;
+		/*if(!(*tweet)->read)
+			nUnread++;
 		tweets[(*tweet)->id]=*tweet;
 		for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
-			it->second->newTweet(*tweet);
-		//delete tw->second;
-		//tw->second=NULL;
-		//tweets.erase(tw);
-		//tweetsInUse=0;debugHere();
-		//addTweet(tweet);debugHere();
+			it->second->newTweet(*tweet);*/
+		addTweet(tweet);
 	}
 	leaveMutex(tweetsMutex);
-	if(tweets.size()>settings::maxTweets)
-	{
-		auto it=tweets.end();
-		//while(tweets.size()>settings::maxTweets)
-		//	deleteTweet(it->second->id);
-	}
 }
 
 void loadProfilePic(void *ptr)
@@ -818,7 +815,7 @@ Tweet* processTweet(Json::Value jtweet)
 				entity->id=jentity["id_str"].asString();
 				entity->start=jentity["indices"][0u].asInt();
 				entity->end=jentity["indices"][1u].asInt();
-				entity->text="<a href='#' onclick=\"cpp.openInNativeBrowser('https://twitter.com/"+entity->username+"');\">"+entity->username+"</a>";
+				entity->text="<a oncontextmenu='lightbox(\"asset://zatcap/mute\",false); return false;' href='#' onclick=\"cpp.openInNativeBrowser('https://twitter.com/"+entity->username+"');\">"+entity->username+"</a>";
 				tweet->entities.push_back(entity);
 				entities[entity->start]=entity;
 			}
@@ -903,6 +900,10 @@ Tweet* processTweet(Json::Value jtweet)
 	tweet->timeTweetedInSeconds=mktime(&tweet->timeTweeted);debugHere();
 	if(tweet->user()->username==username)
 		tweet->read=1;
+	else
+	{
+		//nUnread++;
+	}
 	addTweet((Item**)&tweet);debugHere();
 	return tweet;
 }

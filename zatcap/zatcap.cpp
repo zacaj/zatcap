@@ -445,6 +445,7 @@ void addUsername( string name )
 {
 	runJS("usernames.push('"+name+"');");
 }
+int nUnread=0,nUnread2=0;
 
 void sendTweet(void *_data)
 {
@@ -456,6 +457,89 @@ void sendTweet(void *_data)
 }
 extern vector<string> jsToRun;
 #ifdef USE_WINDOWS
+HCURSOR CreateAlphaCursor(void)
+{
+	HDC hMemDC;
+	DWORD dwWidth, dwHeight;
+	BITMAPV5HEADER bi;
+	HBITMAP hBitmap, hOldBitmap;
+	void *lpBits;
+	DWORD x,y;
+	HCURSOR hAlphaCursor = NULL;
+
+	dwWidth  = 32;  // width of cursor
+	dwHeight = 32;  // height of cursor
+
+	ZeroMemory(&bi,sizeof(BITMAPV5HEADER));
+	bi.bV5Size           = sizeof(BITMAPV5HEADER);
+	bi.bV5Width           = dwWidth;
+	bi.bV5Height          = dwHeight;
+	bi.bV5Planes = 1;
+	bi.bV5BitCount = 32;
+	bi.bV5Compression = BI_BITFIELDS;
+	// The following mask specification specifies a supported 32 BPP
+	// alpha format for Windows XP.
+	bi.bV5RedMask   =  0x00FF0000;
+	bi.bV5GreenMask =  0x0000FF00;
+	bi.bV5BlueMask  =  0x000000FF;
+	bi.bV5AlphaMask =  0xFF000000; 
+
+	HDC hdc;
+	hdc = GetDC(NULL);
+
+	// Create the DIB section with an alpha channel.
+	hBitmap = CreateDIBSection(hdc, (BITMAPINFO *)&bi, DIB_RGB_COLORS, 
+		(void **)&lpBits, NULL, (DWORD)0);
+
+	hMemDC = CreateCompatibleDC(hdc);
+	ReleaseDC(NULL,hdc);
+
+	// Draw something on the DIB section.
+	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hBitmap);
+	PatBlt(hMemDC,0,0,dwWidth,dwHeight,WHITENESS);
+	SetTextColor(hMemDC,RGB(0,0,0));
+	SetBkMode(hMemDC,TRANSPARENT);
+	if(nUnread>0)
+	{
+		char str[100];
+		sprintf(str,"%i",nUnread);
+		TextOutA(hMemDC,1,15,str,strlen(str));
+	}
+	SelectObject(hMemDC, hOldBitmap);
+	DeleteDC(hMemDC);
+
+	// Create an empty mask bitmap.
+	HBITMAP hMonoBitmap = CreateBitmap(dwWidth,dwHeight,1,1,NULL);
+
+	// Set the alpha values for each pixel in the cursor so that
+	// the complete cursor is semi-transparent.
+	DWORD *lpdwPixel;
+	lpdwPixel = (DWORD *)lpBits;
+	for (x=0;x<dwWidth;x++)
+		for (y=0;y<dwHeight;y++)
+		{
+			// Clear the alpha bits
+			*lpdwPixel &= 0x00FFFFFF;
+			// Set the alpha bits to 0x9F (semi-transparent)
+			*lpdwPixel |= 0x9F000000;
+			lpdwPixel++;
+		}
+
+		ICONINFO ii;
+		ii.fIcon = FALSE;  // Change fIcon to TRUE to create an alpha icon
+		ii.xHotspot = 0;
+		ii.yHotspot = 0;
+		ii.hbmMask = hMonoBitmap;
+		ii.hbmColor = hBitmap;
+
+		// Create the alpha cursor with the alpha DIB section.
+		hAlphaCursor = CreateIconIndirect(&ii);
+
+		DeleteObject(hBitmap);          
+		DeleteObject(hMonoBitmap); 
+
+		return hAlphaCursor;
+}
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				   LPSTR lpCmdLine, int nCmdShow)
 				   #else
@@ -569,6 +653,10 @@ int main(int argc,char **argv)
 
 		ShowWindow(hwnd, nCmdShow);
 		UpdateWindow(hwnd);
+		{
+			SendMessage(hwnd, WM_SETICON,
+				ICON_BIG,(LPARAM)CreateAlphaCursor());
+		}
 	}
 #endif
 #ifdef LINUX
@@ -668,13 +756,17 @@ int main(int argc,char **argv)
 		methodHandler->reg(WSLit("read"),[](JSArray args)
 		{
 			string id=ToString(args[0].ToString());
-			auto it=tweets.find(id);
-			for(;it!=tweets.begin();--it)
+			map<string,Item*>::reverse_iterator it=--map<string,Item*>::reverse_iterator(tweets.find(id));
+			for(;it!=tweets.rend();++it)
 			{
-				it->second->read=1;
-				for(auto c:it->second->instances)
+				if(!it->second->read)
 				{
-					runJS("document.getElementById('"+it->second->id+"_"+c->columnName+"bg').className='readtweetbg';");
+					it->second->read=1;
+					nUnread--;
+					for(auto c:it->second->instances)
+					{
+						runJS("document.getElementById('"+it->second->id+"_"+c->columnName+"bg').className='readtweetbg';");
+					}
 				}
 			}
 		});
@@ -693,6 +785,8 @@ int main(int argc,char **argv)
 		RECT rect;
 		GetWindowRect(hwnd,&rect);
 		MoveWindow(hwnd,rect.left-(pt.x-rect.left),rect.top-(pt.y-rect.top),settings::windowWidth+(pt.x-rect.left)*2,settings::windowHeight+(pt.y-rect.top)+(pt.x-rect.left),0);
+
+
 	}
 	/*processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
 	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up*/
@@ -808,6 +902,12 @@ int main(int argc,char **argv)
 		web_core->Update();
 		for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
 			it->second->update();
+		if(nUnread!=nUnread2)
+		{
+			SendMessage(hwnd, WM_SETICON,
+				ICON_BIG,(LPARAM)CreateAlphaCursor());
+			nUnread2=nUnread;
+		}
 #ifdef USE_WINDOWS
 		Sleep(20);
 #else
