@@ -1,0 +1,7 @@
+cd www
+cd zatcapv3
+-rm zatcap.tar.bz2
+put zatcap.zip zatcap-82.zip
+-rm zatcap.zip
+ln zatcap-82.zip zatcap.zip
+quit

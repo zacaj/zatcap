@@ -161,7 +161,7 @@ string getSite(string url)
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, urlfunction);
 	curl_easy_setopt(curl,CURLOPT_WRITEDATA,(void*)ret);
 	curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYPEER, 0);
-	curl_easy_setopt( curl, CURLOPT_DEBUGFUNCTION, curl_debug_callback2 );
+	//curl_easy_setopt( curl, CURLOPT_DEBUGFUNCTION, curl_debug_callback2 );
 	curl_easy_setopt(  curl, CURLOPT_HTTPGET, 1 );//
 	curl_easy_setopt(  curl, CURLOPT_VERBOSE, 1 );
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1); 
@@ -251,15 +251,67 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			w=LOWORD(lParam);
 		}
 		break;
+	case WM_SETFOCUS:
+		//puts( "Got the focus" ) ;
+		notifyIcon(0);
+		break ;
+
+	case WM_KILLFOCUS:
+		//puts( "Lost the focus" ) ;
+		break;
+
+	case WM_ACTIVATE:
+		if( LOWORD(wParam) == WA_ACTIVE )
+			notifyIcon(0);
+		//else 
+		//	puts( "I AM NOW INACTIVE." ) ;
+		break ;
 	default:
 		return DefWindowProc(hwnd, msg, wParam, lParam);
 	}
 	return 0;
 }
+void notifyIcon(bool on)
+{
+	FLASHWINFO info;
+	info.cbSize = sizeof(info);
+	info.hwnd = hwnd;
+	if(on)
+	{
+		if(GetFocus()==hwnd)
+		{
+			return;
+		}
+		info.dwFlags = FLASHW_TRAY;
+		info.dwTimeout = 0;
+		info.uCount = 3000;
+		FlashWindowEx(&info);
+	}
+	else 
+	{
+		info.dwFlags = FLASHW_STOP;
+		info.dwTimeout = 0;
+		info.uCount = 3;
+		FlashWindowEx(&info);
+	}
+}
 #endif
+
+void saveMute() 
+{
+	FILE *fp=fopen("mute.txt","wb");
+	for(auto it:mute)
+	{
+		fprintf(fp,"%s\n",it.first.c_str());
+		fwrite(&it.second,sizeof(time_t),1,fp);
+	}
+	fclose(fp);
+}
+
 size_t callback_func(void *ptr, size_t size, size_t count, void *userdata);
 void quit()
 {
+	saveMute();
 	view->Destroy();
 	session->Release();
 	WebCore::Shutdown();
@@ -425,9 +477,11 @@ char* getClipboardText()
     return "Not implemented yet, because fragmentation";
 }
 #endif
+void saveMute() ;
 void saveTweetPtr(void *data)
 {
 	saveTweets();
+	saveMute();
 }
 time_t configLastRead=0;
 struct tweetData
@@ -457,6 +511,7 @@ void sendTweet(void *_data)
 }
 extern vector<string> jsToRun;
 #ifdef USE_WINDOWS
+HBITMAP icon;
 HCURSOR CreateAlphaCursor(void)
 {
 	HDC hMemDC;
@@ -488,15 +543,14 @@ HCURSOR CreateAlphaCursor(void)
 	hdc = GetDC(NULL);
 
 	// Create the DIB section with an alpha channel.
-	hBitmap = CreateDIBSection(hdc, (BITMAPINFO *)&bi, DIB_RGB_COLORS, 
-		(void **)&lpBits, NULL, (DWORD)0);
-
+	hBitmap = (HBITMAP)CreateDIBSection(hdc, (BITMAPINFO *)&bi, DIB_RGB_COLORS, (void **)&lpBits, NULL, (DWORD)0);//LoadImage(NULL,L"resources/icon.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE|LR_LOADTRANSPARENT);//
+	GetDIBits(hdc,icon,0,32,lpBits,(BITMAPINFO *)&bi,DIB_RGB_COLORS);
 	hMemDC = CreateCompatibleDC(hdc);
 	ReleaseDC(NULL,hdc);
 
 	// Draw something on the DIB section.
 	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hBitmap);
-	PatBlt(hMemDC,0,0,dwWidth,dwHeight,WHITENESS);
+	//PatBlt(hMemDC,0,0,dwWidth,dwHeight,WHITENESS);
 	SetTextColor(hMemDC,RGB(0,0,0));
 	SetBkMode(hMemDC,TRANSPARENT);
 	if(nUnread>0)
@@ -513,7 +567,7 @@ HCURSOR CreateAlphaCursor(void)
 
 	// Set the alpha values for each pixel in the cursor so that
 	// the complete cursor is semi-transparent.
-	DWORD *lpdwPixel;
+	/*DWORD *lpdwPixel;
 	lpdwPixel = (DWORD *)lpBits;
 	for (x=0;x<dwWidth;x++)
 		for (y=0;y<dwHeight;y++)
@@ -523,7 +577,7 @@ HCURSOR CreateAlphaCursor(void)
 			// Set the alpha bits to 0x9F (semi-transparent)
 			*lpdwPixel |= 0x9F000000;
 			lpdwPixel++;
-		}
+		}*/
 
 		ICONINFO ii;
 		ii.fIcon = FALSE;  // Change fIcon to TRUE to create an alpha icon
@@ -540,6 +594,7 @@ HCURSOR CreateAlphaCursor(void)
 
 		return hAlphaCursor;
 }
+map<string,time_t> mute;
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				   LPSTR lpCmdLine, int nCmdShow)
 				   #else
@@ -590,12 +645,16 @@ int main(int argc,char **argv)
 		// make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog
 		// point to console as well
 		std::ios::sync_with_stdio();
+
+		HWND hwndC = GetConsoleWindow() ; 
+
+		ShowWindow(hwndC,SW_HIDE);
 	}
 	else
 #endif
 	{
 
-		//freopen("log.txt","w",stdout);
+		freopen("log.txt","w",stdout);
 	}
 	bool candy=1;
 	if(!candy)
@@ -653,6 +712,7 @@ int main(int argc,char **argv)
 
 		ShowWindow(hwnd, nCmdShow);
 		UpdateWindow(hwnd);
+		icon=(HBITMAP)LoadImage(NULL,L"resources/icon.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE);
 		{
 			SendMessage(hwnd, WM_SETICON,
 				ICON_BIG,(LPARAM)CreateAlphaCursor());
@@ -778,6 +838,27 @@ int main(int argc,char **argv)
 			startThread(loadBackTill,new int(hours));
 
 		});
+		methodHandler->reg(WSLit("mute"),[](JSArray args)
+		{
+			string str=ToString(args[0].ToString());
+			string sHours=ToString(args[1].ToString());
+			int hours=-1;
+			sscanf(sHours.c_str(),"%i",&hours);
+			time_t end=(uint)-1;
+			int secs=hours*60*60;
+			if(secs>0)
+				 end=time(NULL)+secs;
+			mute[str]=end;
+			saveMute();
+		});
+		methodHandler->reg(WSLit("toggleConsole"),[](JSArray args)
+		{
+#ifdef WINDOWS
+			HWND hwndC = GetConsoleWindow() ; 
+
+		  ShowWindow(hwndC, IsWindowVisible(hwndC)?SW_HIDE:SW_SHOW);
+#endif
+		});
 		POINT pt;
 		pt.x=0;
 		pt.y=0;
@@ -863,6 +944,22 @@ int main(int argc,char **argv)
 	bool notSet=1;
 	int t=0;
 	addColumnButtons();
+	{
+		FILE *fp=fopen("mute.txt","rb");
+		if(fp)
+		{
+			while(!feof(fp))
+			{
+				char str[100];
+				time_t i=-1;
+				fscanf(fp,"%s\n",str);
+				fread(&i,sizeof(time_t),1,fp);
+				if(i!=-1)
+					mute[str]=i;
+			}
+			fclose(fp);
+		}
+	}
 	while(!done)
 	{
 		if(notSet && loggedIn)
@@ -1324,6 +1421,9 @@ std::string escape( string str )
 	{
 		for(int j=0;j<special.size();j++)
 		{
+			if(str[i]=='%')
+				str.insert(str.begin()+i++,'%');
+			else
 			if(str[i]==special[j] && (i==0 || str[i-1]!='\\'))
 			{
 				str.insert(str.begin()+i++,'\\');
@@ -1333,8 +1433,6 @@ std::string escape( string str )
 					str[i]='r';
 			}
 		}
-		if(str[i]=='%')
-			str.insert(str.begin()+i++,'%');
 	}
 	return str;
 }

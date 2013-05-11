@@ -149,4 +149,7 @@ void leaveMutex(Mutex &mutex);
 void replace(std::string& str, const std::string& oldStr, const std::string& newStr);
 string escape(string str);
 void doing(int i);
+void notifyIcon(bool on);
 extern int nUnread;
+
+extern map<string,time_t> mute;

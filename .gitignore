@@ -20,6 +20,8 @@
 *.idb
 *.tlog
 *.so.*
+*debug.txt
+test.json
 
 #################
 ## Eclipse

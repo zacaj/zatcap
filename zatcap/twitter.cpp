@@ -483,6 +483,7 @@ int loadOlderTweets(void *data)
 	return 0;
 }
 Mutex tweetsMutex;
+void saveMute() ;
 void addTweet( Item** tweet )
 {debugHere();
 enterMutex(tweetsMutex);debugHere();
@@ -490,6 +491,33 @@ enterMutex(tweetsMutex);debugHere();
 	debug("New tweet: %s\n",escape((*tweet)->text).c_str());
 	if(tw==tweets.end())
 	{
+		time_t t=time(NULL);
+		for(auto it=mute.begin();it!=mute.end();)
+		{
+			if(it->second<t)
+			{
+				string str=it->first;
+				it++;
+				mute.erase(str);
+				saveMute();
+			}
+			else
+			{
+				Tweet *t=NULL;
+				if((*tweet)->_type<2)
+					t=(Tweet*)*tweet;
+				if((*tweet)->text.find(it->first)!=string::npos || (t!=NULL && it->first.find(t->user()->username)!=string::npos))
+				{
+					leaveMutex(tweetsMutex);
+					return;
+				}
+				it++;
+			}
+		}
+		if((*tweet)->text.find(username)!=string::npos)
+		{
+			notifyIcon(1);
+		}
 		tweets[(*tweet)->id]=*tweet;
 		if(!((*tweet)->read))
 			nUnread++;
@@ -673,7 +701,7 @@ User * getUser( string id )
 	}debugHere();
 	User *user=new User;
 	string tmpString;debugHere();
-	printf("Loading information for user %s\n",id.c_str());
+	printf("Loading information for user %s\n",id.c_str());debugHere();
 	while((tmpString=twit->userGet(id,true))=="");
 	debugHere();
 	Json::Reader reader;
@@ -815,7 +843,7 @@ Tweet* processTweet(Json::Value jtweet)
 				entity->id=jentity["id_str"].asString();
 				entity->start=jentity["indices"][0u].asInt();
 				entity->end=jentity["indices"][1u].asInt();
-				entity->text="<a oncontextmenu='lightbox(\"asset://zatcap/mute\",false); return false;' href='#' onclick=\"cpp.openInNativeBrowser('https://twitter.com/"+entity->username+"');\">"+entity->username+"</a>";
+				entity->text="<a oncontextmenu='mutePop(\""+entity->username+"\"); return false;' href='#' onclick=\"cpp.openInNativeBrowser('https://twitter.com/"+entity->username+"');\">"+entity->username+"</a>";
 				tweet->entities.push_back(entity);
 				entities[entity->start]=entity;
 			}

@@ -214,6 +214,7 @@ function updateTweetLength()
 		}
 	}
 }
+var muteStr="";
 function insertCompletion(text)
 {
 	var textbox=document.getElementById('tweetbox');
@@ -335,8 +336,18 @@ function remove(id)
 	if(elem)
 		elem.parentNode.removeChild(elem);
 }
+function popup(text,noBrowser)
+{
+document.getElementById('body').insertBefore(nodeFromHtml("<div id='light' style='text-align:center;vertical-align:middle; position:absolute;top:0;left:0;width:100%;height:100%;'> <div style='top:15%; position: absolute;text-align:center;position: relative;text-align: center;max-width: 80%;display:inline-block;max-height: 80%;'> <div class='white_content'>    "+text+(noBrowser==true?"<div style='z-index:1005;'><a href='javascript:;' onclick='cpp.openInNativeBrowser(\""+url+"\");' >Open in browser</a>   </div>":"")+"</div></div>      <div id='fade' class='black_overlay' onclick='remove(\"light\");'></div></div>"),null);
+}
+
 function lightbox(url,noBrowser)
 {
 	//document.getElementById('body').insertBefore(nodeFromHtml("<div id=\"light\" class=\"white_content\"><object data='"+url+"' style='width: 95%;height: 95%'>tada</object><center><a href='javascript:;' onclick=\"cpp.openInNativeBrowser('"+url+"');\">Open in browser</a></center></div><div id=\"fade\" class=\"black_overlay\" onclick=\"remove('light');remove('fade');\"></div>"),null);
-	document.getElementById('body').insertBefore(nodeFromHtml("<div id='light' style='text-align:center;vertical-align:middle; position:absolute;top:0;left:0;width:100%;height:100%;'> <div style='top:15%; position: absolute;text-align:center;position: relative;text-align: center;max-width: 80%;display:inline-block;max-height: 80%;'> <div class='white_content'>    <object data='"+url+"' class='lightbox_content'>tada</object>"+(noBrowser==true?"<div style='z-index:1005;'><a href='javascript:;' onclick='cpp.openInNativeBrowser(\""+url+"\");' >Open in browser</a>   </div>":"")+"</div></div>      <div id='fade' class='black_overlay' onclick='remove(\"light\");'></div></div>"),null);
+	popup("<object data='"+url+"' class='lightbox_content'>tada</object>",noBrowser);
+	}
+function mutePop(string)
+{
+	var body="<div style='margin:50px;' id='mute'>Mute <input type='text'  id='mutestring' size='8' value='"+string+"' onsubmit='cpp.mute(\""+string+"\",document.getElementById(\"muteTime\").value);remove(\"light\");'></input> for <input type='text'  id='muteTime' size='6' value='99999999' onsubmit='cpp.mute(\""+string+"\",document.getElementById(\"muteTime\").value);remove(\"light\");'></input> hours.<br/><br/><button type='button' onclick='remove(\"light\");' style='float:left; vertical-align:bottom;'>Cancel</button><button type='button' onclick='cpp.mute(\""+string+"\",document.getElementById(\"muteTime\").value);remove(\"light\");' style='float:right; vertical-align:bottom;'>OK</button></div>";
+		popup(body,false);
 }
