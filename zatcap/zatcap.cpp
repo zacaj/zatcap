@@ -652,15 +652,14 @@ int main(int argc,char **argv)
 	}
 	else
 #endif
+	if( strcmp(lpCmdLine, "-noredirect") != 0 )
 	{
-
 		freopen("log.txt","w",stdout);
 	}
 	bool candy=1;
 	if(!candy)
 		exit(EXIT_FAILURE);
 	fclose(fopen("debug.txt","w"));
-	system("mkdir profilepics");
 	debug("starting...\n");
 	printf("Version: a%i\n",version);
 	cursor=IDC_ARROW;
@@ -742,7 +741,7 @@ int main(int argc,char **argv)
 		session->AddDataSource(WSLit("resource"),new DirectorySource("resources\\"));
 		string index=f2s("resources/index.html");
 		replace(index,"$BOTTOM",f2s("resources/bottom.html"));
-		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> <script type=\"text/javascript\" src=\"asset://resource/selection_range.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/string_splitter.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/cursor_position.js\"></script></head><body onload=\"init();\" id='body'>"+index+"</body>";
+		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> <script type=\"text/javascript\" src=\"asset://resource/selection_range.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/string_splitter.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/cursor_position.js\"></script><script type=\"text/javascript\" src=\"asset://resource/twitter-text.js\"></script></head><body onload=\"init();\" id='body'>"+index+"</body>";
 		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
 		runJS("init();");
 		methodHandler=new MethodHandler(view,web_core);

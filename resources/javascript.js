@@ -136,7 +136,7 @@ var completebox=null;
 var usernames=new Array();
 function updateTweetLength()
 {
-	document.getElementById('TweetLength').innerHTML=""+(140-document.getElementById('tweetbox').value.length);
+	document.getElementById('TweetLength').innerHTML=""+(140-twttr.txt.getTweetLength(document.getElementById('tweetbox').value));
 	var textbox=document.getElementById('tweetbox');
 	if(textbox.selectionStart!=0)
 	{
