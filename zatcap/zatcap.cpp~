@@ -295,11 +295,6 @@ void notifyIcon(bool on)
 		FlashWindowEx(&info);
 	}
 }
-#else
-void notifyIcon(bool on)
-{
-//todo
-}
 #endif
 
 void saveMute() 
@@ -515,7 +510,6 @@ void sendTweet(void *_data)
 	delete data;
 }
 extern vector<string> jsToRun;
-map<string,time_t> mute;
 #ifdef USE_WINDOWS
 HBITMAP icon;
 HCURSOR CreateAlphaCursor(void)
@@ -600,6 +594,7 @@ HCURSOR CreateAlphaCursor(void)
 
 		return hAlphaCursor;
 }
+map<string,time_t> mute;
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				   LPSTR lpCmdLine, int nCmdShow)
 				   #else

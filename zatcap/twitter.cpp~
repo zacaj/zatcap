@@ -5,19 +5,19 @@
 #include "stream.h"
 #include "WaitIndicator.h"
 #include <assert.h>
-#include "json\writer.h"
+#include <json\writer.h>
 #include "TimedEventProcess.h"
-#include "MentionColumn.h"
 #include "Tweet.h"
 #include <SDL_rotozoom.h>
 #include "file.h"
 #include <stdio.h>
 #include <dirent.h>
 #include <iosfwd>
+#include "Awesomium.h"
 #include "AvitarDownloader.h"
 AvitarDownloader *aviDownloader;
 using namespace colors;
-map<string,Tweet*> tweets;
+map<string,Item*> tweets;
 map<string,User*> users;
 twitCurl *twit=NULL;
 bool loggedIn=0;
@@ -31,14 +31,22 @@ void twitterInit( void  *_twit )
 	twit=new twitCurl();
 	*((void**)_twit)=twit;
 	twit->setTwitterApiType(twitCurlTypes::eTwitCurlApiFormatJson);
+	if(settings::proxyServer!="none")
+	{
+		twit->setProxyServerIp(settings::proxyServer);
+		twit->setProxyServerPort(settings::proxyPort);
+	}
 	WaitIndicator *wait=new WaitIndicator("Signing in to Twitter...");
 	{
 		processes[102.4]=wait;
 	}
-	printf("Logging in...\n");
+	loadOlderTweets(0);
+	print("Logging in...\n");
+	doing(1);
 	loadUser(twit);
+	doing(-1);
 	loggedIn=1;
-	((MentionColumn*)processes[2.5])->term=username;
+	//((MentionColumn*)processes[2.5])->term=username;
 	{
 		aviDownloader=new AvitarDownloader();
 		processes[4578.6]=aviDownloader;
@@ -46,19 +54,67 @@ void twitterInit( void  *_twit )
 	wait->text="Loading older tweets";
 #if 1
 	if(settings::tweetsToLoadOnStartup)
-	{debugHere();
-		string tmpString;debugHere();
-		while((tmpString=twit->timelineHomeGet(false,true,settings::tweetsToLoadOnStartup,"",""))=="");debugHere();//settings::tweetsToLoadOnStartup+50
-		//while((tmpString=twit->timelineUserGet(false,true,settings::tweetsToLoadOnStartup,""))=="");debugHere();//settings::tweetsToLoadOnStartup+50
-		parseRestTweets(tmpString);debugHere();
+	{startThread(refreshTweets,0);debugHere();
 	}
 #endif
+
 	wait->shouldRemove=1;debugHere();
 	if(settings::enableStreaming)
+
 		openUserStream(twit);
 		debugHere();
 }
 
+void refreshTweets( void *data )
+{
+	doing(1);
+	{
+		string tmpString;debugHere();
+		while((tmpString=twit->timelineHomeGet(false,true,25,"",""))=="");
+		parseRestTweets(tmpString);debugHere();
+	}
+	{
+		string tmpString;debugHere();
+		while((tmpString=twit->mentionsGet("",""))=="");
+		parseRestTweets(tmpString);debugHere();
+	}
+	{
+		string tmpString;debugHere();
+		while((tmpString=twit->timelineFriendsGet())=="");
+		parseRestTweets(tmpString);debugHere();
+	}
+	{
+		string tmpString;debugHere();
+		while((tmpString=twit->favoriteGet())=="");
+		parseRestTweets(tmpString);debugHere();
+	}
+	{
+		string tmpString;debugHere();
+		while((tmpString=twit->retweetsGet())=="");
+		parseRestTweets(tmpString);debugHere();
+	}
+	doing(-1);
+}
+void loadBackTill(void *data)
+{
+	doing(1);
+	int hours=*(int*)data;
+	int secs=hours*60*60;
+	int now=(--tweets.end())->second->timeTweetedInSeconds;
+	string oldestLoadedId="";
+	while(1)
+	{
+		string tmpString;debugHere();
+		while((tmpString=twit->timelineHomeGet(false,true,800,"",oldestLoadedId))=="");
+		oldestLoadedId=parseRestTweets(tmpString);debugHere();
+		if(oldestLoadedId.empty())
+			break;
+		Item *item=getTweet(oldestLoadedId);
+		if(now-secs>item->timeTweetedInSeconds)
+			break;
+	}
+	doing(-1);
+}
 int get_utc_offset() {
 
   time_t zero = 24*60*60L;
@@ -132,7 +188,7 @@ Entity* readEntity(FILE *fp)
 
 void readTweetFile(string path)
 {
-	printf("Reading %s\n",path.c_str());debugHere();
+	print("Reading %s\n",path.c_str());debugHere();
 	FILE *fp=fopen(path.c_str(),"rb");
 	assert_(fp);
 	uchar version=ruchar(fp);
@@ -152,7 +208,7 @@ void readTweetFile(string path)
 				switch(type)
 				{
 				default:
-					printf("ERROR: unknown tweet type %i\nFailed reading tweet %i/%i, skipping rest of file\n",type,i,n);
+					print("ERROR: unknown tweet type %i\nFailed reading tweet %i/%i, skipping rest of file\n",type,i,n);
 					fclose(fp);
 					return;
 					break;
@@ -177,6 +233,7 @@ void readTweetFile(string path)
 						tweet->favorited=ruchar(fp);
 						tweet->retweeted=ruchar(fp);
 						tweet->read=ruchar(fp);debugHere();
+						//if(!tweet->read) nUnread++;
 						if(version>=3)
 						{
 							int nEntity=ruchar(fp);
@@ -185,14 +242,14 @@ void readTweetFile(string path)
 								Entity *entity=readEntity(fp);
 								if(entity==NULL)
 								{
-									printf("Failure reading tweet %i/%i, skipping rest of file\n",i,n);
+									print("Failure reading tweet %i/%i, skipping rest of file\n",i,n);
 									fclose(fp);
 									return;
 								}
 								tweet->entities.push_back(entity);
 							}
 						}
-						addTweet(&tweet);debugHere();
+						addTweet((Item**)&tweet);debugHere();
 					}
 					break;
 					tweets;
@@ -217,6 +274,8 @@ void readTweetFile(string path)
 						retweet->favorited=ruchar(fp);
 						retweet->retweeted=ruchar(fp);
 						retweet->read=ruchar(fp);
+						//if(!retweet->read)
+						//	nUnread++;
 						if(version>=3)
 						{
 							int nEntity=ruchar(fp);
@@ -225,7 +284,7 @@ void readTweetFile(string path)
 								Entity *entity=readEntity(fp);
 								if(entity==NULL)
 								{
-									printf("Failure reading tweet %i/%i, skipping rest of file\n",i,n);
+									print("Failure reading tweet %i/%i, skipping rest of file\n",i,n);
 									fclose(fp);
 									return;
 								}
@@ -235,7 +294,7 @@ void readTweetFile(string path)
 						retweet->retweetedBy=getUser(rstr(fp));
 						retweet->originalID=rstr(fp);
 						retweet->nRetweet=ruint(fp);
-						retweet->_original=getTweet(retweet->originalID);
+						retweet->_original=(Retweet*)getTweet(retweet->originalID);
 						if(version>=5)
 						{
 							retweet->timeRetweetedInSeconds=ruint(fp);
@@ -248,26 +307,27 @@ void readTweetFile(string path)
 							retweet->timeRetweetedInSeconds=mktime(&retweet->timeTweeted);
 						}
 						//retweet->timeRetweetedInSeconds=mktime(&retweet->timeRetweeted);debugHere();
-						addTweet((Tweet**)(&retweet));debugHere();
+						addTweet((Item**)(Tweet**)(&retweet));debugHere();
 					}
 					break;
 				}
 			}
-			printf("Read %i tweets from archive\n",n);
+			print("Read %i tweets from archive\n",n);
 		}
 		break;
 	default:
-		printf("ERROR: could not read %s, unknown version %i!\n",path.c_str(),version);
+		print("ERROR: could not read %s, unknown version %i!\n",path.c_str(),version);
 		break;
 	}
 	//for(int i=0;i<tweetsMissing.size();i++)
 	//	tweetsMissing[i]->_original=getTweet(tweetsMissing[i]->originalID);
 	fclose(fp);debugHere();
 }
-void parseRestTweets( string json )
+string parseRestTweets( string json )
 {debugHere();
 	Json::Reader reader;
 	Json::Value root;
+	string ret="";
 	FILE *fp=fopen("test.json","wb");
 	fwrite(json.c_str(),json.size(),1,fp);
 	fclose(fp);
@@ -282,6 +342,7 @@ void parseRestTweets( string json )
 			if(tweet.isNull())
 				continue;
 			processTweet(root[i]);debugHere();
+			ret=root[i]["id_str"].asString();
 		}
 	}
 	else
@@ -289,6 +350,7 @@ void parseRestTweets( string json )
 		tweets;
 		//confusion
 	}
+	return ret;
 }
 
 
@@ -312,9 +374,11 @@ void processUserPics(User *user);
 void deleteTweet( string id )
 {debugHere();
 	enterMutex(tweetsMutex);
-	map<string,Tweet*>::iterator tweet=tweets.find(id);
+	map<string,Item*>::iterator tweet=tweets.find(id);
 	if(tweet==tweets.end())
 		return;
+	if(!tweet->second->read)
+		nUnread--;
 	for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)
 	{
 		leaveMutex(tweetsMutex);
@@ -325,7 +389,7 @@ void deleteTweet( string id )
 	tweets.erase(tweet);debugHere();
 	leaveMutex(tweetsMutex);
 }
-Tweet* getTweet( string id )
+Item* getTweet( string id )
 {
 	if(tweets.find(id)!=tweets.end())
 		return tweets[id];
@@ -348,12 +412,12 @@ string removeLast(string id)
 
 void saveTweets()
 {
-	printf("Saving tweets\n");
+	print("Saving tweets\n");
 	if(tweets.empty())
 		return;
-	map<string,Tweet*>::iterator top=--tweets.end();
+	map<string,Item*>::iterator top=--tweets.end();
 	string prefix=removeLast(top->first);
-	map<string,Tweet*>::iterator bottom=tweets.upper_bound(prefix);
+	map<string,Item*>::iterator bottom=tweets.upper_bound(prefix);
 	top++;
 	while(1)
 	{
@@ -369,7 +433,7 @@ void saveTweets()
 			fp=fopen((string("tweets/")+prefix).c_str(),"wb");
 			wuchar(5,fp);//version
 			wuint(n,fp);
-			for(map<string,Tweet*>::iterator it=bottom;it!=top;it++)
+			for(map<string,Item*>::iterator it=bottom;it!=top;it++)
 			{
 				it->second->write(fp);
 			}
@@ -419,44 +483,64 @@ int loadOlderTweets(void *data)
 	return 0;
 }
 Mutex tweetsMutex;
-void addTweet( Tweet** tweet )
+void saveMute() ;
+void addTweet( Item** tweet )
 {debugHere();
 enterMutex(tweetsMutex);debugHere();
-	map<string,Tweet*>::iterator tw=tweets.find((*tweet)->id);debugHere();
-	debug("New tweet: %s\n",(*tweet)->text.c_str());
+	map<string,Item*>::iterator tw=tweets.find((*tweet)->id);debugHere();
+	debug("New tweet: %s\n",escape((*tweet)->text).c_str());
 	if(tw==tweets.end())
 	{
+		time_t t=time(NULL);
+		for(auto it=mute.begin();it!=mute.end();)
+		{
+			if(it->second<t)
+			{
+				string str=it->first;
+				it++;
+				mute.erase(str);
+				saveMute();
+			}
+			else
+			{
+				Tweet *t=NULL;
+				if((*tweet)->_type<2)
+					t=(Tweet*)*tweet;
+				if((*tweet)->text.find(it->first)!=string::npos || (t!=NULL && it->first.find(t->user()->username)!=string::npos))
+				{
+					leaveMutex(tweetsMutex);
+					return;
+				}
+				it++;
+			}
+		}
+		if((*tweet)->text.find(username)!=string::npos)
+		{
+			notifyIcon(1);
+		}
 		tweets[(*tweet)->id]=*tweet;
-
-		static int id=0;
-		//(*tweet)->id=i2s(id++);
+		if(!((*tweet)->read))
+			nUnread++;
 		for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
 			it->second->newTweet(*tweet);
 	}
 	else
 	{debugHere();
-		//for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
-		//	it->second->deleteTweet(tw->first);
-		(*tweet)->read=tw->second->read;
-		if(tw->second->favorited)
-			(*tweet)->favorited=1;
-		if(tw->second->retweeted)
-			(*tweet)->retweeted=1;
-		*tw->second=**tweet;
-		*tweet=tw->second;
-		//delete tw->second;
-		//tw->second=NULL;
-		//tweets.erase(tw);
-		//tweetsInUse=0;debugHere();
-		//addTweet(tweet);debugHere();
+		//nUnread-=(*tweet)->read-tw->second->read;
+		bool oldRead=tw->second->read;
+		leaveMutex(tweetsMutex);
+		deleteTweet(((Tweet*)(*tweet))->id);
+		//enterMutex(tweetsMutex);
+
+		(*tweet)->read=oldRead;
+		/*if(!(*tweet)->read)
+			nUnread++;
+		tweets[(*tweet)->id]=*tweet;
+		for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
+			it->second->newTweet(*tweet);*/
+		addTweet(tweet);
 	}
 	leaveMutex(tweetsMutex);
-	if(tweets.size()>settings::maxTweets)
-	{
-		auto it=tweets.end();
-		//while(tweets.size()>settings::maxTweets)
-		//	deleteTweet(it->second->id);
-	}
 }
 
 void loadProfilePic(void *ptr)
@@ -480,7 +564,7 @@ retry:
 			curl_easy_setopt(curl, CURLOPT_URL, pic->url.c_str());
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
-			curl_easy_perform(curl);
+			//curl_easy_perform(curl);
 			/* always cleanup */
 			curl_easy_cleanup(curl);
 			debugHere();
@@ -506,9 +590,9 @@ retry:
 		/*else
 		{
 			if(temp==NULL)
-				printf("loading failed of %s?\n",path.c_str());
+				print("loading failed of %s?\n",path.c_str());
 			else
-				printf("ERROR: hey look zacaj was lazy and didnt implement support for other size profile pictures hoping it would never come up, go punch him in the face!\n");
+				print("ERROR: hey look zacaj was lazy and didnt implement support for other size profile pictures hoping it would never come up, go punch him in the face!\n");
 			*img=NULL;
 			goto retry;
 		}*/
@@ -583,7 +667,7 @@ void fixUser(void *ptr)
 
 User * getUser( string id )
 {debugHere();
-//printf("%i\n",rand());
+//print("%i\n",rand());
 	if(users.find(id)!=users.end())
 		return users[id];
 	if(fileExists(string("users/")+id))
@@ -595,7 +679,7 @@ User * getUser( string id )
 		user->username=rstr(fp);debugHere();
 		user->name=rstr(fp);debugHere();
 		user->picURL=rstr(fp);debugHere();
-		FILE *fp2;debugHere();
+		/*FILE *fp2;debugHere();
 		if((fp2=fopen(user->getPicPath().c_str(),"r")))
 		{debugHere();
 //			user->_pic=loadImage(user->getPicPath());debugHere();
@@ -611,13 +695,13 @@ User * getUser( string id )
 			pic->user=user;debugHere();
 			aviDownloader->pics.push_back(pic);
 			//SDL_CreateThread(loadProfilePic,pic);
-		}debugHere();
-		fclose(fp);debugHere();
+		}debugHere();*/
+		fclose(fp);debugHere();//loadProfilePic
 		return user;
 	}debugHere();
 	User *user=new User;
 	string tmpString;debugHere();
-	printf("Loading information for user %s\n",id.c_str());
+	print("Loading information for user %s\n",id.c_str());debugHere();
 	while((tmpString=twit->userGet(id,true))=="");
 	debugHere();
 	Json::Reader reader;
@@ -662,6 +746,26 @@ void UnquoteHTML
 	std::istream & In,
 	std::ostream & Out
 	);
+bool urlIsPicture(string url)
+{
+	for(int i=0;i<url.size();i++)
+		url[i]=tolower(url[i]);
+	string ext=getExt(url);
+	if(ext=="jpg" || ext=="jpeg" || ext=="png" || ext=="bmp")
+		return 1;
+	if(url.find(".jpg")!=string::npos)
+		return 1;
+	if(url.find(".png")!=string::npos)
+		return 1;
+	if(url.find(".gif")!=string::npos)
+		return 1;
+	if(url.find("pic.")!=string::npos)
+		return 1;
+	if(url.find("imgur.com")!=string::npos)
+		return 1;
+	//return 1;
+	return 0;
+}
 Tweet* processTweet(Json::Value jtweet)
 {
 	debugHere();
@@ -701,7 +805,29 @@ Tweet* processTweet(Json::Value jtweet)
 				url->start=entity["indices"][0u].asInt();
 				url->end=entity["indices"][1u].asInt();
 				url->text="<a href='"+url->realUrl+"'>"+url->displayUrl+"</a>";
-				url->text="<a href='javascript:;' onclick=\"cpp.openInNativeBrowser('"+url->realUrl+"');\">"+url->displayUrl+"</a>";
+				if(!urlIsPicture(url->realUrl))
+					url->text="<a href='javascript:;' onclick=\"cpp.openInNativeBrowser('"+url->realUrl+"');\">"+url->displayUrl+"</a>";
+				else
+					url->text="<a href='javascript:;' onclick=\"cpp.handleImage('"+url->realUrl+"');\">"+url->displayUrl+"</a>";
+				tweet->entities.push_back(url);
+				entities[url->start]=url;
+			}
+		}
+		if(!jtweet["entities"]["media"].isNull())
+		{
+			for(int i=jtweet["entities"]["media"].size()-1;i>=0;i--)//go backwards to handle multiple entities in a single tweet correctly
+			{
+				URLEntity *url=new URLEntity;
+				Json::Value entity=jtweet["entities"]["media"][i];
+				url->displayUrl=entity["display_url"].asString();
+				if(!entity["expanded_url"].isNull())
+					url->realUrl=entity["expanded_url"].asString();
+				else
+					url->realUrl=entity["media_url"].asString();
+				url->start=entity["indices"][0u].asInt();
+				url->end=entity["indices"][1u].asInt();
+				url->text="<a href='"+url->realUrl+"'>"+url->displayUrl+"</a>";
+				url->text="<a href='javascript:;' onclick=\"cpp.handleImage('"+url->realUrl+"');\">"+url->displayUrl+"</a>";
 				tweet->entities.push_back(url);
 				entities[url->start]=url;
 			}
@@ -717,7 +843,7 @@ Tweet* processTweet(Json::Value jtweet)
 				entity->id=jentity["id_str"].asString();
 				entity->start=jentity["indices"][0u].asInt();
 				entity->end=jentity["indices"][1u].asInt();
-				entity->text="<a href='#' onclick=\"cpp.openInNativeBrowser('https://twitter.com/"+entity->username+"');\">"+entity->username+"</a>";
+				entity->text="<a oncontextmenu='mutePop(\""+entity->username+"\"); return false;' href='#' onclick=\"cpp.openInNativeBrowser('https://twitter.com/"+entity->username+"');\">"+entity->username+"</a>";
 				tweet->entities.push_back(entity);
 				entities[entity->start]=entity;
 			}
@@ -802,7 +928,11 @@ Tweet* processTweet(Json::Value jtweet)
 	tweet->timeTweetedInSeconds=mktime(&tweet->timeTweeted);debugHere();
 	if(tweet->user()->username==username)
 		tweet->read=1;
-	addTweet(&tweet);debugHere();
+	else
+	{
+		//nUnread++;
+	}
+	addTweet((Item**)&tweet);debugHere();
 	return tweet;
 }
 typedef struct
@@ -1289,3 +1419,4 @@ void UnquoteHTML
           } /*if*/
       } /*for*/
   } /*UnquoteHTML*/
+

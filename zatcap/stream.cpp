@@ -8,7 +8,7 @@ void parseStream(Json::Value root,string str)
 {debugHere();
 	if(!root["friends"].isNull() && root["friends"].isArray())//opening friends message
 	{
-		printf("Streaming connection established.\n");debugHere();
+		print("Streaming connection established.\n");debugHere();
 		for(int i=0;i<root["friends"].size();i++)
 			addUsername(getUser(i2s(root["friends"][i].asInt()))->username);
 		//todo figure out a use for this like loading initial friends list or should that be done using rest api since streaming api might not be used and new users should be handled anyways...
@@ -67,14 +67,14 @@ void parseStream(Json::Value root,string str)
 	}*/
 /*	else if(root.isObject())//make sure to put this at end
 	{
-		//printf("keep alive\n");
+		//print("keep alive\n");
 	}*/
 	else
 	{debugHere();
 	debug("new stream message:\n%s\n",str.c_str());
  		FILE *fp=fopen("unhandled.txt","a+");
 		fprintf(fp,"couldnt handle (%s):\n%s\n\n\n",VERSION,str.c_str());
-		printf("\nERROR: Twitter message not handleable by ZATCAP, pleas email unhandled.txt to zatcap@zacaj.com!\n\n");
+		print("\nERROR: Twitter message not handleable by ZATCAP, pleas email unhandled.txt to zatcap@zacaj.com!\n\n");
 		fclose(fp);debugHere();
 	}debugHere();
 
@@ -92,7 +92,7 @@ void parseStreamThread(void *ptr)
 }
 void loadMissingTweets(void *data)
 {debugHere();
-	printf("Loading missing tweets\n");
+	print("Loading missing tweets\n");
 	string tmpString;debugHere();
 	if(!tweets.empty())
 	{
@@ -175,9 +175,9 @@ int openUserStream( void *twit ) //the fact that you need this really pisses me 
 
 int curl_debug_callback2(CURL *curl,curl_infotype infotype,char *data,size_t size,void *userptr)
 {debugHere();
-	//printf("%i:\n");
+	//print("%i:\n");
 	//fwrite(data,size,1,stdout);
-	//printf("\n");
+	//print("\n");
 	FILE *fp=fopen("stream debug.txt","a+");debugHere();
 	fprintf(fp,"%i:\n");
 	fwrite(data,size,1,fp);
@@ -190,7 +190,7 @@ void utilMakeCurlParams( std::string& outStr, std::string& inParam1, std::string
 int delay=1000;
 bool openUserStream(twitCurl *twit)
 {
-	printf("Opening a stream...\n");
+	print("Opening a stream...\n");
 	//return 0;
 	/*if( !twit->isCurlInit() )
 	{
@@ -246,13 +246,13 @@ bool openUserStream(twitCurl *twit)
 	curl_easy_setopt( curl, CURLOPT_HEADERFUNCTION, 0 );
 	curl_easy_setopt( curl, CURLOPT_DEBUGFUNCTION, 0 );*/
 	//twit->getLastCurlError(tempString);
-	//printf("Last curl error after perform? %s\n",tempString.c_str());
+	//print("Last curl error after perform? %s\n",tempString.c_str());
 	//twit->getLastWebResponse(tempString);
-	//printf("Last web response: \n%s\n",tempString.c_str());
+	//print("Last web response: \n%s\n",tempString.c_str());
 	//long l=87;
 	//curl_easy_getinfo(curl,CURLINFO_HTTP_CONNECTCODE,&l);
-	//printf("curl: %i\n",l);
-	printf("ERROR\nERROR\nERROR\nERROR\nERROR:Stream connection lost, reconnecting after %ims wait...\nERROR\nERROR\nERROR\nERROR\n",delay);
+	//print("curl: %i\n",l);
+	print("ERROR\nERROR\nERROR\nERROR\nERROR:Stream connection lost, reconnecting after %ims wait...\nERROR\nERROR\nERROR\nERROR\n",delay);
 	delete str;
 	curl_easy_cleanup(curl);
 	#ifdef USE_WINDOWS

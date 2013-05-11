@@ -14,7 +14,7 @@ using namespace std;
 //if !0, the app will close
 extern int done;
 
-#define dprintf printf
+#define dprint print
 
 #ifdef LINUX
 #include <SDL/SDL.h>
@@ -54,6 +54,8 @@ namespace settings
 	extern int textSize,timeSize,columnTitleTextSize,userNameTextSize,retweetTextSize,editorTextSize;
 	extern int pinLogin;
 	extern int maxTweets;
+	extern string proxyServer;
+	extern string proxyPort;
 }
 namespace colors
 {
@@ -104,7 +106,8 @@ string i2s(int i);
 
 
 void debug(const char* msg, ...);
-
+void print(const char* msg, ...);
+#define prints(s) print(s,0)
 
 extern int footerHeight;
 
@@ -146,3 +149,8 @@ void enterMutex(Mutex &mutex);
 void leaveMutex(Mutex &mutex);
 void replace(std::string& str, const std::string& oldStr, const std::string& newStr);
 string escape(string str);
+void doing(int i);
+void notifyIcon(bool on);
+extern int nUnread;
+
+extern map<string,time_t> mute;

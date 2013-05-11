@@ -6,7 +6,7 @@
 #include <vector>
 #include <map>
 #include <stdio.h>
-#include <json/reader.h>
+#include "json/reader.h"
 #define VERSION "0.0001  " __TIMESTAMP__
 using namespace std;
 using namespace Json;
@@ -14,7 +14,7 @@ using namespace std;
 //if !0, the app will close
 extern int done;
 
-#define dprintf printf
+#define dprint print
 
 #ifdef LINUX
 #include <SDL/SDL.h>
@@ -106,7 +106,8 @@ string i2s(int i);
 
 
 void debug(const char* msg, ...);
-
+void print(const char* msg, ...);
+#define prints(s) print(s,0)
 
 extern int footerHeight;
 

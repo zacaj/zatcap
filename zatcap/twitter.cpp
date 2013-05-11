@@ -5,7 +5,7 @@
 #include "stream.h"
 #include "WaitIndicator.h"
 #include <assert.h>
-#include <json\writer.h>
+#include "json\writer.h"
 #include "TimedEventProcess.h"
 #include "Tweet.h"
 #include <SDL_rotozoom.h>
@@ -41,7 +41,7 @@ void twitterInit( void  *_twit )
 		processes[102.4]=wait;
 	}
 	loadOlderTweets(0);
-	printf("Logging in...\n");
+	print("Logging in...\n");
 	doing(1);
 	loadUser(twit);
 	doing(-1);
@@ -188,7 +188,7 @@ Entity* readEntity(FILE *fp)
 
 void readTweetFile(string path)
 {
-	printf("Reading %s\n",path.c_str());debugHere();
+	print("Reading %s\n",path.c_str());debugHere();
 	FILE *fp=fopen(path.c_str(),"rb");
 	assert_(fp);
 	uchar version=ruchar(fp);
@@ -208,7 +208,7 @@ void readTweetFile(string path)
 				switch(type)
 				{
 				default:
-					printf("ERROR: unknown tweet type %i\nFailed reading tweet %i/%i, skipping rest of file\n",type,i,n);
+					print("ERROR: unknown tweet type %i\nFailed reading tweet %i/%i, skipping rest of file\n",type,i,n);
 					fclose(fp);
 					return;
 					break;
@@ -242,7 +242,7 @@ void readTweetFile(string path)
 								Entity *entity=readEntity(fp);
 								if(entity==NULL)
 								{
-									printf("Failure reading tweet %i/%i, skipping rest of file\n",i,n);
+									print("Failure reading tweet %i/%i, skipping rest of file\n",i,n);
 									fclose(fp);
 									return;
 								}
@@ -284,7 +284,7 @@ void readTweetFile(string path)
 								Entity *entity=readEntity(fp);
 								if(entity==NULL)
 								{
-									printf("Failure reading tweet %i/%i, skipping rest of file\n",i,n);
+									print("Failure reading tweet %i/%i, skipping rest of file\n",i,n);
 									fclose(fp);
 									return;
 								}
@@ -312,11 +312,11 @@ void readTweetFile(string path)
 					break;
 				}
 			}
-			printf("Read %i tweets from archive\n",n);
+			print("Read %i tweets from archive\n",n);
 		}
 		break;
 	default:
-		printf("ERROR: could not read %s, unknown version %i!\n",path.c_str(),version);
+		print("ERROR: could not read %s, unknown version %i!\n",path.c_str(),version);
 		break;
 	}
 	//for(int i=0;i<tweetsMissing.size();i++)
@@ -412,7 +412,7 @@ string removeLast(string id)
 
 void saveTweets()
 {
-	printf("Saving tweets\n");
+	print("Saving tweets\n");
 	if(tweets.empty())
 		return;
 	map<string,Item*>::iterator top=--tweets.end();
@@ -590,9 +590,9 @@ retry:
 		/*else
 		{
 			if(temp==NULL)
-				printf("loading failed of %s?\n",path.c_str());
+				print("loading failed of %s?\n",path.c_str());
 			else
-				printf("ERROR: hey look zacaj was lazy and didnt implement support for other size profile pictures hoping it would never come up, go punch him in the face!\n");
+				print("ERROR: hey look zacaj was lazy and didnt implement support for other size profile pictures hoping it would never come up, go punch him in the face!\n");
 			*img=NULL;
 			goto retry;
 		}*/
@@ -667,7 +667,7 @@ void fixUser(void *ptr)
 
 User * getUser( string id )
 {debugHere();
-//printf("%i\n",rand());
+//print("%i\n",rand());
 	if(users.find(id)!=users.end())
 		return users[id];
 	if(fileExists(string("users/")+id))
@@ -701,7 +701,7 @@ User * getUser( string id )
 	}debugHere();
 	User *user=new User;
 	string tmpString;debugHere();
-	printf("Loading information for user %s\n",id.c_str());debugHere();
+	print("Loading information for user %s\n",id.c_str());debugHere();
 	while((tmpString=twit->userGet(id,true))=="");
 	debugHere();
 	Json::Reader reader;
