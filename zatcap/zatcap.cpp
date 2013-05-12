@@ -239,6 +239,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 				runJS("document.getElementById('columns').style.overflow='hidden';");
 				runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
 				runJS("document.getElementById('tweetbox').value=tweetContent;");
+				runJS("hideColumns();");
 				addColumnButtons();
 			}
 			else if(LOWORD(lParam)>550 && (w==-1 || w<=550))
@@ -250,6 +251,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 				runJS("document.getElementById('columns').style.overflow='auto';");
 				runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
 				runJS("document.getElementById('tweetbox').value=tweetContent;");
+				runJS("showColumns();");
 			}
 			if(view)
 			view->Resize(LOWORD(lParam),HIWORD(lParam));

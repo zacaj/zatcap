@@ -26,7 +26,7 @@ void Column::init(float _w ,string _name)
 	string column=escape(src);
 	replace(column,string("$COLUMNNAME"),columnName);
 	replace(column,string("$WIDTH"),i2s(w));
-	runJS("document.getElementById('columns').appendChild(nodeFromHtml(\""+column+"\"));document.getElementById('"+columnName+"').pendingTweets=new Array();");
+	runJS("addColumn(nodeFromHtml(\""+column+"\"),'"+columnName+"');");
 }
 
 

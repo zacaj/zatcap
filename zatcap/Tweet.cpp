@@ -74,6 +74,7 @@ void retweetTweet(void *data)
 void deleteTweet(void *data)
 {
 	Tweet *tweet=(Tweet*)data;
+	runJS("if(document.getElementById('tweetbox').value.length==0) document.getElementById('tweetbox').value='"+tweet->originalText+"';");
 	string tmpString;
 	while((tmpString=twit->statusDestroyById(tweet->id))=="");
 	debug("delete: %s\n",tmpString.c_str());

@@ -2,6 +2,31 @@ function init()
 {
 	updateTweetLength();
 }
+var columns=new Array();
+function addColumn(n,name)
+{
+	n.zname=name;
+	document.getElementById('columns').appendChild(n);
+	document.getElementById(name).pendingTweets=new Array();
+	columns.push(n);
+}
+function hideColumns(name)
+{
+	var i=0;
+	if(!name)
+		columns[i++].style.display="inline-block";
+		
+	for(;i<columns.length;i++)
+		if(columns[i].zname==name)
+			columns[i].style.display="inline-block";
+		else
+			columns[i].style.display="none";
+}
+function showColumns()
+{
+	for(var i=0;i<columns.length;i++)
+		columns[i].style.display="inline-block";
+}
 var tweetContent="";
 function tweetboxKeydown(e)
 	{
