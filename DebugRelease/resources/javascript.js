@@ -351,7 +351,7 @@ document.getElementById('body').insertBefore(nodeFromHtml("<div id='light' style
 function lightbox(url,noBrowser)
 {
 	//document.getElementById('body').insertBefore(nodeFromHtml("<div id=\"light\" class=\"white_content\"><object data='"+url+"' style='width: 95%;height: 95%'>tada</object><center><a href='javascript:;' onclick=\"cpp.openInNativeBrowser('"+url+"');\">Open in browser</a></center></div><div id=\"fade\" class=\"black_overlay\" onclick=\"remove('light');remove('fade');\"></div>"),null);
-	popup("<object data='"+url+"' class='lightbox_content'>tada</object>",noBrowser);
+	popup("<object data='"+url+"' class='lightbox_content' type='image/jpeg'>tada</object>",noBrowser);
 	}
 function mutePop(string)
 {
