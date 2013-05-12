@@ -93,6 +93,11 @@ void refreshTweets( void *data )
 		while((tmpString=twit->retweetsGet())=="");
 		parseRestTweets(tmpString);debugHere();
 	}
+	{
+		string tmpString;debugHere();
+		while((tmpString=twit->directMessageGet())=="");
+		parseRestTweets(tmpString);debugHere();
+	}
 	doing(-1);
 }
 void loadBackTill(void *data)

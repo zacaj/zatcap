@@ -204,7 +204,7 @@ bool openUserStream(twitCurl *twit)
 	curl_easy_setopt( curl, CURLOPT_USERPWD, userNamePassword.c_str() );//
 	string oAuthHttpHeader;
 	struct curl_slist* pOAuthHeaderList = NULL;
-	char *url="https://userstream.twitter.com/2/user.json";
+	char *url="https://userstream.twitter.com/1.1/user.json?delimited=false&with=followings";
 	//char *url="https://stream.twitter.com/1/statuses/sample.json";
 	tempString="";
 	twit->m_oAuth.getOAuthHeader( eOAuthHttpGet,url, tempString, oAuthHttpHeader );//
