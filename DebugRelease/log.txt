@@ -7,5 +7,3 @@ Successfully logged in to twitter account: zacaj2
 Opening a stream...
 Loading missing tweets
 Streaming connection established.
-Tweet sent successfully: https://pbs.twimg.com/media/BKFGvFACYAA4T7Q.jpg:large (,)
-Tweet sent successfully: https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png (,)

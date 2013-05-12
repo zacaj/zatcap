@@ -6,6 +6,7 @@
 class TweetInstance;
 #define FAVORITE 2
 #define FOLLOW 3
+#define DIRECTMESSAGE 4
 class Column;
 class Item
 {
@@ -89,6 +90,20 @@ public:
 	virtual int cachedDraw(TweetInstance *instance);
 	virtual void write(FILE *fp);
 	virtual string getHtml(string columnName) ;
+};
+class DirectMessage:public Tweet
+{
+public:
+	DirectMessage()
+	{
+		_user=NULL;
+		_type=DIRECTMESSAGE;
+		read=0;
+		isDM=1;
+		favorited=0;
+		retweeted=0;
+		replyTo="";
+	}
 };
 #define TOGGLECONVODISPLAY -1
 class Retweet:public Tweet

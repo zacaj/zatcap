@@ -9,7 +9,7 @@
 	background-color:transparent;
 	position:relative;
 	margin:0px;
-	
+	white-space:normal;
 }
 .tweetshell
 {
@@ -120,7 +120,7 @@ position: absolute;
 }
 .rttext
 {
-	font-size: .9em;
+	font-size: .8em;
 
 }
 body,html
@@ -149,9 +149,9 @@ overflow: hidden;
     left:0;
 	bottom:75px;
     top:0;
-	width:100%;
     overflow-x:auto;
 	overflow-y:hidden;
+	white-space:nowrap;
 }
 #bottom
 {

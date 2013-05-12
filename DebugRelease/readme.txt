@@ -24,7 +24,7 @@ COMMANDs: (so far)  (ask me if you need one)
 all (no opt) -  matches all tweets, events, etc
 str A STRING - matches all text after "str" and before the end of the line
 rt USERNAME - matches a retweet of USERNAME
-type NUMBER - matches a certain tweet type (0=tweet,1=retweet,2=(un)favorite,3=follow notification)
+type NUMBER - matches a certain tweet type (0=tweet,1=retweet,2=(un)favorite,3=follow notification,4=DM)
 by USERNAME - matches a tweet by USERNAME or a retweet by USERNAME
 fav - matches any tweet you have favorited
 

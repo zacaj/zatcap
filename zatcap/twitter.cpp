@@ -784,9 +784,17 @@ Tweet* processTweet(Json::Value jtweet)
 		jtweet=jtweet["retweeted_status"];
 		tweet=new Retweet();
 	}
+	else if(!jtweet["sender"].isNull())
+	{
+		tweet=new DirectMessage();
+	}
 	else
 		tweet=new Tweet();
-	Json::Value juser=jtweet["user"];
+	Json::Value juser;
+	if(tweet->isDM)
+		juser=jtweet["sender"];
+	else
+		juser=jtweet["user"];
 	tweet->userid=juser["id_str"].asString();
 	string tmp=jtweet["text"].asString();
 	istringstream is(tmp);

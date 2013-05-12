@@ -17,6 +17,10 @@ void parseStream(Json::Value root,string str)
 	{
 		processTweet(root);debugHere();
 	}
+	else if(!root["direct_message"].isNull())
+	{
+		processTweet(root["direct_message"]);
+	}
 	/*else if(!root["limit"].isNull())//limit notice
 	{
 		root=root["limit"];debugHere();
