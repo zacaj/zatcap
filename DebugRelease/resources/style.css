@@ -22,7 +22,7 @@
 {
 	width:100%;
 	right:0;
-	padding: 6px 0;
+	padding: 6px 0 0 0;
 	display:table;
 	position:relative;
 	z-index:2;
@@ -31,7 +31,7 @@
 }
 .readtweetbg
 {
-	background-color: #FFFFFF;
+	background-color: #EEEEEE;
 	/*opacity:.45;*/
 	position:absolute;
 	width:100%;
@@ -40,7 +40,7 @@
 }
 .unreadtweetbg
 {
-	background-color: #DDDDDD;
+	background-color: #FFFFFF;
 	/*opacity:.45;*/
 	position:absolute;
 	width:100%;
