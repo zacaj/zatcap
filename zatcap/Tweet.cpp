@@ -115,6 +115,7 @@ std::string Tweet::getHtml(string columnName)
 		string content=f2s("resources/tweet.html");
 		replace(content,string("$ID"),id);
 		string htmlText=text;
+		replace(htmlText,"\n","<br />");
 		replace(content,string("$TEXT"),escape(htmlText));
 		{
 			char date[100];

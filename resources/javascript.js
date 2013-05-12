@@ -2,6 +2,7 @@ function init()
 {
 	updateTweetLength();
 }
+var tweetContent="";
 function tweetboxKeydown(e)
 	{
 		if(completebox)
@@ -213,6 +214,12 @@ function updateTweetLength()
 			}
 		}
 	}
+	else if(completebox)
+	{
+		remove('completebox');
+					completebox=null;
+	}
+		
 }
 var muteStr="";
 function insertCompletion(text)

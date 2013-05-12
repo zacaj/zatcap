@@ -92,7 +92,7 @@ void loadUser(twitCurl *twit);
 extern string tempString;
 extern string username;
 
-#define debugHere() debug("%s:%i\n",__FILE__,__LINE__);
+#define debugHere() debug("%s:%i %s\n",__FILE__,__LINE__,__FUNCTION__);
 
 class Process;
 extern map<float,Process*> processes;

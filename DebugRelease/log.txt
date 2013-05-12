@@ -1,56 +1,9 @@
-Version: a88
+Version: a90
 Scanned config file
 Scanned config file
 Logging in...
 ...
 Successfully logged in to twitter account: zacaj2
 Opening a stream...
-ERROR
-ERROR
-ERROR
-ERROR
-ERROR:Stream connection lost, reconnecting after 1000ms wait...
-ERROR
-ERROR
-ERROR
-ERROR
-Opening a stream...
-ERROR
-ERROR
-ERROR
-ERROR
-ERROR:Stream connection lost, reconnecting after 2000ms wait...
-ERROR
-ERROR
-ERROR
-ERROR
-Opening a stream...
-ERROR
-ERROR
-ERROR
-ERROR
-ERROR:Stream connection lost, reconnecting after 4000ms wait...
-ERROR
-ERROR
-ERROR
-ERROR
-Opening a stream...
-ERROR
-ERROR
-ERROR
-ERROR
-ERROR:Stream connection lost, reconnecting after 8000ms wait...
-ERROR
-ERROR
-ERROR
-ERROR
-Opening a stream...
-ERROR
-ERROR
-ERROR
-ERROR
-ERROR:Stream connection lost, reconnecting after 16000ms wait...
-ERROR
-ERROR
-ERROR
-ERROR
+Loading missing tweets
+Streaming connection established.

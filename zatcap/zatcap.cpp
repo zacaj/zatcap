@@ -217,6 +217,7 @@ int w=-1;
 WNDCLASSEX wc;
 HWND hwnd;
 MSG Msg;
+bool hasFocus=1;
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch(msg)
@@ -231,20 +232,24 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		{
 			if(LOWORD(lParam)<550 &&(w==-1 || w>=550))
 			{
+				runJS("tweetContent=document.getElementById('tweetbox').value;");
 				runJS("document.getElementById('bottom').innerHTML='"+escape(f2s("resources/bottomnarrow.html"))+"';");
 				runJS("document.getElementById('bottom').style.height='100px';");
 				runJS("document.getElementById('columns').style.bottom='100px';");
 				runJS("document.getElementById('columns').style.overflow='hidden';");
 				runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
+				runJS("document.getElementById('tweetbox').value=tweetContent;");
 				addColumnButtons();
 			}
 			else if(LOWORD(lParam)>550 && (w==-1 || w<=550))
 			{
+				runJS("tweetContent=document.getElementById('tweetbox').value;");
 				runJS("document.getElementById('bottom').innerHTML='"+escape(f2s("resources/bottom.html"))+"';");
 				runJS("document.getElementById('bottom').style.height='75px';");
 				runJS("document.getElementById('columns').style.bottom='75px';");
 				runJS("document.getElementById('columns').style.overflow='auto';");
 				runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
+				runJS("document.getElementById('tweetbox').value=tweetContent;");
 			}
 			if(view)
 			view->Resize(LOWORD(lParam),HIWORD(lParam));
@@ -252,18 +257,22 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 	case WM_SETFOCUS:
-		//puts( "Got the focus" ) ;
+		hasFocus=1;
 		notifyIcon(0);
 		break ;
 
 	case WM_KILLFOCUS:
-		//puts( "Lost the focus" ) ;
+		hasFocus=0;
 		break;
 
 	case WM_ACTIVATE:
 		if( LOWORD(wParam) == WA_ACTIVE )
+		{
+			hasFocus=1;
 			notifyIcon(0);
-		//else 
+		}
+		else 
+			hasFocus=0;
 		//	puts( "I AM NOW INACTIVE." ) ;
 		break ;
 	default:
@@ -278,7 +287,7 @@ void notifyIcon(bool on)
 	info.hwnd = hwnd;
 	if(on)
 	{
-		if(GetFocus()==hwnd)
+		if(GetFocus()==hwnd || hasFocus)
 		{
 			return;
 		}
@@ -505,6 +514,7 @@ void addUsername( string name )
 	runJS("usernames.push('"+name+"');");
 }
 int nUnread=0,nUnread2=0;
+Mutex debugMutex;
 
 void sendTweet(void *_data)
 {
@@ -557,7 +567,7 @@ HCURSOR CreateAlphaCursor(void)
 	// Draw something on the DIB section.
 	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hBitmap);
 	//PatBlt(hMemDC,0,0,dwWidth,dwHeight,WHITENESS);
-	SetTextColor(hMemDC,RGB(0,0,0));
+	SetTextColor(hMemDC,RGB(255,255,255));
 	SetBkMode(hMemDC,TRANSPARENT);
 	if(nUnread>0)
 	{
@@ -661,10 +671,12 @@ int main(int argc,char **argv)
 	{
 		freopen("log.txt","w",stdout);
 	}
+	debugMutex=createMutex();
 	bool candy=1;
 	if(!candy)
 		exit(EXIT_FAILURE);
 	fclose(fopen("debug.txt","w"));
+	fclose(fopen("log.txt","w"));
 	debug("starting...\n");
 	print("Version: a%i\n",version);
 	cursor=IDC_ARROW;
@@ -916,6 +928,7 @@ int main(int argc,char **argv)
 	}
 	fclose(fopen("stream debug.txt","w"));
 	startThread(twitterInit,&twit);
+	runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
 	//addTweet(new Favorite("lorem ipsum est luditorium con meguieligum son locos","3453245234624563456",))
 	/*{
 		Textbox *textbox=new Textbox();
@@ -1257,18 +1270,20 @@ std::string i2s( int n )
 
 void debug(const char* msg, ...)
 {
+
 	va_list fmtargs;
 	char buffer[2024];
 	va_start(fmtargs, msg);
 	vsnprintf(buffer, sizeof(buffer) - 1, msg, fmtargs);
 	va_end(fmtargs);
 	FILE *fp;
+	enterMutex(debugMutex);
 	fp=fopen("debug.txt","a");
 	if(!fp)
 		return;
 	fprintf(fp,buffer);
 	fclose(fp);
-
+	leaveMutex(debugMutex);
 }
 void print(const char* msg, ...)
 {
@@ -1440,11 +1455,11 @@ std::string escape( string str )
 	string special="\"\'\n\r";
 	for(int i=0;i<str.size();i++)
 	{
+		if(str[i]=='%')
+			str.insert(str.begin()+i++,'%');
+		else
 		for(int j=0;j<special.size();j++)
 		{
-			if(str[i]=='%')
-				str.insert(str.begin()+i++,'%');
-			else
 			if(str[i]==special[j] && (i==0 || str[i-1]!='\\'))
 			{
 				str.insert(str.begin()+i++,'\\');

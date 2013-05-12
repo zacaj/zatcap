@@ -672,7 +672,8 @@ User * getUser( string id )
 		return users[id];
 	if(fileExists(string("users/")+id))
 	{debugHere();
-		User *user=new User;debugHere();
+	User *user=new User;debugHere();
+	debug("%s\n",id.c_str());
 		FILE *fp=fopen((string("users/")+id).c_str(),"rb");debugHere();
 		assert_(fp);debugHere();
 		user->id=id;debugHere();
@@ -701,8 +702,9 @@ User * getUser( string id )
 	}debugHere();
 	User *user=new User;
 	string tmpString;debugHere();
+	debug("%s\n",id.c_str());
 	print("Loading information for user %s\n",id.c_str());debugHere();
-	while((tmpString=twit->userGet(id,true))=="");
+	while((tmpString=twit->userGet(id,true))=="") debugHere();
 	debugHere();
 	Json::Reader reader;
 	Json::Value root;
