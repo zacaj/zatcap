@@ -712,7 +712,7 @@ int main(int argc,char **argv)
 
 		// Step 2: Creating the Window
 		hwnd = CreateWindowEx(
-			WS_EX_CLIENTEDGE,
+			WS_EX_LEFT,
 			L"ZATCAP html",
 			L"Zacaj's (third) Amazing Twitter Client for Awesome People",
 			WS_OVERLAPPEDWINDOW,
@@ -1455,9 +1455,9 @@ std::string escape( string str )
 	string special="\"\'\n\r";
 	for(int i=0;i<str.size();i++)
 	{
-		if(str[i]=='%')
-			str.insert(str.begin()+i++,'%');
-		else
+			if(str[i]=='%')
+				str.insert(str.begin()+i++,'%');
+			else
 		for(int j=0;j<special.size();j++)
 		{
 			if(str[i]==special[j] && (i==0 || str[i-1]!='\\'))
