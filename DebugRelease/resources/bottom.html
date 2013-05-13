@@ -7,7 +7,7 @@
 <input type="text" placeholder="(hours)" id="backtill" size="3" onsubmit="cpp.loadBackTill(document.getElementById('backtill').value);"></input>
 </div>
 </div>
-<img src="asset://resource/activity.gif" id="activity" style="position:absolute; float:right; vertical-align:bottom; bottom:0; right:0; display:none;" />
+<img src="asset://resource/activity.gif" id="activity" style="position:absolute; float:right; vertical-align:bottom; bottom:3; right:3; display:none;" />
 <button class="button" style="display:none;" type="button" onclick="cpp.source(document.body.parentNode.outerHTML);">Source</button><center>
 <div style="width: 100%;
 text-align: center; height: 75px;">
@@ -35,11 +35,12 @@ margin: 0px;" id="tweetboxcontainer">
 display: inline-block;
 width: 60px;
 text-align:center;
+vertical-align: top;
 margin: 0px;">
-<div style="text-align:center;font-size: 175%;margin-top:10px;width:60px;position:relative;">
+<div style="text-align:center;font-size: 175%;margin-top:9px;width:60px;position:relative;">
 <span id="TweetLength">140</span>
 </div>
-<div style="margin-top:10px; font-size: 115%;width:60px;position:relative;">
+<div style="margin-top:6px; font-size: 115%;width:60px;position:relative;">
 <button type="button" id="SendTweet" onclick="sendTweet();">Tweet</button>
 </div>
 </div>

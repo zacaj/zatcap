@@ -115,6 +115,7 @@ std::string Tweet::getHtml(string columnName)
 	{
 		string content=f2s("resources/tweet.html");
 		replace(content,string("$ID"),id);
+		replace(content,string("$REPLYID"),replyTo);
 		string htmlText=text;
 		replace(htmlText,"\n","<br />");
 		replace(content,string("$TEXT"),escape(htmlText));
@@ -140,6 +141,10 @@ std::string Tweet::getHtml(string columnName)
 			replace(content,string("$HIDENOTMINE"),"inline");
 		else
 			replace(content,string("$HIDENOTMINE"),"none");
+		if(replyTo.size())
+			replace(content,string("$HIDENOTREPLY"),"inline");
+		else
+			replace(content,string("$HIDENOTREPLY"),"none");
 		if(read)
 			replace(content,"$READ","read");
 		else
@@ -148,6 +153,7 @@ std::string Tweet::getHtml(string columnName)
 			replace(content,"$FAVORITED","_on");
 		else
 			replace(content,"$FAVORITED","");
+		replace(content,"$TYPEPREFIX",isDM?"d ":"@");
 		html=content;
 	}
 	return html;

@@ -1,5 +1,5 @@
 322
-+ str zacaj
++ str $USERNAME
 + type 2
 + type 3
-+ rt zacaj
++ rt $USERNAME

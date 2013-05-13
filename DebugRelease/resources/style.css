@@ -1,3 +1,4 @@
+
 .column 
 {
 	height: 100%; 
@@ -17,6 +18,19 @@
 	position:relative;
 	background-color:transparent;
 	margin:0px;
+	border-left:0px solid red;
+}
+.replyShell .replyShell
+{
+	clear:both;
+	padding-left:0px;
+	display:none;
+}
+.replyShell
+{
+padding-left: 10px;
+	clear:both;
+	display:none;
 }
 .tweet
 {
@@ -28,6 +42,11 @@
 	z-index:2;
 	background-color:transparent;
 	margin:0px;
+}
+.replyShell .readtweetbg 
+{
+	border-left: 2.5px solid #AAAAAA;
+margin-left: -5.5px;
 }
 .readtweetbg
 {
@@ -160,6 +179,7 @@ overflow: hidden;
     bottom:0;
     width:100%;
 	background-color:#CCCCCC;
+	padding: 2px 2px 0 2px;
 }
 #completebox
 {

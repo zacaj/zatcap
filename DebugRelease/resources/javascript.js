@@ -260,9 +260,9 @@ function insertCompletion(text)
 }
 function nodeFromHtml(html)
 {
-	var t=document.createElement('span');
+	var t=document.createElement('div');
 	t.innerHTML=html;
-	return t;
+	return t.firstChild;
 }
 function addTweet(columnName,n)
 {
@@ -361,6 +361,30 @@ function doDelete(id,columnName)
 	{
 		cpp._delete(id);
 	}	
+}
+function doConvo(id,column,reply)
+{
+	var shell=document.getElementById(id+"_"+column+"_replyShell");
+	if(shell)
+	{
+		if(shell.style.display=="none" || shell.style.display=="")
+		{
+			shell.style.display="block";
+			shell.innerHTML="<img src=\"asset://resource/activity.gif\" />";
+			cpp.setIdToTweetHtml(id+"_"+column+"_replyShell",reply,id+"_"+column+"_replyShell");
+		}
+		else
+		{
+			shell.innerHTML="<img src=\"asset://resource/activity.gif\" />";
+			shell.style.display="none";
+		}
+	}
+	/*else
+	{
+		var n=nodeFromHtml('<div class="replyShell" id="'+id+'_'+column+'_replyShell"><img src="asset://resource/activity.gif" id="activity" /></div>');
+		document.getElementById(column).insertBefore(n,document.getElementById(id+"_"+column).nextSibling);
+		cpp.setIdToTweetHtml(id+"_"+column+"_replyShell",reply,id+"_"+column+"_replyShell");
+	}*/
 }
 function remove(id)
 {	

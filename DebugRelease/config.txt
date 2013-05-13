@@ -55,7 +55,7 @@ scroll speed = 22
 # how to format the date
 ## see http://www.cplusplus.com/reference/clibrary/ctime/strftime/
 # default: %a %b %d %I:%M
-date format = %a %b %d %I:%M
+date format = %b %d %H:%M
 
 # whether to have alternating color tweet backgrounds and highlight 
 #   tweets under the mouse

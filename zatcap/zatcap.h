@@ -4,6 +4,7 @@
 #include "curl.h"
 #include <string>
 #include <vector>
+#include <functional>
 #include <map>
 #include <stdio.h>
 #include "json/reader.h"
@@ -136,6 +137,7 @@ extern int iconR,iconG,iconB;
 
 void startThread(void(*functionPointer)(void*),void *data);
 void delayedThreadStart(void(*functionPointer)(void*),void *data,float delay);
+void startLambdaThread(function<void ()> func);
 
 #ifdef USE_WINDOWS
 typedef CRITICAL_SECTION Mutex;
@@ -148,9 +150,10 @@ void deleteMutex(Mutex &mutex);
 void enterMutex(Mutex &mutex);
 void leaveMutex(Mutex &mutex);
 void replace(std::string& str, const std::string& oldStr, const std::string& newStr);
-string escape(string str);
+string escape(string str,bool forPrintf =false);
 void doing(int i);
 void notifyIcon(bool on);
+string tolower( string str);
 extern int nUnread;
 
 extern map<string,time_t> mute;

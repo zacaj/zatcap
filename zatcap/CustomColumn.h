@@ -1,5 +1,6 @@
 #pragma once
 #include "column.h"
+#include "zatcap.h"
 class Rule
 {
 public:
@@ -39,7 +40,9 @@ public:
 	}
 	bool check(Item *item)
 	{
-		return item->text.find(term)!=string::npos;
+		if(term=="$USERNAME" && username.size())
+			term=username;
+		return tolower(item->text).find(tolower(term))!=string::npos;
 	}
 	static string cmd(){return "str";}
 };
@@ -86,6 +89,8 @@ public:
 		if(item->_type!=1)
 			return 0;
 		Retweet *tweet=(Retweet*)item;
+		if(user=="$USERNAME" && username.size())
+			user=username;
 		return tweet->user()->username==user;
 	}
 	static string cmd(){return "rt";}
@@ -110,6 +115,8 @@ public:
 	}
 	bool check(Item *item)
 	{
+		if(user=="$USERNAME" && username.size())
+			user=username;
 		switch(item->_type)
 		{
 		case 0:

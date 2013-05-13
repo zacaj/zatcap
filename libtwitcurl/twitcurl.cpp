@@ -344,8 +344,8 @@ std::string twitCurl::statusShowById( std::string& statusId )
     if( statusId.length() )
     {
         /* Prepare URL */
-        std::string buildUrl = twitterDefaults::TWITCURL_STATUSSHOW_URL + statusId +
-                               twitCurlDefaults::TWITCURL_EXTENSIONFORMATS[m_eApiFormatType]+twitCurlDefaults::TWITCURL_URL_SEP_QUES+twitCurlDefaults::TWITCURL_INCLUDEENTITIES;
+        std::string buildUrl = twitterDefaults::TWITCURL_STATUSSHOW_URL + 
+                               twitCurlDefaults::TWITCURL_EXTENSIONFORMATS[m_eApiFormatType]+twitCurlDefaults::TWITCURL_URL_SEP_QUES+"id="+statusId +twitCurlDefaults::TWITCURL_URL_SEP_AMP+twitCurlDefaults::TWITCURL_INCLUDEENTITIES;
 
         /* Perform GET */
         retVal = performGet( buildUrl );

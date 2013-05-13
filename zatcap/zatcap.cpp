@@ -6,6 +6,7 @@
 #include "curl.h"
 #include <string>
 #include <stdio.h>
+#include <thread>
 #include "twitter.h"
 #include "file.h"
 #include "stream.h"
@@ -835,6 +836,7 @@ int main(int argc,char **argv)
 		{
 			FILE *fp=fopen("source.html","w");
 			string source=ToString(args[0].ToString());
+			replace(source,"asset://resource/","resources/");
 			fwrite(source.c_str(),source.size(),1,fp);
 			fclose(fp);
 		});
@@ -884,8 +886,17 @@ int main(int argc,char **argv)
 		  ShowWindow(hwndC, IsWindowVisible(hwndC)?SW_HIDE:SW_SHOW);
 #endif
 		});
-
-
+		methodHandler->reg(WSLit("setIdToTweetHtml"),[](JSArray args)
+		{
+			string htmlid=ToString(args[0].ToString());
+			string tweetid=ToString(args[1].ToString());
+			string parent=ToString(args[2].ToString());
+			startLambdaThread([=]()
+			{
+				string html=getTweet(tweetid)->getHtml(parent);
+				runJS("document.getElementById('"+htmlid+"').innerHTML='"+escape(html)+"';");
+			});
+		});
 	}
 	/*processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
 	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up*/
@@ -1452,12 +1463,12 @@ void replace( std::string& str, const std::string& oldStr, const std::string& ne
 	}
 }
 
-std::string escape( string str )
+std::string escape( string str,bool forPrintf )
 {
 	string special="\"\'\n\r";
 	for(int i=0;i<str.size();i++)
 	{
-			if(str[i]=='%')
+			if(str[i]=='%' && forPrintf)
 				str.insert(str.begin()+i++,'%');
 			else
 		for(int j=0;j<special.size();j++)
@@ -1490,4 +1501,20 @@ void doing( int i )
 		progress=0;
 		runJS("document.getElementById('activity').style.display='none';");
 	}
+}
+void lambdaThreadStarter(void *data)
+{
+	function<void()> func=*(function<void()>*)data;
+	func();
+}
+void startLambdaThread( function<void ()> func )
+{
+	startThread(lambdaThreadStarter,new function<void()>(func));
+}
+
+std::string tolower( string str )
+{
+	for(int i=0;i<str.size();i++)
+		str[i]=tolower(str[i]);
+	return str;
 }

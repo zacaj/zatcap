@@ -5,8 +5,9 @@
 <div class="tweetleft">
 <img class="avatar" src="$AVATAR" />
 <div class="tweetbuttons"id="$ID_$COLUMN_buttons" style="visibility: hidden;">
-<a href="javascript:setReplyTo('$ID','@$USERNAME');"><img id='$ID_$COLUMN_reply' src='asset://resource/reply.png' onmouseover="if(this.src=='asset://resource/reply.png') this.src='asset://resource/reply_hover.png';"  onmouseout="if(this.src=='asset://resource/reply_hover.png') this.src='asset://resource/reply.png';"/></a>
+<a href="javascript:setReplyTo('$ID','$TYPEPREFIX$USERNAME');"><img id='$ID_$COLUMN_reply' src='asset://resource/reply.png' onmouseover="if(this.src=='asset://resource/reply.png') this.src='asset://resource/reply_hover.png';"  onmouseout="if(this.src=='asset://resource/reply_hover.png') this.src='asset://resource/reply.png';"/></a>
 <a href="javascript:doRetweet('$ID','$COLUMN');"><img id='$ID_$COLUMN_rt' src='asset://resource/retweet.png' onmouseover="if(this.src=='asset://resource/retweet.png') this.src='asset://resource/retweet_hover.png';"  onmouseout="if(this.src=='asset://resource/retweet_hover.png') this.src='asset://resource/retweet.png';"/></a>
+<a href="javascript:doConvo('$ID','$COLUMN','$REPLYID');"  style="display:$HIDENOTREPLY;"><img id='$ID_$COLUMN_convo' src='asset://resource/convo.png' onmouseover="if(this.src=='asset://resource/convo.png') this.src='asset://resource/convo_hover.png';"  onmouseout="if(this.src=='asset://resource/convo_hover.png') this.src='asset://resource/convo.png';"/></a>
 <a href="javascript:doFavorite('$ID','$COLUMN');"><img id='$ID_$COLUMN_fav' src='asset://resource/favorite$FAVORITED.png' onmouseover="if(this.src=='asset://resource/favorite.png') this.src='asset://resource/favorite_hover.png';"  onmouseout="if(this.src=='asset://resource/favorite_hover.png') this.src='asset://resource/favorite.png';"/></a>
 <a href="javascript:doDelete('$ID','$COLUMN');" style="display:$HIDENOTMINE;"><img id='$ID_$COLUMN_del' src='asset://resource/delete.png' onmouseover="if(this.src=='asset://resource/delete.png') this.src='asset://resource/delete_hover.png';"  onmouseout="if(this.src=='asset://resource/delete_hover.png') this.src='asset://resource/delete.png';"/></a>
 </div>
@@ -23,4 +24,5 @@
 </div>
 </div>
 </div>
+<div class="replyShell" id="$ID_$COLUMN_replyShell"><img src="asset://resource/activity.gif" /></div>
 </div>
