@@ -141,6 +141,10 @@ std::string Tweet::getHtml(string columnName)
 			replace(content,string("$HIDENOTMINE"),"inline");
 		else
 			replace(content,string("$HIDENOTMINE"),"none");
+		if(user()->username==username)
+			replace(content,string("$HIDEMINE"),"none");
+		else
+			replace(content,string("$HIDEMINE"),"inline");
 		if(replyTo.size())
 			replace(content,string("$HIDENOTREPLY"),"inline");
 		else
@@ -193,6 +197,10 @@ std::string Retweet::getHtml( string columnName )
 			replace(content,string("$HIDENOTMINE"),"inline");
 		else
 			replace(content,string("$HIDENOTMINE"),"none");
+		if(user()->username==username)
+			replace(content,string("$HIDEMINE"),"none");
+		else
+			replace(content,string("$HIDEMINE"),"inline");
 		if(read)
 			replace(content,"$READ","read");
 		else
@@ -202,6 +210,7 @@ std::string Retweet::getHtml( string columnName )
 			replace(content,"$FAVORITED","_on");
 		else
 			replace(content,"$FAVORITED","");
+		replace(content,"$TYPEPREFIX",isDM?"d ":"@");
 		html=content;
 	}
 	return html;

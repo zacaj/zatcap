@@ -5,12 +5,5 @@ Logging in...
 ...
 Successfully logged in to twitter account: zacaj2
 Opening a stream...
-Loading missing tweets
 Streaming connection established.
-Command to be run: 
-cmd /C ""C:\Users\Zack\AppData\Local\Google\Chrome\Application\chrome.exe" "http://www.rockpapershotgun.com/2013/05/13/twenty-bucks-dota-2-spring-summer-catalogue/""
-
-Output from command (empty if successful):
-
-
-<end of output>
+Loading missing tweets

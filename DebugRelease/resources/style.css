@@ -89,6 +89,7 @@ margin-right: 6px;
 	margin:4px auto;
 	width:48px;
 	height:48px;
+	position:relative;
 }
 .tweetleft
 {
@@ -118,7 +119,7 @@ margin-right: 6px;
 	width:48px;
 	height: 48px;
 	position:relative;
-	margin: 0 auto;
+	margin:4px auto;
 }
 .retweetedavatar
 {

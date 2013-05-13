@@ -493,7 +493,7 @@ void addTweet( Item** tweet )
 {debugHere();
 enterMutex(tweetsMutex);debugHere();
 	map<string,Item*>::iterator tw=tweets.find((*tweet)->id);debugHere();
-	debug("New tweet: %s\n",escape((*tweet)->text).c_str());
+	debug("New tweet: %s\n",escape((*tweet)->text,true).c_str());
 	if(tw==tweets.end())
 	{
 		time_t t=time(NULL);

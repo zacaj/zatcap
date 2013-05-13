@@ -125,7 +125,7 @@ function setReplyTo(id,author)
 	var text=document.getElementById(id+'_text').innerHTML;
 	inReplyTo=id;
 	var to=new Array();
-	if(!globals || author!='@'+globals.username)
+	//if(!globals || author!='@'+globals.username || author=='@'+username)
 		to.push(author);
 	for(var i=0;i<text.length;i++)
 	{
@@ -145,8 +145,13 @@ function setReplyTo(id,author)
 		}
 				
 	}
-	for(var i=0;i<to.length;i++)
+	var i=0;
+	if(to.length>1 && author=='@'+globals.username)
+		i++;
+	for(;i<to.length;i++)
 		document.getElementById('tweetbox').value+=to[i]+" ";
+	if(to.length>1 && author=='@'+globals.username)
+		document.getElementById('tweetbox').value+=to[0]+" ";
 	document.getElementById('tweetbox').focus();
 	moveCaretToEnd(document.getElementById('tweetbox'));
 	
