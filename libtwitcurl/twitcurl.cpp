@@ -882,7 +882,7 @@ std::string twitCurl::followersIdsGet( std::string& userInfo, bool isUserId )
     utilMakeUrlForUser( buildUrl, twitterDefaults::TWITCURL_FOLLOWERSIDS_URL +
                         twitCurlDefaults::TWITCURL_EXTENSIONFORMATS[m_eApiFormatType],
                         userInfo, isUserId );
-
+	buildUrl+="&stringify_ids=true";
     /* Perform GET */
     return performGet( buildUrl );
 }

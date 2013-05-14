@@ -115,6 +115,7 @@ std::string Tweet::getHtml(string columnName)
 	{
 		string content=f2s("resources/tweet.html");
 		replace(content,string("$ID"),id);
+		replace(content,"$USERID",user()->id);
 		replace(content,string("$REPLYID"),replyTo);
 		string htmlText=text;
 		replace(htmlText,"\n","<br />");
@@ -158,6 +159,7 @@ std::string Tweet::getHtml(string columnName)
 		else
 			replace(content,"$FAVORITED","");
 		replace(content,"$TYPEPREFIX",isDM?"d ":"@");
+		replace(content,"$FOLLOWS",followers.find(user()->id)!=followers.end()?"following":"");
 		html=content;
 	}
 	return html;
@@ -211,6 +213,10 @@ std::string Retweet::getHtml( string columnName )
 		else
 			replace(content,"$FAVORITED","");
 		replace(content,"$TYPEPREFIX",isDM?"d ":"@");
+		replace(content,"$USERID",user()->id);
+		replace(content,"$RTUSERID",retweetedBy->id);
+		replace(content,"$FOLLOWS",followers.find(user()->id)!=followers.end()?"following":"");
+		replace(content,"$RTFOLLOWS",followers.find(retweetedBy->id)!=followers.end()?"following":"");
 		html=content;
 	}
 	return html;

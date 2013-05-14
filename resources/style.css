@@ -241,6 +241,24 @@ overflow: hidden;
     text-align:center;
 }
 
+.user
+{
+	text-decoration:none;
+}
+.followinguser
+{
+	color:#0000DD;
+	text-decoration:none;
+}
+a
+{
+	text-decoration:none;
+}
+a:hover
+{
+	text-decoration:underline;
+}
+
 button
 {
 background-color:#EEEEEE;

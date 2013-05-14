@@ -23,6 +23,7 @@ extern int done;
 #define IDC_SIZEWE 1
 #define IDC_ARROW 0
 #endif
+#include <set>
 
 string cscanf(FILE *fp,char *text);
 
@@ -157,3 +158,5 @@ string tolower( string str);
 extern int nUnread;
 
 extern map<string,time_t> mute;
+extern set<string> followers;
+void addFollower(string id);

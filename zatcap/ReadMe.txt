@@ -1,11 +1,11 @@
 TODO:
 
-conversation view
+flash at beginning?
 
-dynamic icon
-
-pretty bottom+lightbox
-notifications
-
-
-autocompleyte
+follows indicator
+mute hashtag
+activity feed
+autocorrect order
+autocorrect all encountered
+autocorrect hashtags
+autocorrect direct messages

@@ -54,6 +54,7 @@ void parseStream(Json::Value root,string str)
 			{
 				Follow *fav=new Follow(source,timeTweeted);
 				addTweet((Item**)&fav);
+				addFollower(source->id);
 			}
 		}
 	}

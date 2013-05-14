@@ -397,6 +397,12 @@ function remove(id)
 	if(elem)
 		elem.parentNode.removeChild(elem);
 }
+function addFollower(id)
+{
+	var c=document.getElementsByClassName('user '+id);
+	for(var i=0;i<c.length;)
+		c[i].className="followinguser "+id;
+}
 function popup(text,noBrowser)
 {
 document.getElementById('body').insertBefore(nodeFromHtml("<div id='light' style='text-align:center;vertical-align:middle; position:absolute;top:0;left:0;width:100%;height:100%;'> <div style='top:15%; position: absolute;text-align:center;position: relative;text-align: center;max-width: 80%;display:inline-block;max-height: 80%;'> <div class='white_content'>    "+text+(noBrowser==true?"<div style='z-index:1005;'><a href='javascript:;' onclick='cpp.openInNativeBrowser(\""+url+"\");' >Open in browser</a>   </div>":"")+"</div></div>      <div id='fade' class='black_overlay' onclick='remove(\"light\");'></div></div>"),null);

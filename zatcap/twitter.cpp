@@ -98,6 +98,19 @@ void refreshTweets( void *data )
 		while((tmpString=twit->directMessageGet())=="");
 		parseRestTweets(tmpString);debugHere();
 	}
+	{
+		string tmpString;debugHere();
+		while((tmpString=twit->followersIdsGet(username))=="");
+		Json::Reader reader;
+		Json::Value root;
+		reader.parse(tmpString,root);
+		root=root["ids"];
+		assert(root.isArray());
+		for(int i=0;i<root.size();i++)
+		{
+			addFollower(root[i].asString());
+		}
+	}
 	doing(-1);
 }
 void loadBackTill(void *data)
@@ -858,7 +871,7 @@ Tweet* processTweet(Json::Value jtweet)
 				entity->id=jentity["id_str"].asString();
 				entity->start=jentity["indices"][0u].asInt();
 				entity->end=jentity["indices"][1u].asInt();
-				entity->text="<a oncontextmenu='mutePop(\""+entity->username+"\"); return false;' href='#' onclick=\"cpp.openInNativeBrowser('https://twitter.com/"+entity->username+"');\">"+entity->username+"</a>";
+				entity->text="<a oncontextmenu='mutePop(\""+entity->username+"\"); return false;' href='#' onclick=\"cpp.openInNativeBrowser('https://twitter.com/"+entity->username+"');\" class='"+(followers.find(entity->id)!=followers.end()?"followinguser":"user")+" "+entity->id+"'>"+entity->username+"</a>";
 				tweet->entities.push_back(entity);
 				entities[entity->start]=entity;
 			}

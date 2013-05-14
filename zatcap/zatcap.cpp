@@ -261,21 +261,27 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_SETFOCUS:
 		hasFocus=1;
+		printf("focus\n");
 		notifyIcon(0);
 		break ;
 
 	case WM_KILLFOCUS:
 		hasFocus=0;
+		printf("unfocus\n");
 		break;
 
 	case WM_ACTIVATE:
 		if( LOWORD(wParam) == WA_ACTIVE )
 		{
+			printf("active\n");
 			hasFocus=1;
 			notifyIcon(0);
 		}
 		else 
+		{
+			printf("deactive\n");
 			hasFocus=0;
+		}
 		//	puts( "I AM NOW INACTIVE." ) ;
 		break ;
 	default:
@@ -531,6 +537,7 @@ extern vector<string> jsToRun;
 map<string,time_t> mute;
 #ifdef USE_WINDOWS
 HBITMAP icon;
+set<string> followers;
 HCURSOR CreateAlphaCursor(void)
 {
 	HDC hMemDC;
@@ -665,8 +672,9 @@ int main(int argc,char **argv)
 		std::ios::sync_with_stdio();
 
 		HWND hwndC = GetConsoleWindow() ; 
-
+#ifdef NDEBUG
 		ShowWindow(hwndC,SW_HIDE);
+#endif
 	}
 	else
 	if( strcmp(lpCmdLine, "-noredirect") != 0 )
@@ -1517,4 +1525,10 @@ std::string tolower( string str )
 	for(int i=0;i<str.size();i++)
 		str[i]=tolower(str[i]);
 	return str;
+}
+
+void addFollower( string id )
+{
+	followers.insert(id);
+	runJS("addFollower('"+id+"');");
 }
