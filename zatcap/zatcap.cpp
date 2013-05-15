@@ -280,6 +280,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		else 
 		{
 			printf("deactive\n");
+			
 			hasFocus=0;
 		}
 		//	puts( "I AM NOW INACTIVE." ) ;
@@ -311,6 +312,7 @@ void notifyIcon(bool on)
 		info.dwTimeout = 0;
 		info.uCount = 3;
 		FlashWindowEx(&info);
+		printf("stop\n");
 	}
 }
 #else
@@ -697,6 +699,7 @@ int main(int argc,char **argv)
 	readConfig();debug("%i\n",__LINE__);//read a second time to load colors
 	//sysinit();
 	tweetsMutex=createMutex();
+	jsMutex=createMutex();
 	twitCurl *twit=NULL;
 	#ifdef USE_WINDOWS
 	{
@@ -758,7 +761,6 @@ int main(int argc,char **argv)
         sdlInit();
     }
     #endif
-	jsMutex=createMutex();
 	{
 		web_core = WebCore::Initialize(WebConfig());
 		session=web_core->CreateWebSession(WSLit("session"),WebPreferences());

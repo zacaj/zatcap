@@ -502,7 +502,7 @@ int loadOlderTweets(void *data)
 }
 Mutex tweetsMutex;
 void saveMute() ;
-void addTweet( Item** tweet )
+void addTweet( Item** tweet,bool newTweet )
 {debugHere();
 enterMutex(tweetsMutex);debugHere();
 	map<string,Item*>::iterator tw=tweets.find((*tweet)->id);debugHere();
@@ -532,7 +532,7 @@ enterMutex(tweetsMutex);debugHere();
 				it++;
 			}
 		}
-		if((*tweet)->text.find(username)!=string::npos)
+		if(newTweet && (*tweet)->text.find(username)!=string::npos)
 		{
 			notifyIcon(1);
 		}
@@ -556,7 +556,7 @@ enterMutex(tweetsMutex);debugHere();
 		tweets[(*tweet)->id]=*tweet;
 		for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
 			it->second->newTweet(*tweet);*/
-		addTweet(tweet);
+		addTweet(tweet,0);
 	}
 	leaveMutex(tweetsMutex);
 }

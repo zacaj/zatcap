@@ -1,13 +1,13 @@
 SETUP
 
-1. fill in user.txt (create if not exist)
+1. fill in user.txt (create it if it does not exist)
 username = YOUR USERNAME
 password = YOUR PASSWORD
 
 2.  on linux: symlink libawesomium-1-7.so.0.0 into /usr/lib
-    on windows: if you get an error about msvcr110.dll install http://www.microsoft.com/en-us/download/details.aspx?id=30679
-    
-3. replace 'zacaj' with your username in every file in columns.txt
+    on windows: if you get an error about msvcr110.dll install http://www.microsoft.com/en-us/download/details.aspx?id=30679 and delete msvcr110.dll
+
+3. open config.txt, find "browser command = " and replace the path with the path to the .exe for your browser of choice
 
 4. launch zatcap and hope
 
