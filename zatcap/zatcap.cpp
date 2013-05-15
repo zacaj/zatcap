@@ -834,7 +834,7 @@ int main(int argc,char **argv)
 						while(a<src.size() && src[a]!='\"') url.push_back(src[a++]);
 					}
 				}
-				runJS("lightbox('"+url+"');");
+				runJS("lightbox('"+url+"','"+url+"');");
 		});
 		methodHandler->reg(WSLit("refresh"),[](JSArray args)
 		{

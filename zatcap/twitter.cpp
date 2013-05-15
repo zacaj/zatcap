@@ -834,9 +834,9 @@ Tweet* processTweet(Json::Value jtweet)
 				url->end=entity["indices"][1u].asInt();
 				url->text="<a href='"+url->realUrl+"'>"+url->displayUrl+"</a>";
 				if(!urlIsPicture(url->realUrl))
-					url->text="<a href='javascript:;' onclick=\"cpp.openInNativeBrowser('"+url->realUrl+"');\">"+url->displayUrl+"</a>";
+					url->text="<a href='javascript:;' oncontextmenu=\"cpp.handleImage('"+url->realUrl+"');\" onclick=\"cpp.openInNativeBrowser('"+url->realUrl+"');\">"+url->displayUrl+"</a>";
 				else
-					url->text="<a href='javascript:;' onclick=\"cpp.handleImage('"+url->realUrl+"');\">"+url->displayUrl+"</a>";
+					url->text="<a href='javascript:;' oncontextmenu=\"cpp.openInNativeBrowser('"+url->realUrl+"'); return false;\" onclick=\"cpp.handleImage('"+url->realUrl+"');\">"+url->displayUrl+"</a>";
 				tweet->entities.push_back(url);
 				entities[url->start]=url;
 			}
@@ -855,7 +855,7 @@ Tweet* processTweet(Json::Value jtweet)
 				url->start=entity["indices"][0u].asInt();
 				url->end=entity["indices"][1u].asInt();
 				url->text="<a href='"+url->realUrl+"'>"+url->displayUrl+"</a>";
-				url->text="<a href='javascript:;' onclick=\"cpp.handleImage('"+url->realUrl+"');\">"+url->displayUrl+"</a>";
+				url->text="<a href='javascript:;' oncontextmenu=\"cpp.openInNativeBrowser('"+url->realUrl+"'); return false;\" onclick=\"cpp.handleImage('"+url->realUrl+"');\">"+url->displayUrl+"</a>";
 				tweet->entities.push_back(url);
 				entities[url->start]=url;
 			}
@@ -885,7 +885,7 @@ Tweet* processTweet(Json::Value jtweet)
 				entity->name="#"+jentity["text"].asString();
 				entity->start=jentity["indices"][0u].asInt();
 				entity->end=jentity["indices"][1u].asInt();
-				entity->text="<a href='javascript:;' onclick=\"cpp.openInNativeBrowser('https://twitter.com/search?q=%23"+entity->name.substr(1,entity->name.size()-1)+"');\">"+entity->name+"</a>";
+				entity->text="<a oncontextmenu='mutePop(\""+entity->name+"\"); return false;' href='javascript:;' onclick=\"cpp.openInNativeBrowser('https://twitter.com/search?q=%23"+entity->name.substr(1,entity->name.size()-1)+"');\">"+entity->name+"</a>";
 				tweet->entities.push_back(entity);
 				entities[entity->start]=entity;
 			}

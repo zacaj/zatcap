@@ -403,18 +403,20 @@ function addFollower(id)
 	for(var i=0;i<c.length;)
 		c[i].className="followinguser "+id;
 }
-function popup(text,noBrowser)
+function popup(text,url)
 {
-document.getElementById('body').insertBefore(nodeFromHtml("<div id='light' style='text-align:center;vertical-align:middle; position:absolute;top:0;left:0;width:100%;height:100%;'> <div style='top:15%; position: absolute;text-align:center;position: relative;text-align: center;max-width: 80%;display:inline-block;max-height: 80%;'> <div class='white_content'>    "+text+(noBrowser==true?"<div style='z-index:1005;'><a href='javascript:;' onclick='cpp.openInNativeBrowser(\""+url+"\");' >Open in browser</a>   </div>":"")+"</div></div>      <div id='fade' class='black_overlay' onclick='remove(\"light\");'></div></div>"),null);
+var str="<div id='light' style='text-align:center;vertical-align:middle; position:absolute;top:0;left:0;width:100%;height:100%;'> <div style='top:15%; position: absolute;text-align:center;position: relative;text-align: center;max-width: 80%;display:inline-block;max-height: 80%; min-width:70%;'> <div class='white_content'>    "+text+(url?("<div style='z-index:1005;'><a href='javascript:;' onclick='cpp.openInNativeBrowser(\""+url+"\");' >Open in browser</a>   </div>"):"")+"</div></div>      <div id='fade' class='black_overlay' onclick='remove(\"light\");'></div></div>";
+//cpp.debug(str);
+document.getElementById('body').insertBefore(nodeFromHtml(str),null);
 }
 
-function lightbox(url,noBrowser)
+function lightbox(url,url2)
 {
 	//document.getElementById('body').insertBefore(nodeFromHtml("<div id=\"light\" class=\"white_content\"><object data='"+url+"' style='width: 95%;height: 95%'>tada</object><center><a href='javascript:;' onclick=\"cpp.openInNativeBrowser('"+url+"');\">Open in browser</a></center></div><div id=\"fade\" class=\"black_overlay\" onclick=\"remove('light');remove('fade');\"></div>"),null);
-	popup("<object data='"+url+"' class='lightbox_content' type='image/jpeg'>tada</object>",noBrowser);
+	popup("<object data=\'"+url+"\' class='lightbox_content' type='image/jpeg'>tada</object>",url2);
 	}
 function mutePop(string)
 {
 	var body="<div style='margin:50px;' id='mute'>Mute <input type='text'  id='mutestring' size='8' value='"+string+"' onsubmit='cpp.mute(\""+string+"\",document.getElementById(\"muteTime\").value);remove(\"light\");'></input> for <input type='text'  id='muteTime' size='6' value='99999999' onsubmit='cpp.mute(\""+string+"\",document.getElementById(\"muteTime\").value);remove(\"light\");'></input> hours.<br/><br/><button type='button' onclick='remove(\"light\");' style='float:left; vertical-align:bottom;'>Cancel</button><button type='button' onclick='cpp.mute(\""+string+"\",document.getElementById(\"muteTime\").value);remove(\"light\");' style='float:right; vertical-align:bottom;'>OK</button></div>";
-		popup(body,false);
+		popup(body);
 }
