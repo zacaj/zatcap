@@ -195,11 +195,11 @@ std::string Retweet::getHtml( string columnName )
 		replace(content,string("$AVATAR"),user()->picURL);
 		replace(content,string("$RTAVATAR"),retweetedBy->picURL);
 		replace(content,string("$COLUMN"),columnName);
-		if(retweetedBy->username==username)
+		if(retweetedBy->username==username || user()->username==username)
 			replace(content,string("$HIDENOTMINE"),"inline");
 		else
 			replace(content,string("$HIDENOTMINE"),"none");
-		if(user()->username==username)
+		if(user()->username==username || retweetedBy->username==username)
 			replace(content,string("$HIDEMINE"),"none");
 		else
 			replace(content,string("$HIDEMINE"),"inline");
@@ -217,6 +217,10 @@ std::string Retweet::getHtml( string columnName )
 		replace(content,"$RTUSERID",retweetedBy->id);
 		replace(content,"$FOLLOWS",followers.find(user()->id)!=followers.end()?"following":"");
 		replace(content,"$RTFOLLOWS",followers.find(retweetedBy->id)!=followers.end()?"following":"");
+		if(replyTo.size())
+			replace(content,string("$HIDENOTREPLY"),"inline");
+		else
+			replace(content,string("$HIDENOTREPLY"),"none");
 		html=content;
 	}
 	return html;
