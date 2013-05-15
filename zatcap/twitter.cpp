@@ -545,18 +545,21 @@ enterMutex(tweetsMutex);debugHere();
 	else
 	{debugHere();
 		//nUnread-=(*tweet)->read-tw->second->read;
-		bool oldRead=tw->second->read;
-		leaveMutex(tweetsMutex);
-		deleteTweet(((Tweet*)(*tweet))->id);
-		//enterMutex(tweetsMutex);
+		if(**tweet!=*tw->second)
+		{
+			bool oldRead=tw->second->read;
+			leaveMutex(tweetsMutex);
+			deleteTweet(((Tweet*)(*tweet))->id);
+			//enterMutex(tweetsMutex);
 
-		(*tweet)->read=oldRead;
-		/*if(!(*tweet)->read)
-			nUnread++;
-		tweets[(*tweet)->id]=*tweet;
-		for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
-			it->second->newTweet(*tweet);*/
-		addTweet(tweet,0);
+			(*tweet)->read=oldRead;
+			/*if(!(*tweet)->read)
+				nUnread++;
+			tweets[(*tweet)->id]=*tweet;
+			for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
+				it->second->newTweet(*tweet);*/
+			addTweet(tweet,0);
+		}
 	}
 	leaveMutex(tweetsMutex);
 }
