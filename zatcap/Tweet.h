@@ -18,6 +18,7 @@ public:
 	struct tm timeTweeted;
 	time_t timeTweetedInSeconds;
 	int read;
+	bool operator !=(const Item &i) const;
 	virtual string getHtml(string columnName) =0;
 	virtual void write(FILE *fp)=0;
 	set<Column*> instances;

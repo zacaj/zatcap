@@ -390,3 +390,8 @@ void Follow::write( FILE *fp )
 {
 	//throw std::exception("The method or operation is not implemented.");
 }
+
+bool Item::operator!=(const Item &i ) const
+{
+	return text!=i.text || id!=i.id || _type!=i._type || timeTweetedInSeconds!=i.timeTweetedInSeconds || read!=i.read;
+}
