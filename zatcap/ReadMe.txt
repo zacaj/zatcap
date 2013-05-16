@@ -9,3 +9,4 @@ autocorrect order
 autocorrect all encountered
 autocorrect hashtags
 autocorrect direct messages
+delete undos
