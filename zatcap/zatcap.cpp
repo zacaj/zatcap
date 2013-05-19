@@ -538,7 +538,7 @@ void sendTweet(void *_data)
 extern vector<string> jsToRun;
 map<string,time_t> mute;
 #ifdef USE_WINDOWS
-HBITMAP icon;
+HBITMAP icon[3];
 set<string> followers;
 HCURSOR CreateAlphaCursor(void)
 {
@@ -569,10 +569,16 @@ HCURSOR CreateAlphaCursor(void)
 
 	HDC hdc;
 	hdc = GetDC(NULL);
-
+	char str[100];
+	sprintf(str,"%i",nUnread);
 	// Create the DIB section with an alpha channel.
 	hBitmap = (HBITMAP)CreateDIBSection(hdc, (BITMAPINFO *)&bi, DIB_RGB_COLORS, (void **)&lpBits, NULL, (DWORD)0);//LoadImage(NULL,L"resources/icon.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE|LR_LOADTRANSPARENT);//
-	GetDIBits(hdc,icon,0,32,lpBits,(BITMAPINFO *)&bi,DIB_RGB_COLORS);
+	if(nUnread==0)
+		GetDIBits(hdc,icon[0],0,32,lpBits,(BITMAPINFO *)&bi,DIB_RGB_COLORS);
+	else if(nUnread<10)
+		GetDIBits(hdc,icon[1],0,32,lpBits,(BITMAPINFO *)&bi,DIB_RGB_COLORS);
+	else
+		GetDIBits(hdc,icon[2],0,32,lpBits,(BITMAPINFO *)&bi,DIB_RGB_COLORS);
 	hMemDC = CreateCompatibleDC(hdc);
 	ReleaseDC(NULL,hdc);
 
@@ -583,9 +589,8 @@ HCURSOR CreateAlphaCursor(void)
 	SetBkMode(hMemDC,TRANSPARENT);
 	if(nUnread>0)
 	{
-		char str[100];
-		sprintf(str,"%i",nUnread);
-		TextOutA(hMemDC,1,15,str,strlen(str));
+		
+		TextOutA(hMemDC,1,17,str,strlen(str));
 	}
 	SelectObject(hMemDC, hOldBitmap);
 	DeleteDC(hMemDC);
@@ -632,7 +637,11 @@ int main(int argc,char **argv)
 	assert_(sizeof(uchar)==1);
 	assert_(sizeof(float)==4);
 #ifdef USE_WINDOWS
+#ifdef NDEBUG
 	if ( strcmp(lpCmdLine, "-console") == 0 )
+#else 
+	if(1)
+#endif
 	{
 		// Create a console
 		AllocConsole();
@@ -742,7 +751,9 @@ int main(int argc,char **argv)
 
 		ShowWindow(hwnd, nCmdShow);
 		UpdateWindow(hwnd);
-		icon=(HBITMAP)LoadImage(NULL,L"resources/icon.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE);
+		icon[0]=(HBITMAP)LoadImage(NULL,L"resources/iconbig.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE);
+		icon[1]=(HBITMAP)LoadImage(NULL,L"resources/iconmed.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE);
+		icon[2]=(HBITMAP)LoadImage(NULL,L"resources/iconsmall.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE);
 		{
 			SendMessage(hwnd, WM_SETICON,
 				ICON_BIG,(LPARAM)CreateAlphaCursor());

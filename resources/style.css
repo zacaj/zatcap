@@ -195,6 +195,10 @@ overflow: hidden;
 	overflow-x:hidden;
 	overflow-y:auto;
 }
+#tweetbox
+{
+	overflow-y:auto;
+}
 .completeboxitem
 {
 	position:relative;

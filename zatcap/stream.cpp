@@ -239,7 +239,7 @@ bool openUserStream(twitCurl *twit)
 	string *str=new string();
 	curl_easy_setopt(curl,CURLOPT_WRITEDATA,(void*)str);
 	//curl_easy_setopt( curl, CURLOPT_HEADERFUNCTION, callback_func );
-	//curl_easy_setopt( curl, CURLOPT_DEBUGFUNCTION, curl_debug_callback2 );
+	curl_easy_setopt( curl, CURLOPT_DEBUGFUNCTION, curl_debug_callback2 );
 	//todo errors
 	if(CURLE_OK == curl_easy_perform(curl))
 	{

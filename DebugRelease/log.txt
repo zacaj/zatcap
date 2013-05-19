@@ -1,4 +1,4 @@
-Version: a94
+Version: a95
 Scanned config file
 Scanned config file
 Logging in...
@@ -7,10 +7,3 @@ Successfully logged in to twitter account: zacaj2
 Opening a stream...
 Loading missing tweets
 Streaming connection established.
-Command to be run: 
-cmd /C ""C:\Users\Zack\AppData\Local\Google\Chrome\Application\chrome.exe" "http://quinnae.com/2013/05/14/at-the-edge-of-night-who-owns-a-womans-truth/""
-
-Output from command (empty if successful):
-
-
-<end of output>
