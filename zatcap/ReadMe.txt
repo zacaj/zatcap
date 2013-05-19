@@ -10,7 +10,6 @@ autocorrect hashtags
 autocorrect direct messages
 delete undos
 photo
-sound
 horizontal scroll
 
 list view
