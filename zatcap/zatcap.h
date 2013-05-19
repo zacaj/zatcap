@@ -58,6 +58,7 @@ namespace settings
 	extern int maxTweets;
 	extern string proxyServer;
 	extern string proxyPort;
+	extern string notificationSound;
 }
 namespace colors
 {

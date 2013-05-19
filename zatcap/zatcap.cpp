@@ -90,6 +90,7 @@ namespace settings
 	int maxTweets=1000;
 	string proxyServer;
 	string proxyPort;
+	string notificationSound;
 }
 namespace colors
 {
@@ -297,6 +298,8 @@ void notifyIcon(bool on)
 	info.hwnd = hwnd;
 	if(on)
 	{
+		if(settings::notificationSound.size())
+			PlaySoundA(settings::notificationSound.c_str(), NULL, SND_FILENAME|SND_ASYNC|SND_NOSTOP);
 		if(GetFocus()==hwnd || hasFocus)
 		{
 			return;
@@ -1147,6 +1150,8 @@ void readConfig()
 	settings::proxyServer=cscanf(fp,"%s\n");
 	jumpToSetting(fp,"proxy port");
 	settings::proxyPort=cscanf(fp,"%s\n");
+	jumpToSetting(fp,"notification sound");
+	settings::notificationSound=cscanf(fp,"%s\n");
 
 	using namespace colors;
 	jumpToSetting(fp,"unread tweet color");

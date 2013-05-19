@@ -119,6 +119,7 @@ mark all tweets as read after tweeting = 2
 
 proxy server = none
 proxy port = none
+notification sound = resources/notify.wav
 
 
 unread tweet color = 40,40,40
