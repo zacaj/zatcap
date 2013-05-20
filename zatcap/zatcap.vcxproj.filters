@@ -35,22 +35,13 @@
     <ClInclude Include="Process.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WaitIndicator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Column.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TimedEventProcess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tweet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AvitarDownloader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
@@ -88,22 +79,13 @@
     <ClCompile Include="twitter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WaitIndicator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Column.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TimedEventProcess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Tweet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AvitarDownloader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Awesomium.cpp">

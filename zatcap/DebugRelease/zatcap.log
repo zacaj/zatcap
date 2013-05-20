@@ -1,11 +1,211 @@
-﻿Build started 5/20/2013 7:39:27 PM.
+﻿Build started 5/20/2013 7:55:28 PM.
      1>Project "H:\source\zatcap html\zatcap\zatcap.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
          Touching "DebugRelease\zatcap.unsuccessfulbuild".
        ClCompile:
-         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I../libtwitcurl/curl /I../libtwitcurl/ /I"C:\Program Files (x86)\Awesomium Technologies LLC\Awesomium SDK\1.7.0.5\include" /Zi /nologo /W3 /WX- /Ox /Ob2 /Oi /Ot /Oy /GT /GL /D WINDOWS /D USE_WINDOWS /D WIN32 /D _NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /MT /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"DebugRelease\\" /Fd"DebugRelease\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Column.cpp
+         Column.cpp
+     1>Column.cpp(13): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
        Link:
-         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"H:\source\zatcap html\DebugRelease\zatcap.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Awesomium Technologies LLC\Awesomium SDK\1.7.0.5\build\lib" ../releaselibs/libeay32.lib ../releaselibs/ssleay32.lib ../releaselibs/libcurl.lib awesomium.lib ../libtwitcurl/Release/twitcurl.lib kernel32.lib Winmm.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"H:\source\zatcap html\DebugRelease\zatcap.pdb" /SUBSYSTEM:WINDOWS /OPT:NOREF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"H:\source\zatcap html\DebugRelease\zatcap.lib" /MACHINE:X86 /verbose:lib /FORCE:MULTIPLE DebugRelease\Awesomium.obj
+         DebugRelease\Column.obj
+         DebugRelease\CustomColumn.obj
+         DebugRelease\file.obj
+         DebugRelease\json_reader.obj
+         DebugRelease\json_value.obj
+         DebugRelease\json_writer.obj
+         DebugRelease\stdafx.obj
+         DebugRelease\stream.obj
+         DebugRelease\Tweet.obj
+         DebugRelease\twitter.obj
+         DebugRelease\TimedEventProcess.obj
+         DebugRelease\zatcap.obj
+     1>LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
+         
+         Searching libraries
+             Searching ../releaselibs/libeay32.lib:
+             Searching ../releaselibs/ssleay32.lib:
+             Searching ../releaselibs/libcurl.lib:
+             Searching C:\Program Files (x86)\Awesomium Technologies LLC\Awesomium SDK\1.7.0.5\build\lib\awesomium.lib:
+             Searching ../libtwitcurl/Release/twitcurl.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\kernel32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\Winmm.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\user32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\gdi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\winspool.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\comdlg32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\advapi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\shell32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\ole32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\oleaut32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\uuid.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\odbc32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\odbccp32.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\libcpmt.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\LIBCMT.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\OLDNAMES.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\MSVCRT.lib:
+             Searching ../releaselibs/libeay32.lib:
+             Searching ../releaselibs/ssleay32.lib:
+             Searching ../releaselibs/libcurl.lib:
+             Searching C:\Program Files (x86)\Awesomium Technologies LLC\Awesomium SDK\1.7.0.5\build\lib\awesomium.lib:
+             Searching ../libtwitcurl/Release/twitcurl.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\kernel32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\Winmm.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\user32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\gdi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\winspool.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\comdlg32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\advapi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\shell32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\ole32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\oleaut32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\uuid.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\odbc32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\odbccp32.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\libcpmt.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\LIBCMT.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\OLDNAMES.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\MSVCRT.lib:
+             Searching ../releaselibs/libeay32.lib:
+             Searching ../releaselibs/ssleay32.lib:
+             Searching ../releaselibs/libcurl.lib:
+             Searching C:\Program Files (x86)\Awesomium Technologies LLC\Awesomium SDK\1.7.0.5\build\lib\awesomium.lib:
+             Searching ../libtwitcurl/Release/twitcurl.lib:
+         
+         Finished searching libraries
+     1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+         Generating code
+     1>h:\source\zatcap html\zatcap\zatcap.cpp(1496): warning C4700: uninitialized local variable 'mx' used
+     1>h:\source\zatcap html\zatcap\zatcap.cpp(1496): warning C4700: uninitialized local variable 'my' used
+         Finished generating code
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _calloc already defined in LIBCMT.lib(calloc.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _free already defined in LIBCMT.lib(free.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _malloc already defined in LIBCMT.lib(malloc.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _realloc already defined in LIBCMT.lib(realloc.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _strchr already defined in LIBCMT.lib(strchr.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _strncmp already defined in LIBCMT.lib(strncmp.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _strrchr already defined in LIBCMT.lib(strrchr.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: ___iob_func already defined in LIBCMT.lib(_file.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _fclose already defined in LIBCMT.lib(fclose.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _fopen already defined in LIBCMT.lib(fopen.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _sscanf already defined in LIBCMT.lib(sscanf.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: __strtoi64 already defined in LIBCMT.lib(strtoq.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _strtol already defined in LIBCMT.lib(strtol.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: __time64 already defined in LIBCMT.lib(time64.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: __errno already defined in LIBCMT.lib(dosmap.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _tolower already defined in LIBCMT.lib(tolower.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _isxdigit already defined in LIBCMT.lib(_ctype.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _memmove already defined in LIBCMT.lib(memmove.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _fread already defined in LIBCMT.lib(fread.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _fwrite already defined in LIBCMT.lib(fwrite.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _strtoul already defined in LIBCMT.lib(strtol.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _isdigit already defined in LIBCMT.lib(_ctype.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _isspace already defined in LIBCMT.lib(_ctype.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _memchr already defined in LIBCMT.lib(memchr.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _fseek already defined in LIBCMT.lib(fseek.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _fflush already defined in LIBCMT.lib(fflush.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _isalpha already defined in LIBCMT.lib(_ctype.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _isalnum already defined in LIBCMT.lib(_ctype.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: __gmtime64 already defined in LIBCMT.lib(gmtime64.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _fputc already defined in LIBCMT.lib(fputc.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _sprintf already defined in LIBCMT.lib(sprintf.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: __lseeki64 already defined in LIBCMT.lib(lseeki64.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _atoi already defined in LIBCMT.lib(atox.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _getenv already defined in LIBCMT.lib(getenv.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _isupper already defined in LIBCMT.lib(_ctype.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _islower already defined in LIBCMT.lib(_ctype.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _isprint already defined in LIBCMT.lib(_ctype.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _isgraph already defined in LIBCMT.lib(_ctype.obj); second definition ignored
+     1>MSVCRT.lib(ti_inst.obj) : warning LNK4006: "private: __thiscall type_info::type_info(class type_info const &)" (??0type_info@@AAE@ABV0@@Z) already defined in LIBCMT.lib(typinfo.obj); second definition ignored
+     1>MSVCRT.lib(ti_inst.obj) : warning LNK4006: "private: class type_info & __thiscall type_info::operator=(class type_info const &)" (??4type_info@@AAEAAV0@ABV0@@Z) already defined in LIBCMT.lib(typinfo.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: __strdup already defined in LIBCMT.lib(strdup.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: __wcsdup already defined in LIBCMT.lib(wcsdup.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: __strnicmp already defined in LIBCMT.lib(strnicmp.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: __close already defined in LIBCMT.lib(close.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: __open already defined in LIBCMT.lib(open.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: __read already defined in LIBCMT.lib(read.obj); second definition ignored
+     1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: __write already defined in LIBCMT.lib(write.obj); second definition ignored
+         
+         Searching libraries
+             Searching ../releaselibs/libeay32.lib:
+             Searching ../releaselibs/ssleay32.lib:
+             Searching ../releaselibs/libcurl.lib:
+             Searching C:\Program Files (x86)\Awesomium Technologies LLC\Awesomium SDK\1.7.0.5\build\lib\awesomium.lib:
+             Searching ../libtwitcurl/Release/twitcurl.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\kernel32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\Winmm.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\user32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\gdi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\winspool.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\comdlg32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\advapi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\shell32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\ole32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\oleaut32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\uuid.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\odbc32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\odbccp32.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\libcpmt.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\LIBCMT.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\OLDNAMES.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\MSVCRT.lib:
+         
+         Finished searching libraries
+         
+         Searching libraries
+             Searching ../releaselibs/libeay32.lib:
+             Searching ../releaselibs/ssleay32.lib:
+             Searching ../releaselibs/libcurl.lib:
+             Searching C:\Program Files (x86)\Awesomium Technologies LLC\Awesomium SDK\1.7.0.5\build\lib\awesomium.lib:
+             Searching ../libtwitcurl/Release/twitcurl.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\kernel32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\Winmm.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\user32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\gdi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\winspool.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\comdlg32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\advapi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\shell32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\ole32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\oleaut32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\uuid.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\odbc32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\odbccp32.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\libcpmt.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\LIBCMT.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\OLDNAMES.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\MSVCRT.lib:
+             Searching ../releaselibs/libeay32.lib:
+             Searching ../releaselibs/ssleay32.lib:
+             Searching ../releaselibs/libcurl.lib:
+             Searching C:\Program Files (x86)\Awesomium Technologies LLC\Awesomium SDK\1.7.0.5\build\lib\awesomium.lib:
+             Searching ../libtwitcurl/Release/twitcurl.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\kernel32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\Winmm.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\user32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\gdi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\winspool.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\comdlg32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\advapi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\shell32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\ole32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\oleaut32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\uuid.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\odbc32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.0\lib\win8\um\x86\odbccp32.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib\libcpmt.lib:
+         
+         Finished searching libraries
+     1>stream.obj : warning LNK4049: locally defined symbol _curl_easy_init imported
+     1>stream.obj : warning LNK4049: locally defined symbol _curl_formfree imported
+     1>stream.obj : warning LNK4049: locally defined symbol _curl_formadd imported
+     1>stream.obj : warning LNK4049: locally defined symbol _curl_easy_cleanup imported
+     1>stream.obj : warning LNK4049: locally defined symbol _curl_easy_perform imported
+     1>stream.obj : warning LNK4049: locally defined symbol _curl_easy_setopt imported
+     1>stream.obj : warning LNK4049: locally defined symbol _curl_slist_append imported
+     1>zatcap.obj : warning LNK4049: locally defined symbol _curl_easy_strerror imported
+     1>H:\source\zatcap html\DebugRelease\zatcap.exe : warning LNK4088: image being generated due to /FORCE option; image may not run
          zatcap.vcxproj -> H:\source\zatcap html\DebugRelease\zatcap.exe
        FinalizeBuildStatus:
          Deleting file "DebugRelease\zatcap.unsuccessfulbuild".
@@ -14,4 +214,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.22
+Time Elapsed 00:00:16.34

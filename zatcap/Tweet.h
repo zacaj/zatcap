@@ -86,8 +86,6 @@ public:
 	}
 	User *_user;
 	virtual int draw(int x,int y,int w,int background);
-	virtual int draw(TweetInstance *instance,int w);
-	virtual int drawButtons(int x,int y,int w,int h,bool highlighted);
 	virtual int cachedDraw(TweetInstance *instance);
 	virtual void write(FILE *fp);
 	virtual string getHtml(string columnName) ;
@@ -131,7 +129,6 @@ public:
 	}
 
 	virtual int draw( int x,int y,int w,int background );
-	virtual int draw(TweetInstance *instance,int w);
 	virtual int cachedDraw(TweetInstance *instance);
 	virtual void write(FILE *fp);
 
@@ -139,24 +136,6 @@ public:
 
 };
 
-class TweetInstance
-{
-public:
-	Item *tweet;
-	TweetInstance *replyTo;
-	string pic;
-	string pic2;
-	bool read;
-	int w;
-	vector<int> widths;
-	bool drawReply;
-	int background;
-	int buttonX,buttonY,buttonHeight;
-	TweetInstance(Item *_tweet,int w,int _background );
-	~TweetInstance();
-	int draw(int x,int y);
-	void refresh(int w);
-};
 void favoriteTweet(void *data);
 void unfavoriteTweet(void *data);
 void retweetTweet(void *data);

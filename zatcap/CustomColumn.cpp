@@ -51,7 +51,6 @@ void CustomColumn::newTweet( Item *tweet )
 	}
 	if(!had)
 		return;
-	TweetInstance *instance=new TweetInstance(tweet,rw,onOff);
-	m_tweets[tweet->id]=instance;
+	m_tweets[tweet->id]=tweet;
 	add(tweet);
 }

@@ -135,9 +135,7 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AvitarDownloader.h" />
     <ClInclude Include="Awesomium.h" />
-    <ClInclude Include="Button.h" />
     <ClInclude Include="Column.h" />
     <ClInclude Include="CustomColumn.h" />
     <ClInclude Include="file.h" />
@@ -149,13 +147,10 @@
     <ClInclude Include="Tweet.h" />
     <ClInclude Include="twitter.h" />
     <ClInclude Include="TimedEventProcess.h" />
-    <ClInclude Include="WaitIndicator.h" />
     <ClInclude Include="zatcap.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AvitarDownloader.cpp" />
     <ClCompile Include="Awesomium.cpp" />
-    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Column.cpp" />
     <ClCompile Include="CustomColumn.cpp" />
     <ClCompile Include="file.cpp" />
@@ -167,7 +162,6 @@
     <ClCompile Include="Tweet.cpp" />
     <ClCompile Include="twitter.cpp" />
     <ClCompile Include="TimedEventProcess.cpp" />
-    <ClCompile Include="WaitIndicator.cpp" />
     <ClCompile Include="zatcap.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -38,7 +38,6 @@ public:
 	uchar type;
 	int start,end;
 	string text;
-	virtual void click()=0;
 	virtual void write(FILE *fp)=0;
 };
 class URLEntity:public Entity
@@ -50,10 +49,6 @@ public:
 	}
 	string realUrl;
 	string displayUrl;
-	void click()
-	{
-		msystem("\""+settings::browserCommand+"\" \""+realUrl+"\"");
-	}
 	void write(FILE *fp)
 	{
 		wuchar(0,fp);
@@ -73,10 +68,6 @@ public:
 	string id;
 	string name;
 	string username;
-	void click()
-	{
-		msystem("\""+settings::browserCommand+"\" \"https://twitter.com/"+username+"\"");
-	}
 	void write(FILE *fp)
 	{
 		wuchar(1,fp);
@@ -95,12 +86,6 @@ public:
 		type=2;
 	}
 	string name;
-	void click()
-	{
-		msystem("\""+settings::browserCommand+"\" \"https://twitter.com/search?q=%23"+name.substr(1,name.size()-1)+"\"");
-		//s/tring cmd=settings::browserCommand+" \"https://twitter.com/search?q=%23"+name.substr(1,name.size()-1)+"\"";
-		//system(cmd.c_str());
-	}
 	void write(FILE *fp)
 	{
 		wuchar(2,fp);

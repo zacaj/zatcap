@@ -1,34 +1,12 @@
 #include "Tweet.h"
 #include "zatcap.h"
 #include "Awesomium.h"
-using namespace colors;
-
-
-string getBackgroundColor(int background,int read)
-{
-	if(background==0 && read)
-		return colors::readTweetColor;
-	else if(background==0 && !read)
-		return colors::unreadTweetColor;
-	else if(background==1 && read)
-		return colors::readTweetColor2;
-	else if(background==1 && !read)
-		return colors::unreadTweetColor2;
-	else if(background==2)
-		return colors::hoverTweetColor;
-}
 
 int Tweet::draw( int x,int y,int w,int background)
 {
 	return 0;
 }
 
-
-int Tweet::draw( TweetInstance *instance,int w )
-{
-	
-	return 0;
-}
 
 
 int Retweet::draw( int x,int y,int w,int background )
@@ -37,11 +15,6 @@ int Retweet::draw( int x,int y,int w,int background )
 	return 0;
 }
 
-int Retweet::draw( TweetInstance *instance,int w )
-{
-	
-	return 0;
-}
 void favoriteTweet( void *data )
 {
 	Tweet *tweet=(Tweet*)data;
@@ -80,10 +53,6 @@ void deleteTweet(void *data)
 	debug("delete: %s\n",tmpString.c_str());
 }
 
-int Tweet::drawButtons( int _x,int _y,int w,int h,bool highlighted )
-{
-	return 0;
-}
 
 void Tweet::write( FILE *fp )
 {
@@ -241,84 +210,6 @@ void Retweet::write( FILE *fp )
 	fputc('\n',fp);
 }
 
-TweetInstance::TweetInstance( Item *_tweet,int _w,int _background  )	:
-	tweet(_tweet),
-	background(_background)
-{
-	w=_w;
-	read=tweet->read;
-	//surface=NULL;
-	replyTo=NULL;
-	drawReply=0;
-	//refresh(w);
-}
-
-int TweetInstance::draw( int x,int y )
-{
-	/*if(surface==NULL || read!=tweet->read)
-		refresh(w);
-	int h=0;
-	drawSprite(surface,screen,0,0,x,y,surface->w,surface->h);
-	{{drawEntities2}}
-	tweet->cachedDraw(this);
-	h+=surface->h;
-	int mx,my;
-	SDL_GetMouseState(&mx,&my);
-	int newx;
-	if(mx>x && mx<x+surface->w && my>y && my<surface->h+y)
-	{
-		//	background=2;
-		newx=tweet->drawButtons(x,y,surface->w,surface->h,1);
-		if(newx<0)
-		{
-			switch(newx)
-			{
-			case TOGGLECONVODISPLAY:
-				drawReply=!drawReply;
-				break;
-			}
-		}
-	}
-	if(hoverButton(x+5,y+5,48,48))
-		drawSprite(reply[2],screen,0,0,x+5,y+5,reply[2]->w,reply[2]->h);
-	if(drawReply)
-	{
-		if(replyTo==NULL && tweet->replyTo.size())
-			replyTo=new TweetInstance(getTweet(tweet->replyTo),surface->w-12,!background);
-		if(replyTo!=NULL)
-			h+=replyTo->draw(x+12,y+h)+0;
-	}
-	return h;*/
-	return 0;
-}
-
-TweetInstance::~TweetInstance()
-{
-	/*if(surface)
-	{
-		SDL_FreeSurface(surface);
-		surface=NULL;
-	}
-	if(p)
-	{
-		delete p;
-		p=NULL;
-	}*/
-}
-
-void TweetInstance::refresh( int w )
-{
-	//print("redraw");
-	//if(surface)
-	//	SDL_FreeSurface(surface);
-	widths.clear();
-	//tweet->draw(this,w);
-	if(replyTo!=NULL)
-	{
-		delete replyTo;
-		replyTo=NULL;
-	}
-}
 
 std::string Favorite::getHtml( string columnName )
 {

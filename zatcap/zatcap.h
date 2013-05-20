@@ -32,59 +32,17 @@ extern LPCWSTR cursor;
 namespace settings
 {
 	extern string userInfoFile;
-	extern int tweetsToLoadOnStartup;//800
-	extern int tweetArchiveAge; //todo 7
-	extern string defaultUserPicPath;
-	extern int multipleRetweet;
-	extern int retweeterPicSize;
-	extern int retweeteePicSize;
-	extern int arrowsOnScrollbar;
-	extern int scrollSpeed;
 	extern string dateFormat;
-	extern int tweetBackgrounds;
 	extern int tweetOnEnter;
-	extern int addSFZ;
 	extern int windowWidth;
 	extern int windowHeight;
-	extern int separatorHeight;
-	extern int enableStreaming;
 	extern int backupTime;
 	extern string browserCommand;
-	extern int underlineLinksWhenHovered;
-	extern int tempInt;
 	extern int markReadAfterTweeting;
-	extern int textSize,timeSize,columnTitleTextSize,userNameTextSize,retweetTextSize,editorTextSize;
 	extern int pinLogin;
-	extern int maxTweets;
 	extern string proxyServer;
 	extern string proxyPort;
 	extern string notificationSound;
-}
-namespace colors
-{
-	extern string unreadTweetColor;
-	extern string readTweetColor;
-	extern string hoverTweetColor;
-	extern string columnBackgroundColor;
-	extern string buttonHoverColor;
-	extern string buttonColor;
-	extern int columnTitleTextColorR,columnTitleTextColorG,columnTitleTextColorB;
-	extern int textColorR,textColorG,textColorB;
-	extern string buttonBackgroundColor;
-	extern string buttonBorderColor;
-	extern string scrollbarBackgroundColor;
-	extern string scrollbarColor;
-	extern string scrollbarHoverColor;
-	extern int retweetTextColorR,retweetTextColorG,retweetTextColorB;
-	extern int usernameTextColorR,usernameTextColorG,usernameTextColorB;
-	extern int timeTextColorR,timeTextColorG,timeTextColorB;
-	extern string unreadTweetColor2;
-	extern string readTweetColor2;
-	extern string separatorColor;
-	extern int entityColorR[6];
-	extern int entityColorG[6];
-	extern int entityColorB[6];
-	extern string entityUnderlineColor[6];
 }
 
 FILE *fopenf(string path,char *mode);

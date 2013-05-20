@@ -95,23 +95,11 @@ void parseStreamThread(void *ptr)
 	parseStream(str->root,str->str);
 	delete ptr;
 }
-void loadMissingTweets(void *data)
-{debugHere();
-	print("Loading missing tweets\n");
-	string tmpString;debugHere();
-	if(!tweets.empty())
-	{
-		while((tmpString=twit->timelineHomeGet(false,true,800,(--tweets.end())->first,""))=="");debugHere();//settings::tweetsToLoadOnStartup+50
-	}
-	else
-		while((tmpString=twit->timelineHomeGet(false,true,settings::tweetsToLoadOnStartup,"",""))=="");
-	parseRestTweets(tmpString);debugHere();
-}
 size_t callback_func(void *ptr, size_t size, size_t count, void *userdata)
 {
 	if(streaming<=0)
 	{
-		startThread(loadMissingTweets,NULL);
+		//startThread(loadMissingTweets,NULL);
 	}
 	streaming=60*45;debugHere();
 	string str=(char*)ptr;

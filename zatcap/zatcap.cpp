@@ -11,12 +11,10 @@
 #include "file.h"
 #include "stream.h"
 #include "zatcap.h"
-#include "WaitIndicator.h"
 #include <assert.h>
 #include <time.h>
 #include <string.h>
 #include <sys/stat.h>
-#include "Button.h"
 #include <Awesomium/WebCore.h>
 #include <Awesomium/BitmapSurface.h>
 #include <Awesomium/STLHelpers.h>

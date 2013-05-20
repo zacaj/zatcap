@@ -3,7 +3,6 @@
 
 #include "twitcurl.h"
 #include "stream.h"
-#include "WaitIndicator.h"
 #include <assert.h>
 #include "json\writer.h"
 #include "TimedEventProcess.h"
@@ -14,9 +13,7 @@
 #include <dirent.h>
 #include <iosfwd>
 #include "Awesomium.h"
-#include "AvitarDownloader.h"
 AvitarDownloader *aviDownloader;
-using namespace colors;
 map<string,Item*> tweets;
 map<string,User*> users;
 twitCurl *twit=NULL;
@@ -36,33 +33,15 @@ void twitterInit( void  *_twit )
 		twit->setProxyServerIp(settings::proxyServer);
 		twit->setProxyServerPort(settings::proxyPort);
 	}
-	WaitIndicator *wait=new WaitIndicator("Signing in to Twitter...");
-	{
-		processes[102.4]=wait;
-	}
 	loadOlderTweets(0);
 	print("Logging in...\n");
 	doing(1);
 	loadUser(twit);
 	doing(-1);
 	loggedIn=1;
-	//((MentionColumn*)processes[2.5])->term=username;
-	{
-		aviDownloader=new AvitarDownloader();
-		processes[4578.6]=aviDownloader;
-	}
-	wait->text="Loading older tweets";
-#if 1
-	if(settings::tweetsToLoadOnStartup)
-	{startThread(refreshTweets,0);debugHere();
-	}
-#endif
+	startThread(refreshTweets,0);debugHere();
 
-	wait->shouldRemove=1;debugHere();
-	uploadPhoto("resources/iconbig.bmp");
-	if(settings::enableStreaming)
-
-		//openUserStream(twit);
+		openUserStream(twit);
 		debugHere();
 }
 
@@ -565,79 +544,6 @@ enterMutex(tweetsMutex);debugHere();
 	leaveMutex(tweetsMutex);
 }
 
-void loadProfilePic(void *ptr)
-{
-	profilepic *pic=(profilepic*)ptr;
-///	SDL_Surface** img=(SDL_Surface**)pic->img;
-retry:
-	debugHere();
-	string r=pic->name;
-	string path="profilepics/temp"+i2s((rand()+time(NULL)+clock())%100)+r+getFile(pic->url);
-	string path2="profilepics/"+pic->name+"."+getExt(getFile(pic->url));debugHere();
-	if(!fileExists(path2))
-	{
-		CURL *curl= curl_easy_init();
-		debug("Downloading @%s's avatar (%s)\n",pic->name.c_str(),path.c_str());
-		assert_(curl);
-		{
-			FILE *fp = fopen(path.c_str(),"wb");
-			debug("%i %s\n",fp,path.c_str());
-			debugHere();
-			curl_easy_setopt(curl, CURLOPT_URL, pic->url.c_str());
-			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
-			curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
-			//curl_easy_perform(curl);
-			/* always cleanup */
-			curl_easy_cleanup(curl);
-			debugHere();
-			if(ftell(fp)<5)
-			{
-				debugHere();
-				fclose(fp);
-				goto retry;
-			}
-			debugHere();
-			fclose(fp);
-		}
-//		SDL_Surface* temp=loadImage(path);debugHere();
-		//if(temp!=NULL)
-		{debugHere();
-			rename(path.c_str(),path2.c_str());debugHere();
-			//*img=temp;//loadImage(path2);
-			//SDL_FreeSurface(temp);debugHere();
-//			if(pic->user->_pic==NULL)
-				//goto retry;
-			debugHere();
-		}
-		/*else
-		{
-			if(temp==NULL)
-				print("loading failed of %s?\n",path.c_str());
-			else
-				print("ERROR: hey look zacaj was lazy and didnt implement support for other size profile pictures hoping it would never come up, go punch him in the face!\n");
-			*img=NULL;
-			goto retry;
-		}*/
-	}
-	//else
-	//	*img=loadImage(path2);
-	/*if((*img)->w!=48 || (*img)->h!=48)
-	{
-		(*img)=zoomSurface((*img),48.f/ (*img)->w,48.f/ (*img)->h,1);debugHere();//haha @ needing space after /
-	}debugHere();
-	processUserPics(pic->user);debugHere();*/
-	debug("Downloaded @%s's avatar (%s)\n",pic->name.c_str(),path2.c_str());
-	aviDownloader->busy=0;
-	aviDownloader->pics.erase(aviDownloader->pics.begin());
-	delete ptr;debugHere();
-}
-
-void processUserPics(User *user)
-{//
-	//user->_smallPic=zoomSurface(user->_pic,(float)settings::retweeterPicSize/user->_pic->w,(float)settings::retweeterPicSize/user->_pic->h,1);
-	///->_mediumPic=zoomSurface(user->_pic,(float)settings::retweeteePicSize/user->_pic->w,(float)settings::retweeteePicSize/user->_pic->h,1);
-}
-
 User * getUser(Json::Value root)
 {debugHere();
 	string id=root["id_str"].asString();
@@ -651,22 +557,6 @@ User * getUser(Json::Value root)
 	user->username=root["screen_name"].asString();
 	//user->pic=defaultUserPic;
 	user->picURL=root["profile_image_url"].asString();
-	FILE *fp;
-	if((fp=fopen(user->getPicPath().c_str(),"r")))
-	{debugHere();
-//		user->_pic=loadImage(user->getPicPath());debugHere();
-		//processUserPics(user);debugHere();
-		fclose(fp);
-	}
-	else//todo should check for updates
-	{
-		profilepic *pic=new profilepic;
-	//	pic->img=&user->_pic;
-		pic->url=root["profile_image_url"].asString();
-		pic->name=user->username;
-		pic->user=user;debugHere();
-		aviDownloader->pics.push_back(pic);
-	}
 	user->save();
 	users[id]=user;debugHere();
 	return user;
@@ -702,23 +592,6 @@ User * getUser( string id )
 		user->username=rstr(fp);debugHere();
 		user->name=rstr(fp);debugHere();
 		user->picURL=rstr(fp);debugHere();
-		/*FILE *fp2;debugHere();
-		if((fp2=fopen(user->getPicPath().c_str(),"r")))
-		{debugHere();
-//			user->_pic=loadImage(user->getPicPath());debugHere();
-			processUserPics(user);debugHere();
-			fclose(fp2);
-		}
-		else//todo should check for updates
-		{
-			profilepic *pic=new profilepic;
-//			pic->img=&user->_pic;
-			pic->url=user->picURL;
-			pic->name=user->username;
-			pic->user=user;debugHere();
-			aviDownloader->pics.push_back(pic);
-			//SDL_CreateThread(loadProfilePic,pic);
-		}debugHere();*/
 		fclose(fp);debugHere();//loadProfilePic
 		return user;
 	}debugHere();
@@ -749,11 +622,6 @@ User * getUser( string id )
 }
 
 bool tweetsInuse=0;
-
-std::string User::getPicPath()
-{
-	return string("profilepics/")+username+"."+getExt(picURL);
-}
 
 
 void User::save()
@@ -952,7 +820,7 @@ Tweet* processTweet(Json::Value jtweet)
 	{
 		debugHere();
 		Retweet *retweet=(Retweet*)tweet;
-		if(settings::multipleRetweet)
+//		if(settings::multipleRetweet)
 		{
 			retweet->originalID=jtweet["id_str"].asString();
 
@@ -972,8 +840,8 @@ Tweet* processTweet(Json::Value jtweet)
 			retweet->retweetedBy=getUser(original["user"]["id_str"].asString());debugHere();
 			retweet->id=original["id_str"].asString();
 		}
-		else
-			retweet->id=jtweet["id_str"].asString();
+		//else
+		//	retweet->id=jtweet["id_str"].asString();
 		retweet->nRetweet=jtweet["retweet_count"].asInt();
 		retweet->timeRetweetedInSeconds=mktime(&retweet->timeRetweeted);debugHere();
 		if(original["in_reply_to_status_id_str"].isNull())

@@ -13,13 +13,6 @@ public:
 	virtual void update()=0;
 	virtual void draw()=0;
 	virtual void newTweet(Item *tweet){}
-	/**
-		\param button If -1, a mouse motion
-
-		*/
-	virtual bool mouseButtonEvent(int x,int y,int button,int pressed){return 0;}
-	virtual bool keyboardEvent(int key,int pressed,int mod){return 0;}
-
 	virtual void deleteTweet( string id ){};
 
 	virtual bool isColumn(){return 0;}
