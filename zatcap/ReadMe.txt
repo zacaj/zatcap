@@ -3,13 +3,11 @@ TODO:
 -flash at beginning
 
 activity feed
-flickering tweets
+-flickering tweets
 autocorrect order
 autocorrect all encountered
 autocorrect hashtags
 autocorrect direct messages
-delete undos
-photo
 horizontal scroll
 
 list view

@@ -25,6 +25,7 @@ public:
 	string picURL;
 	string getPicPath();
 	void save();
+	string getHtml();
 };
 User *getUser(string id);
 User * getUser(Json::Value root);

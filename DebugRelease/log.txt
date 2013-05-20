@@ -1,9 +1,6 @@
-Version: a95
+Version: a96
 Scanned config file
 Scanned config file
 Logging in...
 ...
 Successfully logged in to twitter account: zacaj2
-Opening a stream...
-Streaming connection established.
-Loading missing tweets

@@ -28,6 +28,65 @@ function showColumns()
 		columns[i].style.display="inline-block";
 }
 var tweetContent="";
+function tweetboxPaste(e)
+{
+	if (/image.*/.test(e.clipboardData.types) || /image.*/.test(e.clipboardData.types))
+	{
+		/*var clipboardBuffer;
+       var clipboardData = event.clipboardData;
+		var found=false;
+		Array.prototype.forEach.call(clipboardData.types, function(type, i) {
+          var file;
+          if (found) {
+            return;
+          }
+		  
+          if (type.match(/image.*//*) || clipboardData.items[i].type.match(/image.*//*)) {
+            file = clipboardData.items[i].getAsFile();
+            var reader = new FileReader();
+			  reader.onload=function(e)
+			  {
+			  cpp.debug("match2");
+				var d=reader.result;
+				cpp.debug("read");
+				cpp.debug(d);
+				clipboardBuffer=d;
+				return found = true;
+			  };
+			 // cpp.debug("match");
+			  reader.readAsBinaryString(file);
+			//  cpp.debug("match3");
+		  }
+        });
+		
+		cpp.debug("c "+clipboardBuffer);
+		var str=textbox.value.substr(0,textbox.selectionStart)+clipboardBuffer+textbox.value.substr(textbox.selectionStart);
+		textbox.value=str;
+		updateTweetLength();*/
+        var textbox=document.getElementById('tweetbox');
+		cpp.pasteImage(textbox.selectionStart);
+		if (e.preventDefault) {
+		  e.stopPropagation();
+		  e.preventDefault();
+		}
+		e.returnValue = false;
+		return false;
+      }
+	  
+	  
+	  
+	/**/
+	
+}
+function insertText(text,at)
+{
+	if(!at)
+		at=textbox.selectionStart;
+	var textbox=document.getElementById('tweetbox');
+	var str=textbox.value.substr(0,at)+text+textbox.value.substr(at);
+	textbox.value=str;
+	updateTweetLength();
+}
 function tweetboxKeydown(e)
 	{
 		if(completebox)
@@ -403,9 +462,22 @@ function addFollower(id)
 	for(var i=0;i<c.length;)
 		c[i].className="followinguser "+id;
 }
+function toggleFollow(id)
+{
+	var button=document.getElementById('followbutton');
+	if(button)
+	{
+		if(button.innerHTML=="Follow")
+			cpp.follow(id,1);
+		else
+			cpp.follow(id,0);
+	}
+	else
+		cpp.follow(id,-1);
+}
 function popup(text,url)
 {
-var str="<div id='light' style='text-align:center;vertical-align:middle; position:absolute;top:0;left:0;width:100%;height:100%;'> <div style='top:15%; position: absolute;text-align:center;position: relative;text-align: center;max-width: 80%;display:inline-block;max-height: 80%; min-width:70%;'> <div class='white_content'>    "+text+(url?("<div style='z-index:1005;'><a href='javascript:;' onclick='cpp.openInNativeBrowser(\""+url+"\");' >Open in browser</a>   </div>"):"")+"</div></div>      <div id='fade' class='black_overlay' onclick='remove(\"light\");'></div></div>";
+var str="<div id='light' style='text-align:center;vertical-align:middle; position:absolute;top:0;left:0;width:100%;height:100%;'> <div style='top:15%; position: absolute;text-align:center;position: relative;text-align: center;max-width: 80%;display:inline-block;max-height: 80%; min-width:70%;'> <div class='white_content' id='popup_content'>    "+text+(url?("<div style='z-index:1005;'><a href='javascript:;' onclick='cpp.openInNativeBrowser(\""+url+"\");' >Open in browser</a>   </div>"):"")+"</div></div>      <div id='fade' class='black_overlay' onclick='remove(\"light\");'></div></div>";
 //cpp.debug(str);
 document.getElementById('body').insertBefore(nodeFromHtml(str),null);
 }

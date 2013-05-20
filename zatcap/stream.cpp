@@ -268,3 +268,89 @@ bool openUserStream(twitCurl *twit)
 	delay*=2;
 	return openUserStream(twit);
 }
+int curl_debug_callback3(CURL *curl,curl_infotype infotype,char *data,size_t size,void *userptr)
+{debugHere();
+//print("%i:\n");
+//fwrite(data,size,1,stdout);
+//print("\n");
+FILE *fp=fopen("img debug.txt","a+");debugHere();
+fprintf(fp,"%i:\n");
+fwrite(data,size,1,fp);
+fprintf(fp,"\n\n\n");
+fclose(fp);debugHere();
+return 0;
+}
+size_t img_callback_func(void *ptr, size_t size, size_t count, void *userdata)
+{
+	string *str=(string*)userdata;
+	str->append((char*)ptr);
+	return size*count;
+}
+string uploadPhoto(string path,string tweet)
+{
+doing(1);	
+	CURL *curl=curl_easy_init();
+	std::string userNamePassword;
+	//utilMakeCurlParams( userNamePassword, twit->getTwitterUsername(), twit->getTwitterPassword() );//
+
+	/* Set username and password */
+	//curl_easy_setopt( curl, CURLOPT_USERPWD, userNamePassword.c_str() );//
+	string oAuthHttpHeader;
+	struct curl_slist* pOAuthHeaderList = NULL;
+	char *url="http://api.twitpic.com/2/upload.json";
+	tempString="";
+	twit->m_oAuth.getOAuthHeader( eOAuthHttpGet,"https://api.twitter.com/1/account/verify_credentials.json", tempString, oAuthHttpHeader );//
+	if( oAuthHttpHeader.length() )
+	{
+		oAuthHttpHeader.erase(oAuthHttpHeader.begin(),oAuthHttpHeader.begin()+21);
+		string strr=("X-Verify-Credentials-Authorization: OAuth realm=\"http://api.twitter.com/\", "+oAuthHttpHeader);
+		pOAuthHeaderList = curl_slist_append( pOAuthHeaderList, strr.c_str() );//
+	}
+	pOAuthHeaderList = curl_slist_append( pOAuthHeaderList, "X-Auth-Service-Provider: https://api.twitter.com/1/account/verify_credentials.json");
+	if( pOAuthHeaderList )
+	{
+		curl_easy_setopt( curl, CURLOPT_HTTPHEADER, pOAuthHeaderList );//
+	}
+	if(settings::proxyServer!="none")
+	{
+		curl_easy_setopt( curl, CURLOPT_PROXY, (settings::proxyServer+":"+settings::proxyPort).c_str());
+		curl_easy_setopt(curl, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+		curl_easy_setopt( curl, CURLOPT_PROXYUSERPWD, NULL );
+		curl_easy_setopt( curl, CURLOPT_PROXYAUTH, (long)CURLAUTH_ANY );
+	}
+	curl_easy_setopt(  curl, CURLOPT_VERBOSE, 1 );
+	//curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYHOST, 0 );
+	curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYPEER, 0);
+	//curl_easy_setopt( curl, CURLOPT_CAINFO,"resources/cacert.pem");//
+	curl_easy_setopt(  curl, CURLOPT_URL, url);//
+	curl_easy_setopt( curl, CURLOPT_WRITEFUNCTION, img_callback_func);
+	string *str=new string();
+	curl_easy_setopt(curl,CURLOPT_WRITEDATA,(void*)str);
+	//curl_easy_setopt( curl, CURLOPT_HEADERFUNCTION, callback_func );
+	curl_easy_setopt( curl, CURLOPT_DEBUGFUNCTION, curl_debug_callback3 );
+	//todo errors
+
+	struct curl_httppost* post = NULL;  struct curl_httppost* last = NULL; 
+
+	/* Add simple name/content section */  curl_formadd(&post, &last, CURLFORM_COPYNAME, "key",   CURLFORM_COPYCONTENTS, "1145426acb9e63f5d615b6d97273075b", CURLFORM_END);
+	/* Add simple name/content section */  curl_formadd(&post, &last, CURLFORM_COPYNAME, "message",   CURLFORM_COPYCONTENTS, tweet.c_str(), CURLFORM_END);
+
+
+	/* Add simple file section */  curl_formadd(&post, &last, CURLFORM_COPYNAME, "media",   CURLFORM_FILE, path.c_str(), CURLFORM_END);
+
+	 /* Add the content of a file as a normal post text value */ // curl_formadd(&post, &last, CURLFORM_COPYNAME, "filecontent",   CURLFORM_FILECONTENT, ".bashrc", CURLFORM_END);  /* Set the form info */  
+	curl_easy_setopt(curl, CURLOPT_HTTPPOST, post);
+
+	if(CURLE_OK == curl_easy_perform(curl))
+	{
+		curl_formfree(post);
+		curl_easy_cleanup(curl);
+		Json::Reader reader;
+		Json::Value root;
+		reader.parse(*str,root);
+		doing(-1);
+		return root["url"].asString();
+	}
+	doing(-1);
+	return "";
+}

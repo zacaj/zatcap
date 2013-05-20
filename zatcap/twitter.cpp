@@ -59,9 +59,10 @@ void twitterInit( void  *_twit )
 #endif
 
 	wait->shouldRemove=1;debugHere();
+	uploadPhoto("resources/iconbig.bmp");
 	if(settings::enableStreaming)
 
-		openUserStream(twit);
+		//openUserStream(twit);
 		debugHere();
 }
 
@@ -764,6 +765,27 @@ void User::save()
 	fclose(fp);
 }
 
+std::string User::getHtml()
+{
+	string content=f2s("resources/user.html");
+	string json;
+	while((json=twit->userGet(id,true))=="");
+	Json::Reader reader;
+	Json::Value root;
+	reader.parse(json,root);
+	replace(content,string("$ID"),id);
+	replace(content,string("$TEXT"),escape(root["description"].asString()));
+	replace(content,string("$USERNAME"),escape(username));
+	replace(content,string("$FULLNAME"),escape(name));
+	replace(content,string("$AVATAR"),root["profile_image_url"].asString());
+	replace(content,string("$NUMTWEETS"),i2s(root["statuses_count"].asInt()));
+	replace(content,string("$NUMFOLLOWING"),i2s(root["friends_count"].asInt()));
+	replace(content,string("$NUMFOLLOWERS"),i2s(root["followers_count"].asInt()));
+	replace(content,string("$TIMEZONE"),root["time_zone"].asString());
+	replace(content,string("$FOLLOW"),root["following"].asBool()?"Unfollow":"Follow");
+	return content;
+}
+
 void UnquoteHTML
 	(
 	std::istream & In,
@@ -851,10 +873,12 @@ Tweet* processTweet(Json::Value jtweet)
 				URLEntity *url=new URLEntity;
 				Json::Value entity=jtweet["entities"]["media"][i];
 				url->displayUrl=entity["display_url"].asString();
-				if(!entity["expanded_url"].isNull())
+				if(!entity["media_url"].isNull())
+					url->realUrl=entity["media_url"].asString();
+				else if(!entity["expanded_url"].isNull())
 					url->realUrl=entity["expanded_url"].asString();
 				else
-					url->realUrl=entity["media_url"].asString();
+					url->realUrl=entity["url"].asString();
 				url->start=entity["indices"][0u].asInt();
 				url->end=entity["indices"][1u].asInt();
 				url->text="<a href='"+url->realUrl+"'>"+url->displayUrl+"</a>";
@@ -874,7 +898,8 @@ Tweet* processTweet(Json::Value jtweet)
 				entity->id=jentity["id_str"].asString();
 				entity->start=jentity["indices"][0u].asInt();
 				entity->end=jentity["indices"][1u].asInt();
-				entity->text="<a oncontextmenu='mutePop(\""+entity->username+"\"); return false;' href='#' onclick=\"cpp.openInNativeBrowser('https://twitter.com/"+entity->username+"');\" class='"+(followers.find(entity->id)!=followers.end()?"followinguser":"user")+" "+entity->id+"'>"+entity->username+"</a>";
+				//entity->text="<a oncontextmenu='mutePop(\""+entity->username+"\"); return false;' href='#' onclick=\"cpp.openInNativeBrowser('https://twitter.com/"+entity->username+"');\" class='"+(followers.find(entity->id)!=followers.end()?"followinguser":"user")+" "+entity->id+"'>"+entity->username+"</a>";
+				entity->text="<a oncontextmenu='mutePop(\""+entity->username+"\"); return false;' href='#' onclick=\"cpp.showUser('"+entity->id+"','https://twitter.com/"+entity->username+"');\" class='"+(followers.find(entity->id)!=followers.end()?"followinguser":"user")+" "+entity->id+"'>"+entity->username+"</a>";
 				tweet->entities.push_back(entity);
 				entities[entity->start]=entity;
 			}

@@ -165,7 +165,7 @@ string getSite(string url)
 	curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYPEER, 0);
 	//curl_easy_setopt( curl, CURLOPT_DEBUGFUNCTION, curl_debug_callback2 );
 	curl_easy_setopt(  curl, CURLOPT_HTTPGET, 1 );//
-	curl_easy_setopt(  curl, CURLOPT_VERBOSE, 1 );
+	curl_easy_setopt(  curl, CURLOPT_VERBOSE, 0 );
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1); 
 	//curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYHOST, 0 );
 	curl_easy_perform(curl);
@@ -240,6 +240,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 				runJS("document.getElementById('columns').style.bottom='100px';");
 				runJS("document.getElementById('columns').style.overflow='hidden';");
 				runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
+				runJS("	document.getElementById('tweetbox').addEventListener('paste',tweetboxPaste,true);");
 				runJS("document.getElementById('tweetbox').value=tweetContent;");
 				runJS("hideColumns();");
 				addColumnButtons();
@@ -252,6 +253,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 				runJS("document.getElementById('columns').style.bottom='75px';");
 				runJS("document.getElementById('columns').style.overflow='auto';");
 				runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
+				runJS("	document.getElementById('tweetbox').addEventListener('paste',tweetboxPaste,true);");
 				runJS("document.getElementById('tweetbox').value=tweetContent;");
 				runJS("showColumns();");
 			}
@@ -298,8 +300,10 @@ void notifyIcon(bool on)
 	info.hwnd = hwnd;
 	if(on)
 	{
+#ifdef NDEBUG
 		if(settings::notificationSound.size())
 			PlaySoundA(settings::notificationSound.c_str(), NULL, SND_FILENAME|SND_ASYNC|SND_NOSTOP);
+#endif
 		if(GetFocus()==hwnd || hasFocus)
 		{
 			return;
@@ -543,6 +547,86 @@ map<string,time_t> mute;
 #ifdef USE_WINDOWS
 HBITMAP icon[3];
 set<string> followers;
+BOOL SaveToFile(HBITMAP hBitmap3, const char* lpszFileName)
+{   
+	HDC hDC;
+	int iBits;
+	WORD wBitCount;
+	DWORD dwPaletteSize=0, dwBmBitsSize=0, dwDIBSize=0, dwWritten=0;
+	BITMAP Bitmap0;
+	BITMAPFILEHEADER bmfHdr;
+	BITMAPINFOHEADER bi;
+	LPBITMAPINFOHEADER lpbi;
+	HANDLE fh, hDib, hPal,hOldPal2=NULL;
+	hDC = CreateDCA("DISPLAY", NULL, NULL, NULL);
+	iBits = GetDeviceCaps(hDC, BITSPIXEL) * GetDeviceCaps(hDC, PLANES);
+	DeleteDC(hDC);
+	if (iBits <= 1)
+		wBitCount = 1;
+	else if (iBits <= 4)
+		wBitCount = 4;
+	else if (iBits <= 8)
+		wBitCount = 8;
+	else
+		wBitCount = 24; 
+	GetObject(hBitmap3, sizeof(Bitmap0), (LPSTR)&Bitmap0);
+	bi.biSize = sizeof(BITMAPINFOHEADER);
+	bi.biWidth = Bitmap0.bmWidth;
+	bi.biHeight =-Bitmap0.bmHeight;
+	bi.biPlanes = 1;
+	bi.biBitCount = wBitCount;
+	bi.biCompression = BI_RGB;
+	bi.biSizeImage = 0;
+	bi.biXPelsPerMeter = 0;
+	bi.biYPelsPerMeter = 0;
+	bi.biClrImportant = 0;
+	bi.biClrUsed = 256;
+	dwBmBitsSize = ((Bitmap0.bmWidth * wBitCount +31) & ~31) /8
+		* Bitmap0.bmHeight; 
+	hDib = GlobalAlloc(GHND,dwBmBitsSize + dwPaletteSize + sizeof(BITMAPINFOHEADER));
+	lpbi = (LPBITMAPINFOHEADER)GlobalLock(hDib);
+	*lpbi = bi;
+
+	hPal = GetStockObject(DEFAULT_PALETTE);
+	if (hPal)
+	{ 
+		hDC = GetDC(NULL);
+		hOldPal2 = SelectPalette(hDC, (HPALETTE)hPal, FALSE);
+		RealizePalette(hDC);
+	}
+
+
+	GetDIBits(hDC, hBitmap3, 0, (UINT) Bitmap0.bmHeight, (LPSTR)lpbi + sizeof(BITMAPINFOHEADER) 
+		+dwPaletteSize, (BITMAPINFO *)lpbi, DIB_RGB_COLORS);
+
+	if (hOldPal2)
+	{
+		SelectPalette(hDC, (HPALETTE)hOldPal2, TRUE);
+		RealizePalette(hDC);
+		ReleaseDC(NULL, hDC);
+	}
+
+	fh = CreateFileA(lpszFileName, GENERIC_WRITE,0, NULL, CREATE_ALWAYS, 
+		FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, NULL); 
+
+	if (fh == INVALID_HANDLE_VALUE)
+		return FALSE; 
+
+	bmfHdr.bfType = 0x4D42; // "BM"
+	dwDIBSize = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + dwPaletteSize + dwBmBitsSize;
+	bmfHdr.bfSize = dwDIBSize;
+	bmfHdr.bfReserved1 = 0;
+	bmfHdr.bfReserved2 = 0;
+	bmfHdr.bfOffBits = (DWORD)sizeof(BITMAPFILEHEADER) + (DWORD)sizeof(BITMAPINFOHEADER) + dwPaletteSize;
+
+	WriteFile(fh, (LPSTR)&bmfHdr, sizeof(BITMAPFILEHEADER), &dwWritten, NULL);
+
+	WriteFile(fh, (LPSTR)lpbi, dwDIBSize, &dwWritten, NULL);
+	GlobalUnlock(hDib);
+	GlobalFree(hDib);
+	CloseHandle(fh);
+	return TRUE;
+} 
 HCURSOR CreateAlphaCursor(void)
 {
 	HDC hMemDC;
@@ -850,6 +934,19 @@ int main(int argc,char **argv)
 						while(a<src.size() && src[a]!='\"') url.push_back(src[a++]);
 					}
 				}
+				else if(ourl.find("twitpic.com")!=string::npos)
+				{
+					string src=getSite(ourl+"/full");
+					size_t pos=src.find("Return to photo page</a></p");
+					if(pos!=string::npos)
+					{
+						pos=src.find('\"',pos);
+						pos++;
+						int a=pos;
+						url.clear();
+						while(a<src.size() && src[a]!='\"') url.push_back(src[a++]);
+					}
+				}
 				runJS("lightbox('"+url+"','"+url+"');");
 		});
 		methodHandler->reg(WSLit("refresh"),[](JSArray args)
@@ -921,6 +1018,59 @@ int main(int argc,char **argv)
 				runJS("document.getElementById('"+htmlid+"').innerHTML='"+escape(html)+"';");
 			});
 		});
+		methodHandler->reg(WSLit("pasteImage"),[](JSArray args)
+		{
+			string htmlid=ToString(args[0].ToString());
+#ifdef WINDOWS
+			assert_(OpenClipboard(NULL));
+			{
+				HANDLE hData = GetClipboardData(CF_BITMAP);
+				{
+					SaveToFile((HBITMAP)hData, "t.bmp");
+					startLambdaThread([=](){
+					string url=uploadPhoto("t.bmp");
+					runJS("insertText('"+escape(url)+"',"+htmlid+");");});
+				}
+				CloseClipboard();
+			}
+#endif
+		});
+		methodHandler->reg(WSLit("showUser"),[](JSArray args)
+		{
+			string id=ToString(args[0].ToString());
+			string url=ToString(args[1].ToString());
+			runJS("popup('<img src=\"asset://resource/activity.gif\">','"+escape(url)+"');");
+			startLambdaThread([=]()
+			{
+				string html=getUser(id)->getHtml();
+				runJS("document.getElementById('popup_content').innerHTML='"+escape(html)+"';");
+			});
+		});
+		methodHandler->reg(WSLit("follow"),[&](JSArray args)
+		{
+			string id=ToString(args[0].ToString());
+			int to=args[1].ToInteger();
+			startLambdaThread([=]()
+			{
+				string id_=id;
+				int to_=to;
+				twitCurl *twit_=twit;
+				if(to==-1)
+				{
+					string json;
+					while((json=twit->userGet(id_,true))=="");
+					Json::Reader reader;
+					Json::Value root;
+					reader.parse(json,root);
+					to_=!root["following"].asBool();
+				}
+				if(to_==1)
+					twit->friendshipCreate(id_,true);
+				else if(to_==0)
+					twit->friendshipDestroy(id_,true);
+				runJS((string("document.getElementById('followbutton').innerHTML='")+(!to_?"Follow":"Unfollow")+"';"));
+			});
+		});
 	}
 	/*processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
 	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up*/
@@ -964,6 +1114,7 @@ int main(int argc,char **argv)
 		}
 	}
 	fclose(fopen("stream debug.txt","w"));
+	fclose(fopen("img debug.txt","w"));
 	startThread(twitterInit,&twit);
 	runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
 	//addTweet(new Favorite("lorem ipsum est luditorium con meguieligum son locos","3453245234624563456",))
@@ -1491,7 +1642,7 @@ void replace( std::string& str, const std::string& oldStr, const std::string& ne
 
 std::string escape( string str,bool forPrintf )
 {
-	string special="\"\'\n\r";
+	string special="\"\'\n\r/";
 	for(int i=0;i<str.size();i++)
 	{
 			if(str[i]=='%' && forPrintf)
