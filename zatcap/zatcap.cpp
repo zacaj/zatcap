@@ -768,7 +768,7 @@ int main(int argc,char **argv)
 		std::ios::sync_with_stdio();
 
 		HWND hwndC = GetConsoleWindow() ; 
-#ifdef NDEBUG
+#ifdef _NDEBUG
 		ShowWindow(hwndC,SW_HIDE);
 #endif
 	}
@@ -1033,7 +1033,7 @@ int main(int argc,char **argv)
 			}
 #endif
 		});
-		methodHandler->reg(WSLit("showUser"),[](JSArray args)
+		methodHandler->reg(WSLit("showUser"),[&](JSArray args)
 		{
 			string id=ToString(args[0].ToString());
 			string url=ToString(args[1].ToString());
@@ -1042,6 +1042,20 @@ int main(int argc,char **argv)
 			{
 				string html=getUser(id)->getHtml();
 				runJS("document.getElementById('popup_content').innerHTML='"+escape(html)+"';");
+				string json=twit->timelineUserGet(false,true,200,id,true);
+				Json::Reader reader;
+				Json::Value root;
+				reader.parse(json,root);
+				assert(root.isArray());
+				for(int i=0;i<root.size();i++)
+				{
+					Json::Value tweet=root[i];debugHere();
+					if(tweet.isNull())
+						continue;
+					Tweet *t=processTweet(root[i]);debugHere();
+					runJS("document.getElementById('userDisplayColumn').insertBefore(nodeFromHtml('"+escape(t->getHtml("userDisplayColumn"))+"'),null);");
+				}
+				//runJS("cpp.source(document.body.parentNode.outerHTML);");
 			});
 		});
 		methodHandler->reg(WSLit("follow"),[&](JSArray args)

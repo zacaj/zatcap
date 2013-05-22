@@ -542,7 +542,7 @@ std::string twitCurl::timelineUserGet( bool trimUser, bool includeRetweets, unsi
     utilMakeUrlForUser( buildUrl, twitterDefaults::TWITCURL_USERTIMELINE_URL +
                         twitCurlDefaults::TWITCURL_EXTENSIONFORMATS[m_eApiFormatType],
                         userInfo, isUserId );
-	buildUrl+=twitCurlDefaults::TWITCURL_URL_SEP_QUES+twitCurlDefaults::TWITCURL_INCLUDEENTITIES;
+	buildUrl+=twitCurlDefaults::TWITCURL_URL_SEP_AMP+twitCurlDefaults::TWITCURL_INCLUDEENTITIES;
     if( tweetCount )
     {
         if( tweetCount > twitCurlDefaults::MAX_TIMELINE_TWEET_COUNT )

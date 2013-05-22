@@ -53,6 +53,9 @@
     <ClInclude Include="CustomColumn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -94,5 +97,12 @@
     <ClCompile Include="CustomColumn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="zatcap1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\DebugRelease\resources\iconbig.bmp" />
+    <Image Include="..\favicon.ico" />
   </ItemGroup>
 </Project>

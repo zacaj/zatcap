@@ -1,4 +1,4 @@
-<div style="width: 350px; text-align:center; padding:5px;">
+<div style="width: 350px; text-align:center; padding:5px;overflow-y:auto; height:70%;">
 <h2>$USERNAME</h2>
 <img src="$AVATAR" />
 <h3>$FULLNAME</h3>
@@ -13,11 +13,13 @@ Friends<br/>
 $NUMFOLLOWING
 </div>
 <div style="display:table-cell;">
-Follower:<br/>
+Followers<br/>
 $NUMFOLLOWERS
 </div>
-<div style="display:table-cell;">
+<div style="display:table-cell; vertical-align:middle;">
 <button class="button" type="button" id="followbutton" onclick="toggleFollow('$ID');">$FOLLOW</button>
 </div>
+</div>
+<div class="column" id="userDisplayColumn" style="width:100%; text-align:left; margin:4px 0; height:auto; float:none; overflow-y:;">
 </div>
 </div>
