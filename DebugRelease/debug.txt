@@ -526,7 +526,6 @@ twitter.cpp:590 getUser
 twitter.cpp:591 getUser
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
-twitter.cpp:325 parseRestTweets
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
@@ -541,128 +540,61 @@ twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-twitter.cpp:332 parseRestTweets
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 18599061
-processing tweet 0
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
-twitter.cpp:339 parseRestTweets
 twitter.cpp:592 getUser
-twitter.cpp:684 processTweet
 twitter.cpp:593 getUser
-twitter.cpp:708 processTweet
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
-twitter.cpp:548 getUser
 twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 529079009
-twitter.cpp:561 getUser
-twitter.cpp:709 processTweet
-twitter.cpp:806 processTweet
-twitter.cpp:809 processTweet
-twitter.cpp:852 processTweet
-twitter.cpp:486 addTweet
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
-twitter.cpp:487 addTweet
 twitter.cpp:592 getUser
-twitter.cpp:488 addTweet
 twitter.cpp:593 getUser
-New tweet: Also, weird facts about me: I find the idea of hypnosis\/dream worlds\/tulpae\/etc fascinating and it\'d be cool to take part some time
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
-twitter.cpp:859 processTweet
 twitter.cpp:581 getUser
-twitter.cpp:342 parseRestTweets
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 55639889
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
-processing tweet 1
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
-twitter.cpp:339 parseRestTweets
-twitter.cpp:684 processTweet
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
-twitter.cpp:708 processTweet
-twitter.cpp:548 getUser
-twitter.cpp:561 getUser
-twitter.cpp:709 processTweet
-twitter.cpp:806 processTweet
-twitter.cpp:809 processTweet
-twitter.cpp:852 processTweet
-twitter.cpp:486 addTweet
-twitter.cpp:487 addTweet
-twitter.cpp:488 addTweet
-New tweet: Tempted to go back to sleep...
 twitter.cpp:581 getUser
-twitter.cpp:859 processTweet
-twitter.cpp:342 parseRestTweets
-processing tweet 2
-twitter.cpp:339 parseRestTweets
-twitter.cpp:684 processTweet
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 466075049
-twitter.cpp:708 processTweet
-twitter.cpp:548 getUser
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
-twitter.cpp:561 getUser
-twitter.cpp:709 processTweet
-twitter.cpp:806 processTweet
-twitter.cpp:809 processTweet
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
-twitter.cpp:852 processTweet
-twitter.cpp:486 addTweet
-twitter.cpp:487 addTweet
-twitter.cpp:488 addTweet
-New tweet: I guess it\'s time to watch that Steven Universe thing *video removed cause Cartoon Network said so* Oh
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-twitter.cpp:859 processTweet
-twitter.cpp:342 parseRestTweets
-processing tweet 3
-twitter.cpp:339 parseRestTweets
 twitter.cpp:586 getUser
-twitter.cpp:684 processTweet
 twitter.cpp:587 getUser
 701874878
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
-twitter.cpp:708 processTweet
-twitter.cpp:548 getUser
 twitter.cpp:591 getUser
 twitter.cpp:592 getUser
-twitter.cpp:561 getUser
-twitter.cpp:709 processTweet
 twitter.cpp:593 getUser
-twitter.cpp:806 processTweet
-twitter.cpp:809 processTweet
-twitter.cpp:852 processTweet
-twitter.cpp:486 addTweet
-twitter.cpp:487 addTweet
-twitter.cpp:488 addTweet
-New tweet: Super Mario HD, hahaha ;) <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/youtu.be\/lHahbKFONF8\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/youtu.be\/lHahbKFONF8\');\">youtu.be\/lHahbKFONF8<\/a>
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
-twitter.cpp:859 processTweet
-twitter.cpp:342 parseRestTweets
 twitter.cpp:581 getUser
-processing tweet 4
-twitter.cpp:339 parseRestTweets
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 21308311
@@ -674,50 +606,31 @@ twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-twitter.cpp:684 processTweet
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 16336652
-twitter.cpp:708 processTweet
-twitter.cpp:548 getUser
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
 twitter.cpp:594 getUser
-twitter.cpp:561 getUser
-twitter.cpp:709 processTweet
-twitter.cpp:806 processTweet
-twitter.cpp:809 processTweet
-twitter.cpp:852 processTweet
 twitter.cpp:595 getUser
-twitter.cpp:486 addTweet
-twitter.cpp:487 addTweet
-twitter.cpp:488 addTweet
-New tweet: This Scotch is so going to sneak up on me but who the fuck cares.
 twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 49440921
-twitter.cpp:859 processTweet
-twitter.cpp:342 parseRestTweets
-processing tweet 5
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
-twitter.cpp:339 parseRestTweets
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-twitter.cpp:684 processTweet
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 43945838
-twitter.cpp:708 processTweet
-twitter.cpp:548 getUser
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
@@ -726,21 +639,9 @@ twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-twitter.cpp:561 getUser
-twitter.cpp:709 processTweet
-twitter.cpp:806 processTweet
-twitter.cpp:821 processTweet
-twitter.cpp:839 processTweet
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 56841012
-twitter.cpp:581 getUser
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-21220972
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
@@ -748,44 +649,10 @@ twitter.cpp:592 getUser
 twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
-twitter.cpp:840 processTweet
-twitter.cpp:846 processTweet
-twitter.cpp:852 processTweet
-twitter.cpp:486 addTweet
-twitter.cpp:487 addTweet
-twitter.cpp:488 addTweet
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-New tweet: My favourite synth in skipping stones <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'https:\/\/vine.co\/v\/b9xZzqvamYr\');\" onclick=\"cpp.openInNativeBrowser(\'https:\/\/vine.co\/v\/b9xZzqvamYr\');\">vine.co\/v\/b9xZzqvamYr<\/a>
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 245935622
-twitter.cpp:859 processTweet
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:342 parseRestTweets
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-processing tweet 6
-twitter.cpp:339 parseRestTweets
-twitter.cpp:684 processTweet
-twitter.cpp:708 processTweet
-twitter.cpp:548 getUser
-twitter.cpp:561 getUser
-twitter.cpp:709 processTweet
-twitter.cpp:806 processTweet
-twitter.cpp:821 processTweet
-twitter.cpp:839 processTweet
-twitter.cpp:581 getUser
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-19785044
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
@@ -793,23 +660,13 @@ twitter.cpp:592 getUser
 twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
-twitter.cpp:840 processTweet
-twitter.cpp:846 processTweet
-twitter.cpp:852 processTweet
-twitter.cpp:486 addTweet
-twitter.cpp:487 addTweet
-twitter.cpp:488 addTweet
-New tweet: An update on baby-making - Ovarian torture: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/baby.botherer.org\/?p=298\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/baby.botherer.org\/?p=298\');\">baby.botherer.org\/?p=298<\/a>
 twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 627410625
-twitter.cpp:859 processTweet
-twitter.cpp:342 parseRestTweets
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
-processing tweet 7
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
 twitter.cpp:594 getUser
@@ -820,40 +677,23 @@ twitter.cpp:587 getUser
 286377221
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
-twitter.cpp:339 parseRestTweets
 twitter.cpp:591 getUser
 twitter.cpp:592 getUser
-twitter.cpp:684 processTweet
 twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-twitter.cpp:708 processTweet
-twitter.cpp:548 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 18148724
-twitter.cpp:561 getUser
 twitter.cpp:589 getUser
-twitter.cpp:709 processTweet
-twitter.cpp:806 processTweet
-twitter.cpp:821 processTweet
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
 twitter.cpp:592 getUser
-twitter.cpp:839 processTweet
-twitter.cpp:581 getUser
-twitter.cpp:840 processTweet
 twitter.cpp:593 getUser
-twitter.cpp:846 processTweet
-twitter.cpp:852 processTweet
-twitter.cpp:486 addTweet
-twitter.cpp:487 addTweet
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-twitter.cpp:488 addTweet
-New tweet: <a oncontextmenu=\'mutePop(\"@Electivirus\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'70531700\',\'https:\/\/twitter.com\/@Electivirus\');\" class=\'user 70531700\'>@Electivirus<\/a> We must reenact our favorite scene from Brokeback Mountain again very soon
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 133801192
@@ -861,108 +701,169 @@ twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
 twitter.cpp:592 getUser
-twitter.cpp:859 processTweet
 twitter.cpp:593 getUser
+twitter.cpp:325 parseRestTweets
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-twitter.cpp:342 parseRestTweets
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 19534812
-processing tweet 8
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
-twitter.cpp:339 parseRestTweets
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-twitter.cpp:684 processTweet
 twitter.cpp:586 getUser
+twitter.cpp:332 parseRestTweets
 twitter.cpp:587 getUser
 267477531
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
+processing tweet 0
+twitter.cpp:339 parseRestTweets
+twitter.cpp:592 getUser
+twitter.cpp:684 processTweet
+twitter.cpp:593 getUser
 twitter.cpp:708 processTweet
+twitter.cpp:594 getUser
 twitter.cpp:548 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:561 getUser
 twitter.cpp:709 processTweet
 twitter.cpp:806 processTweet
 twitter.cpp:809 processTweet
-twitter.cpp:592 getUser
 twitter.cpp:852 processTweet
 twitter.cpp:486 addTweet
-twitter.cpp:593 getUser
 twitter.cpp:487 addTweet
 twitter.cpp:488 addTweet
-New tweet: I\'m part of a dedicated hunting crew. That\'s kinda awesome. :3
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:859 processTweet
-twitter.cpp:342 parseRestTweets
-processing tweet 9
-twitter.cpp:581 getUser
-twitter.cpp:581 getUser
-twitter.cpp:339 parseRestTweets
+New tweet: Obama\'s Admin is a model for willful dis-ingeniousness when it comes to drone strikes <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.theatlantic.com\/politics\/archive\/2013\/05\/the-audacity-of-eric-holders-letter-admitting-team-obama-killed-4-americans\/276145\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.theatlantic.com\/politics\/archive\/2013\/05\/the-audacity-of-eric-holders-letter-admitting-team-obama-killed-4-americans\/276145\/\');\">theatlantic.com\/politics\/archi…<\/a>
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
-14809892
-twitter.cpp:684 processTweet
+twitter.cpp:859 processTweet
+84670801
+twitter.cpp:342 parseRestTweets
+processing tweet 1
+twitter.cpp:339 parseRestTweets
 twitter.cpp:589 getUser
+twitter.cpp:684 processTweet
+twitter.cpp:590 getUser
 twitter.cpp:708 processTweet
 twitter.cpp:548 getUser
-twitter.cpp:590 getUser
 twitter.cpp:591 getUser
+twitter.cpp:592 getUser
 twitter.cpp:561 getUser
 twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@dalziel_86\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'14280107\',\'https:\/\/twitter.com\/@dalziel_86\');\" class=\'user 14280107\'>@dalziel_86<\/a> totally fair
+twitter.cpp:593 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:594 getUser
+twitter.cpp:342 parseRestTweets
+processing tweet 2
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:561 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: I just bought Alan Wake and American Nightmare for a dollar. That seems fair.
+twitter.cpp:586 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 3
+twitter.cpp:587 getUser
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+14809892
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:708 processTweet
+twitter.cpp:591 getUser
+twitter.cpp:548 getUser
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
+twitter.cpp:561 getUser
 twitter.cpp:594 getUser
+twitter.cpp:709 processTweet
 twitter.cpp:595 getUser
 twitter.cpp:806 processTweet
+twitter.cpp:581 getUser
 twitter.cpp:821 processTweet
-twitter.cpp:581 getUser
-twitter.cpp:839 processTweet
-twitter.cpp:581 getUser
-twitter.cpp:840 processTweet
 twitter.cpp:586 getUser
+twitter.cpp:839 processTweet
 twitter.cpp:587 getUser
 107336879
+twitter.cpp:581 getUser
+twitter.cpp:589 getUser
+twitter.cpp:586 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:587 getUser
+274464570
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:589 getUser
+twitter.cpp:595 getUser
+twitter.cpp:590 getUser
+twitter.cpp:581 getUser
+twitter.cpp:591 getUser
+twitter.cpp:586 getUser
+twitter.cpp:592 getUser
+twitter.cpp:587 getUser
+22028884
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:840 processTweet
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
 twitter.cpp:846 processTweet
+twitter.cpp:591 getUser
 twitter.cpp:852 processTweet
 twitter.cpp:486 addTweet
 twitter.cpp:487 addTweet
 twitter.cpp:488 addTweet
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-New tweet: I\'d like to thank <a oncontextmenu=\'mutePop(\"@Kamiwoo\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'19505757\',\'https:\/\/twitter.com\/@Kamiwoo\');\" class=\'user 19505757\'>@Kamiwoo<\/a> <a oncontextmenu=\'mutePop(\"@Geminias\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'22796112\',\'https:\/\/twitter.com\/@Geminias\');\" class=\'user 22796112\'>@Geminias<\/a> <a oncontextmenu=\'mutePop(\"@Electivirus\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'70531700\',\'https:\/\/twitter.com\/@Electivirus\');\" class=\'user 70531700\'>@Electivirus<\/a> for the wonderful hunt today.  I enjoyed it!  If you\'d like to hunt tomorrow let me know!
+New tweet: .<a oncontextmenu=\'mutePop(\"@john_brindle\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'274464570\',\'https:\/\/twitter.com\/@john_brindle\');\" class=\'user 274464570\'>@john_brindle<\/a> penned an insightful look into  hows+ whys of Candy Box w\/ a buncha quotes from me &amp; other knowitalls! <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/insertquarterly.com\/2013\/05\/22\/unwrapping-the-lessons-of-candy-box\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/insertquarterly.com\/2013\/05\/22\/unwrapping-the-lessons-of-candy-box\/\');\">insertquarterly.com\/2013\/05\/22\/unw…<\/a>
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
 twitter.cpp:594 getUser
+twitter.cpp:859 processTweet
 twitter.cpp:595 getUser
+twitter.cpp:342 parseRestTweets
 twitter.cpp:581 getUser
+processing tweet 4
 twitter.cpp:586 getUser
+twitter.cpp:339 parseRestTweets
 twitter.cpp:587 getUser
-22028884
+19785044
+twitter.cpp:684 processTweet
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:859 processTweet
-twitter.cpp:342 parseRestTweets
-processing tweet 10
-twitter.cpp:339 parseRestTweets
-twitter.cpp:684 processTweet
 twitter.cpp:708 processTweet
+twitter.cpp:591 getUser
 twitter.cpp:548 getUser
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
 twitter.cpp:561 getUser
 twitter.cpp:709 processTweet
 twitter.cpp:806 processTweet
@@ -971,214 +872,250 @@ twitter.cpp:852 processTweet
 twitter.cpp:486 addTweet
 twitter.cpp:487 addTweet
 twitter.cpp:488 addTweet
-New tweet: New rule on reddit\/WTF: no gross photos of injuries unless an unknown clown is also humping the injury. <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.reddit.com\/r\/WTF\/comments\/1euqz0\/mod_post_no_more_gore\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.reddit.com\/r\/WTF\/comments\/1euqz0\/mod_post_no_more_gore\/\');\">reddit.com\/r\/WTF\/comments…<\/a>
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-19785044
+New tweet: These stuffed Pokemon dolls are way too freakin cute <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/bit.ly\/11bQvdV\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/bit.ly\/11bQvdV\');\">bit.ly\/11bQvdV<\/a>
+twitter.cpp:594 getUser
 twitter.cpp:859 processTweet
 twitter.cpp:342 parseRestTweets
-processing tweet 11
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
+processing tweet 5
 twitter.cpp:339 parseRestTweets
-twitter.cpp:592 getUser
 twitter.cpp:684 processTweet
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
 twitter.cpp:708 processTweet
 twitter.cpp:548 getUser
-twitter.cpp:561 getUser
 twitter.cpp:709 processTweet
 twitter.cpp:806 processTweet
-twitter.cpp:821 processTweet
-twitter.cpp:839 processTweet
-twitter.cpp:581 getUser
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-83715793
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:840 processTweet
-twitter.cpp:846 processTweet
+twitter.cpp:809 processTweet
 twitter.cpp:852 processTweet
 twitter.cpp:486 addTweet
 twitter.cpp:487 addTweet
 twitter.cpp:488 addTweet
-New tweet: Fuck this. <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/jezebel.com\/jose-canseco-tweets-name-number-and-photo-of-alleged-r-509368100\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/jezebel.com\/jose-canseco-tweets-name-number-and-photo-of-alleged-r-509368100\');\">jezebel.com\/jose-canseco-t…<\/a>
-twitter.cpp:581 getUser
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-15375238
+New tweet: <a oncontextmenu=\'mutePop(\"@kirkhamilton\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'35066483\',\'https:\/\/twitter.com\/@kirkhamilton\');\" class=\'user 35066483\'>@kirkhamilton<\/a> Shh, child. Shh.
+twitter.cpp:595 getUser
 twitter.cpp:859 processTweet
+twitter.cpp:581 getUser
+twitter.cpp:342 parseRestTweets
+twitter.cpp:586 getUser
+processing tweet 6
+twitter.cpp:587 getUser
+twitter.cpp:339 parseRestTweets
+15375238
+twitter.cpp:684 processTweet
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
+twitter.cpp:561 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
 twitter.cpp:594 getUser
-twitter.cpp:342 parseRestTweets
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-processing tweet 12
+New tweet: <a oncontextmenu=\'mutePop(\"@countjackuula\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'1383063685\',\'https:\/\/twitter.com\/@countjackuula\');\" class=\'user 1383063685\'>@countjackuula<\/a> ddghdfh dfhrt hdrh
 twitter.cpp:586 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 7
 twitter.cpp:587 getUser
 54903400
 twitter.cpp:339 parseRestTweets
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
 twitter.cpp:684 processTweet
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
+twitter.cpp:591 getUser
 twitter.cpp:708 processTweet
 twitter.cpp:548 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:561 getUser
+twitter.cpp:594 getUser
 twitter.cpp:709 processTweet
+twitter.cpp:595 getUser
 twitter.cpp:806 processTweet
 twitter.cpp:809 processTweet
 twitter.cpp:852 processTweet
 twitter.cpp:486 addTweet
 twitter.cpp:487 addTweet
 twitter.cpp:488 addTweet
-New tweet: (I was gonna stop the Braid thing when it got insufferable, but it went down well. Have I wasted 31 years trying not to be insufferable?)
+New tweet: Capitol Hillbillies takes on Sexy Pokémon:<a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.capitolhillbillies.net\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.capitolhillbillies.net\/\');\">capitolhillbillies.net<\/a>s
 twitter.cpp:581 getUser
 twitter.cpp:859 processTweet
 twitter.cpp:586 getUser
+twitter.cpp:342 parseRestTweets
+processing tweet 8
+twitter.cpp:339 parseRestTweets
 twitter.cpp:587 getUser
 105064153
-twitter.cpp:342 parseRestTweets
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-processing tweet 13
-twitter.cpp:591 getUser
-twitter.cpp:339 parseRestTweets
-twitter.cpp:592 getUser
 twitter.cpp:684 processTweet
 twitter.cpp:708 processTweet
+twitter.cpp:589 getUser
 twitter.cpp:548 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:561 getUser
+twitter.cpp:592 getUser
+twitter.cpp:709 processTweet
 twitter.cpp:593 getUser
 twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-5637652
-twitter.cpp:561 getUser
-twitter.cpp:709 processTweet
 twitter.cpp:806 processTweet
 twitter.cpp:809 processTweet
 twitter.cpp:852 processTweet
 twitter.cpp:486 addTweet
 twitter.cpp:487 addTweet
 twitter.cpp:488 addTweet
-New tweet: im a naked jojo gal <a href=\'javascript:;\' oncontextmenu=\"cpp.openInNativeBrowser(\'http:\/\/24.media.tumblr.com\/11f6be8fbdf72dd7628c197566efeaee\/tumblr_mmde26oACq1sq5ql7o4_500.jpg\'); return false;\" onclick=\"cpp.handleImage(\'http:\/\/24.media.tumblr.com\/11f6be8fbdf72dd7628c197566efeaee\/tumblr_mmde26oACq1sq5ql7o4_500.jpg\');\">24.media.tumblr.com\/11f6be8fbdf72d…<\/a>
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
 twitter.cpp:595 getUser
+New tweet: <a oncontextmenu=\'mutePop(\"@Kotaku\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'11928542\',\'https:\/\/twitter.com\/@Kotaku\');\" class=\'user 11928542\'>@Kotaku<\/a> that\'s not how it\'s pronounced I don\'t care who says it is
 twitter.cpp:581 getUser
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-60784126
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-60204674
 twitter.cpp:859 processTweet
-twitter.cpp:342 parseRestTweets
-processing tweet 14
-twitter.cpp:339 parseRestTweets
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
 twitter.cpp:586 getUser
+twitter.cpp:342 parseRestTweets
 twitter.cpp:587 getUser
-52922310
+5637652
+processing tweet 9
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
+twitter.cpp:339 parseRestTweets
 twitter.cpp:591 getUser
 twitter.cpp:684 processTweet
 twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-83931050
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-11928542
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
 twitter.cpp:708 processTweet
 twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:593 getUser
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: A collection of the best goofy gifs (pronounced \"JIFS\") from yesterday\'s Xbox One announcement <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/bit.ly\/11bQmHk\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/bit.ly\/11bQmHk\');\">bit.ly\/11bQmHk<\/a>
+twitter.cpp:594 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:595 getUser
+twitter.cpp:342 parseRestTweets
+processing tweet 10
+twitter.cpp:339 parseRestTweets
+twitter.cpp:581 getUser
+twitter.cpp:684 processTweet
+twitter.cpp:586 getUser
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:587 getUser
+60784126
+twitter.cpp:561 getUser
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:821 processTweet
+twitter.cpp:591 getUser
+twitter.cpp:839 processTweet
+twitter.cpp:581 getUser
+twitter.cpp:592 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
-150606645
+14522617
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:840 processTweet
+twitter.cpp:846 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: That moment when you\'re rewriting a paragraph that\'s currently in the middle of your review and realize it actually belongs in your intro.
+twitter.cpp:593 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:594 getUser
+twitter.cpp:342 parseRestTweets
+twitter.cpp:595 getUser
+processing tweet 11
+twitter.cpp:581 getUser
+twitter.cpp:339 parseRestTweets
+twitter.cpp:586 getUser
+twitter.cpp:684 processTweet
+twitter.cpp:587 getUser
+60204674
+twitter.cpp:708 processTweet
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:591 getUser
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+twitter.cpp:581 getUser
+New tweet: New <a oncontextmenu=\'mutePop(\"@GotR_Podcast\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'94962824\',\'https:\/\/twitter.com\/@GotR_Podcast\');\" class=\'user 94962824\'>@GotR_Podcast<\/a> is out: <a oncontextmenu=\'mutePop(\"@TheManOfSeal\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'243040785\',\'https:\/\/twitter.com\/@TheManOfSeal\');\" class=\'user 243040785\'>@TheManOfSeal<\/a>, <a oncontextmenu=\'mutePop(\"@eszoteric\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'104382180\',\'https:\/\/twitter.com\/@eszoteric\');\" class=\'user 104382180\'>@eszoteric<\/a> and I talk Upstream Color and EA\'s falling out w\/ Nintendo <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.wouldyoukindly.com\/gaming-on-the-rocks-26-demons-souls-ea-and-upstream-color\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.wouldyoukindly.com\/gaming-on-the-rocks-26-demons-souls-ea-and-upstream-color\/\');\">wouldyoukindly.com\/gaming-on-the-…<\/a>
+twitter.cpp:586 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 12
+twitter.cpp:339 parseRestTweets
+twitter.cpp:587 getUser
+twitter.cpp:684 processTweet
+52922310
+twitter.cpp:708 processTweet
+twitter.cpp:589 getUser
+twitter.cpp:548 getUser
+twitter.cpp:590 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:591 getUser
+twitter.cpp:806 processTweet
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: I use my walk home to be meditative. Today\'s meditation: Björk\'s Homogenic and imagining my superheroine transformations performing it.
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:581 getUser
+twitter.cpp:342 parseRestTweets
+processing tweet 13
+twitter.cpp:586 getUser
+twitter.cpp:339 parseRestTweets
+twitter.cpp:587 getUser
+twitter.cpp:684 processTweet
+83931050
+twitter.cpp:708 processTweet
+twitter.cpp:589 getUser
+twitter.cpp:548 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
 twitter.cpp:561 getUser
+twitter.cpp:593 getUser
 twitter.cpp:709 processTweet
 twitter.cpp:806 processTweet
 twitter.cpp:821 processTweet
 twitter.cpp:839 processTweet
 twitter.cpp:581 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
 twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
-146656029
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-90265705
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
+83715793
 twitter.cpp:595 getUser
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
@@ -1193,80 +1130,126 @@ twitter.cpp:852 processTweet
 twitter.cpp:486 addTweet
 twitter.cpp:487 addTweet
 twitter.cpp:488 addTweet
-New tweet: Jesus fucking christ Jose Canseco.
+New tweet: this jojo pose off is the best thing on twitter ever thank you all participants
 twitter.cpp:581 getUser
 twitter.cpp:859 processTweet
+twitter.cpp:581 getUser
+twitter.cpp:342 parseRestTweets
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+processing tweet 14
+150606645
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:589 getUser
+twitter.cpp:561 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: Ahh, just cut my first lino block in years! I\'m so rusty. ;o;
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:592 getUser
+twitter.cpp:342 parseRestTweets
+processing tweet 15
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:593 getUser
+twitter.cpp:561 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@S0phieH\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'18148724\',\'https:\/\/twitter.com\/@S0phieH\');\" class=\'user 18148724\'>@S0phieH<\/a> This is so cool! :D
+twitter.cpp:581 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 16
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+90265705
+twitter.cpp:339 parseRestTweets
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:684 processTweet
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 274109862
-twitter.cpp:342 parseRestTweets
+twitter.cpp:708 processTweet
 twitter.cpp:589 getUser
-processing tweet 15
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
-twitter.cpp:339 parseRestTweets
 twitter.cpp:592 getUser
-twitter.cpp:684 processTweet
 twitter.cpp:593 getUser
-twitter.cpp:708 processTweet
 twitter.cpp:594 getUser
 twitter.cpp:548 getUser
-twitter.cpp:709 processTweet
-twitter.cpp:806 processTweet
-twitter.cpp:809 processTweet
 twitter.cpp:595 getUser
-twitter.cpp:852 processTweet
-twitter.cpp:486 addTweet
-twitter.cpp:487 addTweet
-twitter.cpp:488 addTweet
-New tweet: That guy who in some attempt to defend a console just talks shit about another one instead of saying anything nice about it
+twitter.cpp:561 getUser
 twitter.cpp:581 getUser
-twitter.cpp:859 processTweet
+twitter.cpp:709 processTweet
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 287858376
-twitter.cpp:342 parseRestTweets
+twitter.cpp:806 processTweet
+twitter.cpp:821 processTweet
 twitter.cpp:589 getUser
-processing tweet 16
+twitter.cpp:839 processTweet
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+312426579
+twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
-twitter.cpp:339 parseRestTweets
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
-twitter.cpp:684 processTweet
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
 twitter.cpp:594 getUser
-twitter.cpp:708 processTweet
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-twitter.cpp:548 getUser
-twitter.cpp:709 processTweet
-twitter.cpp:806 processTweet
-twitter.cpp:809 processTweet
-twitter.cpp:852 processTweet
-twitter.cpp:486 addTweet
-twitter.cpp:487 addTweet
-twitter.cpp:488 addTweet
-New tweet: My head is starting to clear up after taking my meds, so that\'s nice.
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 293538857
-twitter.cpp:859 processTweet
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
-twitter.cpp:342 parseRestTweets
-processing tweet 17
-twitter.cpp:339 parseRestTweets
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-twitter.cpp:684 processTweet
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 75783213
-twitter.cpp:708 processTweet
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:840 processTweet
+twitter.cpp:846 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
@@ -1274,347 +1257,352 @@ twitter.cpp:592 getUser
 twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
-twitter.cpp:548 getUser
-twitter.cpp:709 processTweet
-twitter.cpp:806 processTweet
-twitter.cpp:809 processTweet
-twitter.cpp:852 processTweet
-twitter.cpp:486 addTweet
-twitter.cpp:487 addTweet
-twitter.cpp:488 addTweet
-New tweet: .<a oncontextmenu=\'mutePop(\"@verygooster\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'18787956\',\'https:\/\/twitter.com\/@verygooster\');\" class=\'user 18787956\'>@verygooster<\/a> Not even VC restore points can make Zelda II good. :(
 twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 47125114
-twitter.cpp:859 processTweet
-twitter.cpp:342 parseRestTweets
-processing tweet 18
 twitter.cpp:589 getUser
-twitter.cpp:339 parseRestTweets
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: This is fucking bullshit. <a oncontextmenu=\'mutePop(\"#batmanincorporated\"); return false;\' href=\'javascript:;\' onclick=\"cpp.openInNativeBrowser(\'https:\/\/twitter.com\/search?q=%23batmanincorporated\');\">#batmanincorporated<\/a> <a href=\'javascript:;\' oncontextmenu=\"cpp.openInNativeBrowser(\'http:\/\/pbs.twimg.com\/media\/BK5ooWBCMAEMr-M.jpg\'); return false;\" onclick=\"cpp.handleImage(\'http:\/\/pbs.twimg.com\/media\/BK5ooWBCMAEMr-M.jpg\');\">pic.twitter.com\/5TOqwu3U7h<\/a>
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+191790175
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:342 parseRestTweets
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-twitter.cpp:684 processTweet
+processing tweet 17
+twitter.cpp:581 getUser
+twitter.cpp:339 parseRestTweets
 twitter.cpp:586 getUser
-twitter.cpp:708 processTweet
+twitter.cpp:684 processTweet
 twitter.cpp:587 getUser
-191790175
+45757777
+twitter.cpp:708 processTweet
 twitter.cpp:548 getUser
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
+twitter.cpp:592 getUser
 twitter.cpp:561 getUser
 twitter.cpp:709 processTweet
 twitter.cpp:806 processTweet
 twitter.cpp:821 processTweet
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
 twitter.cpp:839 processTweet
-twitter.cpp:581 getUser
-twitter.cpp:840 processTweet
-twitter.cpp:846 processTweet
-twitter.cpp:852 processTweet
-twitter.cpp:486 addTweet
-twitter.cpp:487 addTweet
-twitter.cpp:488 addTweet
-New tweet: Legend of Zelda titles and VC restore points were made for each other. :p
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:859 processTweet
-twitter.cpp:581 getUser
-twitter.cpp:342 parseRestTweets
-processing tweet 19
-twitter.cpp:339 parseRestTweets
-twitter.cpp:684 processTweet
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-181191283
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:708 processTweet
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-45757777
-twitter.cpp:548 getUser
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 21220972
 twitter.cpp:589 getUser
+twitter.cpp:581 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
-18309190
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:709 processTweet
-twitter.cpp:806 processTweet
-twitter.cpp:809 processTweet
+141209614
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
 twitter.cpp:581 getUser
-twitter.cpp:852 processTweet
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
-19574163
-twitter.cpp:486 addTweet
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:487 addTweet
-twitter.cpp:488 addTweet
-New tweet: anywho i should be able to stream dekaranger in about five or ten minutes
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
-twitter.cpp:859 processTweet
-twitter.cpp:342 parseRestTweets
-twitter.cpp:581 getUser
-processing tweet 20
-twitter.cpp:586 getUser
-twitter.cpp:339 parseRestTweets
-twitter.cpp:587 getUser
-135898887
-twitter.cpp:684 processTweet
-twitter.cpp:708 processTweet
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:548 getUser
-twitter.cpp:709 processTweet
-twitter.cpp:806 processTweet
-twitter.cpp:809 processTweet
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
-twitter.cpp:852 processTweet
-twitter.cpp:486 addTweet
-twitter.cpp:487 addTweet
-twitter.cpp:488 addTweet
-New tweet: You know who I mean that guy
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-560701027
-twitter.cpp:859 processTweet
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:342 parseRestTweets
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
-processing tweet 21
-twitter.cpp:339 parseRestTweets
-twitter.cpp:684 processTweet
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-153550545
-twitter.cpp:708 processTweet
-twitter.cpp:548 getUser
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:561 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
-twitter.cpp:709 processTweet
-twitter.cpp:806 processTweet
-twitter.cpp:809 processTweet
-twitter.cpp:586 getUser
-twitter.cpp:852 processTweet
-twitter.cpp:486 addTweet
-twitter.cpp:487 addTweet
-twitter.cpp:488 addTweet
-New tweet: &gt;It had to rank somewhere in my top 3. I\'M HOWLING, oh my god.
-twitter.cpp:587 getUser
-16242203
-twitter.cpp:859 processTweet
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:342 parseRestTweets
-processing tweet 22
-twitter.cpp:592 getUser
-twitter.cpp:339 parseRestTweets
-twitter.cpp:593 getUser
-twitter.cpp:684 processTweet
-twitter.cpp:594 getUser
-twitter.cpp:708 processTweet
-twitter.cpp:548 getUser
-twitter.cpp:709 processTweet
-twitter.cpp:806 processTweet
-twitter.cpp:809 processTweet
-twitter.cpp:852 processTweet
-twitter.cpp:486 addTweet
-twitter.cpp:487 addTweet
-twitter.cpp:488 addTweet
-New tweet: I don\'t think I\'ve seen a single person say that they like the Xbox One except for maybe that guy
-twitter.cpp:595 getUser
-twitter.cpp:859 processTweet
-twitter.cpp:342 parseRestTweets
-twitter.cpp:581 getUser
-twitter.cpp:581 getUser
-processing tweet 23
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-26603170
-twitter.cpp:339 parseRestTweets
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-28766232
-twitter.cpp:684 processTweet
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:708 processTweet
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:548 getUser
-twitter.cpp:709 processTweet
-twitter.cpp:806 processTweet
-twitter.cpp:809 processTweet
-twitter.cpp:852 processTweet
-twitter.cpp:486 addTweet
-twitter.cpp:487 addTweet
-twitter.cpp:488 addTweet
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
-New tweet: *trips* OOPS FUCK *spills naked pics of self all over floor* OH NO! <a href=\'javascript:;\' oncontextmenu=\"cpp.openInNativeBrowser(\'http:\/\/24.media.tumblr.com\/170daf292a130cc7f8a2249235b92c38\/tumblr_mmde26oACq1sq5ql7o5_500.jpg\'); return false;\" onclick=\"cpp.handleImage(\'http:\/\/24.media.tumblr.com\/170daf292a130cc7f8a2249235b92c38\/tumblr_mmde26oACq1sq5ql7o5_500.jpg\');\">24.media.tumblr.com\/170daf292a130c…<\/a>
-twitter.cpp:586 getUser
-twitter.cpp:859 processTweet
-twitter.cpp:587 getUser
-17049101
-twitter.cpp:342 parseRestTweets
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
-processing tweet 24
-twitter.cpp:586 getUser
-twitter.cpp:339 parseRestTweets
-twitter.cpp:587 getUser
-156560059
-twitter.cpp:684 processTweet
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:581 getUser
-twitter.cpp:708 processTweet
-twitter.cpp:548 getUser
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-34843626
-twitter.cpp:561 getUser
-twitter.cpp:709 processTweet
-twitter.cpp:806 processTweet
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
-twitter.cpp:821 processTweet
-twitter.cpp:839 processTweet
-twitter.cpp:581 getUser
 twitter.cpp:840 processTweet
+18309190
 twitter.cpp:846 processTweet
 twitter.cpp:852 processTweet
 twitter.cpp:486 addTweet
 twitter.cpp:487 addTweet
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
 twitter.cpp:488 addTweet
-New tweet: Between Anomaly 2 and Thunder Wolves, our games are reviewing pretty wickedly. The Night of the Rabbit coming up. Stop talking about Xbox.
+New tweet: Don\'t forget that the EDL is the paramilitary arm of UKIP.
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
 twitter.cpp:581 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+19574163
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+135898887
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+560701027
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+153550545
+twitter.cpp:342 parseRestTweets
+processing tweet 18
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:561 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+16242203
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+New tweet: Drinking an All Day IPA (Session Ale) by <a oncontextmenu=\'mutePop(\"@foundersbrewing\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'30950136\',\'https:\/\/twitter.com\/@foundersbrewing\');\" class=\'user 30950136\'>@foundersbrewing<\/a> �<a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/untp.it\/18ja36y\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/untp.it\/18ja36y\');\">untp.it\/18ja36y<\/a>Kr
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:581 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+26603170
+twitter.cpp:342 parseRestTweets
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+processing tweet 19
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:561 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+28766232
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:809 processTweet
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+17049101
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:488 addTweet
+New tweet: I want 750Gb of storage on my Vita. :(
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:342 parseRestTweets
+processing tweet 20
+twitter.cpp:581 getUser
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+156560059
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:561 getUser
+twitter.cpp:594 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:595 getUser
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: This... this isn\'t even fair. <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/corgiorgy.com\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/corgiorgy.com\/\');\">corgiorgy.com<\/a>
+twitter.cpp:581 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:586 getUser
+twitter.cpp:342 parseRestTweets
+processing tweet 21
+twitter.cpp:587 getUser
+34843626
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:561 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: 80s hip hop and Plinkett-style YouTube media commentary as mediums that only exist bc everyone stopped caring about copyright for a minute
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 16595068
+twitter.cpp:859 processTweet
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
 twitter.cpp:592 getUser
+twitter.cpp:342 parseRestTweets
 twitter.cpp:593 getUser
+processing tweet 22
+twitter.cpp:339 parseRestTweets
 twitter.cpp:594 getUser
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
 twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+New tweet: 14-year-old guitar shredgirl is like \"Oh nbd, just playing Eruption flawlessly, yawn, what\'s next\" <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?feature=player_embedded&v=rV6SmY04WdE#\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?feature=player_embedded&v=rV6SmY04WdE#\');\">youtube.com\/watch?feature=…<\/a>!
+twitter.cpp:586 getUser
 twitter.cpp:859 processTweet
 twitter.cpp:342 parseRestTweets
-twitter.cpp:581 getUser
-twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 36212083
+processing tweet 23
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
-twitter.cpp:54 refreshTweets
 twitter.cpp:592 getUser
-twitter.cpp:57 refreshTweets
 twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
+twitter.cpp:339 parseRestTweets
 twitter.cpp:581 getUser
+twitter.cpp:684 processTweet
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 347824744
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
+twitter.cpp:708 processTweet
+twitter.cpp:592 getUser
+twitter.cpp:548 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:561 getUser
+twitter.cpp:595 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:821 processTweet
+twitter.cpp:839 processTweet
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+107336879
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
+twitter.cpp:840 processTweet
+twitter.cpp:846 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: Indie developers cannot self-publish on Xbox One <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/sbn.to\/YZERGv\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/sbn.to\/YZERGv\');\">sbn.to\/YZERGv<\/a>
 twitter.cpp:581 getUser
+twitter.cpp:859 processTweet
 twitter.cpp:586 getUser
+twitter.cpp:342 parseRestTweets
 twitter.cpp:587 getUser
 16425600
 twitter.cpp:589 getUser
@@ -1625,9 +1613,11 @@ twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
+twitter.cpp:54 refreshTweets
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 155688134
+twitter.cpp:57 refreshTweets
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
@@ -1977,16 +1967,6 @@ twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-14513917
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
 twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
@@ -1999,16 +1979,6 @@ twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-35066483
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
 twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
@@ -2241,6 +2211,16 @@ twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+70531700
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
 twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
@@ -2363,6 +2343,16 @@ twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+5867722
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
 twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
@@ -2408,16 +2398,6 @@ twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
-twitter.cpp:586 getUser
-twitter.cpp:587 getUser
-64863849
-twitter.cpp:589 getUser
-twitter.cpp:590 getUser
-twitter.cpp:591 getUser
-twitter.cpp:592 getUser
-twitter.cpp:593 getUser
-twitter.cpp:594 getUser
-twitter.cpp:595 getUser
 twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
@@ -2485,6 +2465,16 @@ twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+61653331
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
 twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
@@ -2533,6 +2523,7 @@ twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 15419775
+twitter.cpp:325 parseRestTweets
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
@@ -2541,7 +2532,11 @@ twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
+twitter.cpp:332 parseRestTweets
+processing tweet 0
 twitter.cpp:586 getUser
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
 twitter.cpp:587 getUser
 45064431
 twitter.cpp:589 getUser
@@ -2552,64 +2547,220 @@ twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
+twitter.cpp:708 processTweet
 twitter.cpp:586 getUser
+twitter.cpp:548 getUser
 twitter.cpp:587 getUser
 216442854
+twitter.cpp:561 getUser
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
+twitter.cpp:709 processTweet
 twitter.cpp:592 getUser
+twitter.cpp:806 processTweet
 twitter.cpp:593 getUser
+twitter.cpp:809 processTweet
 twitter.cpp:594 getUser
+twitter.cpp:852 processTweet
 twitter.cpp:595 getUser
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> same
 twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 9308132
+twitter.cpp:859 processTweet
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
+twitter.cpp:342 parseRestTweets
 twitter.cpp:592 getUser
+processing tweet 1
 twitter.cpp:593 getUser
 twitter.cpp:594 getUser
+twitter.cpp:339 parseRestTweets
 twitter.cpp:595 getUser
+twitter.cpp:684 processTweet
 twitter.cpp:581 getUser
+twitter.cpp:708 processTweet
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 14575846
+twitter.cpp:548 getUser
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
+twitter.cpp:561 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
 twitter.cpp:592 getUser
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> Depends. If what\'s \"wrong\" with it is a function of scope, that\'s absolutely tied to budget.
 twitter.cpp:593 getUser
 twitter.cpp:594 getUser
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 2
 twitter.cpp:586 getUser
+twitter.cpp:339 parseRestTweets
 twitter.cpp:587 getUser
 368962194
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
 twitter.cpp:589 getUser
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@GTElephant\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'944704369\',\'https:\/\/twitter.com\/@GTElephant\');\" class=\'user 944704369\'>@GTElephant<\/a> <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> Immersion (n): see FOLLY and HORSESHIT.
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 3
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
+twitter.cpp:561 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
 twitter.cpp:594 getUser
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> Define: Immersion.
 twitter.cpp:595 getUser
 twitter.cpp:581 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 4
 twitter.cpp:586 getUser
+twitter.cpp:339 parseRestTweets
 twitter.cpp:587 getUser
 451781785
+twitter.cpp:684 processTweet
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
+twitter.cpp:708 processTweet
 twitter.cpp:591 getUser
+twitter.cpp:548 getUser
 twitter.cpp:592 getUser
 twitter.cpp:593 getUser
+twitter.cpp:561 getUser
 twitter.cpp:594 getUser
+twitter.cpp:709 processTweet
 twitter.cpp:595 getUser
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> I just remembered that you hate time skips.
 twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
 27269825
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 5
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:591 getUser
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> Ah. Try to ge-oh fuck. I just realized something. ...carry on.
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 6
+twitter.cpp:339 parseRestTweets
+twitter.cpp:581 getUser
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> To bed with me now. Will continue if desired, but tomorrow.
+twitter.cpp:586 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+twitter.cpp:587 getUser
+processing tweet 7
+twitter.cpp:339 parseRestTweets
+718770470
+twitter.cpp:684 processTweet
+twitter.cpp:589 getUser
+twitter.cpp:708 processTweet
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> So, how many you planning on watching tonight?
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+twitter.cpp:586 getUser
+processing tweet 8
+twitter.cpp:587 getUser
+94860638
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:339 parseRestTweets
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+118279350
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
 twitter.cpp:591 getUser
@@ -2620,6 +2771,1473 @@ twitter.cpp:595 getUser
 twitter.cpp:581 getUser
 twitter.cpp:586 getUser
 twitter.cpp:587 getUser
-718770470
+17480851
 twitter.cpp:589 getUser
 twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:684 processTweet
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+198223435
+twitter.cpp:561 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+70409780
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+33191389
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> grrrr.
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+37856077
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:342 parseRestTweets
+processing tweet 9
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> <a oncontextmenu=\'mutePop(\"@GTElephant\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'944704369\',\'https:\/\/twitter.com\/@GTElephant\');\" class=\'user 944704369\'>@GTElephant<\/a> Immersion is the idolatry of videogames. Heretic.
+twitter.cpp:581 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+239293257
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:342 parseRestTweets
+processing tweet 10
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+54082511
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> The dev\'s fridge being down probably doesn\'t affect the game. Budget does. Some context is important.
+twitter.cpp:581 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 11
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+26884913
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> Okay, lemme rephrase: I think it\'s a neat mechanism, and adds to both atmosphere and aesthetic value.
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+257177056
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 12
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> You said the I-word. Don\'t make me bring down <a oncontextmenu=\'mutePop(\"@GTElephant\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'944704369\',\'https:\/\/twitter.com\/@GTElephant\');\" class=\'user 944704369\'>@GTElephant<\/a> on your head now.
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+28187205
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:581 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:586 getUser
+twitter.cpp:342 parseRestTweets
+processing tweet 13
+twitter.cpp:339 parseRestTweets
+twitter.cpp:587 getUser
+122684211
+twitter.cpp:684 processTweet
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> I realized, too - then I went \"oh, neat\" and moved on.
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+99429451
+processing tweet 14
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:339 parseRestTweets
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:595 getUser
+twitter.cpp:548 getUser
+twitter.cpp:581 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+203329063
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:595 getUser
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+twitter.cpp:581 getUser
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> Relevance is not scale-invariant. (Also, if there\'s a hunger mechanic, it probably *does* matter.)
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+130261215
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:342 parseRestTweets
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+240862846
+processing tweet 15
+twitter.cpp:589 getUser
+twitter.cpp:339 parseRestTweets
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> If you\'re a veteran FPS player, sure. Plenty of people aren\'t.
+twitter.cpp:581 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+267477014
+twitter.cpp:342 parseRestTweets
+processing tweet 16
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:339 parseRestTweets
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:684 processTweet
+twitter.cpp:581 getUser
+twitter.cpp:708 processTweet
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+83715793
+twitter.cpp:548 getUser
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:592 getUser
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> ~0.3, if your footing\'s decent.
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+111136741
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:342 parseRestTweets
+processing tweet 17
+twitter.cpp:339 parseRestTweets
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+467497155
+twitter.cpp:684 processTweet
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:708 processTweet
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:548 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:561 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> ??
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+14498961
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 18
+twitter.cpp:339 parseRestTweets
+twitter.cpp:595 getUser
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> What\'s wrong with acknowledging a cool innovation, again?
+twitter.cpp:581 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 19
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+563455962
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> *Need* to, no. But I really like the effect, and find it valuable aesthetically (helps set the mood, too).
+twitter.cpp:581 getUser
+twitter.cpp:859 processTweet
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+150450008
+twitter.cpp:342 parseRestTweets
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:59 refreshTweets
+twitter.cpp:62 refreshTweets
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+130193361
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+266050776
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+32823959
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+18908140
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+280490190
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+393460809
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+293926389
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+14336699
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+14882389
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+17214479
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+73254470
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+20504542
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+19575980
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+93969417
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+97967321
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+224437276
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+1198071
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+63485337
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+23380212
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+42697261
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+61742106
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+325933414
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+18478184
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+24668419
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+2570321
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+470294971
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+169720238
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+249367137
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+stream.cpp:84 parseStream
+twitter.cpp:325 parseRestTweets
+twitter.cpp:332 parseRestTweets
+processing tweet 0
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: Obama\'s Admin is a model for willful dis-ingeniousness when it comes to drone strikes <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.theatlantic.com\/politics\/archive\/2013\/05\/the-audacity-of-eric-holders-letter-admitting-team-obama-killed-4-americans\/276145\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.theatlantic.com\/politics\/archive\/2013\/05\/the-audacity-of-eric-holders-letter-admitting-team-obama-killed-4-americans\/276145\/\');\">theatlantic.com\/politics\/archi…<\/a>
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 1
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@dalziel_86\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'14280107\',\'https:\/\/twitter.com\/@dalziel_86\');\" class=\'user 14280107\'>@dalziel_86<\/a> totally fair
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 2
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: I just bought Alan Wake and American Nightmare for a dollar. That seems fair.
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 3
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: These stuffed Pokemon dolls are way too freakin cute <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/bit.ly\/11bQvdV\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/bit.ly\/11bQvdV\');\">bit.ly\/11bQvdV<\/a>
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 4
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@kirkhamilton\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'35066483\',\'https:\/\/twitter.com\/@kirkhamilton\');\" class=\'user 35066483\'>@kirkhamilton<\/a> Shh, child. Shh.
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 5
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@countjackuula\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'1383063685\',\'https:\/\/twitter.com\/@countjackuula\');\" class=\'user 1383063685\'>@countjackuula<\/a> ddghdfh dfhrt hdrh
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 6
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: Capitol Hillbillies takes on Sexy Pokémon:<a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.capitolhillbillies.net\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.capitolhillbillies.net\/\');\">capitolhillbillies.net<\/a>s
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 7
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@Kotaku\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'11928542\',\'https:\/\/twitter.com\/@Kotaku\');\" class=\'user 11928542\'>@Kotaku<\/a> that\'s not how it\'s pronounced I don\'t care who says it is
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 8
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: A collection of the best goofy gifs (pronounced \"JIFS\") from yesterday\'s Xbox One announcement <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/bit.ly\/11bQmHk\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/bit.ly\/11bQmHk\');\">bit.ly\/11bQmHk<\/a>
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 9
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: New <a oncontextmenu=\'mutePop(\"@GotR_Podcast\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'94962824\',\'https:\/\/twitter.com\/@GotR_Podcast\');\" class=\'user 94962824\'>@GotR_Podcast<\/a> is out: <a oncontextmenu=\'mutePop(\"@TheManOfSeal\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'243040785\',\'https:\/\/twitter.com\/@TheManOfSeal\');\" class=\'user 243040785\'>@TheManOfSeal<\/a>, <a oncontextmenu=\'mutePop(\"@eszoteric\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'104382180\',\'https:\/\/twitter.com\/@eszoteric\');\" class=\'user 104382180\'>@eszoteric<\/a> and I talk Upstream Color and EA\'s falling out w\/ Nintendo <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.wouldyoukindly.com\/gaming-on-the-rocks-26-demons-souls-ea-and-upstream-color\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.wouldyoukindly.com\/gaming-on-the-rocks-26-demons-souls-ea-and-upstream-color\/\');\">wouldyoukindly.com\/gaming-on-the-…<\/a>
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 10
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: I use my walk home to be meditative. Today\'s meditation: Björk\'s Homogenic and imagining my superheroine transformations performing it.
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 11
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: Ahh, just cut my first lino block in years! I\'m so rusty. ;o;
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 12
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@S0phieH\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'18148724\',\'https:\/\/twitter.com\/@S0phieH\');\" class=\'user 18148724\'>@S0phieH<\/a> This is so cool! :D
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 13
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: Drinking an All Day IPA (Session Ale) by <a oncontextmenu=\'mutePop(\"@foundersbrewing\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'30950136\',\'https:\/\/twitter.com\/@foundersbrewing\');\" class=\'user 30950136\'>@foundersbrewing<\/a> �<a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/untp.it\/18ja36y\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/untp.it\/18ja36y\');\">untp.it\/18ja36y<\/a>Kr
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 14
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: I want 750Gb of storage on my Vita. :(
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 15
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: This... this isn\'t even fair. <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/corgiorgy.com\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/corgiorgy.com\/\');\">corgiorgy.com<\/a>
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 16
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: 80s hip hop and Plinkett-style YouTube media commentary as mediums that only exist bc everyone stopped caring about copyright for a minute
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 17
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: 14-year-old guitar shredgirl is like \"Oh nbd, just playing Eruption flawlessly, yawn, what\'s next\" <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?feature=player_embedded&v=rV6SmY04WdE#\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?feature=player_embedded&v=rV6SmY04WdE#\');\">youtube.com\/watch?feature=…<\/a>!
+twitter.cpp:526 addTweet
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 18
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:561 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: Need a word for the mounting heaviness in your fingers as you realise the sentence you\'re typing is awful. Maybe Wantage.
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 19
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:561 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: Blog post- Coding \"To The Metal\" is a dangerous ideal: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/gamasutra.com\/blogs\/SimonRoth\/20130522\/192814\/Coding_quotTo_The_Metalquot_is_a_dangerous_ideal.php\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/gamasutra.com\/blogs\/SimonRoth\/20130522\/192814\/Coding_quotTo_The_Metalquot_is_a_dangerous_ideal.php\');\">gamasutra.com\/blogs\/SimonRot…<\/a>
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+twitter.cpp:64 refreshTweets
+twitter.cpp:67 refreshTweets
+twitter.cpp:325 parseRestTweets
+twitter.cpp:332 parseRestTweets
+twitter.cpp:69 refreshTweets
+twitter.cpp:72 refreshTweets
+twitter.cpp:325 parseRestTweets
+twitter.cpp:332 parseRestTweets
+processing tweet 0
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: O              ======== \/\n\/ | \                        L_ | \
+  |                              \   \
+\/  \                              \__\
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 1
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a href=\'javascript:;\' oncontextmenu=\"cpp.openInNativeBrowser(\'http:\/\/25.media.tumblr.com\/3fd54683e7ae835ccac5f2437aeda96d\/tumblr_mlxs8qjkxU1rg3x7ao1_400.png\'); return false;\" onclick=\"cpp.handleImage(\'http:\/\/25.media.tumblr.com\/3fd54683e7ae835ccac5f2437aeda96d\/tumblr_mlxs8qjkxU1rg3x7ao1_400.png\');\">25.media.tumblr.com\/3fd54683e7ae83…<\/a>
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 2
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: \"Whatever happens, at least we still have each other.\"\nOH GOD DAMNIT GUESS WHO\'S GONNA DIE
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 3
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: \"Why don\'t you dress like a lady?\"\n\"You think a man could pull off this look?\"
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 4
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@Avian_Flame\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'216442854\',\'https:\/\/twitter.com\/@Avian_Flame\');\" class=\'user 216442854\'>@Avian_Flame<\/a> VIDEO GAMES MAN
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 5
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: OF COURSE the parents are encouraging them  <a oncontextmenu=\'mutePop(\"#KissXSis\"); return false;\' href=\'javascript:;\' onclick=\"cpp.openInNativeBrowser(\'https:\/\/twitter.com\/search?q=%23KissXSis\');\">#KissXSis<\/a>
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 6
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@Xzyliac\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'75299276\',\'https:\/\/twitter.com\/@Xzyliac\');\" class=\'user 75299276\'>@Xzyliac<\/a> Halo looks like Ringworld
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 7
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: Hey guys we didn\'t have a game ready so we just videoed our artists for a while
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 8
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: I\'ve got one wants to render a hack em up? \nMe: Well, I don\'t have a lazy coder. �<a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/thatcan.be\/my\/next\/tweet\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/thatcan.be\/my\/next\/tweet\');\">thatcan.be\/my\/next\/tweet<\/a>qk
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 9
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: The people who follow <a oncontextmenu=\'mutePop(\"@zacaj2\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'533546294\',\'https:\/\/twitter.com\/@zacaj2\');\" class=\'user 533546294\'>@zacaj2<\/a> are the ones who really love me
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 10
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@Kidcrashed\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'99429451\',\'https:\/\/twitter.com\/@Kidcrashed\');\" class=\'user 99429451\'>@Kidcrashed<\/a> I live in the street outside a taco bell and all I want is YOOOOUUUUU
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+twitter.cpp:74 refreshTweets
+twitter.cpp:77 refreshTweets
+twitter.cpp:325 parseRestTweets
+twitter.cpp:332 parseRestTweets
+processing tweet 0
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: he
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 1
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: hello
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 2
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: woo
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+processing tweet 3
+twitter.cpp:339 parseRestTweets
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: hi
+twitter.cpp:859 processTweet
+twitter.cpp:342 parseRestTweets
+twitter.cpp:79 refreshTweets
+twitter.cpp:82 refreshTweets
+stream.cpp:170 curl_debug_callback2
+stream.cpp:174 curl_debug_callback2
+stream.cpp:178 curl_debug_callback2
+stream.cpp:104 callback_func
+stream.cpp:108 callback_func
+stream.cpp:110 callback_func
+stream.cpp:112 callback_func
+stream.cpp:115 callback_func
+stream.cpp:124 callback_func
+stream.cpp:126 callback_func
+stream.cpp:127 callback_func
+stream.cpp:132 callback_func
+stream.cpp:115 callback_func
+stream.cpp:121 callback_func
+stream.cpp:159 callback_func
+stream.cpp:8 parseStream
+twitter.cpp:548 getUser
+twitter.cpp:548 getUser
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: @countjackuula ddghdfh dfhrt hdrh
+stream.cpp:84 parseStream
+stream.cpp:170 curl_debug_callback2
+stream.cpp:174 curl_debug_callback2
+stream.cpp:178 curl_debug_callback2
+stream.cpp:104 callback_func
+stream.cpp:108 callback_func
+stream.cpp:110 callback_func
+stream.cpp:112 callback_func
+stream.cpp:115 callback_func
+stream.cpp:124 callback_func
+stream.cpp:126 callback_func
+stream.cpp:127 callback_func
+stream.cpp:132 callback_func
+stream.cpp:115 callback_func
+stream.cpp:121 callback_func
+stream.cpp:159 callback_func
+stream.cpp:8 parseStream
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: Fitting, that a session ale puts me over the top...
+twitter.cpp:859 processTweet
+stream.cpp:18 parseStream
+stream.cpp:84 parseStream
+stream.cpp:170 curl_debug_callback2
+stream.cpp:174 curl_debug_callback2
+stream.cpp:178 curl_debug_callback2
+stream.cpp:104 callback_func
+stream.cpp:108 callback_func
+stream.cpp:110 callback_func
+stream.cpp:112 callback_func
+stream.cpp:115 callback_func
+stream.cpp:124 callback_func
+stream.cpp:126 callback_func
+stream.cpp:127 callback_func
+stream.cpp:132 callback_func
+stream.cpp:8 parseStream
+stream.cpp:115 callback_func
+stream.cpp:121 callback_func
+stream.cpp:159 callback_func
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:561 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:809 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: \"Look at z\'at face! Like la puppy rejected by life itself!\" omg this character <a oncontextmenu=\'mutePop(\"#MattiesAndTribulations\"); return false;\' href=\'javascript:;\' onclick=\"cpp.openInNativeBrowser(\'https:\/\/twitter.com\/search?q=%23MattiesAndTribulations\');\">#MattiesAndTribulations<\/a>
+twitter.cpp:859 processTweet
+stream.cpp:18 parseStream
+stream.cpp:84 parseStream
+stream.cpp:170 curl_debug_callback2
+stream.cpp:174 curl_debug_callback2
+stream.cpp:178 curl_debug_callback2
+stream.cpp:104 callback_func
+stream.cpp:108 callback_func
+stream.cpp:110 callback_func
+stream.cpp:112 callback_func
+stream.cpp:115 callback_func
+stream.cpp:124 callback_func
+stream.cpp:126 callback_func
+stream.cpp:127 callback_func
+stream.cpp:132 callback_func
+stream.cpp:8 parseStream
+stream.cpp:115 callback_func
+stream.cpp:121 callback_func
+stream.cpp:159 callback_func
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:561 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:821 processTweet
+twitter.cpp:839 processTweet
+twitter.cpp:581 getUser
+twitter.cpp:586 getUser
+twitter.cpp:587 getUser
+130193361
+twitter.cpp:589 getUser
+twitter.cpp:590 getUser
+twitter.cpp:591 getUser
+twitter.cpp:592 getUser
+twitter.cpp:593 getUser
+twitter.cpp:594 getUser
+twitter.cpp:595 getUser
+twitter.cpp:840 processTweet
+twitter.cpp:846 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: <a oncontextmenu=\'mutePop(\"@dedhedzed\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'130193361\',\'https:\/\/twitter.com\/@dedhedzed\');\" class=\'user 130193361\'>@dedhedzed<\/a> Works for me, but adverts seem to think I\'m a woman. <a href=\'javascript:;\' oncontextmenu=\"cpp.openInNativeBrowser(\'http:\/\/pbs.twimg.com\/media\/BK51ZoFCAAAPLno.png\'); return false;\" onclick=\"cpp.handleImage(\'http:\/\/pbs.twimg.com\/media\/BK51ZoFCAAAPLno.png\');\">pic.twitter.com\/GWY7fl96Bb<\/a>
+twitter.cpp:859 processTweet
+stream.cpp:18 parseStream
+stream.cpp:84 parseStream
+stream.cpp:170 curl_debug_callback2
+stream.cpp:174 curl_debug_callback2
+stream.cpp:178 curl_debug_callback2
+stream.cpp:104 callback_func
+stream.cpp:108 callback_func
+stream.cpp:110 callback_func
+stream.cpp:112 callback_func
+stream.cpp:115 callback_func
+stream.cpp:124 callback_func
+stream.cpp:126 callback_func
+stream.cpp:127 callback_func
+stream.cpp:132 callback_func
+stream.cpp:115 callback_func
+stream.cpp:121 callback_func
+stream.cpp:159 callback_func
+stream.cpp:8 parseStream
+twitter.cpp:684 processTweet
+twitter.cpp:708 processTweet
+twitter.cpp:548 getUser
+twitter.cpp:561 getUser
+twitter.cpp:709 processTweet
+twitter.cpp:806 processTweet
+twitter.cpp:821 processTweet
+twitter.cpp:839 processTweet
+twitter.cpp:581 getUser
+twitter.cpp:840 processTweet
+twitter.cpp:846 processTweet
+twitter.cpp:852 processTweet
+twitter.cpp:486 addTweet
+twitter.cpp:487 addTweet
+twitter.cpp:488 addTweet
+New tweet: .<a oncontextmenu=\'mutePop(\"@jeremyscahill\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'23839835\',\'https:\/\/twitter.com\/@jeremyscahill\');\" class=\'user 23839835\'>@jeremyscahill<\/a>, whose upcoming film Dirty Wars focuses on US drone-killing in Yemen, reacts to today\'s US admissions <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/ggsidedocs.blogspot.com.br\/2013\/05\/jermey-scahill-statement-re-holder.html\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/ggsidedocs.blogspot.com.br\/2013\/05\/jermey-scahill-statement-re-holder.html\');\">ggsidedocs.blogspot.com.br\/2013\/05\/jermey…<\/a>
+twitter.cpp:859 processTweet
+stream.cpp:18 parseStream
+stream.cpp:84 parseStream
+stream.cpp:170 curl_debug_callback2
+stream.cpp:174 curl_debug_callback2
+stream.cpp:178 curl_debug_callback2
+stream.cpp:104 callback_func
+stream.cpp:108 callback_func
+stream.cpp:170 curl_debug_callback2
+stream.cpp:174 curl_debug_callback2
+stream.cpp:178 curl_debug_callback2
+stream.cpp:104 callback_func
+stream.cpp:108 callback_func

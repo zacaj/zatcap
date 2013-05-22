@@ -11,5 +11,4 @@ autocorrect direct messages
 horizontal scroll
 
 list view
-user view
 configure unread count?

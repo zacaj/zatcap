@@ -962,10 +962,11 @@ int main(int argc,char **argv)
 		methodHandler->reg(WSLit("read"),[](JSArray args)
 		{
 			string id=ToString(args[0].ToString());
-			map<string,Item*>::reverse_iterator it=--map<string,Item*>::reverse_iterator(tweets.find(id));
-			for(;it!=tweets.rend();++it)
+			Item *i=getTweet(id);
+			auto it=tweets.begin();
+			for(;it!=tweets.end();++it)
 			{
-				if(!it->second->read)
+				if(!it->second->read && it->second->timeTweetedInSeconds<=i->timeTweetedInSeconds)
 				{
 					it->second->read=1;
 					nUnread--;
@@ -1712,4 +1713,10 @@ void addFollower( string id )
 {
 	followers.insert(id);
 	runJS("addFollower('"+id+"');");
+}
+
+tm getTime()
+{
+	time_t t=time(NULL);
+	return *localtime(&t);
 }

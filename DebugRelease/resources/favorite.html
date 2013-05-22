@@ -1,5 +1,21 @@
-<div id='$ID_$COLUMN' style='width: 100%;  border: 1px solid red;'>
-<img src='$AVATAR' />
-<h5>$USERNAME $ACTION at $TIME</h5>
-<p>$TEXT</p>
+<div id='$ID_$COLUMN' class="tweetshell" style="padding-bottom:8px;">
+<div id='$ID_$COLUMNbg' class="$READtweetbg"></div>
+<div  class="tweet" onclick="cpp.read('$ID');">
+ <div>
+<div class="tweetleft">
+<div class="avatar" style="background-image: url('$AVATAR');">
+</div>
+</div>
+</div>
+<div style="vertical-align: top;overflow:hidden;">
+<div class="meta">
+<span class="username"><span class="$FOLLOWSuser $USERID">$USERNAME</span></span> $ACTION
+<span class="time">$TIME</span>
+
+</div>
+<div>
+<span class="text" id="$ID_text">$TEXT</span>
+</div>
+</div>
+</div>
 </div>

@@ -7,6 +7,7 @@ class TweetInstance;
 #define FAVORITE 2
 #define FOLLOW 3
 #define DIRECTMESSAGE 4
+#define ACTIVITY 5
 class Column;
 class Item
 {
@@ -22,6 +23,10 @@ public:
 	virtual string getHtml(string columnName) =0;
 	virtual void write(FILE *fp)=0;
 	set<Column*> instances;
+	Item()
+	{
+		read=0;
+	}
 };
 
 class Favorite:public Item
@@ -37,6 +42,7 @@ public:
 		id=_id+"fav";
 		favoriter=_favoriter;
 		timeTweeted=_time;
+		timeTweetedInSeconds=mktime(&timeTweeted);
 	}
 	virtual string getHtml( string columnName );
 
@@ -54,13 +60,30 @@ public:
 		id="follow"+_follower->id;
 		follower=_follower;
 		timeTweeted=_time;
+		timeTweetedInSeconds=mktime(&timeTweeted);
 	}
 	virtual string getHtml( string columnName );
 
 	virtual void write( FILE *fp );
 
 };
+class Activity:public Item
+{
+public:
+	string action;
+	Activity(string _action)
+	{
+		_type=ACTIVITY;
+		id="activity"+_action;
+		action=_action;
+		timeTweeted=getTime();
+		timeTweetedInSeconds=mktime(&timeTweeted);
+	}
+	virtual string getHtml( string columnName );
 
+	virtual void write( FILE *fp );
+
+};
 class Tweet:public Item
 {
 public:

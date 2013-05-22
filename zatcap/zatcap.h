@@ -119,3 +119,4 @@ extern int nUnread;
 extern map<string,time_t> mute;
 extern set<string> followers;
 void addFollower(string id);
+tm getTime();

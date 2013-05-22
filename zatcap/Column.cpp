@@ -24,7 +24,7 @@ void Column::init(float _w ,string _name)
 
 void Column::add( Item* tweet )
 {
-	runJS("addTweetHtml('"+columnName+"',\""+escape(tweet->getHtml(columnName))+"\",'"+ tweet->id +"');");
+	runJS("addTweetHtml('"+columnName+"',\""+escape(tweet->getHtml(columnName))+"\",'"+ i2s(tweet->timeTweetedInSeconds) +"');");
 	tweet->instances.insert(this);
 }
 
