@@ -70,12 +70,15 @@ public:
 class Activity:public Item
 {
 public:
-	string action;
-	Activity(string _action)
+	string username;
+	string stoppable;
+	Activity(string _action,string _stoppable="",string name="")
 	{
 		_type=ACTIVITY;
 		id="activity"+_action;
-		action=_action;
+		text=_action;
+		username=name;
+		stoppable=_stoppable;
 		timeTweeted=getTime();
 		timeTweetedInSeconds=mktime(&timeTweeted);
 	}

@@ -90,6 +90,8 @@ margin-right: 6px;
 	width:48px;
 	height:48px;
 	position:relative;
+	background-repeat:no-repeat;
+	background-size:contain;
 }
 .tweetleft
 {

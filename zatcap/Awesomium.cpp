@@ -46,7 +46,6 @@ void MethodHandler::OnMethodCall( Awesomium::WebView* caller, unsigned int remot
 //	assert(it!=funcs.end(),"invalid funciton");
 	it->second(args);
 }
-
 void MethodHandler::reg( WebString str,std::function<void (JSArray)> func )
 {
 	funcs[str]=func;

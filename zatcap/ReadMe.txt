@@ -1,9 +1,5 @@
 TODO:
 
--flash at beginning
-
-activity feed
--flickering tweets
 autocorrect order
 autocorrect all encountered
 autocorrect hashtags

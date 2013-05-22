@@ -230,7 +230,7 @@ std::string Favorite::getHtml( string columnName )
 			}
 			else
 				strftime(date,1000,settings::dateFormat.c_str(),&timeTweeted);
-			replace(content,string("TIME"),escape(date));
+			replace(content,string("$TIME"),escape(date));
 		}
 		replace(content,string("$USERNAME"),escape(favoriter->username));
 		replace(content,string("$FULLNAME"),escape(favoriter->name));
@@ -266,7 +266,7 @@ std::string Follow::getHtml( string columnName )
 			}
 			else
 				strftime(date,1000,settings::dateFormat.c_str(),&timeTweeted);
-			replace(content,string("TIME"),escape(date));
+			replace(content,string("$TIME"),escape(date));
 		}
 		replace(content,string("$USERNAME"),escape(follower->username));
 		replace(content,string("$FULLNAME"),escape(follower->name));
@@ -276,6 +276,46 @@ std::string Follow::getHtml( string columnName )
 	}
 	return html;
 }
+
+std::string Activity::getHtml( string columnName )
+{
+	{
+		string content=f2s("resources/activity.html");
+		replace(content,string("$ID"),id);
+		string htmlText=text;
+		replace(content,string("$TEXT"),escape(htmlText));
+		{
+			char date[100];
+			if(timeTweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
+			{
+				tm *t=localtime(&timeTweetedInSeconds);
+				strftime(date,1000,"%I:%M",t);
+				if(date[0]=='0')
+					strcpy(date,date+1);
+			}
+			else
+				strftime(date,1000,settings::dateFormat.c_str(),&timeTweeted);
+			replace(content,string("$TIME"),escape(date));
+		}
+		replace(content,string("$USERNAME"),escape(username));
+		replace(content,string("$FULLNAME"),escape(username));
+		replace(content,string("$AVATAR"),"asset://resource/activity.gif");
+		replace(content,string("$COLUMN"),columnName);
+		replace(content,string("$STOPJS"),escape(stoppable));
+		if(stoppable.empty())
+			replace(content,string("$HIDENOTMINE"),"none");
+		else
+			replace(content,string("$HIDENOTMINE"),"inline");
+		html=content;
+	}
+	return html;
+}
+
+void Activity::write( FILE *fp )
+{
+
+}
+
 
 void Follow::write( FILE *fp )
 {

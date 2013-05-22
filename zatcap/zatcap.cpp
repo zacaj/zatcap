@@ -518,10 +518,12 @@ struct tweetData
 {
 	string str;
 	string replyId;
-	tweetData(string _str,string _r)
+	string user;
+	tweetData(string _str,string _r,string _u)
 	{
 		str=_str;
 		replyId=_r;
+		user=_u;
 	}
 };
 
@@ -531,13 +533,18 @@ void addUsername( string name )
 }
 int nUnread=0,nUnread2=0;
 Mutex debugMutex;
-
+map<int,bool> pendingTweets;
 void sendTweet(void *_data)
 {
 	tweetData *data=(tweetData*)_data;
 	string str=data->str;
-	while(twit->statusUpdate(str,data->replyId)=="");
+	time_t t=time(NULL);
+	Activity *activity=new Activity(str,"cpp.stopTweet("+i2s(t)+");",data->user);
+	pendingTweets[t]=0;
+	addTweet((Item**)&activity);
+	while(!pendingTweets[t]);
 	print("Tweet sent successfully: %s (%s,%s)\n",str.c_str(),data->replyId.c_str(),replyId.c_str());
+	deleteTweet(activity->id);
 	delete data;
 }
 extern vector<string> jsToRun;
@@ -902,7 +909,7 @@ int main(int argc,char **argv)
 		{
 			string tweet=ToString(args[0].ToString());
 			string inReplyTo=ToString(args[1].ToString());
-			startThread(sendTweet,new tweetData(tweet,inReplyTo));
+			startThread(sendTweet,new tweetData(tweet,inReplyTo,username));
 		});
 		methodHandler->reg(WSLit("debug"),[](JSArray args)
 			{
@@ -1006,6 +1013,11 @@ int main(int argc,char **argv)
 		  ShowWindow(hwndC, IsWindowVisible(hwndC)?SW_HIDE:SW_SHOW);
 #endif
 		});
+		methodHandler->reg(WSLit("stopTweet"),[](JSArray args)
+		{
+			int t=args[0].ToInteger();
+			pendingTweets[t]=1;
+		});
 		methodHandler->reg(WSLit("setIdToTweetHtml"),[](JSArray args)
 		{
 			string htmlid=ToString(args[0].ToString());
@@ -1025,10 +1037,13 @@ int main(int argc,char **argv)
 			{
 				HANDLE hData = GetClipboardData(CF_BITMAP);
 				{
+					Activity *activity=new Activity("Uploading photo...");
+					addTweet((Item**)&activity);
 					SaveToFile((HBITMAP)hData, "t.bmp");
 					startLambdaThread([=](){
 					string url=uploadPhoto("t.bmp");
 					runJS("insertText('"+escape(url)+"',"+htmlid+");");});
+					deleteTweet(activity->id);
 				}
 				CloseClipboard();
 			}
