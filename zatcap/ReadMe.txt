@@ -8,3 +8,8 @@ horizontal scroll
 
 list view
 configure unread count?
+
+double autocorrect
+reply to in rt
+dont include user in mentions
+reply single

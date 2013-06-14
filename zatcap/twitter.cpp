@@ -374,7 +374,10 @@ void deleteTweet( string id )
 	enterMutex(tweetsMutex);
 	map<string,Item*>::iterator tweet=tweets.find(id);
 	if(tweet==tweets.end())
+	{
+		leaveMutex(tweetsMutex);
 		return;
+	}
 	if(!tweet->second->read)
 		nUnread--;
 	for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)

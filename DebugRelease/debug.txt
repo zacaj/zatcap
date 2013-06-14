@@ -51,242 +51,271 @@ starting...
 245935622
 627410625
 973717910
+processing tweet 0
 18148724
+New tweet: Damn. I spent $400 in two bottles of beer last night. TWO bottles. My head hurts
 133801192
 19534812
+processing tweet 1
 14809892
 84670801
 267477531
 37963149
+New tweet: If you\'re still interested in how games play with history, I wrote on Microscope at <a oncontextmenu=\'mutePop(\"@reActionZine\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'1278682009\',\'https:\/\/twitter.com\/@reActionZine\');\" class=\'user 1278682009\'>@reActionZine<\/a> too <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.reactionzine.com\/deciding-history\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.reactionzine.com\/deciding-history\/\');\">reactionzine.com\/deciding-histo…<\/a>
 22028884
+processing tweet 2
 107336879
 19785044
 15375238
+New tweet: If they hadn\'t spent so long making \'LOL\' and \'ROFL\' stickers to plaster over everything, maybe it\'d actually be a good kart racer.
 54903400
 11928542
+processing tweet 3
 83931050
 150606645
+New tweet: …
 105064153
+processing tweet 4
 132337469
+New tweet: Wait holy crap the new SSA rules for gender change are actually *easier* than the California state laws. I could do this *this morning*
 52922310
 5637652
+processing tweet 5
 60784126
 90265705
+New tweet: I just woke up, as if the universe was calling to me. As if it was whispering in mY EAR
 60204674
-1096828909
+processing tweet 6
 274109862
 546489254
 287858376
+New tweet: this what microsoft thinks of you: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.dewanddoritos.com\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.dewanddoritos.com\/\');\">dewanddoritos.com<\/a>
 122182534
+processing tweet 7
 293538857
+New tweet: :D
 75783213
 44671701
+processing tweet 8
 47125114
 191790175
 45757777
+New tweet: Well, there is now a reason to use office 365.
 21220972
 18309190
+processing tweet 9
 19574163
 135898887
+New tweet: real like your ear fetish
 560701027
 153550545
+processing tweet 10
 16242203
 746577234
+New tweet: \"ducking hell\"? Come on auto correct, you should know me by now!
 162516323
+processing tweet 11
 24452901
+New tweet: So, what I\'m saying is, if you need a shitily made brand of your snack foods, hit me up, I\'ll shit something out!
 28766232
+processing tweet 12
 17049101
+New tweet: Did somebody say EAR FETISH
 156560059
+processing tweet 13
 347824744
+New tweet: I spent more time downloading LBP Karting than I ever want to spend playing it. What a generic pile of twaddle.
 34843626
+processing tweet 14
 36212083
 16595068
 16425600
+New tweet: \"Some men just want to watch the world burn\" is the best description of that nightmare.
 106891174
 480991517
+processing tweet 15
 23720736
 17414835
 190796565
 505360247
 15029296
 18933499
+49440921
 196291209
+New tweet: My favorite Street Fighter character is Bob Sagat. He does that move Tiger Up My Butt.
 179587957
 8943
 175624200
 110774356
+processing tweet 16
 438638130
 41627397
+New tweet: Y\'all know I don\'t joke with Final Fantasy Tactics. Read this awesome piece by <a oncontextmenu=\'mutePop(\"@joffeorama\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'1135011900\',\'https:\/\/twitter.com\/@joffeorama\');\" class=\'user 1135011900\'>@joffeorama<\/a> on how it explores history <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.reactionzine.com\/invisible-tactics\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.reactionzine.com\/invisible-tactics\/\');\">reactionzine.com\/invisible-tact…<\/a>
 118975055
 50209640
+processing tweet 17
 777008736
 137874845
-71992148
 12798922
+New tweet: <a oncontextmenu=\'mutePop(\"@_knutaf\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'190796565\',\'https:\/\/twitter.com\/@_knutaf\');\" class=\'user 190796565\'>@_knutaf<\/a> Awww yesss, can\'t wait to talk to you about it!
 123346058
+processing tweet 18
 39680464
-15135516
 165061037
+New tweet: It was \"make a video game themed Doritos package\" and sure enough, I still have my entry: <a href=\'javascript:;\' oncontextmenu=\"cpp.openInNativeBrowser(\'http:\/\/pbs.twimg.com\/media\/BMu9aXVCUAER8Jn.png\'); return false;\" onclick=\"cpp.handleImage(\'http:\/\/pbs.twimg.com\/media\/BMu9aXVCUAER8Jn.png\');\">pic.twitter.com\/HJh3bbOZy6<\/a>
 72127787
 9709672
+processing tweet 19
 597315080
+New tweet: Magic Roundabout (Swindon) <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/en.wikipedia.org\/wiki\/Magic_Roundabout_%28Swindon%29\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/en.wikipedia.org\/wiki\/Magic_Roundabout_%28Swindon%29\');\">en.wikipedia.org\/wiki\/Magic_Rou…<\/a>
 14308823
+processing tweet 20
 22279665
 243795851
 15313645
 154643438
 6368672
 35066483
+New tweet: Can conflicting narratives hold equal validity? Mike Joffe (<a oncontextmenu=\'mutePop(\"@joffeorama\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'1135011900\',\'https:\/\/twitter.com\/@joffeorama\');\" class=\'user 1135011900\'>@joffeorama<\/a>) explores through Final Fantasy Tactics. <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.reactionzine.com\/invisible-tactics\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.reactionzine.com\/invisible-tactics\/\');\">reactionzine.com\/invisible-tact…<\/a>
 423421882
 14513917
-276322412
 38690929
+processing tweet 21
 100609509
 632437938
 172023111
+New tweet: <a oncontextmenu=\'mutePop(\"@bluehands15\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'515858404\',\'https:\/\/twitter.com\/@bluehands15\');\" class=\'user 515858404\'>@bluehands15<\/a> alright. Poke <a oncontextmenu=\'mutePop(\"@KillianMarz\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'596032876\',\'https:\/\/twitter.com\/@KillianMarz\');\" class=\'user 596032876\'>@KillianMarz<\/a> until he wakes from his stupor
 9343022
 81696485
+processing tweet 22
 146656029
+New tweet: (Under Obama outing letters are no longer sent because of sex mismatch, but until today employer outing could happen for other reasons…)
 9769332
-processing tweet 0
-New tweet: I\'m totally getting this frogs picture.
 172937627
-processing tweet 1
 199145728
-141209614
-New tweet: <a oncontextmenu=\'mutePop(\"@davidsgallant\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'14513917\',\'https:\/\/twitter.com\/@davidsgallant\');\" class=\'user 14513917\'>@davidsgallant<\/a> I HATE STRIPPING WIRES
 14183991
-processing tweet 2
 533546294
 1070541
-New tweet: STRIPPING SO MANY WIRES YOU GUYS
 14214388
 515858404
-processing tweet 3
 238178045
 138660768
-New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> I used to play DOOM for hours on my iPod Mini
 27432293
 559915340
-processing tweet 4
 29395230
-New tweet: The rhythm game retrospective is going okay so far, had to rewrite everything I already had to fit in this new format.
 1390442347
 16181584
-processing tweet 5
-5576542
 372327341
 364488011
-New tweet: Great trips but looking forward to lots of skating the seawall this weekend, nice weather, and Superman!
 7429862
 488021513
-processing tweet 6
 101295574
 14135007
-New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> One of the two, yeah... which was, in effect, just setting the console command at boot.
 106638964
 345320917
-processing tweet 7
 11167502
 401797992
-New tweet: <a oncontextmenu=\'mutePop(\"@davidsgallant\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'14513917\',\'https:\/\/twitter.com\/@davidsgallant\');\" class=\'user 14513917\'>@davidsgallant<\/a> <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> LINUX HAS A WEBBROWSER, YOU JUST NEED TO TYPE LINKS INTO THE CONSOLE
 856817786
-processing tweet 8
 19382657
-New tweet: <a oncontextmenu=\'mutePop(\"@davidsgallant\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'14513917\',\'https:\/\/twitter.com\/@davidsgallant\');\" class=\'user 14513917\'>@davidsgallant<\/a> <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> YOU JUST HAVE TO USE THE CONSOLE OF COURSE
 18648265
 14951588
-processing tweet 9
 154178231
-218195620
 19772827
 480812026
-New tweet: <a oncontextmenu=\'mutePop(\"@davidsgallant\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'14513917\',\'https:\/\/twitter.com\/@davidsgallant\');\" class=\'user 14513917\'>@davidsgallant<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> (Or maybe it was .cfg? It\'s...been a while.)
 320909479
 767686105
-processing tweet 10
 246318475
-New tweet: Photo: GPOY, errday <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/tmblr.co\/Zm1YWwnIG09X\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/tmblr.co\/Zm1YWwnIG09X\');\">tmblr.co\/Zm1YWwnIG09X<\/a>
+processing tweet 0
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@KillianMarz\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'596032876\',\'https:\/\/twitter.com\/@KillianMarz\');\" class=\'user 596032876\'>@KillianMarz<\/a> Sorry, dont know either.
 451334870
-processing tweet 11
+processing tweet 1
 16222316
-New tweet: <a oncontextmenu=\'mutePop(\"@davidsgallant\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'14513917\',\'https:\/\/twitter.com\/@davidsgallant\');\" class=\'user 14513917\'>@davidsgallant<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> Or tweak the .ini
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Perhaps some chores but I appear to be free. All went well, and my boss scared off a family of Indian tourists.
 5867722
 8130922
+processing tweet 2
 104366764
-processing tweet 12
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Just got home.
 184848731
 15459365
+processing tweet 3
 541098062
 21834006
 64863849
 36457353
-312426579
-New tweet: <a oncontextmenu=\'mutePop(\"@mcclure111\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'312426579\',\'https:\/\/twitter.com\/@mcclure111\');\" class=\'user 312426579\'>@mcclure111<\/a> I LOVE NANOBLOCKS
+New tweet: Gay Travel  is out! <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/paper.li\/GayTravel\/1350262749\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/paper.li\/GayTravel\/1350262749\');\">paper.li\/GayTravel\/1350…<\/a> ▸ Top stories today vi<a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a>j<a oncontextmenu=\'mutePop(\"@garrettjkub\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'26624320\',\'https:\/\/twitter.com\/@garrettjkub\');\" class=\'user 26624320\'>@garrettjkub<\/a>u<a oncontextmenu=\'mutePop(\"@LiberatedByGaga\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'289175167\',\'https:\/\/twitter.com\/@LiberatedByGaga\');\" class=\'user 289175167\'>@LiberatedByGaga<\/a>ga
 116307886
+processing tweet 4
+New tweet: <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I wonder how much difference the order of those (temporally-distant) events affects their impact.
+processing tweet 5
+New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> &gt; Bradley Manning leaked where they do the same thing to civilians. I about puked watching it. It\'s awful.
+processing tweet 6
+New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> what skeeves me out isn\'t the distance, its the spotter cheering and making jokes. There\'s a IRL apache video that &gt;
+processing tweet 7
+New tweet: <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> &gt; intended to be disconcerting, but for some, it was either comforting or just not noticable.
+processing tweet 8
+New tweet: <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I say \"supposed to\" because a) I don\'t think there were any civilians, and b) I think the distance was &gt;
+processing tweet 9
+New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I\'m not sure that\'s true. I think you\'re supposed to enjoy it as much as the spotter\/pilot\/whatever
+processing tweet 10
+New tweet: <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> The AC-130 is *supposed* to skeeve you out. It\'s a turret sequence you (are supposed to) feel guilty for.
+processing tweet 11
+New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Why the nuke? (also, in hindsight, the AC130 kind of skeeves me out)
+processing tweet 12
+New tweet: <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Nuke, AC-130
 40962229
 148731444
 processing tweet 13
 16792453
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> Not DOOM. Playing that is a joy.
 524489650
+New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> which two?
 201899033
 280327545
-61653331
 processing tweet 14
+61653331
+New tweet: <a oncontextmenu=\'mutePop(\"@thegamedesigner\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'19575980\',\'https:\/\/twitter.com\/@thegamedesigner\');\" class=\'user 19575980\'>@thegamedesigner<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@UntoldEnt\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'21834006\',\'https:\/\/twitter.com\/@UntoldEnt\');\" class=\'user 21834006\'>@UntoldEnt<\/a> what OS?
 45064431
-280646183
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> It did, you just had to use the console to enable it.
-418579115
-14852199
 processing tweet 15
+280646183
+418579115
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@UntoldEnt\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'21834006\',\'https:\/\/twitter.com\/@UntoldEnt\');\" class=\'user 21834006\'>@UntoldEnt<\/a> How can I generate one from a .zip?
+processing tweet 16
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> 4\/5 doesn\'t exactly scream \"no respect\", however independent of precedents\/antecedents it is.
+14852199
 35997444
+processing tweet 17
 216442854
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Oh I completely missed old school pc gaming
+New tweet: <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I know what you mean. I\'d have to slog through Reach, though, and I can\'t be arsed ATM.
 15419775
 14679475
-processing tweet 16
+processing tweet 18
 9308132
-New tweet: <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> when I play it I have to assign it to space and then weigh the space bar down
 368962194
 14575846
-processing tweet 17
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@thegamedesigner\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'19575980\',\'https:\/\/twitter.com\/@thegamedesigner\');\" class=\'user 19575980\'>@thegamedesigner<\/a> You\'re probably right. MT - zacaj is like reverse-aging Benjamin Button.  He is super wise. He will assplain it.
 27269825
 451781785
-New tweet: <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> Quake I didn\'t have mouselook on by default, and only then when you held a key down
 372122273
+processing tweet 19
 718770470
-processing tweet 18
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> \"fun\"
 1115193043
 94860638
-New tweet: <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> playing early shooters is painful
 118279350
 740895416
-processing tweet 19
 61166489
 17480851
-New tweet: <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> you know what held up pretty well?  Destruction Derby 64
 198223435
-processing tweet 20
 70409780
 33191389
-New tweet: <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> goldeneye too
 37856077
 54082511
-processing tweet 21
 26884913
-New tweet: The game is awful
 257177056
-processing tweet 22
 15863373
-New tweet: Pro-Tip: Perfect Dark does NOT hold up. It does not.
 122684211
-processing tweet 23
 99429451
-New tweet: <a oncontextmenu=\'mutePop(\"@Avian_Flame\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'216442854\',\'https:\/\/twitter.com\/@Avian_Flame\');\" class=\'user 216442854\'>@Avian_Flame<\/a> now if only it would stop freezing
 130261215
-processing tweet 24
-New tweet: has anyone figured out how this best friend thing works in new leaf?
 203329063
 18943228
 83715793
@@ -294,7 +323,6 @@ New tweet: has anyone figured out how this best friend thing works in new leaf?
 267477014
 467497155
 288958880
-130193361
 150450008
 475256019
 312674813
@@ -315,7 +343,6 @@ New tweet: has anyone figured out how this best friend thing works in new leaf?
 293926389
 182652409
 224437276
-19575980
 93969417
 14882389
 1198071
@@ -333,46 +360,6 @@ New tweet: has anyone figured out how this best friend thing works in new leaf?
 1383063685
 38167592
 249367137
-processing tweet 0
-New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> One of the two, yeah... which was, in effect, just setting the console command at boot.
-processing tweet 1
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> i\'m pretty sure you just enter +mlook in the console or your config file to default it...
-processing tweet 2
-New tweet: <a oncontextmenu=\'mutePop(\"@davidsgallant\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'14513917\',\'https:\/\/twitter.com\/@davidsgallant\');\" class=\'user 14513917\'>@davidsgallant<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> (Or maybe it was .cfg? It\'s...been a while.)
-processing tweet 3
-New tweet: <a oncontextmenu=\'mutePop(\"@davidsgallant\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'14513917\',\'https:\/\/twitter.com\/@davidsgallant\');\" class=\'user 14513917\'>@davidsgallant<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> Or tweak the .ini
-processing tweet 4
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> Not DOOM. Playing that is a joy.
-processing tweet 5
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@Fengxii\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'165061037\',\'https:\/\/twitter.com\/@Fengxii\');\" class=\'user 165061037\'>@Fengxii<\/a> It did, you just had to use the console to enable it.
-processing tweet 6
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Oh I completely missed old school pc gaming
-processing tweet 7
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> woah neat
-processing tweet 8
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> they\'re still in my mentions
-processing tweet 9
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> And the wrist attached!
-processing tweet 10
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> \"Delete\" like the NSA \"deletes\"? <a oncontextmenu=\'mutePop(\"#hiNSA\"); return false;\' href=\'javascript:;\' onclick=\"cpp.openInNativeBrowser(\'https:\/\/twitter.com\/search?q=%23hiNSA\');\">#hiNSA<\/a>
-processing tweet 11
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> Please for to be warning us of testing
-processing tweet 12
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> And those tweets seem to have been eaten by the void. Except for my Pebble, of all things.
-processing tweet 13
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Is that why I just got a bunch of weird tweets about financial dictatorship that was obviously a lecture or essay?
-processing tweet 14
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> FLAMMENWERFER
-processing tweet 15
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I have transport but no reason to be where I am. I\'m just gonna get dinner
-processing tweet 16
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> I got the phrase from the best time-travel game evar, Continuum.
-processing tweet 17
-New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I\'ve been ever so slightly spoiled. Know when but not who or how. (let\'s keep it that way)
-processing tweet 18
-New tweet: <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> ...further information is not available here.
-processing tweet 19
-New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> It was alright, but I\'m holding out for fire. I\'m kinda rooting for melisandre because I think she can deliver the flames
 processing tweet 0
 New tweet: <a oncontextmenu=\'mutePop(\"@vApathyv\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'90265705\',\'https:\/\/twitter.com\/@vApathyv\');\" class=\'user 90265705\'>@vApathyv<\/a> Appy, we\'re going to a dueling piano bar. That takes requests. Any song. Seriously, I\'ve heard some insane requests they\'ll do.
 processing tweet 1
