@@ -76,6 +76,11 @@ public:
 	{
 		_type=ACTIVITY;
 		id="activity"+_action;
+		for(int i=0;i<id.size();i++)
+		{
+			if(id[i]=='\\' || id[i]=='\'' || id[i]=='\"')
+				id[i]='_';
+		}
 		text=_action;
 		username=name;
 		stoppable=_stoppable;

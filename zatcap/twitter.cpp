@@ -484,7 +484,8 @@ Mutex tweetsMutex;
 void saveMute() ;
 void addTweet( Item** tweet,bool newTweet )
 {debugHere();
-enterMutex(tweetsMutex);debugHere();
+enterMutex(tweetsMutex);
+debugHere();
 	map<string,Item*>::iterator tw=tweets.find((*tweet)->id);debugHere();
 	debug("New tweet: %s\n",escape((*tweet)->text,true).c_str());
 	if(tw==tweets.end())

@@ -171,11 +171,11 @@ int curl_debug_callback2(CURL *curl,curl_infotype infotype,char *data,size_t siz
 	//print("%i:\n");
 	//fwrite(data,size,1,stdout);
 	//print("\n");
-	FILE *fp=fopen("stream debug.txt","a+");debugHere();
+	FILE *fp=fopen("stream debug.txt","a+");
 	fprintf(fp,"%i:\n");
 	fwrite(data,size,1,fp);
 	fprintf(fp,"\n\n\n");
-	fclose(fp);debugHere();
+	fclose(fp);
 	return 0;
 }
 
@@ -287,14 +287,14 @@ doing(1);
 	struct curl_slist* pOAuthHeaderList = NULL;
 	char *url="http://api.twitpic.com/2/upload.json";
 	tempString="";
-	twit->m_oAuth.getOAuthHeader( eOAuthHttpGet,"https://api.twitter.com/1/account/verify_credentials.json", tempString, oAuthHttpHeader );//
+	twit->m_oAuth.getOAuthHeader( eOAuthHttpGet,"https://api.twitter.com/1.1/account/verify_credentials.json", tempString, oAuthHttpHeader );//
 	if( oAuthHttpHeader.length() )
 	{
 		oAuthHttpHeader.erase(oAuthHttpHeader.begin(),oAuthHttpHeader.begin()+21);
 		string strr=("X-Verify-Credentials-Authorization: OAuth realm=\"http://api.twitter.com/\", "+oAuthHttpHeader);
 		pOAuthHeaderList = curl_slist_append( pOAuthHeaderList, strr.c_str() );//
 	}
-	pOAuthHeaderList = curl_slist_append( pOAuthHeaderList, "X-Auth-Service-Provider: https://api.twitter.com/1/account/verify_credentials.json");
+	pOAuthHeaderList = curl_slist_append( pOAuthHeaderList, "X-Auth-Service-Provider: https://api.twitter.com/1.1/account/verify_credentials.json");
 	if( pOAuthHeaderList )
 	{
 		curl_easy_setopt( curl, CURLOPT_HTTPHEADER, pOAuthHeaderList );//

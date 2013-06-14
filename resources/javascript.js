@@ -30,6 +30,7 @@ function showColumns()
 var tweetContent="";
 function tweetboxPaste(e)
 {
+	debug(e.clipboardDate.types);
 	if (/image.*/.test(e.clipboardData.types) || /image.*/.test(e.clipboardData.types))
 	{
 		/*var clipboardBuffer;
@@ -226,7 +227,23 @@ var completebox=null;
 var usernames=new Array();
 function updateTweetLength()
 {
-	document.getElementById('TweetLength').innerHTML=""+(140-twttr.txt.getTweetLength(document.getElementById('tweetbox').value));
+	var len=twttr.txt.getTweetLength(document.getElementById('tweetbox').value);
+	if(len>140 && len<160)
+		document.getElementById("SendTweet").style.disabled=true;
+	else
+		document.getElementById("SendTweet").style.disabled=false;
+	if(len<160)
+	{
+		document.getElementById("SendTweet").innerHTML="Tweet";
+		document.getElementById('TweetLength').innerHTML=""+(140-len);
+		}
+	else
+	{
+		document.getElementById('TweetLength').innerHTML=""+(len)+" ";
+		
+		document.getElementById("SendTweet").innerHTML="( x"+Math.floor(len/140+1)+" )";
+		}
+	
 	var textbox=document.getElementById('tweetbox');
 	if(textbox.selectionStart!=0)
 	{

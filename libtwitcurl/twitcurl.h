@@ -88,11 +88,11 @@ namespace twitterDefaults
     const std::string TWITCURL_FRIENDSHIPSSHOW_URL = "https://api.twitter.com/1.1/friendships/show";
 
     /* Social graphs URLs */
-    const std::string TWITCURL_FRIENDSIDS_URL = "http://api.twitter.com/1/friends/ids";
-    const std::string TWITCURL_FOLLOWERSIDS_URL = "http://api.twitter.com/1/followers/ids";
+    const std::string TWITCURL_FRIENDSIDS_URL = "https://api.twitter.com/1.1/friends/ids";
+    const std::string TWITCURL_FOLLOWERSIDS_URL = "https://api.twitter.com/1.1/followers/ids";
 
     /* Account URLs */
-    const std::string TWITCURL_ACCOUNTRATELIMIT_URL = "http://api.twitter.com/1/account/rate_limit_status";
+    const std::string TWITCURL_ACCOUNTRATELIMIT_URL = "https://api.twitter.com/1.1/application/rate_limit_status";
 
     /* Favorites URLs */
     const std::string TWITCURL_FAVORITESGET_URL = "https://api.twitter.com/1.1/favorites/list";

@@ -1,24 +1,507 @@
 starting...
-798
-800
-h:\source\zatcap html\zatcap\zatcap.cpp:444 loadUser
-h:\source\zatcap html\zatcap\twitter.cpp:42 twitterInit
-h:\source\zatcap html\zatcap\twitter.cpp:52 refreshTweets
-h:\source\zatcap html\zatcap\stream.cpp:170 curl_debug_callback2
-h:\source\zatcap html\zatcap\stream.cpp:174 curl_debug_callback2
-h:\source\zatcap html\zatcap\stream.cpp:178 curl_debug_callback2
-h:\source\zatcap html\zatcap\stream.cpp:170 curl_debug_callback2
-h:\source\zatcap html\zatcap\stream.cpp:174 curl_debug_callback2
-h:\source\zatcap html\zatcap\stream.cpp:178 curl_debug_callback2
-h:\source\zatcap html\zatcap\stream.cpp:170 curl_debug_callback2
-h:\source\zatcap html\zatcap\stream.cpp:174 curl_debug_callback2
-h:\source\zatcap html\zatcap\stream.cpp:178 curl_debug_callback2
-h:\source\zatcap html\zatcap\stream.cpp:170 curl_debug_callback2
-h:\source\zatcap html\zatcap\stream.cpp:174 curl_debug_callback2
-h:\source\zatcap html\zatcap\stream.cpp:178 curl_debug_callback2
-h:\source\zatcap html\zatcap\twitter.cpp:486 addTweet
-h:\source\zatcap html\zatcap\twitter.cpp:487 addTweet
-h:\source\zatcap html\zatcap\twitter.cpp:488 addTweet
-New tweet: hk
-h:\source\zatcap html\zatcap\twitter.cpp:373 deleteTweet
-h:\source\zatcap html\zatcap\twitter.cpp:387 deleteTweet
+838
+840
+198458386
+393207402
+21301903
+75299276
+14522617
+14106220
+14280107
+416468781
+247643533
+79732076
+24256374
+249915076
+19631395
+126819958
+110315454
+312426579
+48764565
+285296446
+62689070
+109951411
+18443728
+496456866
+20963773
+79584576
+532788771
+19238557
+1979391
+516170076
+124863907
+352947624
+165537786
+6889982
+15218212
+305328856
+596032876
+131487287
+264297022
+529079009
+18599061
+466075049
+214460250
+701874878
+21308311
+16336652
+49440921
+43945838
+56841012
+245935622
+627410625
+973717910
+18148724
+133801192
+19534812
+14809892
+84670801
+267477531
+37963149
+22028884
+107336879
+19785044
+15375238
+54903400
+11928542
+83931050
+150606645
+105064153
+132337469
+52922310
+5637652
+60784126
+90265705
+60204674
+1096828909
+274109862
+546489254
+287858376
+122182534
+293538857
+75783213
+44671701
+47125114
+191790175
+45757777
+21220972
+18309190
+19574163
+processing tweet 0
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> FLAMMENWERFER
+135898887
+560701027
+processing tweet 1
+153550545
+16242203
+746577234
+New tweet: \"Punch the pain away.\" - Superman
+162516323
+processing tweet 2
+24452901
+28766232
+New tweet: You guys are making me sad I couldn\'t see This is the End this week because money but fuck you it\'s all about Superman.
+17049101
+processing tweet 3
+156560059
+347824744
+34843626
+36212083
+16595068
+16425600
+106891174
+480991517
+23720736
+312426579
+17414835
+New tweet: <a oncontextmenu=\'mutePop(\"@Triplefox\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'287893694\',\'https:\/\/twitter.com\/@Triplefox\');\" class=\'user 287893694\'>@Triplefox<\/a> I like to think that\'s you with a huge body and a very tiny head, of which is identical to your avatar
+190796565
+505360247
+15029296
+18933499
+processing tweet 4
+196291209
+179587957
+8943
+175624200
+110774356
+438638130
+41627397
+New tweet: <a oncontextmenu=\'mutePop(\"@Xzyliac\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'75299276\',\'https:\/\/twitter.com\/@Xzyliac\');\" class=\'user 75299276\'>@Xzyliac<\/a> \"Tragedy is when I cut my finger. Comedy is when I walk into an open manhole and die.\" -- Mel Brooks.
+118975055
+50209640
+777008736
+137874845
+processing tweet 5
+71992148
+12798922
+123346058
+New tweet: What\'s up with all the quirky characters in Revelations? The BSAA really needs to get its act together.
+39680464
+processing tweet 6
+15135516
+72127787
+9709672
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I have transport but no reason to be where I am. I\'m just gonna get dinner
+597315080
+14308823
+processing tweet 7
+22279665
+243795851
+15313645
+New tweet: Oh, Hollywood. <a href=\'javascript:;\' oncontextmenu=\"cpp.openInNativeBrowser(\'http:\/\/pbs.twimg.com\/media\/BMr_PwgCQAAb0hw.jpg\'); return false;\" onclick=\"cpp.handleImage(\'http:\/\/pbs.twimg.com\/media\/BMr_PwgCQAAb0hw.jpg\');\">pic.twitter.com\/ThPoN52mjV<\/a>
+154643438
+6368672
+processing tweet 8
+423421882
+14513917
+New tweet: <a oncontextmenu=\'mutePop(\"@CarbonDatingSim\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'1096828909\',\'https:\/\/twitter.com\/@CarbonDatingSim\');\" class=\'user 1096828909\'>@CarbonDatingSim<\/a> Uhm... why?
+276322412
+38690929
+processing tweet 9
+100609509
+632437938
+172023111
+New tweet: CHICKEN VINDALOO IS INTENSE
+9343022
+processing tweet 10
+81696485
+9769332
+172937627
+New tweet: The following image is NSFW <a oncontextmenu=\'mutePop(\"#NSFW\"); return false;\' href=\'javascript:;\' onclick=\"cpp.openInNativeBrowser(\'https:\/\/twitter.com\/search?q=%23NSFW\');\">#NSFW<\/a>\n<a href=\'javascript:;\' oncontextmenu=\"cpp.openInNativeBrowser(\'http:\/\/24.media.tumblr.com\/f6aadc64f4db4f4b2f2ea20fb9ba21d8\/tumblr_mod336Am331rimwgjo1_500.gif\'); return false;\" onclick=\"cpp.handleImage(\'http:\/\/24.media.tumblr.com\/f6aadc64f4db4f4b2f2ea20fb9ba21d8\/tumblr_mod336Am331rimwgjo1_500.gif\');\">24.media.tumblr.com\/f6aadc64f4db4f…<\/a>
+199145728
+processing tweet 11
+141209614
+New tweet: \"Comedy is a dead art form. Now tragedy, that\'s funny.\"
+14183991
+processing tweet 12
+533546294
+1070541
+New tweet: #1: Checking your phone after someone else pulls out their phone is the yawn of our generation.
+14214388
+515858404
+processing tweet 13
+238178045
+138660768
+New tweet: Duh, I said it this morning. RT <a oncontextmenu=\'mutePop(\"@CBR\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'16031897\',\'https:\/\/twitter.com\/@CBR\');\" class=\'user 16031897\'>@CBR<\/a> \"Buffy\" Veteran <a oncontextmenu=\'mutePop(\"@martinoxon\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'190643442\',\'https:\/\/twitter.com\/@martinoxon\');\" class=\'user 190643442\'>@martinoxon<\/a> Penning New \"Tomb Raider\" Film <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/on.cbr.cc\/18DdsR5\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/on.cbr.cc\/18DdsR5\');\">on.cbr.cc\/18DdsR5<\/a>
+27432293
+processing tweet 14
+559915340
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> I got the phrase from the best time-travel game evar, Continuum.
+29395230
+1390442347
+processing tweet 15
+16181584
+5576542
+New tweet: And the second boss is much the same. At least I was better prepared this time.
+372327341
+364488011
+processing tweet 16
+7429862
+488021513
+101295574
+14135007
+New tweet: Assassin\'s Creed IV\'s modern-day segments will happen in a first-person view. And you\'re working for the bad guys!  <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/bit.ly\/11ZxKL1\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/bit.ly\/11ZxKL1\');\">bit.ly\/11ZxKL1<\/a>
+106638964
+processing tweet 17
+345320917
+11167502
+401797992
+856817786
+19382657
+18648265
+101295574
+New tweet: Villager. <a href=\'javascript:;\' oncontextmenu=\"cpp.openInNativeBrowser(\'http:\/\/pbs.twimg.com\/media\/BMr3d_2CUAA147a.jpg\'); return false;\" onclick=\"cpp.handleImage(\'http:\/\/pbs.twimg.com\/media\/BMr3d_2CUAA147a.jpg\');\">pic.twitter.com\/D3rwDH5SAh<\/a>
+14951588
+154178231
+processing tweet 18
+218195620
+19772827
+480812026
+320909479
+767686105
+24668419
+246318475
+New tweet: Did you know that the singer Gotye chose his name because of the acronym \"Game of the Year Edition\"? Well now you do. <a oncontextmenu=\'mutePop(\"#truefacts\"); return false;\' href=\'javascript:;\' onclick=\"cpp.openInNativeBrowser(\'https:\/\/twitter.com\/search?q=%23truefacts\');\">#truefacts<\/a>
+451334870
+16222316
+5867722
+processing tweet 19
+8130922
+104366764
+184848731
+New tweet: <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> of course
+15459365
+541098062
+processing tweet 20
+21834006
+New tweet: Photoset: Really trying to get me to buy Animal Crossing, huh. <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/tmblr.co\/ZyOjbwnI3HhD\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/tmblr.co\/ZyOjbwnI3HhD\');\">tmblr.co\/ZyOjbwnI3HhD<\/a>
+64863849
+36457353
+processing tweet 21
+116307886
+40962229
+148731444
+16792453
+524489650
+201899033
+New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I\'ve been ever so slightly spoiled. Know when but not who or how. (let\'s keep it that way)
+280327545
+61653331
+processing tweet 22
+45064431
+280646183
+New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> FIIIIIIIIIIIIIIIIIIIIIIIIIIIIRE
+418579115
+processing tweet 23
+14852199
+35997444
+New tweet: <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> ...further information is not available here.
+216442854
+15419775
+14679475
+processing tweet 24
+9308132
+368962194
+New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> It was alright, but I\'m holding out for fire. I\'m kinda rooting for melisandre because I think she can deliver the flames
+14575846
+27269825
+451781785
+372122273
+718770470
+1115193043
+94860638
+118279350
+740895416
+61166489
+17480851
+198223435
+70409780
+33191389
+37856077
+54082511
+26884913
+257177056
+15863373
+122684211
+99429451
+130261215
+203329063
+18943228
+240862846
+267477014
+467497155
+288958880
+130193361
+150450008
+475256019
+312674813
+944704369
+23487429
+32823959
+275158732
+18908140
+280490190
+20504542
+6342272
+73254470
+97967321
+14336699
+3307761
+393460809
+76138218
+293926389
+182652409
+224437276
+19575980
+93969417
+14882389
+1198071
+63485337
+161290361
+23380212
+169779521
+18478184
+42697261
+61742106
+28265820
+24668419
+470294971
+325933414
+1383063685
+38167592
+249367137
+processing tweet 0
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> FLAMMENWERFER
+processing tweet 1
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I have transport but no reason to be where I am. I\'m just gonna get dinner
+processing tweet 2
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> I got the phrase from the best time-travel game evar, Continuum.
+processing tweet 3
+New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I\'ve been ever so slightly spoiled. Know when but not who or how. (let\'s keep it that way)
+processing tweet 4
+New tweet: <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> ...further information is not available here.
+processing tweet 5
+New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> It was alright, but I\'m holding out for fire. I\'m kinda rooting for melisandre because I think she can deliver the flames
+processing tweet 6
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> Seriously, Tywin sending him to bed without supper was *fucking awesome*.
+processing tweet 7
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> He\'s enjoyable to watch precisely because we want to light him on fire and we don\'t have to feel bad about it.
+processing tweet 8
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> One way. I\'m now an hour+ from home
+processing tweet 9
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> smh. I would light him on fire if given the chance.
+processing tweet 10
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> get out
+processing tweet 11
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> what is the file extension?
+processing tweet 12
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> is the beta download in the same place as all of the previous versions? I will download once I get home.
+processing tweet 13
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@Capn_Andy\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'21308311\',\'https:\/\/twitter.com\/@Capn_Andy\');\" class=\'user 21308311\'>@Capn_Andy<\/a> you definitely can. Google force resolution. There\'s multiple ways of doing it.
+processing tweet 14
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I like videogame music when it\'s constantly one general feel and mood and plays variations on the same general melodies
+processing tweet 15
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I like it in the same way I like videogame music
+processing tweet 16
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> sigh
+processing tweet 17
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I love it
+processing tweet 18
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> my dreams
+processing tweet 19
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> My work here is done.
+New tweet: \"For gamers by gamers.\" You know, gamers. Maybe that\'s a picture of gamers. Right? Gamers? <a href=\'javascript:;\' oncontextmenu=\"cpp.openInNativeBrowser(\'http:\/\/twitpic.com\/cx2auq\'); return false;\" onclick=\"cpp.handleImage(\'http:\/\/twitpic.com\/cx2auq\');\">twitpic.com\/cx2auq<\/a> <a oncontextmenu=\'mutePop(\"#ugh\"); return false;\' href=\'javascript:;\' onclick=\"cpp.openInNativeBrowser(\'https:\/\/twitter.com\/search?q=%23ugh\');\">#ugh<\/a>
+processing tweet 0
+New tweet: <a oncontextmenu=\'mutePop(\"@vApathyv\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'90265705\',\'https:\/\/twitter.com\/@vApathyv\');\" class=\'user 90265705\'>@vApathyv<\/a> Appy, we\'re going to a dueling piano bar. That takes requests. Any song. Seriously, I\'ve heard some insane requests they\'ll do.
+processing tweet 1
+New tweet: This hour-long video talks through the design evolution from System Shock through to Bioshock Infinite: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=s7DVOw1lIcM\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=s7DVOw1lIcM\');\">youtube.com\/watch?v=s7DVOw…<\/a>
+processing tweet 2
+New tweet: New anti-HEROES!  <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/antiheroescomic.com\/comic\/308\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/antiheroescomic.com\/comic\/308\');\">antiheroescomic.com\/comic\/308<\/a>  I think we\'re scraping the bottom of the barrel, here.
+processing tweet 3
+New tweet: <a oncontextmenu=\'mutePop(\"@_knutaf\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'190796565\',\'https:\/\/twitter.com\/@_knutaf\');\" class=\'user 190796565\'>@_knutaf<\/a> <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?feature=player_embedded&v=tL91WBFkflw\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?feature=player_embedded&v=tL91WBFkflw\');\">youtube.com\/watch?feature=…<\/a>
+processing tweet 4
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Also, if we\'re talking teleportation, make sure you\'ve read The Stars My Destination, like, twice.
+processing tweet 5
+New tweet: SaGa Frontier still had the best battles of all JRPGs just sayin.\'
+processing tweet 6
+New tweet: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=j_6bmrqIsP8\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=j_6bmrqIsP8\');\">youtube.com\/watch?v=j_6bmr…<\/a> this is one of my favorite videos
+processing tweet 7
+New tweet: Going through some old music I used to listen to in college; rediscovered \"Breaker! Breaker!\" - <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=W8yGo3t91nE\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=W8yGo3t91nE\');\">youtube.com\/watch?v=W8yGo3…<\/a>
+processing tweet 8
+New tweet: Neat answer to deceptively simple question: Why is it Dark at Night? <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/youtu.be\/gxJ4M7tyLRE\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/youtu.be\/gxJ4M7tyLRE\');\">youtu.be\/gxJ4M7tyLRE<\/a>
+processing tweet 9
+New tweet: Mama Said Knock You Out has just shot to the top of my Songs To Request In Clubs list.
+processing tweet 10
+New tweet: I imagine Taio Cruz turning to someone before this song and saying, “the lyrics have a hidden meaning.<a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=k3an70ngHB8\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=k3an70ngHB8\');\">youtube.com\/watch?v=k3an70…<\/a>ytn1
+processing tweet 11
+New tweet: Rian Johnson on Screenwriting: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/youtu.be\/gux9zyFPDeA\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/youtu.be\/gux9zyFPDeA\');\">youtu.be\/gux9zyFPDeA<\/a> via <a oncontextmenu=\'mutePop(\"@YouTube\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'10228272\',\'https:\/\/twitter.com\/@YouTube\');\" class=\'user 10228272\'>@YouTube<\/a>
+processing tweet 12
+New tweet: I made a YouTubes. <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=fgIeBgLO6rY\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=fgIeBgLO6rY\');\">youtube.com\/watch?v=fgIeBg…<\/a>
+processing tweet 13
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Night--&gt;Day If you do, Samsung 830 is the way to go for performance\/reliability.
+processing tweet 14
+New tweet: This is super cool - <a oncontextmenu=\'mutePop(\"@veritasium\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'168987151\',\'https:\/\/twitter.com\/@veritasium\');\" class=\'user 168987151\'>@veritasium<\/a> shows how a flame is better at conducting electricity than air: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=a7_8Gc_Llr8&feature=plcp\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=a7_8Gc_Llr8&feature=plcp\');\">youtube.com\/watch?v=a7_8Gc…<\/a>
+processing tweet 15
+New tweet: 84% of my followers are \'good\' and only 2% are fake. This is… surprising. Who the hell are all you people<a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/fakers.statuspeople.com\/Fakers\/Scores\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/fakers.statuspeople.com\/Fakers\/Scores\');\">fakers.statuspeople.com\/Fakers\/Scores<\/a>8F
+processing tweet 16
+New tweet: <a oncontextmenu=\'mutePop(\"@The_Ruffians\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'154643438\',\'https:\/\/twitter.com\/@The_Ruffians\');\" class=\'user 154643438\'>@The_Ruffians<\/a> I should re-read The Little Prince now.
+processing tweet 17
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> 21 Grams.
+processing tweet 18
+New tweet: This is a pretty different Dwarf Fortress experience (ongoing let\'s play): <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/brokenforum.com\/index.php?threads\/squidsteel-a-dwarf-fortress-le-oh-god-zombies.2655\/#post-193852\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/brokenforum.com\/index.php?threads\/squidsteel-a-dwarf-fortress-le-oh-god-zombies.2655\/#post-193852\');\">brokenforum.com\/index.php?thre…<\/a>
+processing tweet 19
+New tweet: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.pandora.com\/station\/play\/964778667074874320\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.pandora.com\/station\/play\/964778667074874320\');\">pandora.com\/station\/play\/9…<\/a> a station i came up with on pandora, if you like music... <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/fb.me\/1Gtz3zkBb\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/fb.me\/1Gtz3zkBb\');\">fb.me\/1Gtz3zkBb<\/a>
+processing tweet 0
+New tweet: <a oncontextmenu=\'mutePop(\"@mcclure111\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'312426579\',\'https:\/\/twitter.com\/@mcclure111\');\" class=\'user 312426579\'>@mcclure111<\/a> non games (ie political, ethics, etc) often yes
+processing tweet 1
+New tweet: \"I don\'t really mind all the bad stuff the Xbox One is doing\" days man in target demographic who isn\'t affected by any of the things
+processing tweet 2
+New tweet: I mean, anything\'s got to be better than web twitter.  <a oncontextmenu=\'mutePop(\"#zatcap\"); return false;\' href=\'javascript:;\' onclick=\"cpp.openInNativeBrowser(\'https:\/\/twitter.com\/search?q=%23zatcap\');\">#zatcap<\/a>
+processing tweet 3
+New tweet: .<a oncontextmenu=\'mutePop(\"@RowanKaiser\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'109951411\',\'https:\/\/twitter.com\/@RowanKaiser\');\" class=\'user 109951411\'>@RowanKaiser<\/a> API v1 shutdown begins at 1:30PM PDT.
+processing tweet 4
+New tweet: Holy shit I still have a ton of PS2 games in my backlog.
+processing tweet 5
+New tweet: <a oncontextmenu=\'mutePop(\"@TaleSpun\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'97967321\',\'https:\/\/twitter.com\/@TaleSpun\');\" class=\'user 97967321\'>@TaleSpun<\/a> online being free on PS3 all this time has always felt sorta unreal
+processing tweet 6
+New tweet: Exactly!  RT <a oncontextmenu=\'mutePop(\"@patriciaxh\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'325966297\',\'https:\/\/twitter.com\/@patriciaxh\');\" class=\'user 325966297\'>@patriciaxh<\/a> Every time I see footage of Beyond Two Souls it seems like its a completely different game.
+processing tweet 7
+New tweet: <a oncontextmenu=\'mutePop(\"@mcclure111\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'312426579\',\'https:\/\/twitter.com\/@mcclure111\');\" class=\'user 312426579\'>@mcclure111<\/a> the move you jitter the worse your tattoo comes out
+processing tweet 8
+New tweet: <a oncontextmenu=\'mutePop(\"@mcclure111\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'312426579\',\'https:\/\/twitter.com\/@mcclure111\');\" class=\'user 312426579\'>@mcclure111<\/a> I\'m picturing a game where you get a tattoo and you have to hold the analogue stick at 40% the entire time
+processing tweet 9
+New tweet: <a oncontextmenu=\'mutePop(\"@buhbuhluv\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'122182534\',\'https:\/\/twitter.com\/@buhbuhluv\');\" class=\'user 122182534\'>@buhbuhluv<\/a> do or do not there is no try
+processing tweet 10
+New tweet: <a oncontextmenu=\'mutePop(\"@countjackuula\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'1383063685\',\'https:\/\/twitter.com\/@countjackuula\');\" class=\'user 1383063685\'>@countjackuula<\/a> <a oncontextmenu=\'mutePop(\"@buhbuhluv\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'122182534\',\'https:\/\/twitter.com\/@buhbuhluv\');\" class=\'user 122182534\'>@buhbuhluv<\/a> <a href=\'javascript:;\' oncontextmenu=\"cpp.openInNativeBrowser(\'http:\/\/pbs.twimg.com\/media\/BMcGQhSCQAAwADf.jpg\'); return false;\" onclick=\"cpp.handleImage(\'http:\/\/pbs.twimg.com\/media\/BMcGQhSCQAAwADf.jpg\');\">pic.twitter.com\/Agmmt4bhur<\/a>
+processing tweet 11
+New tweet: <a oncontextmenu=\'mutePop(\"@prerisoft\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'345320917\',\'https:\/\/twitter.com\/@prerisoft\');\" class=\'user 345320917\'>@prerisoft<\/a> <a oncontextmenu=\'mutePop(\"@mcclure111\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'312426579\',\'https:\/\/twitter.com\/@mcclure111\');\" class=\'user 312426579\'>@mcclure111<\/a> but you can also read the one blog post I\'ve bothered to make here: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/zacaj.com\/p.php?id=721&title=Arduino+Pinball+Repair%2C+Pt.+1\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/zacaj.com\/p.php?id=721&title=Arduino+Pinball+Repair%2C+Pt.+1\');\">zacaj.com\/p.php?id=721&t…<\/a>+
+processing tweet 12
+New tweet: Four days debugging my pinball machine and the conclusion I\'m coming to is that I may just need a new Arduino
+processing tweet 13
+New tweet: No need to feign worry whenever they\'re in danger.  Like it\'d happen anyways.
+processing tweet 14
+New tweet: I find it much easier to enjoy many action stories if you just assume the protagonist is immortal from the start
+processing tweet 15
+New tweet: I love rating random things
+processing tweet 16
+New tweet: <a oncontextmenu=\'mutePop(\"@Avian_Flame\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'216442854\',\'https:\/\/twitter.com\/@Avian_Flame\');\" class=\'user 216442854\'>@Avian_Flame<\/a> like if at 12 or 18 or something you got to choose a username and that became your legal name
+processing tweet 17
+New tweet: <a oncontextmenu=\'mutePop(\"@Avian_Flame\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'216442854\',\'https:\/\/twitter.com\/@Avian_Flame\');\" class=\'user 216442854\'>@Avian_Flame<\/a> and wondering what kinds of names people would choose for themselves if they had to be called that in real life too
+processing tweet 18
+New tweet: <a oncontextmenu=\'mutePop(\"@Avian_Flame\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'216442854\',\'https:\/\/twitter.com\/@Avian_Flame\');\" class=\'user 216442854\'>@Avian_Flame<\/a> I was contemplating the brilliantness of \"avian flame\" only yesterday, a branch of my thinking on usernames in general
+processing tweet 19
+New tweet: <a oncontextmenu=\'mutePop(\"@Avian_Flame\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'216442854\',\'https:\/\/twitter.com\/@Avian_Flame\');\" class=\'user 216442854\'>@Avian_Flame<\/a> saskatwn
+processing tweet 0
+New tweet: What was the VPS (provider) site, again?
+processing tweet 1
+New tweet: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'https:\/\/plus.google.com\/hangouts\/_\/770d3826ec4c246ab408ab890ee7cba36d18e3e2?authuser=0&hl=en\');\" onclick=\"cpp.openInNativeBrowser(\'https:\/\/plus.google.com\/hangouts\/_\/770d3826ec4c246ab408ab890ee7cba36d18e3e2?authuser=0&hl=en\');\">plus.google.com\/hangouts\/_\/770…<\/a>
+processing tweet 2
+New tweet: delightfulapathy@gmail.com
+processing tweet 3
+New tweet: Ok so when\/where can we get together to do it?
+processing tweet 4
+New tweet: Ok, we\'ll he is not picking up his phone
+processing tweet 5
+New tweet: Ok so I have the poster and the supplies, but not the information so where can we meet to get this done\n
+processing tweet 6
+New tweet: Hahahaha!!!
+processing tweet 7
+New tweet: Not likely that anybody else will do it.
+processing tweet 8
+New tweet: Aye aye!\n
+processing tweet 9
+New tweet: Me neither.
+processing tweet 10
+New tweet: I don\'t quite know what I expected, to be honest.
+processing tweet 11
+New tweet: I didn\'t expect the corpse of the titan to just stay there.
+processing tweet 12
+New tweet: well I just mean anyone who\'s stronger or angrier than your average person
+processing tweet 13
+New tweet: again that\'s all guessing
+processing tweet 14
+New tweet: the lesser titans, which are also higher tendency of women, could be civilians and the bigger ones could have been survey corps
+processing tweet 15
+New tweet: I also had a theory that maybe all the titans are reincarnated in a weird way but that could just be bullshit
+processing tweet 16
+New tweet: so the question is... how they fuck
+processing tweet 17
+New tweet: it would have been the best fucking twist
+processing tweet 18
+New tweet: Sure, I can go
+processing tweet 19
+New tweet: Would but I\'m not feeling great after yesterday. Thanks for the offer\n
+New tweet: @delta_vee @MitchHawkins4 We continue to use old forms of action but we will have to begin to imagine new forms that are capable of actually
+New tweet: I\'ll be leaving for Supes soon. I never had to nap for a midnight flick before but man, I needed it. Glad I did.
+New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'followinguser 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'followinguser 541098062\'>@MitchHawkins4<\/a> We continue to use old forms of action but we will have to begin to imagine new forms that are capable of actually
+New tweet: @delta_vee @MitchHawkins4  struggling against financial dictatorship. In my opinion, the first task – which we have begun to experience
+New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'followinguser 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'followinguser 541098062\'>@MitchHawkins4<\/a>  struggling against financial dictatorship. In my opinion, the first task – which we have begun to experience
+New tweet: @delta_vee @MitchHawkins4  over the last year – is the reactivation of the social body that I have already described. But as I have said,
+New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'followinguser 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'followinguser 541098062\'>@MitchHawkins4<\/a>  over the last year – is the reactivation of the social body that I have already described. But as I have said,
+New tweet: @delta_vee @MitchHawkins4  this will not be enough. We will also have to begin to learn to create new forms of autonomy from financial
+New tweet: <a oncontextmenu=\'mutePop(\"@mcclure111\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'312426579\',\'https:\/\/twitter.com\/@mcclure111\');\" class=\'followinguser 312426579\'>@mcclure111<\/a> Webcomics I meant to keep reading but didn\'t have time: What Birds Know, Hemlock, Cheap Thrills, Dead Winter, Nimona
+New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'followinguser 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'followinguser 541098062\'>@MitchHawkins4<\/a>  this will not be enough. We will also have to begin to learn to create new forms of autonomy from financial
+New tweet: @delta_vee @MitchHawkins4  control and so on. For instance, in Italy we have been talking increasingly 
+New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'followinguser 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'followinguser 541098062\'>@MitchHawkins4<\/a>  control and so on. For instance, in Italy we have been talking increasingly
+delete: {"user":{"location":"NY","profile_sidebar_fill_color":"DDEEF6","verified":false,"name":"Kamina Lamperouge","time_zone":"Eastern Time (US & Canada)","follow_request_sent":false,"lang":"en","notifications":false,"id":181191283,"profile_background_color":"000000","default_profile_image":false,"favourites_count":604,"profile_background_image_url":"http:\/\/a0.twimg.com\/images\/themes\/theme1\/bg.png","geo_enabled":false,"profile_link_color":"0084B4","following":false,"utc_offset":-18000,"profile_image_url":"http:\/\/a0.twimg.com\/profile_images\/1109362323\/avatar_normal.png","created_at":"Sat Aug 21 14:54:49 +0000 2010","id_str":"181191283","profile_use_background_image":true,"profile_image_url_https":"https:\/\/twimg0-a.akamaihd.net\/profile_images\/1109362323\/avatar_normal.png","profile_text_color":"333333","profile_background_image_url_https":"https:\/\/twimg0-a.akamaihd.net\/images\/themes\/theme1\/bg.png","protected":false,"description":"Aspiring Narratologist, \r\nAnime Scientist, \r\nThinker of Thoughts, \r\nSlowly making a serious story focused retro 3D TRPG.  \r\nI like to talk\/discuss\/etc","statuses_count":65486,"is_translator":false,"default_profile":false,"followers_count":312,"screen_name":"zacaj_","profile_sidebar_border_color":"FFFFFF","contributors_enabled":false,"friends_count":281,"entities":{"url":{"urls":[{"display_url":"zacaj.com","expanded_url":"http:\/\/zacaj.com\/","url":"http:\/\/t.co\/ucpfTeNA0U","indices":[0,22]}]},"description":{"urls":[]}},"url":"http:\/\/t.co\/ucpfTeNA0U","listed_count":15,"profile_background_tile":false},"in_reply_to_status_id":345369992382001153,"in_reply_to_screen_name":"delta_vee","source":"\u003Ca href=\"http:\/\/zacaj.com\/zatcap.php\" rel=\"nofollow\"\u003EZATCAP\u003C\/a\u003E","created_at":"Fri Jun 14 02:40:45 +0000 2013","entities":{"user_mentions":[{"id":146656029,"indices":[0,10],"id_str":"146656029","screen_name":"delta_vee","name":"Raymond Neilson"},{"id":541098062,"indices":[11,25],"id_str":"541098062","screen_name":"Mdelete: {"in_reply_to_user_id_str":"146656029","user":{"location":"NY","favourites_count":604,"profile_sidebar_border_color":"FFFFFF","contributors_enabled":false,"verified":false,"name":"Kamina Lamperouge","profile_image_url_https":"https:\/\/twimg0-a.akamaihd.net\/profile_images\/1109362323\/avatar_normal.png","lang":"en","notifications":false,"profile_background_tile":false,"id":181191283,"profile_sidebar_fill_color":"DDEEF6","time_zone":"Eastern Time (US & Canada)","profile_background_image_url_https":"https:\/\/twimg0-a.akamaihd.net\/images\/themes\/theme1\/bg.png","follow_request_sent":false,"statuses_count":65485,"default_profile":false,"profile_background_color":"000000","friends_count":281,"following":false,"utc_offset":-18000,"created_at":"Sat Aug 21 14:54:49 +0000 2010","listed_count":15,"profile_background_image_url":"http:\/\/a0.twimg.com\/images\/themes\/theme1\/bg.png","geo_enabled":false,"profile_link_color":"0084B4","protected":false,"description":"Aspiring Narratologist, \r\nAnime Scientist, \r\nThinker of Thoughts, \r\nSlowly making a serious story focused retro 3D TRPG.  \r\nI like to talk\/discuss\/etc","profile_image_url":"http:\/\/a0.twimg.com\/profile_images\/1109362323\/avatar_normal.png","is_translator":false,"id_str":"181191283","screen_name":"zacaj_","profile_use_background_image":true,"profile_text_color":"333333","entities":{"url":{"urls":[{"display_url":"zacaj.com","expanded_url":"http:\/\/zacaj.com\/","url":"http:\/\/t.co\/ucpfTeNA0U","indices":[0,22]}]},"description":{"urls":[]}},"url":"http:\/\/t.co\/ucpfTeNA0U","default_profile_image":false,"followers_count":312},"in_reply_to_status_id":345369992382001153,"in_reply_to_screen_name":"delta_vee","source":"\u003Ca href=\"http:\/\/zacaj.com\/zatcap.php\" rel=\"nofollow\"\u003EZATCAP\u003C\/a\u003E","created_at":"Fri Jun 14 02:40:54 +0000 2013","entities":{"user_mentions":[{"id_str":"146656029","id":146656029,"indices":[0,10],"screen_name":"delta_vee","name":"Raymond Neilson"},{"id_str":"541098062","id":541098delete: {"in_reply_to_status_id_str":"345369992382001153","user":{"location":"NY","profile_sidebar_fill_color":"DDEEF6","verified":false,"name":"Kamina Lamperouge","time_zone":"Eastern Time (US & Canada)","profile_background_image_url_https":"https:\/\/twimg0-a.akamaihd.net\/images\/themes\/theme1\/bg.png","follow_request_sent":false,"statuses_count":65484,"lang":"en","notifications":false,"default_profile":false,"friends_count":281,"id":181191283,"profile_background_color":"000000","listed_count":15,"profile_background_image_url":"http:\/\/a0.twimg.com\/images\/themes\/theme1\/bg.png","geo_enabled":false,"profile_link_color":"0084B4","following":false,"utc_offset":-18000,"profile_image_url":"http:\/\/a0.twimg.com\/profile_images\/1109362323\/avatar_normal.png","created_at":"Sat Aug 21 14:54:49 +0000 2010","id_str":"181191283","profile_use_background_image":true,"profile_image_url_https":"https:\/\/twimg0-a.akamaihd.net\/profile_images\/1109362323\/avatar_normal.png","profile_text_color":"333333","protected":false,"description":"Aspiring Narratologist, \r\nAnime Scientist, \r\nThinker of Thoughts, \r\nSlowly making a serious story focused retro 3D TRPG.  \r\nI like to talk\/discuss\/etc","is_translator":false,"default_profile_image":false,"followers_count":312,"screen_name":"zacaj_","favourites_count":604,"profile_sidebar_border_color":"FFFFFF","contributors_enabled":false,"entities":{"url":{"urls":[{"display_url":"zacaj.com","expanded_url":"http:\/\/zacaj.com\/","url":"http:\/\/t.co\/ucpfTeNA0U","indices":[0,22]}]},"description":{"urls":[]}},"url":"http:\/\/t.co\/ucpfTeNA0U","profile_background_tile":false},"in_reply_to_status_id":345369992382001153,"in_reply_to_screen_name":"delta_vee","in_reply_to_user_id_str":"146656029","source":"\u003Ca href=\"http:\/\/zacaj.com\/zatcap.php\" rel=\"nofollow\"\u003EZATCAP\u003C\/a\u003E","created_at":"Fri Jun 14 02:40:55 +0000 2013","entities":{"user_mentions":[{"id":146656029,"indices":[0,10],"id_str":"146656029","screen_name":"delta_vee","name":"Radelete: {"user":{"location":"NY","profile_sidebar_fill_color":"DDEEF6","verified":false,"name":"Kamina Lamperouge","time_zone":"Eastern Time (US & Canada)","follow_request_sent":false,"lang":"en","notifications":false,"id":181191283,"profile_background_color":"000000","is_translator":false,"default_profile_image":false,"profile_image_url_https":"https:\/\/twimg0-a.akamaihd.net\/profile_images\/1109362323\/avatar_normal.png","favourites_count":604,"profile_background_image_url":"http:\/\/a0.twimg.com\/images\/themes\/theme1\/bg.png","geo_enabled":false,"profile_link_color":"0084B4","following":false,"utc_offset":-18000,"profile_image_url":"http:\/\/a0.twimg.com\/profile_images\/1109362323\/avatar_normal.png","created_at":"Sat Aug 21 14:54:49 +0000 2010","id_str":"181191283","profile_use_background_image":true,"profile_text_color":"333333","profile_background_image_url_https":"https:\/\/twimg0-a.akamaihd.net\/images\/themes\/theme1\/bg.png","protected":false,"description":"Aspiring Narratologist, \r\nAnime Scientist, \r\nThinker of Thoughts, \r\nSlowly making a serious story focused retro 3D TRPG.  \r\nI like to talk\/discuss\/etc","statuses_count":65483,"default_profile":false,"followers_count":312,"screen_name":"zacaj_","profile_sidebar_border_color":"FFFFFF","contributors_enabled":false,"friends_count":281,"entities":{"url":{"urls":[{"display_url":"zacaj.com","expanded_url":"http:\/\/zacaj.com\/","url":"http:\/\/t.co\/ucpfTeNA0U","indices":[0,22]}]},"description":{"urls":[]}},"url":"http:\/\/t.co\/ucpfTeNA0U","listed_count":15,"profile_background_tile":false},"in_reply_to_status_id":345369992382001153,"in_reply_to_screen_name":"delta_vee","in_reply_to_status_id_str":"345369992382001153","source":"\u003Ca href=\"http:\/\/zacaj.com\/zatcap.php\" rel=\"nofollow\"\u003EZATCAP\u003C\/a\u003E","created_at":"Fri Jun 14 02:40:56 +0000 2013","entities":{"user_mentions":[{"id":146656029,"indices":[0,10],"id_str":"146656029","screen_name":"delta_vee","name":"Raymond Neilson"},{"id":541098062,"indicdelete: {"user":{"location":"NY","profile_sidebar_fill_color":"DDEEF6","verified":false,"is_translator":false,"name":"Kamina Lamperouge","time_zone":"Eastern Time (US & Canada)","profile_background_image_url_https":"https:\/\/twimg0-a.akamaihd.net\/images\/themes\/theme1\/bg.png","follow_request_sent":false,"statuses_count":65482,"lang":"en","notifications":false,"default_profile":false,"friends_count":281,"id":181191283,"profile_background_color":"000000","profile_image_url_https":"https:\/\/twimg0-a.akamaihd.net\/profile_images\/1109362323\/avatar_normal.png","listed_count":15,"profile_background_image_url":"http:\/\/a0.twimg.com\/images\/themes\/theme1\/bg.png","geo_enabled":false,"profile_link_color":"0084B4","following":false,"utc_offset":-18000,"profile_image_url":"http:\/\/a0.twimg.com\/profile_images\/1109362323\/avatar_normal.png","created_at":"Sat Aug 21 14:54:49 +0000 2010","id_str":"181191283","profile_use_background_image":true,"profile_text_color":"333333","protected":false,"description":"Aspiring Narratologist, \r\nAnime Scientist, \r\nThinker of Thoughts, \r\nSlowly making a serious story focused retro 3D TRPG.  \r\nI like to talk\/discuss\/etc","default_profile_image":false,"followers_count":312,"screen_name":"zacaj_","favourites_count":604,"profile_sidebar_border_color":"FFFFFF","contributors_enabled":false,"entities":{"url":{"urls":[{"display_url":"zacaj.com","expanded_url":"http:\/\/zacaj.com\/","url":"http:\/\/t.co\/ucpfTeNA0U","indices":[0,22]}]},"description":{"urls":[]}},"url":"http:\/\/t.co\/ucpfTeNA0U","profile_background_tile":false},"in_reply_to_status_id":345369992382001153,"in_reply_to_screen_name":"delta_vee","source":"\u003Ca href=\"http:\/\/zacaj.com\/zatcap.php\" rel=\"nofollow\"\u003EZATCAP\u003C\/a\u003E","created_at":"Fri Jun 14 02:40:57 +0000 2013","entities":{"user_mentions":[{"id":146656029,"indices":[0,10],"id_str":"146656029","screen_name":"delta_vee","name":"Raymond Neilson"},{"id":541098062,"indices":[11,25],"id_str":"541098062","screen_name":"M

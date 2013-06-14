@@ -262,25 +262,25 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_SETFOCUS:
 		hasFocus=1;
-		printf("focus\n");
+		//printf("focus\n");
 		notifyIcon(0);
 		break ;
 
 	case WM_KILLFOCUS:
 		hasFocus=0;
-		printf("unfocus\n");
+		//printf("unfocus\n");
 		break;
 
 	case WM_ACTIVATE:
 		if( LOWORD(wParam) == WA_ACTIVE )
 		{
-			printf("active\n");
+			//printf("active\n");
 			hasFocus=1;
 			notifyIcon(0);
 		}
 		else 
 		{
-			printf("deactive\n");
+			//printf("deactive\n");
 			
 			hasFocus=0;
 		}
@@ -306,18 +306,20 @@ void notifyIcon(bool on)
 		{
 			return;
 		}
+		alert=1;
 		info.dwFlags = FLASHW_TRAY;
 		info.dwTimeout = 0;
 		info.uCount = 3000;
-		FlashWindowEx(&info);
+		//FlashWindowEx(&info);
 	}
 	else 
 	{
 		info.dwFlags = FLASHW_STOP;
 		info.dwTimeout = 0;
 		info.uCount = 3;
-		FlashWindowEx(&info);
-		printf("stop\n");
+		//FlashWindowEx(&info);
+		alert=0;
+		//printf("stop\n");
 	}
 }
 #else
@@ -431,10 +433,7 @@ void loadUser(twitCurl *twit)
 	print("...\n");
 	if((tmpString=twit->accountRateLimitGet())=="")
 		loadUser(twit);
-	Json::Value root;
-	Json::Reader reader;
-	reader.parse(tmpString,root);
-	if(root["reset_time"].isNull())
+	if(tmpString.find("error")!=string::npos)
 	{
 		print("ERROR:  log in failure (is your password correct in %s?)\n",settings::userInfoFile.c_str());
 		system("pause");
@@ -531,20 +530,61 @@ void addUsername( string name )
 {
 	runJS("usernames.push('"+name+"');");
 }
+bool alert=0,alert2=0;;
 int nUnread=0,nUnread2=0;
 Mutex debugMutex;
 map<int,bool> pendingTweets;
 void sendTweet(void *_data)
 {
 	tweetData *data=(tweetData*)_data;
-	string str=data->str;
-	time_t t=time(NULL);
-	Activity *activity=new Activity(str,"cpp.stopTweet("+i2s(t)+");",data->user);
-	pendingTweets[t]=0;
-	addTweet((Item**)&activity);
-	while(!pendingTweets[t]);
-	print("Tweet sent successfully: %s (%s,%s)\n",str.c_str(),data->replyId.c_str(),replyId.c_str());
-	deleteTweet(activity->id);
+	string ostr=data->str;
+	vector<string> tweets;
+	if(ostr.size()<=140)
+		tweets.push_back(ostr);
+	else
+	{
+		string prefix="";
+		{
+			int pos=0;
+			if(ostr[0]=='@')
+				while(pos!=string::npos)
+				{
+					if(ostr[pos]=='@')
+					{
+						pos=ostr.find(' ',pos);
+						pos++;
+					}
+					else break;
+				}
+				prefix.append(ostr.substr(0,pos));
+			int start=pos;
+			while(pos<=ostr.size())
+			{
+				pos+=140-prefix.size();
+				if(pos>ostr.size())
+					pos=ostr.size()-1;
+				else
+				while(ostr[pos]!=' ')
+					pos--;
+				if(pos==start)
+					break;
+				tweets.push_back(prefix+ostr.substr(start,pos-start));
+				start=pos;
+			}
+		}
+	}
+	for(int i=0;i<tweets.size();i++)
+	{
+		string str=tweets[i];
+		time_t t=time(NULL);
+		Activity *activity=new Activity(str,"cpp.stopTweet("+i2s(t)+");",data->user);
+		pendingTweets[t]=0;
+		addTweet((Item**)&activity);
+		while(twit->statusUpdate(str,data->replyId)=="" && !pendingTweets[t]);
+		deleteTweet(activity->id);
+		print("Tweet sent successfully: %s (%s,%s)\n",str.c_str(),data->replyId.c_str(),replyId.c_str());
+
+	}
 	delete data;
 }
 extern vector<string> jsToRun;
@@ -1039,10 +1079,12 @@ int main(int argc,char **argv)
 				{
 					Activity *activity=new Activity("Uploading photo...");
 					addTweet((Item**)&activity);
-					SaveToFile((HBITMAP)hData, "t.bmp");
+					string file="t"+i2s(time(NULL))+".bmp";
+					SaveToFile((HBITMAP)hData, file.c_str());
 					startLambdaThread([=](){
-					string url=uploadPhoto("t.bmp");
-					runJS("insertText('"+escape(url)+"',"+htmlid+");");});
+					string url=uploadPhoto(file);
+					runJS("insertText('"+escape(url)+"',"+htmlid+");");
+					system((string("erase \"")+file+"\"").c_str());});
 					deleteTweet(activity->id);
 				}
 				CloseClipboard();
@@ -1232,13 +1274,14 @@ int main(int argc,char **argv)
 		web_core->Update();
 		for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
 			it->second->update();
-		if(nUnread!=nUnread2)
+		if(nUnread!=nUnread2 || alert2!=alert)
 		{
 #ifdef USE_WINDOWS
 			SendMessage(hwnd, WM_SETICON,
 				ICON_BIG,(LPARAM)CreateAlphaCursor());
 #endif			
 			nUnread2=nUnread;
+			alert2=alert;
 		}
 #ifdef USE_WINDOWS
 		Sleep(20);
@@ -1498,7 +1541,10 @@ void debug(const char* msg, ...)
 	enterMutex(debugMutex);
 	fp=fopen("debug.txt","a");
 	if(!fp)
+	{
+		leaveMutex(debugMutex);
 		return;
+	}
 	fprintf(fp,buffer);
 	fclose(fp);
 	leaveMutex(debugMutex);
@@ -1676,18 +1722,32 @@ std::string escape( string str,bool forPrintf )
 			if(str[i]=='%' && forPrintf)
 				str.insert(str.begin()+i++,'%');
 			else
-		for(int j=0;j<special.size();j++)
-		{
-			if(str[i]==special[j] && (i==0 || str[i-1]!='\\'))
 			{
-				str.insert(str.begin()+i++,'\\');
-				if(special[j]=='\n')
-					str[i]='n';
-				if(special[j]=='\r')
-					str[i]='r';
+				int j=0;
+				bool found=0;
+				for(j=0;j<special.size();j++)
+				{
+					if(str[i]==special[j])
+					{
+							found=1;
+							if(i==0 || str[i-1]!='\\')
+							{
+								str.insert(str.begin()+i++,'\\');
+								if(special[j]=='\n')
+									str[i]='n';
+								if(special[j]=='\r')
+									str[i]='r';
+								break;
+							}
+					}
+				}
+				if(i!=0 && !found && str[i]!='n' && str[i]!='r' && str[i]!='\\'  && str[i-1]=='\\')
+					str.insert(str.begin()+i++,'\\');
 			}
-		}
+
 	}
+	if(str[str.size()-1]=='\\')
+		str.insert(str.begin()+str.size()-1,'\\');
 	return str;
 }
 

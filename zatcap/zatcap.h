@@ -53,7 +53,7 @@ void loadUser(twitCurl *twit);
 extern string tempString;
 extern string username;
 
-#define debugHere() debug("%s:%i %s\n",__FILE__,__LINE__,__FUNCTION__);
+#define debugHere() //debug("%s:%i %s\n",__FILE__,__LINE__,__FUNCTION__);
 
 class Process;
 extern map<float,Process*> processes;
@@ -115,7 +115,7 @@ void doing(int i);
 void notifyIcon(bool on);
 string tolower( string str);
 extern int nUnread;
-
+extern bool alert;
 extern map<string,time_t> mute;
 extern set<string> followers;
 void addFollower(string id);
