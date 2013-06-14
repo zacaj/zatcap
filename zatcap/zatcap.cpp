@@ -1,4 +1,4 @@
-// zatcap.cpp : Defines the entry point for the console application.
+﻿// zatcap.cpp : Defines the entry point for the console application.
 //
 
 #include "stdafx.h"
@@ -534,6 +534,18 @@ bool alert=0,alert2=0;;
 int nUnread=0,nUnread2=0;
 Mutex debugMutex;
 map<int,bool> pendingTweets;
+size_t removeLeadingTrailingSpaces( string &str )
+{
+	if(str.empty())
+		return 0;
+	size_t notSpace=str.find_first_not_of(' ');
+	if(notSpace!=string::npos)
+		str.erase(str.begin(),str.begin()+notSpace);
+	while(str.back()==' ') str.erase(str.size()-1);
+	if(notSpace==string::npos)
+		return 0;
+	return notSpace;
+}
 void sendTweet(void *_data)
 {
 	tweetData *data=(tweetData*)_data;
@@ -545,7 +557,7 @@ void sendTweet(void *_data)
 	{
 		string prefix="";
 		{
-			int pos=0;
+			volatile int pos=0;
 			if(ostr[0]=='@')
 				while(pos!=string::npos)
 				{
@@ -560,15 +572,27 @@ void sendTweet(void *_data)
 			int start=pos;
 			while(pos<=ostr.size())
 			{
-				pos+=140-prefix.size();
+				pos+=137-prefix.size();
+				if(tweets.size()!=0)
+					pos-=3;
 				if(pos>ostr.size())
 					pos=ostr.size()-1;
 				else
-				while(ostr[pos]!=' ')
+				while(ostr[pos]!=' ' && pos>start)
 					pos--;
 				if(pos==start)
+				{
+					tweets[tweets.size()-1].erase(tweets[tweets.size()-1].begin()+tweets[tweets.size()-1].size()-2,tweets[tweets.size()-1].end());
 					break;
-				tweets.push_back(prefix+ostr.substr(start,pos-start));
+				}
+				string tweet=prefix;
+				if(tweets.size()!=0)
+					tweet+="...";
+				string excerpt=ostr.substr(start,pos-start);
+				removeLeadingTrailingSpaces(excerpt);
+				tweet+=excerpt;
+				tweet+="...";
+				tweets.push_back(tweet);
 				start=pos;
 			}
 		}
@@ -583,7 +607,6 @@ void sendTweet(void *_data)
 		while(twit->statusUpdate(str,data->replyId)=="" && !pendingTweets[t]);
 		deleteTweet(activity->id);
 		print("Tweet sent successfully: %s (%s,%s)\n",str.c_str(),data->replyId.c_str(),replyId.c_str());
-
 	}
 	delete data;
 }
