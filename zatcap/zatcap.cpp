@@ -230,6 +230,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_SIZE:
 		{
+			if(LOWORD(lParam)==0)
+				break;
 			if(LOWORD(lParam)<550 &&(w==-1 || w>=550))
 			{
 				runJS("tweetContent=document.getElementById('tweetbox').value;");
@@ -518,11 +520,13 @@ struct tweetData
 	string str;
 	string replyId;
 	string user;
-	tweetData(string _str,string _r,string _u)
+	bool split;
+	tweetData(string _str,string _r,string _u,bool _split)
 	{
 		str=_str;
 		replyId=_r;
 		user=_u;
+		split=_split;
 	}
 };
 
@@ -551,7 +555,7 @@ void sendTweet(void *_data)
 	tweetData *data=(tweetData*)_data;
 	string ostr=data->str;
 	vector<string> tweets;
-	if(ostr.size()<=140)
+	if(ostr.size()<=140 || !data->split)
 		tweets.push_back(ostr);
 	else
 	{
@@ -582,16 +586,20 @@ void sendTweet(void *_data)
 					pos--;
 				if(pos==start)
 				{
-					tweets[tweets.size()-1].erase(tweets[tweets.size()-1].begin()+tweets[tweets.size()-1].size()-2,tweets[tweets.size()-1].end());
+					//tweets[tweets.size()-1].erase(tweets[tweets.size()-1].begin()+tweets[tweets.size()-1].size()-2,tweets[tweets.size()-1].end());
 					break;
+				}
+				else
+				{
+					if(tweets.size())
+					tweets.back()+="...";
 				}
 				string tweet=prefix;
 				if(tweets.size()!=0)
 					tweet+="...";
-				string excerpt=ostr.substr(start,pos-start);
+				string excerpt=ostr.substr(start,pos-start+1);
 				removeLeadingTrailingSpaces(excerpt);
 				tweet+=excerpt;
-				tweet+="...";
 				tweets.push_back(tweet);
 				start=pos;
 			}
@@ -740,6 +748,9 @@ HCURSOR CreateAlphaCursor(void)
 	// Draw something on the DIB section.
 	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hBitmap);
 	//PatBlt(hMemDC,0,0,dwWidth,dwHeight,WHITENESS);
+	if(alert)
+	SetTextColor(hMemDC,RGB(255,0,0));
+	else
 	SetTextColor(hMemDC,RGB(255,255,255));
 	SetBkMode(hMemDC,TRANSPARENT);
 	if(nUnread>0)
@@ -972,7 +983,7 @@ int main(int argc,char **argv)
 		{
 			string tweet=ToString(args[0].ToString());
 			string inReplyTo=ToString(args[1].ToString());
-			startThread(sendTweet,new tweetData(tweet,inReplyTo,username));
+			startThread(sendTweet,new tweetData(tweet,inReplyTo,username,ToString(args[2].ToString())=="true"));
 		});
 		methodHandler->reg(WSLit("debug"),[](JSArray args)
 			{

@@ -216,11 +216,11 @@ function setReplyTo(id,author)
 	moveCaretToEnd(document.getElementById('tweetbox'));
 	
 }
-function sendTweet(tweet)
+function sendTweet(tweet,split)
 {
-	if(!tweet)
+	if(!tweet || tweet.length==0)
 		tweet=document.getElementById('tweetbox').value;
-	cpp.sendTweet(tweet,inReplyTo);
+	cpp.sendTweet(tweet,inReplyTo,split);
 	document.getElementById('tweetbox').value="";
 }
 var completebox=null;
@@ -234,14 +234,17 @@ function updateTweetLength()
 		document.getElementById("SendTweet").style.disabled=false;
 	if(len<160)
 	{
-		document.getElementById("SendTweet").innerHTML="Tweet";
+		//document.getElementById("SendTweet").innerHTML="Tweet";
 		document.getElementById('TweetLength').innerHTML=""+(140-len);
+		//document.getElementById('SplitTweet').style.display="none";
 		}
 	else
 	{
 		document.getElementById('TweetLength').innerHTML=""+(len)+" ";
 		
-		document.getElementById("SendTweet").innerHTML="( x"+Math.floor(len/140+1)+" )";
+		//document.getElementById("SendTweet").innerHTML="( x"+Math.floor(len/140+1)+" )";
+		
+	//	document.getElementById('SplitTweet').style.display="inline";
 		}
 	
 	var textbox=document.getElementById('tweetbox');

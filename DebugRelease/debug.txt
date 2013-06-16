@@ -1,6 +1,6 @@
 starting...
-861
-863
+872
+874
 198458386
 393207402
 21301903
@@ -51,270 +51,236 @@ starting...
 245935622
 627410625
 973717910
-processing tweet 0
 18148724
-New tweet: Damn. I spent $400 in two bottles of beer last night. TWO bottles. My head hurts
 133801192
 19534812
-processing tweet 1
 14809892
 84670801
 267477531
 37963149
-New tweet: If you\'re still interested in how games play with history, I wrote on Microscope at <a oncontextmenu=\'mutePop(\"@reActionZine\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'1278682009\',\'https:\/\/twitter.com\/@reActionZine\');\" class=\'user 1278682009\'>@reActionZine<\/a> too <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.reactionzine.com\/deciding-history\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.reactionzine.com\/deciding-history\/\');\">reactionzine.com\/deciding-histo…<\/a>
 22028884
-processing tweet 2
 107336879
 19785044
 15375238
-New tweet: If they hadn\'t spent so long making \'LOL\' and \'ROFL\' stickers to plaster over everything, maybe it\'d actually be a good kart racer.
 54903400
 11928542
-processing tweet 3
 83931050
 150606645
-New tweet: …
 105064153
-processing tweet 4
 132337469
-New tweet: Wait holy crap the new SSA rules for gender change are actually *easier* than the California state laws. I could do this *this morning*
 52922310
 5637652
-processing tweet 5
 60784126
 90265705
-New tweet: I just woke up, as if the universe was calling to me. As if it was whispering in mY EAR
 60204674
-processing tweet 6
+1096828909
 274109862
 546489254
 287858376
-New tweet: this what microsoft thinks of you: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.dewanddoritos.com\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.dewanddoritos.com\/\');\">dewanddoritos.com<\/a>
 122182534
-processing tweet 7
 293538857
-New tweet: :D
 75783213
 44671701
-processing tweet 8
 47125114
 191790175
 45757777
-New tweet: Well, there is now a reason to use office 365.
 21220972
 18309190
-processing tweet 9
 19574163
 135898887
-New tweet: real like your ear fetish
 560701027
 153550545
-processing tweet 10
 16242203
 746577234
-New tweet: \"ducking hell\"? Come on auto correct, you should know me by now!
 162516323
-processing tweet 11
 24452901
-New tweet: So, what I\'m saying is, if you need a shitily made brand of your snack foods, hit me up, I\'ll shit something out!
 28766232
-processing tweet 12
 17049101
-New tweet: Did somebody say EAR FETISH
 156560059
-processing tweet 13
 347824744
-New tweet: I spent more time downloading LBP Karting than I ever want to spend playing it. What a generic pile of twaddle.
 34843626
-processing tweet 14
 36212083
 16595068
 16425600
-New tweet: \"Some men just want to watch the world burn\" is the best description of that nightmare.
 106891174
 480991517
-processing tweet 15
 23720736
 17414835
 190796565
 505360247
 15029296
+processing tweet 0
+New tweet: Ya boy going hard in the Kray. <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/yfrog.com\/ocf73djuj\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/yfrog.com\/ocf73djuj\');\">yfrog.com\/ocf73djuj<\/a>
 18933499
-49440921
+processing tweet 1
 196291209
-New tweet: My favorite Street Fighter character is Bob Sagat. He does that move Tiger Up My Butt.
 179587957
+New tweet: New Attack on Titan here to ruin my life
 8943
+processing tweet 2
 175624200
 110774356
-processing tweet 16
 438638130
 41627397
-New tweet: Y\'all know I don\'t joke with Final Fantasy Tactics. Read this awesome piece by <a oncontextmenu=\'mutePop(\"@joffeorama\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'1135011900\',\'https:\/\/twitter.com\/@joffeorama\');\" class=\'user 1135011900\'>@joffeorama<\/a> on how it explores history <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.reactionzine.com\/invisible-tactics\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.reactionzine.com\/invisible-tactics\/\');\">reactionzine.com\/invisible-tact…<\/a>
 118975055
+New tweet: View all photos and videos &gt; <a href=\'javascript:;\' oncontextmenu=\"cpp.openInNativeBrowser(\'http:\/\/pbs.twimg.com\/media\/BM2DoGoCIAALcGI.png\'); return false;\" onclick=\"cpp.handleImage(\'http:\/\/pbs.twimg.com\/media\/BM2DoGoCIAALcGI.png\');\">pic.twitter.com\/08NOskOQ1G<\/a>
 50209640
-processing tweet 17
 777008736
+processing tweet 3
 137874845
+71992148
 12798922
-New tweet: <a oncontextmenu=\'mutePop(\"@_knutaf\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'190796565\',\'https:\/\/twitter.com\/@_knutaf\');\" class=\'user 190796565\'>@_knutaf<\/a> Awww yesss, can\'t wait to talk to you about it!
+New tweet: <a oncontextmenu=\'mutePop(\"@Avian_Flame\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'216442854\',\'https:\/\/twitter.com\/@Avian_Flame\');\" class=\'user 216442854\'>@Avian_Flame<\/a> (tests again)
 123346058
-processing tweet 18
+processing tweet 4
 39680464
+New tweet: <a oncontextmenu=\'mutePop(\"@Avian_Flame\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'216442854\',\'https:\/\/twitter.com\/@Avian_Flame\');\" class=\'user 216442854\'>@Avian_Flame<\/a> shoulda said for a w
+15135516
 165061037
-New tweet: It was \"make a video game themed Doritos package\" and sure enough, I still have my entry: <a href=\'javascript:;\' oncontextmenu=\"cpp.openInNativeBrowser(\'http:\/\/pbs.twimg.com\/media\/BMu9aXVCUAER8Jn.png\'); return false;\" onclick=\"cpp.handleImage(\'http:\/\/pbs.twimg.com\/media\/BMu9aXVCUAER8Jn.png\');\">pic.twitter.com\/HJh3bbOZy6<\/a>
+processing tweet 5
 72127787
 9709672
-processing tweet 19
 597315080
-New tweet: Magic Roundabout (Swindon) <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/en.wikipedia.org\/wiki\/Magic_Roundabout_%28Swindon%29\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/en.wikipedia.org\/wiki\/Magic_Roundabout_%28Swindon%29\');\">en.wikipedia.org\/wiki\/Magic_Rou…<\/a>
 14308823
-processing tweet 20
+New tweet: Wow, the new Smash is heating up already... <a href=\'javascript:;\' oncontextmenu=\"cpp.openInNativeBrowser(\'http:\/\/pbs.twimg.com\/media\/BM2DE4ECQAEdTuf.jpg\'); return false;\" onclick=\"cpp.handleImage(\'http:\/\/pbs.twimg.com\/media\/BM2DE4ECQAEdTuf.jpg\');\">pic.twitter.com\/l7kzPHQ1kB<\/a>
 22279665
 243795851
+processing tweet 6
 15313645
 154643438
 6368672
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> for a.
 35066483
-New tweet: Can conflicting narratives hold equal validity? Mike Joffe (<a oncontextmenu=\'mutePop(\"@joffeorama\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'1135011900\',\'https:\/\/twitter.com\/@joffeorama\');\" class=\'user 1135011900\'>@joffeorama<\/a>) explores through Final Fantasy Tactics. <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.reactionzine.com\/invisible-tactics\/\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.reactionzine.com\/invisible-tactics\/\');\">reactionzine.com\/invisible-tact…<\/a>
 423421882
 14513917
+processing tweet 7
+276322412
 38690929
-processing tweet 21
+New tweet: Gah, was going to try to get this build done before I had to leave for bit, but it\'s not going to happen, so later tonight, with streaming!
 100609509
 632437938
+processing tweet 8
 172023111
-New tweet: <a oncontextmenu=\'mutePop(\"@bluehands15\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'515858404\',\'https:\/\/twitter.com\/@bluehands15\');\" class=\'user 515858404\'>@bluehands15<\/a> alright. Poke <a oncontextmenu=\'mutePop(\"@KillianMarz\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'596032876\',\'https:\/\/twitter.com\/@KillianMarz\');\" class=\'user 596032876\'>@KillianMarz<\/a> until he wakes from his stupor
 9343022
 81696485
-processing tweet 22
 146656029
-New tweet: (Under Obama outing letters are no longer sent because of sex mismatch, but until today employer outing could happen for other reasons…)
 9769332
+New tweet: I siphoned .UNDO and didn\'t like where things spawned, so I undid my getting .UNDO so I could get it again. <a oncontextmenu=\'mutePop(\"#868HACK\"); return false;\' href=\'javascript:;\' onclick=\"cpp.openInNativeBrowser(\'https:\/\/twitter.com\/search?q=%23868HACK\');\">#868HACK<\/a>
 172937627
 199145728
+141209614
+processing tweet 9
 14183991
 533546294
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> ::paypals you 2 cents::
 1070541
 14214388
 515858404
+processing tweet 10
 238178045
+New tweet: Kitty does not like IDM
+processing tweet 11
 138660768
+New tweet: yeah
+processing tweet 12
 27432293
+New tweet: 01\/07\/11: Police stop a 18-year-old in Brooklyn, citing \"furtive movements.\" No weapon is found.
 559915340
-29395230
 1390442347
+processing tweet 13
 16181584
+5576542
 372327341
+New tweet: 01\/07\/11: Police stop a 21-year-old in Queens, citing \"fits a relevant description.\" No weapon is found.
 364488011
 7429862
 488021513
 101295574
+processing tweet 14
 14135007
 106638964
 345320917
+New tweet: 01\/07\/11: Police use force to stop a 55-year-old in Manhattan, citing \"furtive movements.\" No weapon is found.
 11167502
 401797992
+processing tweet 15
 856817786
 19382657
 18648265
 14951588
 154178231
+New tweet: 01\/07\/11: Police stop a 41-year-old in Manhattan, citing \"carrying suspicious object.\" No weapon is found.
+218195620
 19772827
 480812026
+processing tweet 16
 320909479
 767686105
+New tweet: 01\/07\/11: Police stop a 31-year-old in Bronx, citing \"other.\" No weapon is found.
 246318475
-processing tweet 0
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@KillianMarz\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'596032876\',\'https:\/\/twitter.com\/@KillianMarz\');\" class=\'user 596032876\'>@KillianMarz<\/a> Sorry, dont know either.
 451334870
-processing tweet 1
+processing tweet 17
 16222316
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Perhaps some chores but I appear to be free. All went well, and my boss scared off a family of Indian tourists.
 5867722
+New tweet: Cat displaying inordinate amount of affection towards girl. Not sure which one I\'m jealous of
 8130922
-processing tweet 2
+processing tweet 18
 104366764
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Just got home.
 184848731
 15459365
-processing tweet 3
 541098062
 21834006
 64863849
 36457353
-New tweet: Gay Travel  is out! <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/paper.li\/GayTravel\/1350262749\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/paper.li\/GayTravel\/1350262749\');\">paper.li\/GayTravel\/1350…<\/a> ▸ Top stories today vi<a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a>j<a oncontextmenu=\'mutePop(\"@garrettjkub\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'26624320\',\'https:\/\/twitter.com\/@garrettjkub\');\" class=\'user 26624320\'>@garrettjkub<\/a>u<a oncontextmenu=\'mutePop(\"@LiberatedByGaga\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'289175167\',\'https:\/\/twitter.com\/@LiberatedByGaga\');\" class=\'user 289175167\'>@LiberatedByGaga<\/a>ga
+New tweet: Get the goddamn hint, Cobb. Leave my town. I have lost count just how many times I\'ve done a net-and-run.
 116307886
-processing tweet 4
-New tweet: <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I wonder how much difference the order of those (temporally-distant) events affects their impact.
-processing tweet 5
-New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> &gt; Bradley Manning leaked where they do the same thing to civilians. I about puked watching it. It\'s awful.
-processing tweet 6
-New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> what skeeves me out isn\'t the distance, its the spotter cheering and making jokes. There\'s a IRL apache video that &gt;
-processing tweet 7
-New tweet: <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> &gt; intended to be disconcerting, but for some, it was either comforting or just not noticable.
-processing tweet 8
-New tweet: <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I say \"supposed to\" because a) I don\'t think there were any civilians, and b) I think the distance was &gt;
-processing tweet 9
-New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I\'m not sure that\'s true. I think you\'re supposed to enjoy it as much as the spotter\/pilot\/whatever
-processing tweet 10
-New tweet: <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> The AC-130 is *supposed* to skeeve you out. It\'s a turret sequence you (are supposed to) feel guilty for.
-processing tweet 11
-New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Why the nuke? (also, in hindsight, the AC130 kind of skeeves me out)
-processing tweet 12
-New tweet: <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Nuke, AC-130
 40962229
 148731444
-processing tweet 13
+processing tweet 19
 16792453
-524489650
-New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> which two?
 201899033
 280327545
-processing tweet 14
 61653331
-New tweet: <a oncontextmenu=\'mutePop(\"@thegamedesigner\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'19575980\',\'https:\/\/twitter.com\/@thegamedesigner\');\" class=\'user 19575980\'>@thegamedesigner<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@UntoldEnt\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'21834006\',\'https:\/\/twitter.com\/@UntoldEnt\');\" class=\'user 21834006\'>@UntoldEnt<\/a> what OS?
 45064431
-processing tweet 15
+New tweet: I used to think gas was expensive. Then I realized I\'m basically buying ancient liquid exploding dinosaurs.\n\nSo... \n\nNot a bad deal really.
 280646183
 418579115
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@UntoldEnt\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'21834006\',\'https:\/\/twitter.com\/@UntoldEnt\');\" class=\'user 21834006\'>@UntoldEnt<\/a> How can I generate one from a .zip?
-processing tweet 16
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> 4\/5 doesn\'t exactly scream \"no respect\", however independent of precedents\/antecedents it is.
+processing tweet 20
 14852199
 35997444
-processing tweet 17
-216442854
-New tweet: <a oncontextmenu=\'mutePop(\"@MitchHawkins4\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'541098062\',\'https:\/\/twitter.com\/@MitchHawkins4\');\" class=\'user 541098062\'>@MitchHawkins4<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I know what you mean. I\'d have to slog through Reach, though, and I can\'t be arsed ATM.
 15419775
 14679475
-processing tweet 18
+New tweet: *Wakes up bright and early*\n\n*Decides to go for a jog*\n\n*Family dies of shock*
 9308132
 368962194
 14575846
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> <a oncontextmenu=\'mutePop(\"@thegamedesigner\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'19575980\',\'https:\/\/twitter.com\/@thegamedesigner\');\" class=\'user 19575980\'>@thegamedesigner<\/a> You\'re probably right. MT - zacaj is like reverse-aging Benjamin Button.  He is super wise. He will assplain it.
+processing tweet 21
 27269825
 451781785
 372122273
-processing tweet 19
+New tweet: I\'m just kidding, this book had me at the heartbreaking E3 demo. It\'s every game developer\'s desperately lonely crunchtime life in print.
 718770470
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> \"fun\"
 1115193043
+processing tweet 22
 94860638
+New tweet: 01\/07\/11: Police stop a 20-year-old in Staten Island, citing \"wearing clothes commonly used in a crime.\" No weapon is found.
 118279350
 740895416
+processing tweet 23
 61166489
+New tweet: I wasn\'t sure about <a oncontextmenu=\'mutePop(\"@Austin_Grossman\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'15937620\',\'https:\/\/twitter.com\/@Austin_Grossman\');\" class=\'user 15937620\'>@Austin_Grossman<\/a>\'s book, YOU, until a serious obstacle was overcome by diving by zero.
 17480851
 198223435
+processing tweet 24
 70409780
 33191389
 37856077
+New tweet: well instead of doing anything interesting i went and learnt twine. <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.newton64.ca\/games\/jams\/unproductive\/main.html\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.newton64.ca\/games\/jams\/unproductive\/main.html\');\">newton64.ca\/games\/jams\/unp…<\/a> <a oncontextmenu=\'mutePop(\"#notbitter\"); return false;\' href=\'javascript:;\' onclick=\"cpp.openInNativeBrowser(\'https:\/\/twitter.com\/search?q=%23notbitter\');\">#notbitter<\/a>
 54082511
 26884913
 257177056
 15863373
 122684211
-99429451
 130261215
 203329063
 18943228
@@ -323,7 +289,6 @@ New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' o
 267477014
 467497155
 288958880
-150450008
 475256019
 312674813
 944704369
@@ -343,6 +308,7 @@ New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' o
 293926389
 182652409
 224437276
+19575980
 93969417
 14882389
 1198071
@@ -361,85 +327,125 @@ New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' o
 38167592
 249367137
 processing tweet 0
-New tweet: <a oncontextmenu=\'mutePop(\"@vApathyv\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'90265705\',\'https:\/\/twitter.com\/@vApathyv\');\" class=\'user 90265705\'>@vApathyv<\/a> Appy, we\'re going to a dueling piano bar. That takes requests. Any song. Seriously, I\'ve heard some insane requests they\'ll do.
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> for a.
 processing tweet 1
-New tweet: This hour-long video talks through the design evolution from System Shock through to Bioshock Infinite: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=s7DVOw1lIcM\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=s7DVOw1lIcM\');\">youtube.com\/watch?v=s7DVOw…<\/a>
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> ::paypals you 2 cents::
 processing tweet 2
-New tweet: New anti-HEROES!  <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/antiheroescomic.com\/comic\/308\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/antiheroescomic.com\/comic\/308\');\">antiheroescomic.com\/comic\/308<\/a>  I think we\'re scraping the bottom of the barrel, here.
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I know a few musicy people that recommend these: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.amazon.com\/Sennheiser-HD201-Lightweight-Over-Ear-Headphones\/dp\/B0007XJSQC\/ref=sr_1_12?ie=UTF8&qid=1371344492&sr=8-12&keywords=Sennheiser+DJ\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.amazon.com\/Sennheiser-HD201-Lightweight-Over-Ear-Headphones\/dp\/B0007XJSQC\/ref=sr_1_12?ie=UTF8&qid=1371344492&sr=8-12&keywords=Sennheiser+DJ\');\">amazon.com\/Sennheiser-HD2…<\/a>
 processing tweet 3
-New tweet: <a oncontextmenu=\'mutePop(\"@_knutaf\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'190796565\',\'https:\/\/twitter.com\/@_knutaf\');\" class=\'user 190796565\'>@_knutaf<\/a> <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?feature=player_embedded&v=tL91WBFkflw\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?feature=player_embedded&v=tL91WBFkflw\');\">youtube.com\/watch?feature=…<\/a>
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I meant as opposed to earbuds
 processing tweet 4
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Also, if we\'re talking teleportation, make sure you\'ve read The Stars My Destination, like, twice.
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> what\'s your stance on in-ear headphones
 processing tweet 5
-New tweet: SaGa Frontier still had the best battles of all JRPGs just sayin.\'
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Maybe?? I\'m not exactly solid on this
 processing tweet 6
-New tweet: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=j_6bmrqIsP8\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=j_6bmrqIsP8\');\">youtube.com\/watch?v=j_6bmr…<\/a> this is one of my favorite videos
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I\'m reading a big book on computer architecture. Currently learning about using stacks in assembly procedures
 processing tweet 7
-New tweet: Going through some old music I used to listen to in college; rediscovered \"Breaker! Breaker!\" - <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=W8yGo3t91nE\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=W8yGo3t91nE\');\">youtube.com\/watch?v=W8yGo3…<\/a>
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> ohhhh
 processing tweet 8
-New tweet: Neat answer to deceptively simple question: Why is it Dark at Night? <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/youtu.be\/gxJ4M7tyLRE\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/youtu.be\/gxJ4M7tyLRE\');\">youtu.be\/gxJ4M7tyLRE<\/a>
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> it seems like the kind of thing I would really enjoy if I had the know-how
 processing tweet 9
-New tweet: Mama Said Knock You Out has just shot to the top of my Songs To Request In Clubs list.
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I think this is a compliment.
 processing tweet 10
-New tweet: I imagine Taio Cruz turning to someone before this song and saying, “the lyrics have a hidden meaning.<a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=k3an70ngHB8\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=k3an70ngHB8\');\">youtube.com\/watch?v=k3an70…<\/a>ytn1
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> project64
 processing tweet 11
-New tweet: Rian Johnson on Screenwriting: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/youtu.be\/gux9zyFPDeA\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/youtu.be\/gux9zyFPDeA\');\">youtu.be\/gux9zyFPDeA<\/a> via <a oncontextmenu=\'mutePop(\"@YouTube\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'10228272\',\'https:\/\/twitter.com\/@YouTube\');\" class=\'user 10228272\'>@YouTube<\/a>
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> but like, even GUI images, like numbers and such still have shaky outlines, like someone used the magic select tool
 processing tweet 12
-New tweet: I made a YouTubes. <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=fgIeBgLO6rY\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=fgIeBgLO6rY\');\">youtube.com\/watch?v=fgIeBg…<\/a>
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> You index from 0 you count from 1 :P
 processing tweet 13
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Night--&gt;Day If you do, Samsung 830 is the way to go for performance\/reliability.
+New tweet: <a oncontextmenu=\'mutePop(\"@Kidcrashed\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'99429451\',\'https:\/\/twitter.com\/@Kidcrashed\');\" class=\'user 99429451\'>@Kidcrashed<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> If you want regularity, base 8 or 16. If you want flexibility of factors, base 12, 24, or 30.
 processing tweet 14
-New tweet: This is super cool - <a oncontextmenu=\'mutePop(\"@veritasium\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'168987151\',\'https:\/\/twitter.com\/@veritasium\');\" class=\'user 168987151\'>@veritasium<\/a> shows how a flame is better at conducting electricity than air: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=a7_8Gc_Llr8&feature=plcp\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=a7_8Gc_Llr8&feature=plcp\');\">youtube.com\/watch?v=a7_8Gc…<\/a>
+New tweet: <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> base 12 *obviously*
 processing tweet 15
-New tweet: 84% of my followers are \'good\' and only 2% are fake. This is… surprising. Who the hell are all you people<a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/fakers.statuspeople.com\/Fakers\/Scores\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/fakers.statuspeople.com\/Fakers\/Scores\');\">fakers.statuspeople.com\/Fakers\/Scores<\/a>8F
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> 1 2 10 11 12 20 21 22 100 Yeah I\'m not the fastest at it but apparently?
 processing tweet 16
-New tweet: <a oncontextmenu=\'mutePop(\"@The_Ruffians\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'154643438\',\'https:\/\/twitter.com\/@The_Ruffians\');\" class=\'user 154643438\'>@The_Ruffians<\/a> I should re-read The Little Prince now.
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Base 8 like god intended.
 processing tweet 17
-New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> 21 Grams.
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> My mockery is never baseless.
 processing tweet 18
-New tweet: This is a pretty different Dwarf Fortress experience (ongoing let\'s play): <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/brokenforum.com\/index.php?threads\/squidsteel-a-dwarf-fortress-le-oh-god-zombies.2655\/#post-193852\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/brokenforum.com\/index.php?threads\/squidsteel-a-dwarf-fortress-le-oh-god-zombies.2655\/#post-193852\');\">brokenforum.com\/index.php?thre…<\/a>
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> I remember, I was just mocking you.
 processing tweet 19
-New tweet: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.pandora.com\/station\/play\/964778667074874320\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.pandora.com\/station\/play\/964778667074874320\');\">pandora.com\/station\/play\/9…<\/a> a station i came up with on pandora, if you like music... <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/fb.me\/1Gtz3zkBb\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/fb.me\/1Gtz3zkBb\');\">fb.me\/1Gtz3zkBb<\/a>
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> You must\'ve uploaded the wrong one - blur was motion, not post-proc
 processing tweet 0
-New tweet: <a oncontextmenu=\'mutePop(\"@mcclure111\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'312426579\',\'https:\/\/twitter.com\/@mcclure111\');\" class=\'user 312426579\'>@mcclure111<\/a> non games (ie political, ethics, etc) often yes
+New tweet: Fellow stacker <a oncontextmenu=\'mutePop(\"@mjibson\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'9044882\',\'https:\/\/twitter.com\/@mjibson\');\" class=\'user 9044882\'>@mjibson<\/a> is looking for beta feedback for his new RSS Reader. Pretty snappy, built with Go\/AppEngine: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/go-read.appspot.com\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/go-read.appspot.com\');\">go-read.appspot.com<\/a>
 processing tweet 1
-New tweet: \"I don\'t really mind all the bad stuff the Xbox One is doing\" days man in target demographic who isn\'t affected by any of the things
+New tweet: <a oncontextmenu=\'mutePop(\"@vApathyv\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'90265705\',\'https:\/\/twitter.com\/@vApathyv\');\" class=\'user 90265705\'>@vApathyv<\/a> Appy, we\'re going to a dueling piano bar. That takes requests. Any song. Seriously, I\'ve heard some insane requests they\'ll do.
 processing tweet 2
-New tweet: I mean, anything\'s got to be better than web twitter.  <a oncontextmenu=\'mutePop(\"#zatcap\"); return false;\' href=\'javascript:;\' onclick=\"cpp.openInNativeBrowser(\'https:\/\/twitter.com\/search?q=%23zatcap\');\">#zatcap<\/a>
+New tweet: This hour-long video talks through the design evolution from System Shock through to Bioshock Infinite: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=s7DVOw1lIcM\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=s7DVOw1lIcM\');\">youtube.com\/watch?v=s7DVOw…<\/a>
 processing tweet 3
-New tweet: .<a oncontextmenu=\'mutePop(\"@RowanKaiser\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'109951411\',\'https:\/\/twitter.com\/@RowanKaiser\');\" class=\'user 109951411\'>@RowanKaiser<\/a> API v1 shutdown begins at 1:30PM PDT.
+New tweet: New anti-HEROES!  <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/antiheroescomic.com\/comic\/308\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/antiheroescomic.com\/comic\/308\');\">antiheroescomic.com\/comic\/308<\/a>  I think we\'re scraping the bottom of the barrel, here.
 processing tweet 4
-New tweet: Holy shit I still have a ton of PS2 games in my backlog.
+New tweet: <a oncontextmenu=\'mutePop(\"@_knutaf\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'190796565\',\'https:\/\/twitter.com\/@_knutaf\');\" class=\'user 190796565\'>@_knutaf<\/a> <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?feature=player_embedded&v=tL91WBFkflw\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?feature=player_embedded&v=tL91WBFkflw\');\">youtube.com\/watch?feature=…<\/a>
 processing tweet 5
-New tweet: <a oncontextmenu=\'mutePop(\"@TaleSpun\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'97967321\',\'https:\/\/twitter.com\/@TaleSpun\');\" class=\'user 97967321\'>@TaleSpun<\/a> online being free on PS3 all this time has always felt sorta unreal
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Also, if we\'re talking teleportation, make sure you\'ve read The Stars My Destination, like, twice.
 processing tweet 6
-New tweet: Exactly!  RT <a oncontextmenu=\'mutePop(\"@patriciaxh\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'325966297\',\'https:\/\/twitter.com\/@patriciaxh\');\" class=\'user 325966297\'>@patriciaxh<\/a> Every time I see footage of Beyond Two Souls it seems like its a completely different game.
+New tweet: SaGa Frontier still had the best battles of all JRPGs just sayin.\'
 processing tweet 7
-New tweet: <a oncontextmenu=\'mutePop(\"@mcclure111\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'312426579\',\'https:\/\/twitter.com\/@mcclure111\');\" class=\'user 312426579\'>@mcclure111<\/a> the move you jitter the worse your tattoo comes out
+New tweet: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=j_6bmrqIsP8\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=j_6bmrqIsP8\');\">youtube.com\/watch?v=j_6bmr…<\/a> this is one of my favorite videos
 processing tweet 8
-New tweet: <a oncontextmenu=\'mutePop(\"@mcclure111\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'312426579\',\'https:\/\/twitter.com\/@mcclure111\');\" class=\'user 312426579\'>@mcclure111<\/a> I\'m picturing a game where you get a tattoo and you have to hold the analogue stick at 40% the entire time
+New tweet: Going through some old music I used to listen to in college; rediscovered \"Breaker! Breaker!\" - <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=W8yGo3t91nE\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=W8yGo3t91nE\');\">youtube.com\/watch?v=W8yGo3…<\/a>
 processing tweet 9
-New tweet: <a oncontextmenu=\'mutePop(\"@buhbuhluv\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'122182534\',\'https:\/\/twitter.com\/@buhbuhluv\');\" class=\'user 122182534\'>@buhbuhluv<\/a> do or do not there is no try
+New tweet: Neat answer to deceptively simple question: Why is it Dark at Night? <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/youtu.be\/gxJ4M7tyLRE\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/youtu.be\/gxJ4M7tyLRE\');\">youtu.be\/gxJ4M7tyLRE<\/a>
 processing tweet 10
-New tweet: <a oncontextmenu=\'mutePop(\"@countjackuula\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'1383063685\',\'https:\/\/twitter.com\/@countjackuula\');\" class=\'user 1383063685\'>@countjackuula<\/a> <a oncontextmenu=\'mutePop(\"@buhbuhluv\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'122182534\',\'https:\/\/twitter.com\/@buhbuhluv\');\" class=\'user 122182534\'>@buhbuhluv<\/a> <a href=\'javascript:;\' oncontextmenu=\"cpp.openInNativeBrowser(\'http:\/\/pbs.twimg.com\/media\/BMcGQhSCQAAwADf.jpg\'); return false;\" onclick=\"cpp.handleImage(\'http:\/\/pbs.twimg.com\/media\/BMcGQhSCQAAwADf.jpg\');\">pic.twitter.com\/Agmmt4bhur<\/a>
+New tweet: Mama Said Knock You Out has just shot to the top of my Songs To Request In Clubs list.
 processing tweet 11
-New tweet: <a oncontextmenu=\'mutePop(\"@prerisoft\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'345320917\',\'https:\/\/twitter.com\/@prerisoft\');\" class=\'user 345320917\'>@prerisoft<\/a> <a oncontextmenu=\'mutePop(\"@mcclure111\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'312426579\',\'https:\/\/twitter.com\/@mcclure111\');\" class=\'user 312426579\'>@mcclure111<\/a> but you can also read the one blog post I\'ve bothered to make here: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/zacaj.com\/p.php?id=721&title=Arduino+Pinball+Repair%2C+Pt.+1\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/zacaj.com\/p.php?id=721&title=Arduino+Pinball+Repair%2C+Pt.+1\');\">zacaj.com\/p.php?id=721&t…<\/a>+
+New tweet: I imagine Taio Cruz turning to someone before this song and saying, “the lyrics have a hidden meaning.<a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=k3an70ngHB8\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=k3an70ngHB8\');\">youtube.com\/watch?v=k3an70…<\/a>ytn1
 processing tweet 12
-New tweet: Four days debugging my pinball machine and the conclusion I\'m coming to is that I may just need a new Arduino
+New tweet: Rian Johnson on Screenwriting: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/youtu.be\/gux9zyFPDeA\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/youtu.be\/gux9zyFPDeA\');\">youtu.be\/gux9zyFPDeA<\/a> via <a oncontextmenu=\'mutePop(\"@YouTube\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'10228272\',\'https:\/\/twitter.com\/@YouTube\');\" class=\'user 10228272\'>@YouTube<\/a>
 processing tweet 13
-New tweet: No need to feign worry whenever they\'re in danger.  Like it\'d happen anyways.
+New tweet: I made a YouTubes. <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=fgIeBgLO6rY\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=fgIeBgLO6rY\');\">youtube.com\/watch?v=fgIeBg…<\/a>
 processing tweet 14
-New tweet: I find it much easier to enjoy many action stories if you just assume the protagonist is immortal from the start
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> Night--&gt;Day If you do, Samsung 830 is the way to go for performance\/reliability.
 processing tweet 15
-New tweet: I love rating random things
+New tweet: This is super cool - <a oncontextmenu=\'mutePop(\"@veritasium\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'168987151\',\'https:\/\/twitter.com\/@veritasium\');\" class=\'user 168987151\'>@veritasium<\/a> shows how a flame is better at conducting electricity than air: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=a7_8Gc_Llr8&feature=plcp\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=a7_8Gc_Llr8&feature=plcp\');\">youtube.com\/watch?v=a7_8Gc…<\/a>
 processing tweet 16
-New tweet: <a oncontextmenu=\'mutePop(\"@Avian_Flame\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'216442854\',\'https:\/\/twitter.com\/@Avian_Flame\');\" class=\'user 216442854\'>@Avian_Flame<\/a> like if at 12 or 18 or something you got to choose a username and that became your legal name
+New tweet: 84% of my followers are \'good\' and only 2% are fake. This is… surprising. Who the hell are all you people<a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/fakers.statuspeople.com\/Fakers\/Scores\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/fakers.statuspeople.com\/Fakers\/Scores\');\">fakers.statuspeople.com\/Fakers\/Scores<\/a>8F
 processing tweet 17
-New tweet: <a oncontextmenu=\'mutePop(\"@Avian_Flame\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'216442854\',\'https:\/\/twitter.com\/@Avian_Flame\');\" class=\'user 216442854\'>@Avian_Flame<\/a> and wondering what kinds of names people would choose for themselves if they had to be called that in real life too
+New tweet: <a oncontextmenu=\'mutePop(\"@The_Ruffians\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'154643438\',\'https:\/\/twitter.com\/@The_Ruffians\');\" class=\'user 154643438\'>@The_Ruffians<\/a> I should re-read The Little Prince now.
 processing tweet 18
-New tweet: <a oncontextmenu=\'mutePop(\"@Avian_Flame\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'216442854\',\'https:\/\/twitter.com\/@Avian_Flame\');\" class=\'user 216442854\'>@Avian_Flame<\/a> I was contemplating the brilliantness of \"avian flame\" only yesterday, a branch of my thinking on usernames in general
+New tweet: <a oncontextmenu=\'mutePop(\"@zacaj_\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'181191283\',\'https:\/\/twitter.com\/@zacaj_\');\" class=\'user 181191283\'>@zacaj_<\/a> 21 Grams.
 processing tweet 19
-New tweet: <a oncontextmenu=\'mutePop(\"@Avian_Flame\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'216442854\',\'https:\/\/twitter.com\/@Avian_Flame\');\" class=\'user 216442854\'>@Avian_Flame<\/a> saskatwn
+New tweet: This is a pretty different Dwarf Fortress experience (ongoing let\'s play): <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/brokenforum.com\/index.php?threads\/squidsteel-a-dwarf-fortress-le-oh-god-zombies.2655\/#post-193852\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/brokenforum.com\/index.php?threads\/squidsteel-a-dwarf-fortress-le-oh-god-zombies.2655\/#post-193852\');\">brokenforum.com\/index.php?thre…<\/a>
+processing tweet 0
+New tweet: Is there a good recommended headphone brand\/model (under $50)?
+processing tweet 1
+New tweet: My arduino pinball machine is DONE!!\nBlog post: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/zacaj.com\/p.php?id=737\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/zacaj.com\/p.php?id=737\');\">zacaj.com\/p.php?id=737<\/a>\nVideo: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/www.youtube.com\/watch?v=3V-wPKooEog&feature=youtu.be\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/www.youtube.com\/watch?v=3V-wPKooEog&feature=youtu.be\');\">youtube.com\/watch?v=3V-wPK…<\/a>\ncc <a oncontextmenu=\'mutePop(\"@mcclure111\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'312426579\',\'https:\/\/twitter.com\/@mcclure111\');\" class=\'user 312426579\'>@mcclure111<\/a> <a oncontextmenu=\'mutePop(\"@delta_vee\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'146656029\',\'https:\/\/twitter.com\/@delta_vee\');\" class=\'user 146656029\'>@delta_vee<\/a> <a oncontextmenu=\'mutePop(\"@prerisoft\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'345320917\',\'https:\/\/twitter.com\/@prerisoft\');\" class=\'user 345320917\'>@prerisoft<\/a>
+processing tweet 2
+New tweet: Worse, some interpret it as italics and some as bold
+processing tweet 3
+New tweet: I hate when I use *asterisks* around a word on a site and I mean for them to *be* asterisks but it interprets it as formatting
+processing tweet 4
+New tweet: <a oncontextmenu=\'mutePop(\"@mcclure111\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'312426579\',\'https:\/\/twitter.com\/@mcclure111\');\" class=\'user 312426579\'>@mcclure111<\/a> non games (ie political, ethics, etc) often yes
+processing tweet 5
+New tweet: \"I don\'t really mind all the bad stuff the Xbox One is doing\" days man in target demographic who isn\'t affected by any of the things
+processing tweet 6
+New tweet: I mean, anything\'s got to be better than web twitter.  <a oncontextmenu=\'mutePop(\"#zatcap\"); return false;\' href=\'javascript:;\' onclick=\"cpp.openInNativeBrowser(\'https:\/\/twitter.com\/search?q=%23zatcap\');\">#zatcap<\/a>
+processing tweet 7
+New tweet: .<a oncontextmenu=\'mutePop(\"@RowanKaiser\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'109951411\',\'https:\/\/twitter.com\/@RowanKaiser\');\" class=\'user 109951411\'>@RowanKaiser<\/a> API v1 shutdown begins at 1:30PM PDT.
+processing tweet 8
+New tweet: Holy shit I still have a ton of PS2 games in my backlog.
+processing tweet 9
+New tweet: <a oncontextmenu=\'mutePop(\"@TaleSpun\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'97967321\',\'https:\/\/twitter.com\/@TaleSpun\');\" class=\'user 97967321\'>@TaleSpun<\/a> online being free on PS3 all this time has always felt sorta unreal
+processing tweet 10
+New tweet: Exactly!  RT <a oncontextmenu=\'mutePop(\"@patriciaxh\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'325966297\',\'https:\/\/twitter.com\/@patriciaxh\');\" class=\'user 325966297\'>@patriciaxh<\/a> Every time I see footage of Beyond Two Souls it seems like its a completely different game.
+processing tweet 11
+New tweet: <a oncontextmenu=\'mutePop(\"@mcclure111\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'312426579\',\'https:\/\/twitter.com\/@mcclure111\');\" class=\'user 312426579\'>@mcclure111<\/a> the move you jitter the worse your tattoo comes out
+processing tweet 12
+New tweet: <a oncontextmenu=\'mutePop(\"@mcclure111\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'312426579\',\'https:\/\/twitter.com\/@mcclure111\');\" class=\'user 312426579\'>@mcclure111<\/a> I\'m picturing a game where you get a tattoo and you have to hold the analogue stick at 40% the entire time
+processing tweet 13
+New tweet: <a oncontextmenu=\'mutePop(\"@buhbuhluv\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'122182534\',\'https:\/\/twitter.com\/@buhbuhluv\');\" class=\'user 122182534\'>@buhbuhluv<\/a> do or do not there is no try
+processing tweet 14
+New tweet: <a oncontextmenu=\'mutePop(\"@countjackuula\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'1383063685\',\'https:\/\/twitter.com\/@countjackuula\');\" class=\'user 1383063685\'>@countjackuula<\/a> <a oncontextmenu=\'mutePop(\"@buhbuhluv\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'122182534\',\'https:\/\/twitter.com\/@buhbuhluv\');\" class=\'user 122182534\'>@buhbuhluv<\/a> <a href=\'javascript:;\' oncontextmenu=\"cpp.openInNativeBrowser(\'http:\/\/pbs.twimg.com\/media\/BMcGQhSCQAAwADf.jpg\'); return false;\" onclick=\"cpp.handleImage(\'http:\/\/pbs.twimg.com\/media\/BMcGQhSCQAAwADf.jpg\');\">pic.twitter.com\/Agmmt4bhur<\/a>
+processing tweet 15
+New tweet: <a oncontextmenu=\'mutePop(\"@prerisoft\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'345320917\',\'https:\/\/twitter.com\/@prerisoft\');\" class=\'user 345320917\'>@prerisoft<\/a> <a oncontextmenu=\'mutePop(\"@mcclure111\"); return false;\' href=\'#\' onclick=\"cpp.showUser(\'312426579\',\'https:\/\/twitter.com\/@mcclure111\');\" class=\'user 312426579\'>@mcclure111<\/a> but you can also read the one blog post I\'ve bothered to make here: <a href=\'javascript:;\' oncontextmenu=\"cpp.handleImage(\'http:\/\/zacaj.com\/p.php?id=721&title=Arduino+Pinball+Repair%2C+Pt.+1\');\" onclick=\"cpp.openInNativeBrowser(\'http:\/\/zacaj.com\/p.php?id=721&title=Arduino+Pinball+Repair%2C+Pt.+1\');\">zacaj.com\/p.php?id=721&t…<\/a>+
+processing tweet 16
+New tweet: Four days debugging my pinball machine and the conclusion I\'m coming to is that I may just need a new Arduino
+processing tweet 17
+New tweet: No need to feign worry whenever they\'re in danger.  Like it\'d happen anyways.
+processing tweet 18
+New tweet: I find it much easier to enjoy many action stories if you just assume the protagonist is immortal from the start
+processing tweet 19
+New tweet: I love rating random things
 processing tweet 0
 New tweet: What was the VPS (provider) site, again?
 processing tweet 1
@@ -480,3 +486,5 @@ processing tweet 18
 New tweet: Sure, I can go
 processing tweet 19
 New tweet: Would but I\'m not feeling great after yesterday. Thanks for the offer\n
+New tweet: Someone tweeted a picture!  I\'m so excited!  It\'s on yfrog!  I\'m never going to click the link!
+New tweet: This episode will probably be okay though cause I\'ve sorta noticed that AoT seems to have this weird pattern where shit gets fucked but then
