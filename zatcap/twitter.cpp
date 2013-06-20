@@ -394,6 +394,8 @@ Item* getTweet( string id )
 {
 	if(tweets.find(id)!=tweets.end())
 		return tweets[id];
+	if(id[0]<'0' || id[0]>'9')
+		return NULL;
 	int tries=0;
 	string tmpString;
 	while((tmpString=twit->statusShowById(id))=="" && tries++<10);

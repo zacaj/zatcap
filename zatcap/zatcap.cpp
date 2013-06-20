@@ -1044,6 +1044,8 @@ int main(int argc,char **argv)
 		{
 			string id=ToString(args[0].ToString());
 			Item *i=getTweet(id);
+			if(i==NULL)
+				return;
 			auto it=tweets.begin();
 			for(;it!=tweets.end();++it)
 			{

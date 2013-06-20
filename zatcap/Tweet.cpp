@@ -158,6 +158,7 @@ std::string Retweet::getHtml( string columnName )
 		}
 		replace(content,string("$TEXT"),escape(htmlText));
 		replace(content,string("$USERNAME"),escape(user()->username));
+		replace(content,string("$RTUSERNAME"),escape(retweetedBy->username));
 		replace(content,string("$NAME"),escape(user()->username));
 		replace(content,string("$RETWEETER"),escape(retweetedBy->username));
 		replace(content,string("$FULLNAME"),escape(user()->name));

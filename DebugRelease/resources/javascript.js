@@ -220,6 +220,8 @@ function sendTweet(tweet,split)
 {
 	if(!tweet || tweet.length==0)
 		tweet=document.getElementById('tweetbox').value;
+	if(tweet.length>300)
+			split="true";
 	cpp.sendTweet(tweet,inReplyTo,split);
 	document.getElementById('tweetbox').value="";
 }
@@ -268,7 +270,7 @@ function updateTweetLength()
 			{
 				if(children[i].username)
 				{
-					if(children[i].username.substr(0,str.length)==str)
+					if(children[i].username.substr(0,str.length).toLowerCase()==str.toLowerCase())
 					{
 						children[i].style.display="block";
 						if(makeSelected==true)

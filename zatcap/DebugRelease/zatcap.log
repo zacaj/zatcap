@@ -1,9 +1,9 @@
-﻿Build started 6/15/2013 9:34:29 PM.
+﻿Build started 6/16/2013 8:53:56 PM.
      1>Project "H:\source\zatcap html\zatcap\zatcap.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
          Creating "DebugRelease\zatcap.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I../libtwitcurl/curl /I../libtwitcurl/ /I"C:\Program Files (x86)\Awesomium Technologies LLC\Awesomium SDK\1.7.0.5\include" /Zi /nologo /W3 /WX- /Ox /Ob2 /Oi /Ot /Oy /GT /GL /D WINDOWS /D USE_WINDOWS /D WIN32 /D _NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /MT /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"DebugRelease\\" /Fd"DebugRelease\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt zatcap.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I../libtwitcurl/curl /I../libtwitcurl/ /I"C:\Program Files (x86)\Awesomium Technologies LLC\Awesomium SDK\1.7.0.5\include" /Zi /nologo /W3 /WX- /Ox /Ob2 /Oi /Ot /Oy /GT /GL /D WINDOWS /D USE_WINDOWS /D WIN32 /D _NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /MT /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"DebugRelease\\" /Fd"DebugRelease\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt twitter.cpp zatcap.cpp
          zatcap.cpp
      1>h:\source\zatcap html\zatcap\Tweet.h(79): warning C4018: '<' : signed/unsigned mismatch
      1>h:\source\zatcap html\zatcap\CustomColumn.h(16): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
@@ -49,36 +49,34 @@
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : see declaration of 'fopen'
      1>zatcap.cpp(1013): warning C4018: '<' : signed/unsigned mismatch
      1>zatcap.cpp(1026): warning C4018: '<' : signed/unsigned mismatch
-     1>zatcap.cpp(1116): warning C4244: 'argument' : conversion from 'time_t' to 'int', possible loss of data
-     1>zatcap.cpp(1142): warning C4018: '<' : signed/unsigned mismatch
-     1>zatcap.cpp(1220): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1118): warning C4244: 'argument' : conversion from 'time_t' to 'int', possible loss of data
+     1>zatcap.cpp(1144): warning C4018: '<' : signed/unsigned mismatch
+     1>zatcap.cpp(1222): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : see declaration of 'fopen'
-     1>zatcap.cpp(1221): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1223): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : see declaration of 'fopen'
-     1>zatcap.cpp(1241): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>zatcap.cpp(1257): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1243): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>zatcap.cpp(1259): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : see declaration of 'fopen'
-     1>zatcap.cpp(1264): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1266): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
      1>zatcap.cpp(1037): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : see declaration of 'fopen'
-     1>zatcap.cpp(1065): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1067): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(311) : see declaration of 'sscanf'
-     1>zatcap.cpp(1074): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1076): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(311) : see declaration of 'sscanf'
-     1>zatcap.cpp(1336): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1338): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
-     1>zatcap.cpp(1342): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1344): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
-     1>zatcap.cpp(1344): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1346): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(357) : see declaration of 'sprintf'
-     1>zatcap.cpp(1354): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1356): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : see declaration of 'fopen'
-     1>zatcap.cpp(1360): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
      1>zatcap.cpp(1362): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
-     1>zatcap.cpp(1366): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1364): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
      1>zatcap.cpp(1368): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
@@ -88,7 +86,7 @@
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
      1>zatcap.cpp(1374): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
-     1>zatcap.cpp(1378): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1376): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
      1>zatcap.cpp(1380): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
@@ -104,7 +102,7 @@
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
      1>zatcap.cpp(1392): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
-     1>zatcap.cpp(1396): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1394): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
      1>zatcap.cpp(1398): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
@@ -114,7 +112,7 @@
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
      1>zatcap.cpp(1404): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
-     1>zatcap.cpp(1430): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1406): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
      1>zatcap.cpp(1432): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
@@ -122,7 +120,7 @@
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
      1>zatcap.cpp(1436): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
-     1>zatcap.cpp(1448): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1438): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
      1>zatcap.cpp(1450): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
@@ -136,7 +134,7 @@
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
      1>zatcap.cpp(1460): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
-     1>zatcap.cpp(1465): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1462): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
      1>zatcap.cpp(1467): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
@@ -148,30 +146,66 @@
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
      1>zatcap.cpp(1475): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
-     1>zatcap.cpp(1507): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1477): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(237) : see declaration of 'fscanf'
+     1>zatcap.cpp(1509): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(311) : see declaration of 'sscanf'
-     1>zatcap.cpp(1510): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1512): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(311) : see declaration of 'sscanf'
-     1>zatcap.cpp(1562): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1564): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(357) : see declaration of 'sprintf'
-     1>zatcap.cpp(1572): warning C4996: 'vsnprintf': This function or variable may be unsafe. Consider using vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1574): warning C4996: 'vsnprintf': This function or variable may be unsafe. Consider using vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(340) : see declaration of 'vsnprintf'
-     1>zatcap.cpp(1576): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1578): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : see declaration of 'fopen'
-     1>zatcap.cpp(1591): warning C4996: 'vsnprintf': This function or variable may be unsafe. Consider using vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1593): warning C4996: 'vsnprintf': This function or variable may be unsafe. Consider using vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(340) : see declaration of 'vsnprintf'
-     1>zatcap.cpp(1594): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1596): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : see declaration of 'fopen'
-     1>zatcap.cpp(1631): warning C4996: 'mkdir': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _mkdir. See online help for details.
+     1>zatcap.cpp(1633): warning C4996: 'mkdir': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _mkdir. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\direct.h(140) : see declaration of 'mkdir'
-     1>zatcap.cpp(1632): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1634): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : see declaration of 'fopen'
-     1>zatcap.cpp(1637): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1639): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : see declaration of 'fopen'
-     1>zatcap.cpp(1754): warning C4018: '<' : signed/unsigned mismatch
-     1>zatcap.cpp(1762): warning C4018: '<' : signed/unsigned mismatch
-     1>zatcap.cpp(1816): warning C4018: '<' : signed/unsigned mismatch
-     1>zatcap.cpp(1830): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>zatcap.cpp(1756): warning C4018: '<' : signed/unsigned mismatch
+     1>zatcap.cpp(1764): warning C4018: '<' : signed/unsigned mismatch
+     1>zatcap.cpp(1818): warning C4018: '<' : signed/unsigned mismatch
+     1>zatcap.cpp(1832): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\time.inl(112) : see declaration of 'localtime'
+         twitter.cpp
+     1>h:\source\zatcap html\zatcap\Tweet.h(79): warning C4018: '<' : signed/unsigned mismatch
+     1>twitter.cpp(89): warning C4018: '<' : signed/unsigned mismatch
+     1>twitter.cpp(101): warning C4244: 'initializing' : conversion from 'time_t' to 'int', possible loss of data
+     1>twitter.cpp(123): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\time.inl(112) : see declaration of 'localtime'
+     1>twitter.cpp(190): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : see declaration of 'fopen'
+     1>twitter.cpp(220): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\time.inl(112) : see declaration of 'localtime'
+     1>twitter.cpp(231): warning C4800: 'uchar' : forcing value to bool 'true' or 'false' (performance warning)
+     1>twitter.cpp(232): warning C4800: 'uchar' : forcing value to bool 'true' or 'false' (performance warning)
+     1>twitter.cpp(261): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\time.inl(112) : see declaration of 'localtime'
+     1>twitter.cpp(272): warning C4800: 'uchar' : forcing value to bool 'true' or 'false' (performance warning)
+     1>twitter.cpp(273): warning C4800: 'uchar' : forcing value to bool 'true' or 'false' (performance warning)
+     1>twitter.cpp(299): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\time.inl(112) : see declaration of 'localtime'
+     1>twitter.cpp(329): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : see declaration of 'fopen'
+     1>twitter.cpp(336): warning C4018: '<' : signed/unsigned mismatch
+     1>twitter.cpp(436): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : see declaration of 'fopen'
+     1>twitter.cpp(536): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+     1>twitter.cpp(595): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : see declaration of 'fopen'
+     1>twitter.cpp(670): warning C4018: '<' : signed/unsigned mismatch
+     1>twitter.cpp(801): warning C4018: '<' : signed/unsigned mismatch
+     1>twitter.cpp(818): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\time.inl(112) : see declaration of 'localtime'
+     1>twitter.cpp(837): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\time.inl(112) : see declaration of 'localtime'
+     1>twitter.cpp(843): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\time.inl(112) : see declaration of 'localtime'
        ResourceCompile:
          All outputs are up-to-date.
@@ -246,8 +280,8 @@
          Finished searching libraries
      1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
          Generating code
-     1>h:\source\zatcap html\zatcap\zatcap.cpp(1606): warning C4700: uninitialized local variable 'mx' used
-     1>h:\source\zatcap html\zatcap\zatcap.cpp(1606): warning C4700: uninitialized local variable 'my' used
+     1>h:\source\zatcap html\zatcap\zatcap.cpp(1608): warning C4700: uninitialized local variable 'mx' used
+     1>h:\source\zatcap html\zatcap\zatcap.cpp(1608): warning C4700: uninitialized local variable 'my' used
          Finished generating code
      1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _calloc already defined in LIBCMT.lib(calloc.obj); second definition ignored
      1>MSVCRT.lib(MSVCR110.dll) : warning LNK4006: _free already defined in LIBCMT.lib(free.obj); second definition ignored
@@ -384,4 +418,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:21.88
+Time Elapsed 00:00:36.63
