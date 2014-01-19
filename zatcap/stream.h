@@ -1,6 +1,5 @@
 #pragma once
-#include <string>
-using namespace std;
+
 class twitCurl;
 
 /**
@@ -13,5 +12,5 @@ class twitCurl;
 	*/
 bool openUserStream(twitCurl *twit);
 int openUserStream(void *twit);
-string uploadPhoto(string path,string tweet="");
+
 extern int streaming;

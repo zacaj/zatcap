@@ -4,8 +4,8 @@
 
 TimedEventProcess::TimedEventProcess()
 {
-	lastTime=clock();
-	interval=60;
+	ticks=100;
+	maxTicks=3600;
 }
 
 
@@ -18,10 +18,10 @@ extern twitCurl *twit;
 
 void TimedEventProcess::update()
 {
-	if((float)clock()/CLOCKS_PER_SEC-lastTime/CLOCKS_PER_SEC>interval)
+	if(ticks++>maxTicks)
 	{
-		lastTime=clock();
-		startThread(fn,this);
+		ticks=0;
+		SDL_CreateThread(fn,this);
 	}
 }
 

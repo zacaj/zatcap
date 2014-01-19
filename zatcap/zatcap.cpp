@@ -1,4 +1,4 @@
-﻿// zatcap.cpp : Defines the entry point for the console application.
+// zatcap.cpp : Defines the entry point for the console application.
 //
 
 #include "stdafx.h"
@@ -6,50 +6,99 @@
 #include "curl.h"
 #include <string>
 #include <stdio.h>
-#include <thread>
 #include "twitter.h"
 #include "file.h"
 #include "stream.h"
 #include "zatcap.h"
+#include "WaitIndicator.h"
+#include <SDL.h>
+#include <SDL_thread.h>
 #include <assert.h>
+#include "HomeColumn.h"
 #include <time.h>
 #include <string.h>
 #include <sys/stat.h>
-#include <Awesomium/WebCore.h>
-#include <Awesomium/BitmapSurface.h>
-#include <Awesomium/STLHelpers.h>
-#include <string>
-using namespace Awesomium;
-#include <map>
-#include <Awesomium/DataSource.h>
-#include <functional>
+#include "MentionColumn.h"
+#include <SDL_image.h>
+#include <SDL_rotozoom.h>
+#include "Button.h"
+#include <SDL_syswm.h>
+#include "Textbox.h"
 #ifdef USE_WINDOWS
-#include <windows.h>
-#include <process.h>
 #include <direct.h>
-#include <io.h>
-#include <fcntl.h>
 #else
 #include <sys/stat.h>
-#include <GL/glew.h>
 #endif
 #include "TimedEventProcess.h"
+extern SDL_Surface *defaultSmallUserPic;
+extern SDL_Surface *defaultMediumUserPic;
 Process *mouseDragReceiver;
 int version=
-#include "../DebugRelease/version.txt"
+#include "../Debug/version.txt"
 	;
-#include "Awesomium.h"
-#include <dirent.h>
-#include "CustomColumn.h"
 int updateScreen=1;
+Uint8 *keystate;
 bool newVersion=0;
 Textbox *tweetbox;
 string username;
-
+SDL_Surface* arrowDown;
+SDL_Surface* arrowUp;
+SDL_Surface* favorite[3];
+SDL_Surface* retweet[3];
+SDL_Surface* reply[3];
+SDL_Surface* deleteButton[3];
+ SDL_Surface* refresh[2];
+ SDL_Surface* top[2];
+ SDL_Surface* convo[2];
+SDL_Surface* tempSurface;
 string tempString;
 Process *keyboardInputReceiver;
 map<float,Process*> processes;
+map<int,TTF_Font *> fonts;
 int start=-1;
+/* XPM */
+static const char *arrow[] = {
+	/* width height num_colors chars_per_pixel */
+	"    32    32        3            1",
+	/* colors */
+	"X c #000000",
+	". c #ffffff",
+	"  c None",
+	/* pixels */
+	"X                               ",
+	"XX                              ",
+	"X.X                             ",
+	"X..X                            ",
+	"X...X                           ",
+	"X....X                          ",
+	"X.....X                         ",
+	"X......X                        ",
+	"X.......X                       ",
+	"X........X                      ",
+	"X.....XXXXX                     ",
+	"X..X..X                         ",
+	"X.X X..X                        ",
+	"XX  X..X                        ",
+	"X    X..X                       ",
+	"     X..X                       ",
+	"      X..X                      ",
+	"      X..X                      ",
+	"       XX                       ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"                                ",
+	"0,0"
+};
 bool g_redrawAllTweets=0;
 string cscanf(FILE *fp,char *text)
 {
@@ -58,7 +107,8 @@ string cscanf(FILE *fp,char *text)
 	return ret;
 }
 
-int done=0;
+SDL_Surface *screen=NULL;
+int quit=0;
 namespace settings
 {
 	string userInfoFile="user.txt";
@@ -86,36 +136,33 @@ namespace settings
 	int textSize=13,timeSize=13,columnTitleTextSize=25,userNameTextSize=15,retweetTextSize=12,editorTextSize=14;
 	int pinLogin=0;
 	int maxTweets=1000;
-	string proxyServer;
-	string proxyPort;
-	string notificationSound;
 }
 namespace colors
 {
-	 string unreadTweetColor;
-	 string readTweetColor;
-	 string hoverTweetColor;
-	 string columnBackgroundColor;
-	 string buttonHoverColor;
-	string buttonColor;
+	 Uint32 unreadTweetColor;
+	 Uint32 readTweetColor;
+	 Uint32 hoverTweetColor;
+	 Uint32 columnBackgroundColor;
+	 Uint32 buttonHoverColor;
+	Uint32 buttonColor;
 	int columnTitleTextColorR,columnTitleTextColorG,columnTitleTextColorB;
 	int textColorR,textColorG,textColorB;
-	string buttonBackgroundColor;
-	string buttonBorderColor;
-	string scrollbarBackgroundColor;
-	string scrollbarColor;
-	string scrollbarHoverColor;
+	Uint32 buttonBackgroundColor;
+	Uint32 buttonBorderColor;
+	Uint32 scrollbarBackgroundColor;
+	Uint32 scrollbarColor;
+	Uint32 scrollbarHoverColor;
 	int retweetTextColorR,retweetTextColorG,retweetTextColorB;
 	int usernameTextColorR,usernameTextColorG,usernameTextColorB;
 	int timeTextColorR,timeTextColorG,timeTextColorB;
-	string unreadTweetColor2;
-	string readTweetColor2;
-	string separatorColor;
+	Uint32 unreadTweetColor2;
+	Uint32 readTweetColor2;
+	Uint32 separatorColor;
 	int entityColorR[6],entityColorG[6],entityColorB[6];
-	string entityUnderlineColor[6];
+	Uint32 entityUnderlineColor[6];
 }
 
-size_t dfunction( char *ptr, size_t size, size_t nmemb, void *userdata)
+size_t function( char *ptr, size_t size, size_t nmemb, void *userdata)
 {
 	return size*nmemb;
 }
@@ -128,55 +175,27 @@ void msystem( string str )
 #else
 	string cmd=str;
 #endif
-	print("Command to be run: \n%s\n\nOutput from command (empty if successful):\n\n",cmd.c_str());
+	printf("Command to be run: \n%s\n\nOutput from command (empty if successful):\n\n",cmd.c_str());
 	system(cmd.c_str());
-	print("\n<end of output>\n");
+	printf("\n<end of output>\n");
 }
 int iconR,iconG,iconB;
 int iconR2,iconG2,iconB2;
+SDL_Surface *icon;
 void setIconColor( int r,int g,int b )
 {
 	iconR=r;
 	iconG=g;
 	iconB=b;
 }
-size_t urlfunction( char *ptr, size_t size, size_t nmemb, void *userdata)
-{
-	string *str=(string*)userdata;
-	str->append(ptr,size*nmemb);
-	return size*nmemb;
-}
-int curl_debug_callback2(CURL *curl,curl_infotype infotype,char *data,size_t size,void *userptr);
-string getSite(string url)
-{
-	CURL *curl=curl_easy_init();
-	curl_easy_setopt(  curl, CURLOPT_URL,url.c_str());//
 
-	if(settings::proxyServer!="none")
-	{
-		curl_easy_setopt( curl, CURLOPT_PROXY, (settings::proxyServer+":"+settings::proxyPort).c_str());
-		curl_easy_setopt(curl, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
-	}
-	string *ret=new string();
-	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, urlfunction);
-	curl_easy_setopt(curl,CURLOPT_WRITEDATA,(void*)ret);
-	curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYPEER, 0);
-	//curl_easy_setopt( curl, CURLOPT_DEBUGFUNCTION, curl_debug_callback2 );
-	curl_easy_setopt(  curl, CURLOPT_HTTPGET, 1 );//
-	curl_easy_setopt(  curl, CURLOPT_VERBOSE, 0 );
-	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1); 
-	//curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYHOST, 0 );
-	curl_easy_perform(curl);
-	curl_easy_cleanup(curl);
-	return *ret;
-}
-void collectDeviousData(void *p)
+int collectDeviousData(void *p)
 {
 	int columnTitleTextSize;
 	CURL *curl=curl_easy_init();
 	string url= (string("http://zacaj.com/zatcap.php?id="+username+i2s(version)));
 	curl_easy_setopt(  curl, CURLOPT_URL,url.c_str());//
-	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, dfunction);
+	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, function);
 	curl_easy_perform(curl);
 	curl_easy_cleanup(curl);
 	{
@@ -184,7 +203,7 @@ void collectDeviousData(void *p)
 		assert_(curl2);
 		string url= (string("http://zacaj.com/zatcap/zatcap-"+i2s(version+1)+".zip"));
 		curl_easy_setopt(  curl2, CURLOPT_URL,url.c_str());//
-		curl_easy_setopt(curl2, CURLOPT_WRITEFUNCTION, dfunction);
+		curl_easy_setopt(curl2, CURLOPT_WRITEFUNCTION, function);
 		curl_easy_setopt(curl2, CURLOPT_NOBODY, 1);
 		curl_easy_setopt(curl2, CURLOPT_HEADER, 1);
 		curl_easy_setopt(curl2, CURLOPT_FAILONERROR , 1);
@@ -198,166 +217,17 @@ void collectDeviousData(void *p)
 			newVersion=1;
 		curl_easy_cleanup(curl2);
 	}
-}
-void addColumnButtons()
-{
-	for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)
-	{
-		if(it->second->isColumn())
-		{
-			Column *column=(Column*)it->second;
-			string html=f2s("resources/columnbutton.html");
-			replace(html,"$COLUMNNAME",column->columnName);
-			runJS("document.getElementById('columnButtonContainer').appendChild(nodeFromHtml('"+escape(html)+"'));");
-		}
-	}
-}
-int w=-1;
-#ifdef USE_WINDOWS
-WNDCLASSEX wc;
-HWND hwnd;
-MSG Msg;
-bool hasFocus=1;
-LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
-{
-	switch(msg)
-	{
-	case WM_CLOSE:
-		DestroyWindow(hwnd);
-		break;
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		break;
-	case WM_SIZE:
-		{
-			if(LOWORD(lParam)==0)
-				break;
-			if(LOWORD(lParam)<550 &&(w==-1 || w>=550))
-			{
-				runJS("tweetContent=document.getElementById('tweetbox').value;");
-				runJS("document.getElementById('bottom').innerHTML='"+escape(f2s("resources/bottomnarrow.html"))+"';");
-				runJS("document.getElementById('bottom').style.height='100px';");
-				runJS("document.getElementById('columns').style.bottom='100px';");
-				runJS("document.getElementById('columns').style.overflow='hidden';");
-				runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
-				runJS("	document.getElementById('tweetbox').addEventListener('paste',tweetboxPaste,true);");
-				runJS("document.getElementById('tweetbox').value=tweetContent;");
-				runJS("hideColumns();");
-				addColumnButtons();
-			}
-			else if(LOWORD(lParam)>550 && (w==-1 || w<=550))
-			{
-				runJS("tweetContent=document.getElementById('tweetbox').value;");
-				runJS("document.getElementById('bottom').innerHTML='"+escape(f2s("resources/bottom.html"))+"';");
-				runJS("document.getElementById('bottom').style.height='75px';");
-				runJS("document.getElementById('columns').style.bottom='75px';");
-				runJS("document.getElementById('columns').style.overflow='auto';");
-				runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
-				runJS("	document.getElementById('tweetbox').addEventListener('paste',tweetboxPaste,true);");
-				runJS("document.getElementById('tweetbox').value=tweetContent;");
-				runJS("showColumns();");
-			}
-			if(view)
-			view->Resize(LOWORD(lParam),HIWORD(lParam));
-			w=LOWORD(lParam);
-		}
-		break;
-	case WM_SETFOCUS:
-		hasFocus=1;
-		//printf("focus\n");
-		notifyIcon(0);
-		break ;
-
-	case WM_KILLFOCUS:
-		hasFocus=0;
-		//printf("unfocus\n");
-		break;
-
-	case WM_ACTIVATE:
-		if( LOWORD(wParam) == WA_ACTIVE )
-		{
-			//printf("active\n");
-			hasFocus=1;
-			notifyIcon(0);
-		}
-		else 
-		{
-			//printf("deactive\n");
-			
-			hasFocus=0;
-		}
-		//	puts( "I AM NOW INACTIVE." ) ;
-		break ;
-	default:
-		return DefWindowProc(hwnd, msg, wParam, lParam);
-	}
 	return 0;
 }
-void notifyIcon(bool on)
-{
-	FLASHWINFO info;
-	info.cbSize = sizeof(info);
-	info.hwnd = hwnd;
-	if(on)
-	{
-#ifdef NDEBUG
-		if(settings::notificationSound.size())
-			PlaySoundA(settings::notificationSound.c_str(), NULL, SND_FILENAME|SND_ASYNC|SND_NOSTOP);
-#endif
-		if(GetFocus()==hwnd || hasFocus)
-		{
-			return;
-		}
-		alert=1;
-		info.dwFlags = FLASHW_TRAY;
-		info.dwTimeout = 0;
-		info.uCount = 3000;
-		//FlashWindowEx(&info);
-	}
-	else 
-	{
-		info.dwFlags = FLASHW_STOP;
-		info.dwTimeout = 0;
-		info.uCount = 3;
-		//FlashWindowEx(&info);
-		alert=0;
-		//printf("stop\n");
-	}
-}
-#else
-void notifyIcon(bool on)
-{
-//todo
-}
-#endif
-
-void saveMute() 
-{
-	FILE *fp=fopen("mute.txt","wb");
-	for(auto it:mute)
-	{
-		fprintf(fp,"%s\n",it.first.c_str());
-		fwrite(&it.second,sizeof(time_t),1,fp);
-	}
-	fclose(fp);
-}
-
+SDL_mutex *tempSurfaceMutex;
 size_t callback_func(void *ptr, size_t size, size_t count, void *userdata);
-void quit()
-{
-	saveMute();
-	view->Destroy();
-	session->Release();
-	WebCore::Shutdown();
-
-}
 void loadUser(twitCurl *twit)
 {
 	FILE *fp=fopen("user.txt","r");
 	if(!fp)
 	{
-		print("ERROR:  Could not read %s (user info file specified in config.txt)\n");
-		quit();
+		printf("ERROR:  Could not read %s (user info file specified in config.txt)\n");
+		SDL_Quit();
 		system("pause");
 		exit(0);
 	}
@@ -390,8 +260,8 @@ void loadUser(twitCurl *twit)
 		//	debug("%i pass: %s\n",__LINE__,password.c_str());
 			if(!username.size() || !password.size())
 			{
-				print("ERROR:  Could not read credentials from %s (user info file specified in config.txt)\n");
-				quit();
+				printf("ERROR:  Could not read credentials from %s (user info file specified in config.txt)\n");
+				SDL_Quit();
 				system("pause");
 				exit(0);
 			}
@@ -399,60 +269,64 @@ void loadUser(twitCurl *twit)
 			twit->setTwitterPassword(password);
 			twit->getOAuth().setConsumerKey("1Ysjec2smtfSHfTaZeOAA");
 			twit->getOAuth().setConsumerSecret("fMzPJj4oFBgSlW1Ma2r79Y1kE0t7S7r1lvQXBnXSk");
-			string authURL;debugHere();
-			assert_(twit->oAuthRequestToken(authURL)!="");debugHere();
+			string authURL;
+			assert_(twit->oAuthRequestToken(authURL)!="");
 			if(settings::pinLogin)
 			{
-				string url=authURL;
-				print("Please go to \n%s and enter the pin\n",url.c_str());
+				string url;
+				twit->oAuthRequestToken(url);
+				printf("Please go to %s and enter the pin\n",url.c_str());
 				char pin[100];
 				scanf("%s",pin);
-				print("Pin entered: %s\n",pin);
+				printf("Pin entered: %s\n",pin);
 				twit->getOAuth().setOAuthPin(pin);
 			}
 			else if(twit->oAuthHandlePIN(authURL)=="")
-			{debugHere();
-				print("Login failure\n");debugHere();
-				system("pause");debugHere();
-				quit();
+			{
+				printf("Login failure\n");
+				system("pause");
 				exit(0);
 			}//use pin?
-			debugHere();
+
 			assert_(twit->oAuthAccessToken()!="");
 
-			string key,secret;debugHere();
-			twit->getOAuth().getOAuthTokenKey(key);debugHere();
-			twit->getOAuth().getOAuthTokenSecret(secret);debugHere();
-			fp=fopen("user.txt","w");debugHere();
-			fprintf(fp,"username = %s\n",username.c_str());debugHere()debugHere();
-			fprintf(fp,"token key = %s\n",key.c_str());debugHere();
-			fprintf(fp,"token secret = %s\n",secret.c_str());debugHere();
-			fclose(fp);debugHere();
+			string key,secret;
+			twit->getOAuth().getOAuthTokenKey(key);
+			twit->getOAuth().getOAuthTokenSecret(secret);
+			fp=fopen("user.txt","w");
+			fprintf(fp,"username = %s\n",username.c_str());
+			fprintf(fp,"token key = %s\n",key.c_str());
+			fprintf(fp,"token secret = %s\n",secret.c_str());
+			fclose(fp);
 
 		}
 	}
 	string tmpString;
-	print("...\n");
 	if((tmpString=twit->accountRateLimitGet())=="")
 		loadUser(twit);
-	if(tmpString.find("error")!=string::npos)
+	Json::Value root;
+	Json::Reader reader;
+	reader.parse(tmpString,root);
+	if(root["reset_time"].isNull())
 	{
-		print("ERROR:  log in failure (is your password correct in %s?)\n",settings::userInfoFile.c_str());
+		printf("ERROR:  log in failure (is your password correct in %s?)\n",settings::userInfoFile.c_str());
+		SDL_Quit();
 		system("pause");
-		quit();
 		exit(0);
 	}
-	print("Successfully logged in to twitter account: %s\n",username.c_str());debugHere();
+	printf("Successfully logged in to twitter account: %s\n",username.c_str());debugHere();
 	{
 		TimedEventProcess *timer=new TimedEventProcess;
 		timer->data=NULL;
 		timer->fn=collectDeviousData;
-		timer->interval=60*10;
+		timer->maxTicks=10000;
+		timer->ticks=9999;
 		processes[23478]=timer;
 	}
 }
 
 void readConfig();
+extern SDL_Surface *defaultUserPic;
 
 int mousex=-10000,mousey,mousebutton;
 
@@ -487,10 +361,7 @@ char* getClipboardText()
 }
 
 #endif
-
-extern Mutex jsMutex;
 #ifdef LINUX
-#include "linux.cpp"
 void SetCursor(int c)
 {
 
@@ -508,723 +379,85 @@ char* getClipboardText()
     return "Not implemented yet, because fragmentation";
 }
 #endif
-void saveMute() ;
-void saveTweetPtr(void *data)
+int saveTweetPtr(void *data)
 {
 	saveTweets();
-	saveMute();
+	return 0;
 }
+static SDL_Cursor *init_system_cursor(const char *image[]);
 time_t configLastRead=0;
-struct tweetData
-{
-	string str;
-	string replyId;
-	string user;
-	bool split;
-	tweetData(string _str,string _r,string _u,bool _split)
-	{
-		str=_str;
-		replyId=_r;
-		user=_u;
-		split=_split;
-	}
-};
-
-void addUsername( string name ) 
-{
-	runJS("usernames.push('"+name+"');");
-}
-bool alert=0,alert2=0;;
-int nUnread=0,nUnread2=0;
-Mutex debugMutex;
-map<int,bool> pendingTweets;
-size_t removeLeadingTrailingSpaces( string &str )
-{
-	if(str.empty())
-		return 0;
-	size_t notSpace=str.find_first_not_of(' ');
-	if(notSpace!=string::npos)
-		str.erase(str.begin(),str.begin()+notSpace);
-	while(str.back()==' ') str.erase(str.size()-1);
-	if(notSpace==string::npos)
-		return 0;
-	return notSpace;
-}
-void sendTweet(void *_data)
-{
-	tweetData *data=(tweetData*)_data;
-	string ostr=data->str;
-	vector<string> tweets;
-	if(ostr.size()<=140 || !data->split)
-		tweets.push_back(ostr);
-	else
-	{
-		string prefix="";
-		{
-			volatile int pos=0;
-			if(ostr[0]=='@')
-				while(pos!=string::npos)
-				{
-					if(ostr[pos]=='@')
-					{
-						pos=ostr.find(' ',pos);
-						pos++;
-					}
-					else break;
-				}
-				prefix.append(ostr.substr(0,pos));
-			int start=pos;
-			while(pos<=ostr.size())
-			{
-				pos+=137-prefix.size();
-				if(tweets.size()!=0)
-					pos-=3;
-				if(pos>ostr.size())
-					pos=ostr.size()-1;
-				else
-				while(ostr[pos]!=' ' && pos>start)
-					pos--;
-				if(pos==start)
-				{
-					//tweets[tweets.size()-1].erase(tweets[tweets.size()-1].begin()+tweets[tweets.size()-1].size()-2,tweets[tweets.size()-1].end());
-					break;
-				}
-				else
-				{
-					if(tweets.size())
-					tweets.back()+="...";
-				}
-				string tweet=prefix;
-				if(tweets.size()!=0)
-					tweet+="...";
-				string excerpt=ostr.substr(start,pos-start+1);
-				removeLeadingTrailingSpaces(excerpt);
-				tweet+=excerpt;
-				tweets.push_back(tweet);
-				start=pos;
-			}
-		}
-	}
-	for(int i=0;i<tweets.size();i++)
-	{
-		string str=tweets[i];
-		time_t t=time(NULL);
-		Activity *activity=new Activity(str,"cpp.stopTweet("+i2s(t)+");",data->user);
-		pendingTweets[t]=0;
-		addTweet((Item**)&activity);
-		while(twit->statusUpdate(str,data->replyId)=="" && !pendingTweets[t]);
-		deleteTweet(activity->id);
-		print("Tweet sent successfully: %s (%s,%s)\n",str.c_str(),data->replyId.c_str(),replyId.c_str());
-	}
-	delete data;
-}
-extern vector<string> jsToRun;
-map<string,time_t> mute;
-#ifdef USE_WINDOWS
-HBITMAP icon[3];
-set<string> followers;
-BOOL SaveToFile(HBITMAP hBitmap3, const char* lpszFileName)
-{   
-	HDC hDC;
-	int iBits;
-	WORD wBitCount;
-	DWORD dwPaletteSize=0, dwBmBitsSize=0, dwDIBSize=0, dwWritten=0;
-	BITMAP Bitmap0;
-	BITMAPFILEHEADER bmfHdr;
-	BITMAPINFOHEADER bi;
-	LPBITMAPINFOHEADER lpbi;
-	HANDLE fh, hDib, hPal,hOldPal2=NULL;
-	hDC = CreateDCA("DISPLAY", NULL, NULL, NULL);
-	iBits = GetDeviceCaps(hDC, BITSPIXEL) * GetDeviceCaps(hDC, PLANES);
-	DeleteDC(hDC);
-	if (iBits <= 1)
-		wBitCount = 1;
-	else if (iBits <= 4)
-		wBitCount = 4;
-	else if (iBits <= 8)
-		wBitCount = 8;
-	else
-		wBitCount = 24; 
-	GetObject(hBitmap3, sizeof(Bitmap0), (LPSTR)&Bitmap0);
-	bi.biSize = sizeof(BITMAPINFOHEADER);
-	bi.biWidth = Bitmap0.bmWidth;
-	bi.biHeight =-Bitmap0.bmHeight;
-	bi.biPlanes = 1;
-	bi.biBitCount = wBitCount;
-	bi.biCompression = BI_RGB;
-	bi.biSizeImage = 0;
-	bi.biXPelsPerMeter = 0;
-	bi.biYPelsPerMeter = 0;
-	bi.biClrImportant = 0;
-	bi.biClrUsed = 256;
-	dwBmBitsSize = ((Bitmap0.bmWidth * wBitCount +31) & ~31) /8
-		* Bitmap0.bmHeight; 
-	hDib = GlobalAlloc(GHND,dwBmBitsSize + dwPaletteSize + sizeof(BITMAPINFOHEADER));
-	lpbi = (LPBITMAPINFOHEADER)GlobalLock(hDib);
-	*lpbi = bi;
-
-	hPal = GetStockObject(DEFAULT_PALETTE);
-	if (hPal)
-	{ 
-		hDC = GetDC(NULL);
-		hOldPal2 = SelectPalette(hDC, (HPALETTE)hPal, FALSE);
-		RealizePalette(hDC);
-	}
-
-
-	GetDIBits(hDC, hBitmap3, 0, (UINT) Bitmap0.bmHeight, (LPSTR)lpbi + sizeof(BITMAPINFOHEADER) 
-		+dwPaletteSize, (BITMAPINFO *)lpbi, DIB_RGB_COLORS);
-
-	if (hOldPal2)
-	{
-		SelectPalette(hDC, (HPALETTE)hOldPal2, TRUE);
-		RealizePalette(hDC);
-		ReleaseDC(NULL, hDC);
-	}
-
-	fh = CreateFileA(lpszFileName, GENERIC_WRITE,0, NULL, CREATE_ALWAYS, 
-		FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, NULL); 
-
-	if (fh == INVALID_HANDLE_VALUE)
-		return FALSE; 
-
-	bmfHdr.bfType = 0x4D42; // "BM"
-	dwDIBSize = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + dwPaletteSize + dwBmBitsSize;
-	bmfHdr.bfSize = dwDIBSize;
-	bmfHdr.bfReserved1 = 0;
-	bmfHdr.bfReserved2 = 0;
-	bmfHdr.bfOffBits = (DWORD)sizeof(BITMAPFILEHEADER) + (DWORD)sizeof(BITMAPINFOHEADER) + dwPaletteSize;
-
-	WriteFile(fh, (LPSTR)&bmfHdr, sizeof(BITMAPFILEHEADER), &dwWritten, NULL);
-
-	WriteFile(fh, (LPSTR)lpbi, dwDIBSize, &dwWritten, NULL);
-	GlobalUnlock(hDib);
-	GlobalFree(hDib);
-	CloseHandle(fh);
-	return TRUE;
-} 
-HCURSOR CreateAlphaCursor(void)
-{
-	HDC hMemDC;
-	DWORD dwWidth, dwHeight;
-	BITMAPV5HEADER bi;
-	HBITMAP hBitmap, hOldBitmap;
-	void *lpBits;
-	DWORD x,y;
-	HCURSOR hAlphaCursor = NULL;
-
-	dwWidth  = 32;  // width of cursor
-	dwHeight = 32;  // height of cursor
-
-	ZeroMemory(&bi,sizeof(BITMAPV5HEADER));
-	bi.bV5Size           = sizeof(BITMAPV5HEADER);
-	bi.bV5Width           = dwWidth;
-	bi.bV5Height          = dwHeight;
-	bi.bV5Planes = 1;
-	bi.bV5BitCount = 32;
-	bi.bV5Compression = BI_BITFIELDS;
-	// The following mask specification specifies a supported 32 BPP
-	// alpha format for Windows XP.
-	bi.bV5RedMask   =  0x00FF0000;
-	bi.bV5GreenMask =  0x0000FF00;
-	bi.bV5BlueMask  =  0x000000FF;
-	bi.bV5AlphaMask =  0xFF000000; 
-
-	HDC hdc;
-	hdc = GetDC(NULL);
-	char str[100];
-	sprintf(str,"%i",nUnread);
-	// Create the DIB section with an alpha channel.
-	hBitmap = (HBITMAP)CreateDIBSection(hdc, (BITMAPINFO *)&bi, DIB_RGB_COLORS, (void **)&lpBits, NULL, (DWORD)0);//LoadImage(NULL,L"resources/icon.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE|LR_LOADTRANSPARENT);//
-	if(nUnread==0)
-		GetDIBits(hdc,icon[0],0,32,lpBits,(BITMAPINFO *)&bi,DIB_RGB_COLORS);
-	else if(nUnread<10)
-		GetDIBits(hdc,icon[1],0,32,lpBits,(BITMAPINFO *)&bi,DIB_RGB_COLORS);
-	else
-		GetDIBits(hdc,icon[2],0,32,lpBits,(BITMAPINFO *)&bi,DIB_RGB_COLORS);
-	hMemDC = CreateCompatibleDC(hdc);
-	ReleaseDC(NULL,hdc);
-
-	// Draw something on the DIB section.
-	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hBitmap);
-	//PatBlt(hMemDC,0,0,dwWidth,dwHeight,WHITENESS);
-	if(alert)
-	SetTextColor(hMemDC,RGB(255,0,0));
-	else
-	SetTextColor(hMemDC,RGB(255,255,255));
-	SetBkMode(hMemDC,TRANSPARENT);
-	if(nUnread>0)
-	{
-		
-		TextOutA(hMemDC,1,17,str,strlen(str));
-	}
-	SelectObject(hMemDC, hOldBitmap);
-	DeleteDC(hMemDC);
-
-	// Create an empty mask bitmap.
-	HBITMAP hMonoBitmap = CreateBitmap(dwWidth,dwHeight,1,1,NULL);
-
-	// Set the alpha values for each pixel in the cursor so that
-	// the complete cursor is semi-transparent.
-	/*DWORD *lpdwPixel;
-	lpdwPixel = (DWORD *)lpBits;
-	for (x=0;x<dwWidth;x++)
-		for (y=0;y<dwHeight;y++)
-		{
-			// Clear the alpha bits
-			*lpdwPixel &= 0x00FFFFFF;
-			// Set the alpha bits to 0x9F (semi-transparent)
-			*lpdwPixel |= 0x9F000000;
-			lpdwPixel++;
-		}*/
-
-		ICONINFO ii;
-		ii.fIcon = FALSE;  // Change fIcon to TRUE to create an alpha icon
-		ii.xHotspot = 0;
-		ii.yHotspot = 0;
-		ii.hbmMask = hMonoBitmap;
-		ii.hbmColor = hBitmap;
-
-		// Create the alpha cursor with the alpha DIB section.
-		hAlphaCursor = CreateIconIndirect(&ii);
-
-		DeleteObject(hBitmap);          
-		DeleteObject(hMonoBitmap); 
-
-		return hAlphaCursor;
-}
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
-				   LPSTR lpCmdLine, int nCmdShow)
-				   #else
-int main(int argc,char **argv)
-#endif
+int main(int argc, char* argv[])
 {
 	assert_(sizeof(uint)==4);
 	assert_(sizeof(uchar)==1);
 	assert_(sizeof(float)==4);
-#ifdef USE_WINDOWS
-#ifdef NDEBUG
-	if ( strcmp(lpCmdLine, "-console") == 0 )
-#else 
-	if(1)
-#endif
-	{
-		// Create a console
-		AllocConsole();
-
-		int hConHandle;
-		long lStdHandle;
-		CONSOLE_SCREEN_BUFFER_INFO coninfo;
-
-		FILE *fp;
-		const unsigned int MAX_CONSOLE_LINES = 500;
-		// set the screen buffer to be big enough to let us scroll text
-		GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE),	&coninfo);
-		coninfo.dwSize.Y = MAX_CONSOLE_LINES;
-		SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE),	coninfo.dwSize);
-
-		// redirect unbuffered STDOUT to the console
-		lStdHandle = (long)GetStdHandle(STD_OUTPUT_HANDLE);
-		hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-		fp = _fdopen( hConHandle, "w" );
-		*stdout = *fp;
-		setvbuf( stdout, NULL, _IONBF, 0 );
-
-		// redirect unbuffered STDIN to the console
-		lStdHandle = (long)GetStdHandle(STD_INPUT_HANDLE);
-		hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-		fp = _fdopen( hConHandle, "r" );
-		*stdin = *fp;
-		setvbuf( stdin, NULL, _IONBF, 0 );
-
-		// redirect unbuffered STDERR to the console
-		lStdHandle = (long)GetStdHandle(STD_ERROR_HANDLE);
-		hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-		fp = _fdopen( hConHandle, "w" );
-		*stderr = *fp;
-		setvbuf( stderr, NULL, _IONBF, 0 );
-
-		// make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog
-		// point to console as well
-		std::ios::sync_with_stdio();
-
-		HWND hwndC = GetConsoleWindow() ; 
-#ifdef _NDEBUG
-		ShowWindow(hwndC,SW_HIDE);
-#endif
-	}
-	else
-	if( strcmp(lpCmdLine, "-noredirect") != 0 )
-#endif
-	{
-		freopen("log.txt","w",stdout);
-	}
-	debugMutex=createMutex();
 	bool candy=1;
 	if(!candy)
 		exit(EXIT_FAILURE);
 	fclose(fopen("debug.txt","w"));
-	fclose(fopen("log.txt","w"));
+	system("mkdir profilepics");
 	debug("starting...\n");
-	print("Version: a%i\n",version);
+	printf("Version: a%i\n",version);
+	SDL_Init(SDL_INIT_EVERYTHING);debug("%i\n",__LINE__);
 	cursor=IDC_ARROW;
 	sysinit();
 	readConfig();debug("%i\n",__LINE__);
 	configLastRead=0;
+	screen=SDL_SetVideoMode(settings::windowWidth,settings::windowHeight,32,SDL_SWSURFACE| SDL_RESIZABLE);debug("%i\n",__LINE__);
 	readConfig();debug("%i\n",__LINE__);//read a second time to load colors
 	//sysinit();
-	tweetsMutex=createMutex();
-	jsMutex=createMutex();
+	tempSurface=SDL_CreateRGBSurface(SDL_SWSURFACE,3000,1000,32,screen->format->Rmask,screen->format->Gmask,screen->format->Bmask,screen->format->Amask);
 	twitCurl *twit=NULL;
-	#ifdef USE_WINDOWS
+	TTF_Init();debug("%i\n",__LINE__);
+	SDL_WM_SetCaption( "Zacaj's Amazing Twitter Client for Awesome People", NULL );
+	SDL_SetCursor(init_system_cursor(arrow));
 	{
-		//Step 1: Registering the Window Class
-		wc.cbSize        = sizeof(WNDCLASSEX);
-		wc.style         = 0;
-		wc.lpfnWndProc   = WndProc;
-		wc.cbClsExtra    = 0;
-		wc.cbWndExtra    = 0;
-		wc.hInstance     = hInstance;
-		wc.hIcon         = LoadIcon(NULL, IDI_APPLICATION);
-		wc.hCursor       = LoadCursor(NULL, IDC_ARROW);
-		wc.hbrBackground = (HBRUSH)(COLOR_WINDOW+1);
-		wc.lpszMenuName  = NULL;
-		wc.lpszClassName = L"ZATCAP html";
-		wc.hIconSm       = LoadIcon(NULL, IDI_APPLICATION);
-
-		if(!RegisterClassEx(&wc))
-		{
-			MessageBox(NULL, L"Window Registration Failed!", L"Error!",
-				MB_ICONEXCLAMATION | MB_OK);
-			return 0;
-		}
-
-		// Step 2: Creating the Window
-		hwnd = CreateWindowEx(
-			WS_EX_LEFT,
-			L"ZATCAP html",
-			L"Zacaj's (third) Amazing Twitter Client for Awesome People",
-			WS_OVERLAPPEDWINDOW,
-			CW_USEDEFAULT, CW_USEDEFAULT, settings::windowWidth, settings::windowHeight,
-			NULL, NULL, hInstance, NULL);
-
-		if(hwnd == NULL)
-		{
-			MessageBox(NULL, L"Window Creation Failed!", L"Error!",
-				MB_ICONEXCLAMATION | MB_OK);
-			return 0;
-		}
-
-		ShowWindow(hwnd, nCmdShow);
-		UpdateWindow(hwnd);
-		icon[0]=(HBITMAP)LoadImage(NULL,L"resources/iconbig.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE);
-		icon[1]=(HBITMAP)LoadImage(NULL,L"resources/iconmed.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE);
-		icon[2]=(HBITMAP)LoadImage(NULL,L"resources/iconsmall.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE);
-		{
-			SendMessage(hwnd, WM_SETICON,
-				ICON_BIG,(LPARAM)CreateAlphaCursor());
-		}
-		POINT pt;
-		pt.x=0;
-		pt.y=0;
-		ClientToScreen(hwnd,&pt);
-		RECT rect;
-		GetWindowRect(hwnd,&rect);
-		MoveWindow(hwnd,rect.left-(pt.x-rect.left),rect.top-(pt.y-rect.top),settings::windowWidth+(pt.x-rect.left)*2,settings::windowHeight+(pt.y-rect.top)+(pt.x-rect.left),0);
+		icon=SDL_CreateRGBSurface(SDL_SWSURFACE,256,256,32,screen->format->Rmask,screen->format->Gmask,screen->format->Bmask,screen->format->Amask);
+		SDL_SetColorKey(icon, SDL_SRCCOLORKEY,SDL_MapRGB(screen->format,0,0,0));
+		setIconColor(0,0,0);
 	}
-#endif
-#ifdef LINUX
-    {
-        sdlInit();
-    }
-    #endif
+
+	//SetCursor(LoadCursor(NULL, IDC_ARROW));
+	IMG_Init(IMG_INIT_JPG|IMG_INIT_PNG);debug("%i\n",__LINE__);
+	debug("%i %i\n",__LINE__,fopen(string("profilepics/"+settings::defaultUserPicPath).c_str(),"r"));
+	defaultUserPic=loadImage("resources/"+settings::defaultUserPicPath);debug("%i defaultUserPic=%i\n",__LINE__,defaultUserPic);
 	{
-		web_core = WebCore::Initialize(WebConfig());
-		session=web_core->CreateWebSession(WSLit("session"),WebPreferences());
-#ifdef USE_WINDOWS
-		view = web_core->CreateWebView(settings::windowWidth, settings::windowHeight,session,kWebViewType_Window);
-		view->set_parent_window(hwnd);
-#endif
-#ifdef LINUX
+		defaultSmallUserPic=zoomSurface(defaultUserPic,(float)settings::retweeterPicSize/defaultUserPic->w,(float)settings::retweeterPicSize/defaultUserPic->h,1);debug("%i\n",__LINE__);
+		defaultMediumUserPic=zoomSurface(defaultUserPic,(float)settings::retweeteePicSize/defaultUserPic->w,(float)settings::retweeteePicSize/defaultUserPic->h,1);debug("%i\n",__LINE__);
 
-        web_core->set_surface_factory(new GLTextureSurfaceFactory());
-        view = web_core->CreateWebView(1024, 768,session);
-#endif
-		htmlSource=new HtmlSource();
-		session->AddDataSource(WSLit("zatcap"), htmlSource);
-		session->AddDataSource(WSLit("resource"),new DirectorySource("resources\\"));
-		string index=f2s("resources/index.html");
-		replace(index,"$BOTTOM",f2s("resources/bottom.html"));
-		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> <script type=\"text/javascript\" src=\"asset://resource/selection_range.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/string_splitter.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/cursor_position.js\"></script><script type=\"text/javascript\" src=\"asset://resource/twitter-text.js\"></script></head><body onload=\"init();\" id='body'>"+index+"</body>";
-		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
-		runJS("init();");
-		methodHandler=new MethodHandler(view,web_core);
-		methodHandler->reg(WSLit("openInNativeBrowser"),[](JSArray args)
-			{
-				msystem("\""+settings::browserCommand+"\" \""+ToString(args[0].ToString())+"\"");
-		});
-		methodHandler->reg(WSLit("favorite"),[](JSArray args)
-			{
-				startThread(favoriteTweet,getTweet(ToString(args[0].ToString())));
-		});
-		methodHandler->reg(WSLit("unfavorite"),[](JSArray args)
-		{
-			startThread(unfavoriteTweet,getTweet(ToString(args[0].ToString())));
-		});
-		methodHandler->reg(WSLit("retweet"),[](JSArray args)
-		{
-			startThread(retweetTweet,getTweet(ToString(args[0].ToString())));
-		});
-		methodHandler->reg(WSLit("_delete"),[](JSArray args)
-		{
-			startThread(deleteTweet,getTweet(ToString(args[0].ToString())));
-		});
-		methodHandler->reg(WSLit("sendTweet"),[](JSArray args)
-		{
-			string tweet=ToString(args[0].ToString());
-			string inReplyTo=ToString(args[1].ToString());
-			startThread(sendTweet,new tweetData(tweet,inReplyTo,username,ToString(args[2].ToString())=="true"));
-		});
-		methodHandler->reg(WSLit("debug"),[](JSArray args)
-			{
-				string i=ToString(args[0].ToString());
-				print("\n",0);
-		});
-		methodHandler->reg(WSLit("print"),[](JSArray args)
-		{
-			string i=ToString(args[0].ToString());
-#ifdef USE_WINDOWS
-			OutputDebugStringA(i.c_str());
-#endif
-		});
-		methodHandler->reg(WSLit("handleImage"),[](JSArray args)
-			{
-				string ourl=ToString(args[0].ToString());
-				string url=ourl;
-				if(ourl.find("twitter.com")!=string::npos)
-				{
-					string src=getSite(ourl);
-					size_t pos=src.find("<img class=\"large media-slideshow-image\" alt=\"\" src=\"");
-					if(pos!=string::npos)
-					{
-						pos+=strlen("<img class=\"large media-slideshow-image\" alt=\"\" src=\"");
-						int a=pos;
-						url.clear();
-						while(a<src.size() && src[a]!='\"') url.push_back(src[a++]);
-					}
-				}
-				else if(ourl.find("twitpic.com")!=string::npos)
-				{
-					string src=getSite(ourl+"/full");
-					size_t pos=src.find("Return to photo page</a></p");
-					if(pos!=string::npos)
-					{
-						pos=src.find('\"',pos);
-						pos++;
-						int a=pos;
-						url.clear();
-						while(a<src.size() && src[a]!='\"') url.push_back(src[a++]);
-					}
-				}
-				runJS("lightbox('"+url+"','"+url+"');");
-		});
-		methodHandler->reg(WSLit("refresh"),[](JSArray args)
-		{
-			startThread(refreshTweets,NULL);
-		});
-		methodHandler->reg(WSLit("source"),[](JSArray args)
-		{
-			FILE *fp=fopen("source.html","w");
-			string source=ToString(args[0].ToString());
-			replace(source,"asset://resource/","resources/");
-			fwrite(source.c_str(),source.size(),1,fp);
-			fclose(fp);
-		});
-		methodHandler->reg(WSLit("read"),[](JSArray args)
-		{
-			string id=ToString(args[0].ToString());
-			Item *i=getTweet(id);
-			if(i==NULL)
-				return;
-			auto it=tweets.begin();
-			for(;it!=tweets.end();++it)
-			{
-				if(!it->second->read && it->second->timeTweetedInSeconds<=i->timeTweetedInSeconds)
-				{
-					it->second->read=1;
-					nUnread--;
-					for(auto c:it->second->instances)
-					{
-						runJS("document.getElementById('"+it->second->id+"_"+c->columnName+"bg').className='readtweetbg';");
-					}
-				}
-			}
-		});
-		methodHandler->reg(WSLit("loadBackTill"),[](JSArray args)
-		{
-			string sHours=ToString(args[0].ToString());
-			int hours=-1;
-			sscanf(sHours.c_str(),"%i",&hours);
-			startThread(loadBackTill,new int(hours));
+	}debug("%i\n",__LINE__);
 
-		});
-		methodHandler->reg(WSLit("mute"),[](JSArray args)
-		{
-			string str=ToString(args[0].ToString());
-			string sHours=ToString(args[1].ToString());
-			int hours=-1;
-			sscanf(sHours.c_str(),"%i",&hours);
-			time_t end=(uint)-1;
-			int secs=hours*60*60;
-			if(secs>0)
-				 end=time(NULL)+secs;
-			mute[str]=end;
-			saveMute();
-		});
-		methodHandler->reg(WSLit("toggleConsole"),[](JSArray args)
-		{
-#ifdef WINDOWS
-			HWND hwndC = GetConsoleWindow() ; 
+	assert_(arrowDown=IMG_Load("resources/arrowDown.PNG"));
+	assert_(arrowUp=IMG_Load("resources/arrowUp.PNG"));
+	assert_(favorite[0]=IMG_Load("resources/favorite.png"));
+	assert_(favorite[1]=IMG_Load("resources/favorite_hover.png"));
+	assert_(favorite[2]=IMG_Load("resources/favorite_on.png"));
+	assert_(retweet[0]=IMG_Load("resources/retweet.png"));
+	assert_(retweet[1]=IMG_Load("resources/retweet_hover.png"));
+	assert_(retweet[2]=IMG_Load("resources/retweet_on.png"));
+	assert_(reply[0]=IMG_Load("resources/reply.png"));
+	assert_(reply[1]=IMG_Load("resources/reply_hover.png"));
+	assert_(reply[2]=IMG_Load("resources/reply_large.png"));
+	assert_(deleteButton[0]=IMG_Load("resources/delete.png"));
+	assert_(deleteButton[1]=IMG_Load("resources/delete_hover.png"));
+	assert_(deleteButton[2]=IMG_Load("resources/delete_hover2.png"));
+	assert_(refresh[0]=IMG_Load("resources/refresh.png"));
+	assert_(refresh[1]=IMG_Load("resources/refresh_hover.png"));
+	assert_(top[0]=IMG_Load("resources/top.png"));
+	assert_(top[1]=IMG_Load("resources/top_hover.png"));
+	assert_(convo[0]=IMG_Load("resources/convo.png"));
+	assert_(convo[1]=IMG_Load("resources/convo_hover.png"));
 
-		  ShowWindow(hwndC, IsWindowVisible(hwndC)?SW_HIDE:SW_SHOW);
-#endif
-		});
-		methodHandler->reg(WSLit("stopTweet"),[](JSArray args)
-		{
-			int t=args[0].ToInteger();
-			pendingTweets[t]=1;
-		});
-		methodHandler->reg(WSLit("setIdToTweetHtml"),[](JSArray args)
-		{
-			string htmlid=ToString(args[0].ToString());
-			string tweetid=ToString(args[1].ToString());
-			string parent=ToString(args[2].ToString());
-			startLambdaThread([=]()
-			{
-				string html=getTweet(tweetid)->getHtml(parent);
-				runJS("document.getElementById('"+htmlid+"').innerHTML='"+escape(html)+"';");
-			});
-		});
-		methodHandler->reg(WSLit("pasteImage"),[](JSArray args)
-		{
-			string htmlid=ToString(args[0].ToString());
-#ifdef WINDOWS
-			assert_(OpenClipboard(NULL));
-			{
-				HANDLE hData = GetClipboardData(CF_BITMAP);
-				{
-					Activity *activity=new Activity("Uploading photo...");
-					addTweet((Item**)&activity);
-					string file="t"+i2s(time(NULL))+".bmp";
-					SaveToFile((HBITMAP)hData, file.c_str());
-					startLambdaThread([=](){
-					string url=uploadPhoto(file);
-					runJS("insertText('"+escape(url)+"',"+htmlid+");");
-					system((string("erase \"")+file+"\"").c_str());});
-					deleteTweet(activity->id);
-				}
-				CloseClipboard();
-			}
-#endif
-		});
-		methodHandler->reg(WSLit("showUser"),[&](JSArray args)
-		{
-			string id=ToString(args[0].ToString());
-			string url=ToString(args[1].ToString());
-			runJS("popup('<img src=\"asset://resource/activity.gif\">','"+escape(url)+"');");
-			startLambdaThread([=]()
-			{
-				string html=getUser(id)->getHtml();
-				runJS("document.getElementById('popup_content').innerHTML='"+escape(html)+"';");
-				string json=twit->timelineUserGet(false,true,200,id,true);
-				Json::Reader reader;
-				Json::Value root;
-				reader.parse(json,root);
-				assert(root.isArray());
-				for(int i=0;i<root.size();i++)
-				{
-					Json::Value tweet=root[i];debugHere();
-					if(tweet.isNull())
-						continue;
-					Tweet *t=processTweet(root[i]);debugHere();
-					runJS("document.getElementById('userDisplayColumn').insertBefore(nodeFromHtml('"+escape(t->getHtml("userDisplayColumn"))+"'),null);");
-				}
-				//runJS("cpp.source(document.body.parentNode.outerHTML);");
-			});
-		});
-		methodHandler->reg(WSLit("follow"),[&](JSArray args)
-		{
-			string id=ToString(args[0].ToString());
-			int to=args[1].ToInteger();
-			startLambdaThread([=]()
-			{
-				string id_=id;
-				int to_=to;
-				twitCurl *twit_=twit;
-				if(to==-1)
-				{
-					string json;
-					while((json=twit->userGet(id_,true))=="");
-					Json::Reader reader;
-					Json::Value root;
-					reader.parse(json,root);
-					to_=!root["following"].asBool();
-				}
-				if(to_==1)
-					twit->friendshipCreate(id_,true);
-				else if(to_==0)
-					twit->friendshipDestroy(id_,true);
-				runJS((string("document.getElementById('followbutton').innerHTML='")+(!to_?"Follow":"Unfollow")+"';"));
-			});
-		});
-	}
-	/*processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
-	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up*/
-	{
-		DIR *pDIR;
-		struct dirent *entry;
-		if( pDIR=opendir("columns") ){
-			while(entry = readdir(pDIR)){
-			    int d_namlen;
-			    #ifdef USE_WINDOWS
-			    d_namlen=entry->d_namlen;
-			    #else
-			    d_namlen=strlen(entry->d_name);
-			    #endif
-				if( strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0 )
-				{
-					struct stat s;
-					if( stat((string("columns/")+entry->d_name).c_str(),&s) == 0 )
-					{
-						if( s.st_mode & S_IFREG )
-						{
-							float n=0;
-							int a=0;
-							while(a<d_namlen && entry->d_name[a]!='_')
-							{
-								n+=entry->d_name[a]-'0';
-								n*=10;
-								a++;
-							}
-							a++;
-							string name;
-							while(a<d_namlen)
-								name.push_back(entry->d_name[a++]);
-							name.erase(name.end()-4,name.end());
-							processes[200+n]=new CustomColumn(name,(string("columns/")+entry->d_name));
-						}
-					}
-				}
-			}
-			closedir(pDIR);
-		}
-	}
+
+	SDL_Thread *thread=SDL_CreateThread(twitterInit,&twit);debug("%i\n",__LINE__);
+	processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
+	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up
 	fclose(fopen("stream debug.txt","w"));
-	fclose(fopen("img debug.txt","w"));
-	startThread(twitterInit,&twit);
-	runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
-	//addTweet(new Favorite("lorem ipsum est luditorium con meguieligum son locos","3453245234624563456",))
-	/*{
+	fontMutex=SDL_CreateMutex();
+	tempSurfaceMutex=SDL_CreateMutex();
+	tweetsMutex=SDL_CreateMutex();
+
+	{
 		Textbox *textbox=new Textbox();
 		textbox->w=300;
 		textbox->x=screen->w-textbox->w;
@@ -1233,100 +466,257 @@ int main(int argc,char **argv)
 		textbox->h=footerHeight-20;
 		processes[30.45645]=textbox;
 		tweetbox=textbox;
-	}*/
+	}
 	{
 		if(settings::backupTime)
 		{
 			TimedEventProcess *timer=new TimedEventProcess;
 			timer->data=NULL;
 			timer->fn=saveTweetPtr;
-			timer->interval=settings::backupTime;
+			timer->maxTicks=settings::backupTime;
 			processes[2345]=timer;
 		}
 		//atexit(saveTweets);
 	}
-	{
-		TimedEventProcess *timer=new TimedEventProcess;
-		timer->data=NULL;
-		timer->fn=refreshTweets;
-		timer->interval=5*60;
-		processes[2345]=timer;
-	}
-	bool notSet=1;
+	/*{
+		Tweet *tweet=new Tweet;
+		tweet->text="@zacaj2 support.amd.com/us/gpudownload… #hashtag blah @zacaj2 support.amd.com/us/gpudownload…";
+		tweet->userid="533546294";
+		tweet->id="201332280944369666";
+		tweet->timeTweetedInSeconds=time(NULL);
+		tweet->timeTweeted=*localtime(&tweet->timeTweetedInSeconds);
+		{
+			URLEntity *url=new URLEntity;
+			url->displayUrl="support.amd.com/us/gpudownload…";
+			url->text="support.amd.com/us/gpudownload…";
+			url->realUrl="http://support.amd.com/us/gpudownload/windows/Pages/radeonaiw_vista64.aspx#1"	;
+			url->start=64;
+			url->end=97;
+			tweet->entities.push_back(url);
+		}
+		{
+			URLEntity *url=new URLEntity;
+			url->displayUrl="support.amd.com/us/gpudownload…";
+			url->text="support.amd.com/us/gpudownload…";
+			url->realUrl="http://support.amd.com/us/gpudownload/windows/Pages/radeonaiw_vista64.aspx#1"	;
+			url->start=8;
+			url->end=41;
+			tweet->entities.push_back(url);
+		}
+		addTweet(tweet);
+	}/**/
+	SDL_EnableUNICODE(1);//todo make these only enable when typing?
+	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY,SDL_DEFAULT_REPEAT_INTERVAL);
+//	SDL_CreateCursor()
 	int t=0;
-	addColumnButtons();
+	while(!quit)
 	{
-		FILE *fp=fopen("mute.txt","rb");
-		if(fp)
-		{
-			while(!feof(fp))
-			{
-				char str[100];
-				time_t i=-1;
-				fscanf(fp,"%s\n",str);
-				fread(&i,sizeof(time_t),1,fp);
-				if(i!=-1)
-					mute[str]=i;
-			}
-			fclose(fp);
-		}
-	}
-	while(!done)
-	{
-		if(notSet && loggedIn)
-		{
+		//if(cursor!=IDC_ARROW)
+		//	SetCursor(LoadCursor(NULL, cursor));
 
-			while (view->IsLoading())
-				web_core->Update();
-			JSObject v=view->CreateGlobalJavascriptObject(WSLit("globals")).ToObject();
-			v.SetProperty(WSLit("username"),JSValue(FS(username)));
-			notSet=0;
-		}
 		time(&currentTime);
-#ifdef USE_WINDOWS
-		while (PeekMessage(&Msg, NULL, 0, 0, PM_REMOVE))
+		if(mousex!=-10000)
 		{
-			if (Msg.message == WM_QUIT)
-				done=1;
-			else
+			//if(ev.button.y<screen->h-80) //todo no tweet bar yet
 			{
-				TranslateMessage(&Msg);
-				DispatchMessage(&Msg);
+				map<float,Process*>::reverse_iterator end=processes.rend();
+				for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
+					if(it->second->mouseButtonEvent(mousex,mousey,mousebutton,1))
+						break;
+			}
+			mousex=-10000;
+		}
+		if(start!=-1)
+		{
+			t=SDL_GetTicks()-start;
+			if(t>0 && t<17)
+				SDL_Delay(17-t);
+		}
+		start=SDL_GetTicks();
+		SDL_Event ev;
+		while(SDL_PollEvent(&ev))
+		{
+			switch(ev.type)
+			{
+			case SDL_KEYDOWN:
+				{
+					switch(ev.key.keysym.sym)
+					{
+					case SDLK_ESCAPE:
+						quit=1;//not permenant
+						break;
+					default:
+						{
+							if(keyboardInputReceiver==NULL)
+							{
+								//todo maybe if it actually comes up
+							}
+							else
+							{
+								if(ev.key.keysym.unicode>30)
+									keyboardInputReceiver->keyboardEvent(ev.key.keysym.unicode,1,ev.key.keysym.mod);
+								else
+									keyboardInputReceiver->keyboardEvent(ev.key.keysym.sym,1,ev.key.keysym.mod);
+							}
+						}
+						break;
+					}
+				}
+				break;
+			case SDL_KEYUP:
+				if(keyboardInputReceiver==NULL)
+				{
+					//todo maybe if it actually comes up
+				}
+				else
+				{
+					if(ev.key.keysym.unicode)
+						keyboardInputReceiver->keyboardEvent(ev.key.keysym.unicode,0,ev.key.keysym.mod);
+					else
+						keyboardInputReceiver->keyboardEvent(ev.key.keysym.sym,0,ev.key.keysym.mod);
+				}
+				break;
+			case SDL_QUIT:
+				quit=1;
+				break;
+			case SDL_VIDEORESIZE:
+				screen=SDL_SetVideoMode(ev.resize.w,ev.resize.h,32,SDL_SWSURFACE| SDL_RESIZABLE);
+				updateScreen=2;
+				printf("Window resized to %ix%i\n",screen->w,screen->h);
+				break;
+			case SDL_ACTIVEEVENT:
+				switch(ev.active.type)
+				{
+				case SDL_APPMOUSEFOCUS :
+				case SDL_APPACTIVE :
+					//debugHere();
+					if(ev.active.gain)
+						readConfig();
+					//debugHere();
+				break;
+				}
+				break;
+			case SDL_MOUSEBUTTONDOWN:
+				if(ev.button.button!=SDL_BUTTON_WHEELDOWN && ev.button.button!=SDL_BUTTON_WHEELUP)
+				{
+					mousex=ev.button.x;
+					mousey=ev.button.y;
+					mousebutton=ev.button.button;
+					if(mousey>screen->h-footerHeight)//todo horrible hack
+					{
+						map<float,Process*>::reverse_iterator end=processes.rend();
+						for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
+							if(it->second->mouseButtonEvent(mousex,mousey,mousebutton,1))
+							{
+								mousex=-10000;
+								break;
+							}
+					}
+				}
+				else
+				{
+					mousex=-10000;
+					map<float,Process*>::reverse_iterator end=processes.rend();
+					for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
+						if(it->second->mouseButtonEvent(ev.button.x,ev.button.y,ev.button.button,1))
+						{
+							break;
+						}
+				}
+				updateScreen=1;
+				break;
+			case SDL_MOUSEBUTTONUP:
+				//if(ev.button.y<screen->h-80) //todo no tweet bar yet
+				{
+					ev.button.x-=columnHorizontalScroll;
+					for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
+						if(it->second->mouseButtonEvent(ev.button.x,ev.button.y,ev.button.button,0))
+							break;
+				}
+				updateScreen=1;
+				break;
+			case SDL_MOUSEMOTION:
+				{
+					if(ev.motion.state==SDL_PRESSED)
+					{
+						if(mouseDragReceiver!=NULL)
+							mouseDragReceiver->mouseButtonEvent(ev.motion.xrel,ev.motion.yrel,-1,1);
+					}
+					else
+					{
+						//ev.motion.x-=columnHorizontalScroll;
+						for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
+							if(it->second->mouseButtonEvent(ev.motion.x,ev.motion.y,-1,0))
+								break;
+					}
+				}
+				//updateScreen=1;
+				break;
 			}
 		}
-#endif
-#ifdef LINUX
-        sdlUpdate(done);
-#endif
-		enterMutex(jsMutex);
-		for(auto it:jsToRun)
+		keystate=SDL_GetKeyState(NULL);
+		if(g_redrawAllTweets)
+			g_redrawAllTweets=0;
+		if((updateScreen || !rand()%100 || mousex!=-10000))//immediate mode gui done in draw often
 		{
-			view->ExecuteJavascriptWithResult(FS(it),WSLit(""));
-			Error err=view->last_error();
-			print("");
+			setIconColor(0,0,0);
+			SDL_FillRect(screen,0,0);
+			columnHorizontalRenderAt=0;
+			for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)//go in reverse so higher priority=first
+			{
+				it->second->draw();
+			}
+			if(textButton(screen->w-125,screen->h-40,"Force reload config.txt"))
+			{
+				configLastRead=0;
+				readConfig();
+			}
+			if(textButton(screen->w-125,screen->h-20,"Redraw cached tweets"))
+				g_redrawAllTweets=1;
+			updateScreen--;
+			if(newVersion)
+				drawText("A new version is available, download at zacaj.com/zatcap/",5,screen->h-40,13);
+			if(iconR!=iconR2 || iconG!=iconG2 || iconB!=iconB2)
+			{
+				SDL_FillRect(icon,0,SDL_MapRGB(icon->format,iconR,iconG,iconB));
+				drawTextcc("Z",128,128,256,255,255,255,icon);
+				SDL_WM_SetIcon(icon,NULL);
+				iconR2=iconR;
+				iconG2=iconG;
+				iconB2=iconB;
+			}
 		}
-		jsToRun.clear();
-		leaveMutex(jsMutex);
-		web_core->Update();
-		for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
+		for (map<float,Process*>::iterator it=processes.begin();it!=processes.end();it++)//go in reverse so higher priority=first
+		{
+			if(it->second->shouldRemove)
+			{
+				//processes.erase(processes.begin()+i);
+				map<float,Process*>::iterator it2=it;
+				it++;
+				Process *process=it2->second;
+				processes.erase(it2->first);//may invalidate it?
+				delete process;
+				if(it==processes.end())
+					break;
+				continue;
+			}
 			it->second->update();
-		if(nUnread!=nUnread2 || alert2!=alert)
-		{
-#ifdef USE_WINDOWS
-			SendMessage(hwnd, WM_SETICON,
-				ICON_BIG,(LPARAM)CreateAlphaCursor());
-#endif			
-			nUnread2=nUnread;
-			alert2=alert;
 		}
-#ifdef USE_WINDOWS
-		Sleep(20);
-#else
-		SDL_Delay(20);
-#endif
+		if(streaming)
+		{
+			boxRGB(screen,0,0,3,3,rand(),rand(),rand(),255);
+			streaming--;
+		}
+		{
+			boxRGB(screen,screen->w-100,0,screen->w,30,0,0,0);
+			char str[100];
+			sprintf(str,"MSPF: %4i",t);
+			drawTextr(str,screen->w,0,12);
+		}
+		SDL_Flip(screen);
 	}
 	//todo saveTweets();
-	quit();
+	SDL_Quit();
 	return 0;
 }
 
@@ -1338,13 +728,13 @@ void jumpToSetting(FILE *fp,string str)
 	fscanf(fp," = ");
 }
 
-string readColor(FILE *fp)
+Uint32 readColor(FILE *fp)
 {
 	int r,g,b;
 	fscanf(fp,"%i,%i,%i\n",&r,&g,&b);
-	char str[100];
-	sprintf(str,"#%2x%2x%2x",r,g,b);
-	return str;
+	if(!screen)
+		return 0;
+	return SDL_MapRGB(screen->format,r,g,b);
 }
 
 void readConfig()
@@ -1404,12 +794,6 @@ void readConfig()
 	fscanf(fp,"%i\n",&pinLogin);
 	jumpToSetting(fp,"max tweets in ram");
 	fscanf(fp,"%i\n",&maxTweets);
-	jumpToSetting(fp,"proxy server");
-	settings::proxyServer=cscanf(fp,"%s\n");
-	jumpToSetting(fp,"proxy port");
-	settings::proxyPort=cscanf(fp,"%s\n");
-	jumpToSetting(fp,"notification sound");
-	settings::notificationSound=cscanf(fp,"%s\n");
 
 	using namespace colors;
 	jumpToSetting(fp,"unread tweet color");
@@ -1490,7 +874,7 @@ void readConfig()
 	entityUnderlineColor[5]=readColor(fp);
 
 	fclose(fp);//debugHere();
-	print("Scanned config file\n");
+	printf("Scanned config file\n");
 	configLastRead=st.st_mtime;
 	return;
 /*
@@ -1525,7 +909,7 @@ struct tm convertTimeStringToTM( string str )
 	else if(strcmp(day,"Sat")==0)
 		tmm.tm_wday=6;
 	else
-		print("cannot decipher day %s, please annoy zacaj!\n",day);
+		printf("cannot decipher day %s, please annoy zacaj!\n",day);
 
 	if(strcmp(month,"Jan")==0)
 		tmm.tm_mon=0;
@@ -1552,7 +936,7 @@ struct tm convertTimeStringToTM( string str )
 	else if(strcmp(month,"Dec")==0)
 		tmm.tm_mon=11;
 	else
-		print("cannot decipher month %s, please annoy zacaj!\n",month);
+		printf("cannot decipher month %s, please annoy zacaj!\n",month);
 	tmm.tm_isdst=-1;
 
 	return tmm;
@@ -1567,44 +951,24 @@ std::string i2s( int n )
 
 void debug(const char* msg, ...)
 {
-
 	va_list fmtargs;
 	char buffer[2024];
 	va_start(fmtargs, msg);
 	vsnprintf(buffer, sizeof(buffer) - 1, msg, fmtargs);
 	va_end(fmtargs);
 	FILE *fp;
-	enterMutex(debugMutex);
 	fp=fopen("debug.txt","a");
 	if(!fp)
-	{
-		leaveMutex(debugMutex);
-		return;
-	}
-	fprintf(fp,buffer);
-	fclose(fp);
-	leaveMutex(debugMutex);
-}
-void print(const char* msg, ...)
-{
-	va_list fmtargs;
-	char buffer[2024];
-	va_start(fmtargs, msg);
-	vsnprintf(buffer, sizeof(buffer) - 1, msg, fmtargs);
-	va_end(fmtargs);
-	FILE *fp;
-	fp=fopen("log.txt","a");
-	if(!fp)
 		return;
 	fprintf(fp,buffer);
 	fclose(fp);
-	printf(buffer);
+
 }
 
 bool hoverButton( int x,int y,int w,int h )
 {
 	int mx,my;
-	//SDL_GetMouseState(&mx,&my);
+	SDL_GetMouseState(&mx,&my);
 	if(mx>x && mx<x+w && my>y && my<y+h)
 		return 1;
 	return 0;
@@ -1677,157 +1041,37 @@ string getPath(string path)
 	else
 		return path;
 }
-#ifdef LINUX
-struct threadData
-{
-    void(*functionPointer)(void*);
-    void *d;
-};
-void *threadStarter(void *p)
-{
-    threadData *d=(threadData*)p;
-    d->functionPointer(d->d);
-    delete d;
-}
-#endif
-void startThread(void(*functionPointer)(void*),void *data)
-{
-    #ifdef USE_WINDOWS
-	_beginthread(functionPointer,0,data);
-	#else
-    pthread_t tid;
-    threadData *dat=new threadData;
-    dat->functionPointer=functionPointer;
-    dat->d=data;
-	pthread_create(&tid,NULL,threadStarter,dat);
-	#endif
-}
-#ifdef USE_WINDOWS
-Mutex createMutex()
-{
-	Mutex ret;
-	InitializeCriticalSection(&ret);
-	return ret;
-}
-void deleteMutex(Mutex &mutex)
-{
-	DeleteCriticalSection(&mutex);
-}
-void enterMutex(Mutex &mutex)
-{
-	EnterCriticalSection(&mutex);
-}
-void leaveMutex(Mutex &mutex)
-{
-	LeaveCriticalSection(&mutex);
-}
-#endif
-#ifdef LINUX
-Mutex createMutex()
-{
-    return SDL_CreateMutex();
-}
-void deleteMutex(Mutex &mutex)
-{
-    SDL_DestroyMutex(mutex);
-}
-void enterMutex(Mutex &mutex)
-{
-    SDL_LockMutex(mutex);
-}
-void leaveMutex(Mutex &mutex)
-{
-    SDL_UnlockMutex(mutex);
-}
-#endif
-void replace( std::string& str, const std::string& oldStr, const std::string& newStr )
-{
-	size_t pos = 0;
-	while((pos = str.find(oldStr, pos)) != std::string::npos)
-	{
-		str.replace(pos, oldStr.length(), newStr);
-		pos += newStr.length();
-	}
-}
 
-std::string escape( string str,bool forPrintf )
+static SDL_Cursor *init_system_cursor(const char *image[])
 {
-	string special="\"\'\n\r/";
-	for(int i=0;i<str.size();i++)
-	{
-			if(str[i]=='%' && forPrintf)
-				str.insert(str.begin()+i++,'%');
-			else
-			{
-				int j=0;
-				bool found=0;
-				for(j=0;j<special.size();j++)
-				{
-					if(str[i]==special[j])
-					{
-							found=1;
-							if(i==0 || str[i-1]!='\\')
-							{
-								str.insert(str.begin()+i++,'\\');
-								if(special[j]=='\n')
-									str[i]='n';
-								if(special[j]=='\r')
-									str[i]='r';
-								break;
-							}
-					}
-				}
-				if(i!=0 && !found && str[i]!='n' && str[i]!='r' && str[i]!='\\'  && str[i-1]=='\\')
-					str.insert(str.begin()+i++,'\\');
+	int i, row, col;
+	Uint8 data[4*32];
+	Uint8 mask[4*32];
+	int hot_x, hot_y;
+
+	i = -1;
+	for ( row=0; row<32; ++row ) {
+		for ( col=0; col<32; ++col ) {
+			if ( col % 8 ) {
+				data[i] <<= 1;
+				mask[i] <<= 1;
+			} else {
+				++i;
+				data[i] = mask[i] = 0;
 			}
-
+			switch (image[4+row][col]) {
+			case 'X':
+				data[i] |= 0x01;
+				mask[i] |= 0x01;
+				break;
+			case '.':
+				mask[i] |= 0x01;
+				break;
+			case ' ':
+				break;
+			}
+		}
 	}
-	if(str[str.size()-1]=='\\')
-		str.insert(str.begin()+str.size()-1,'\\');
-	return str;
-}
-
-int doin=0;
-bool progress=0;
-void doing( int i )
-{
-	doin+=i;
-	if(doin>0  && !progress)
-	{
-		progress=1;
-		runJS("document.getElementById('activity').style.display='inline';");
-	}
-	if(doin<=0 && progress)
-	{
-		progress=0;
-		runJS("document.getElementById('activity').style.display='none';");
-	}
-}
-void lambdaThreadStarter(void *data)
-{
-	function<void()> func=*(function<void()>*)data;
-	func();
-}
-void startLambdaThread( function<void ()> func )
-{
-	startThread(lambdaThreadStarter,new function<void()>(func));
-}
-
-std::string tolower( string str )
-{
-	for(int i=0;i<str.size();i++)
-		str[i]=tolower(str[i]);
-	return str;
-}
-
-void addFollower( string id )
-{
-	followers.insert(id);
-	runJS("addFollower('"+id+"');");
-}
-
-tm getTime()
-{
-	time_t t=time(NULL);
-	return *localtime(&t);
+	sscanf(image[4+row], "%d,%d", &hot_x, &hot_y);
+	return SDL_CreateCursor(data, mask, 32, 32, hot_x, hot_y);
 }

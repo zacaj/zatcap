@@ -35,7 +35,22 @@
     <ClInclude Include="Process.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="WaitIndicator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Column.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HomeColumn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MentionColumn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Textbox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TimedEventProcess.h">
@@ -44,16 +59,10 @@
     <ClInclude Include="Tweet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AvitarDownloader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Awesomium.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CustomColumn.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -82,7 +91,25 @@
     <ClCompile Include="twitter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WaitIndicator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sdl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Column.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HomeColumn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MentionColumn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Textbox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TimedEventProcess.cpp">
@@ -91,18 +118,8 @@
     <ClCompile Include="Tweet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Awesomium.cpp">
+    <ClCompile Include="AvitarDownloader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CustomColumn.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="zatcap1.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\DebugRelease\resources\iconbig.bmp" />
-    <Image Include="..\favicon.ico" />
   </ItemGroup>
 </Project>
