@@ -113,3 +113,6 @@ Tweet sent successfully: @rainshapes that's weird.  why does SDL have a file.h ?
 Tweet sent successfully: @rainshapes strange.  git didn't include it for some reason (425068754230202369,)
 Tweet sent successfully: @rainshapes http://pastebin.com/TAPHGVVS (425068754230202369,)
 Tweet sent successfully: @rainshapes not sure what the chances are it'll actually work, but (425069557099675648,)
+Tweet sent successfully: @rainshapes any luck so far/any problems I can help with? (425069557099675648,)
+Tweet sent successfully: @rainshapes awesomium isn't available in 64 bit? I know the linux version lets you choose (425076832950435840,)
+Tweet sent successfully: @rainshapes huh (425077322035650560,)
