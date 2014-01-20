@@ -1,28 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Debug" />
-	<File name="Column.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="2142" topLine="39" />
+	<ActiveTarget name="Release" />
+	<File name="AvitarDownloader.cpp" open="1" top="0" tabpos="15">
+		<Cursor position="124" topLine="0" />
 	</File>
-	<File name="Textbox.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="1387" topLine="22" />
+	<File name="AvitarDownloader.h" open="1" top="0" tabpos="16">
+		<Cursor position="103" topLine="0" />
+	</File>
+	<File name="Awesomium.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="179" topLine="0" />
+	</File>
+	<File name="Awesomium.h" open="1" top="0" tabpos="8">
+		<Cursor position="433" topLine="0" />
+	</File>
+	<File name="Button.h" open="1" top="0" tabpos="12">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="Column.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="780" topLine="0" />
+	</File>
+	<File name="HomeColumn.cpp" open="1" top="0" tabpos="14">
+		<Cursor position="491" topLine="0" />
+	</File>
+	<File name="Tweet.cpp" open="1" top="0" tabpos="18">
+		<Cursor position="26013" topLine="697" />
 	</File>
 	<File name="file.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="1974" topLine="103" />
+		<Cursor position="2642" topLine="155" />
 	</File>
-	<File name="sdl.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="690" topLine="0" />
+	<File name="gl_texture_surface.cc" open="1" top="0" tabpos="11">
+		<Cursor position="1211" topLine="0" />
 	</File>
-	<File name="stream.cpp" open="1" top="1" tabpos="8">
-		<Cursor position="4433" topLine="115" />
+	<File name="gl_texture_surface.h" open="1" top="0" tabpos="13">
+		<Cursor position="591" topLine="0" />
 	</File>
-	<File name="twitter.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="514" topLine="0" />
+	<File name="stream.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="6964" topLine="185" />
 	</File>
-	<File name="zatcap.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="25021" topLine="782" />
+	<File name="twitter.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="2557" topLine="56" />
+	</File>
+	<File name="zatcap.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="15865" topLine="525" />
 	</File>
 	<File name="zatcap.h" open="1" top="0" tabpos="2">
-		<Cursor position="204" topLine="0" />
+		<Cursor position="152" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

@@ -1,14 +1,12 @@
 #pragma once
 #include "zatcap.h"
 //void=twitCurl
-int twitterInit(void *twit);
+void twitterInit(void *twit);
 #include <time.h>
 #include "file.h"
 class Tweet;
 class Retweet;
-extern SDL_Surface *defaultUserPic;
-extern SDL_Surface *defaultSmallUserPic;
-extern SDL_Surface *defaultMediumUserPic;
+class Item;
 extern bool loggedIn;
 extern string replyId;
 extern twitCurl *twit;
@@ -21,32 +19,13 @@ public:
 	string id;
 	User()
 	{
-		_pic=_smallPic=_mediumPic=NULL;
+		_pic="defaultpic.png";
 	}
-	SDL_Surface *_pic;
-	SDL_Surface *_smallPic;
-	SDL_Surface *_mediumPic;
-	SDL_Surface* pic()
-	{
-		if(_pic!=NULL)
-			return _pic;
-		return defaultUserPic;
-	}
-	SDL_Surface* smallPic()
-	{
-		if(_smallPic!=NULL)
-			return _smallPic;
-		return defaultSmallUserPic;
-	}
-	SDL_Surface* mediumPic()
-	{
-		if(_mediumPic!=NULL)
-			return _mediumPic;
-		return defaultMediumUserPic;
-	}
+	string _pic;
 	string picURL;
 	string getPicPath();
 	void save();
+	string getHtml();
 };
 User *getUser(string id);
 User * getUser(Json::Value root);
@@ -59,7 +38,6 @@ public:
 	uchar type;
 	int start,end;
 	string text;
-	virtual void click()=0;
 	virtual void write(FILE *fp)=0;
 };
 class URLEntity:public Entity
@@ -71,10 +49,6 @@ public:
 	}
 	string realUrl;
 	string displayUrl;
-	void click()
-	{
-		msystem("\""+settings::browserCommand+"\" \""+realUrl+"\"");
-	}
 	void write(FILE *fp)
 	{
 		wuchar(0,fp);
@@ -94,10 +68,6 @@ public:
 	string id;
 	string name;
 	string username;
-	void click()
-	{
-		msystem("\""+settings::browserCommand+"\" \"https://twitter.com/"+username+"\"");
-	}
 	void write(FILE *fp)
 	{
 		wuchar(1,fp);
@@ -116,12 +86,6 @@ public:
 		type=2;
 	}
 	string name;
-	void click()
-	{
-		msystem("\""+settings::browserCommand+"\" \"https://twitter.com/search?q=%23"+name.substr(1,name.size()-1)+"\"");
-		//s/tring cmd=settings::browserCommand+" \"https://twitter.com/search?q=%23"+name.substr(1,name.size()-1)+"\"";
-		//system(cmd.c_str());
-	}
 	void write(FILE *fp)
 	{
 		wuchar(2,fp);
@@ -131,24 +95,27 @@ public:
 	}
 };
 
-Tweet* getTweet(string id);
+Item* getTweet(string id);
 
 
 
 void deleteTweet(string id);
-
 //string=id
-extern map<string,Tweet*> tweets;
-void addTweet(Tweet** tweet);
-extern SDL_mutex *tweetsMutex;
+extern map<string,Item*> tweets;
+void addTweet(Item** tweet,bool newTweet=1);
+extern Mutex tweetsMutex;
 
 
-void parseRestTweets(string json);
+string parseRestTweets(string json);
 
 Tweet* processTweet(Json::Value jtweet);
 
 void saveTweets();
 
 int loadOlderTweets(void *data);
+time_t mtimegm( struct tm * timeptr );
 class AvitarDownloader;
 extern AvitarDownloader *aviDownloader;
+
+void refreshTweets(void *data);
+void loadBackTill(void *data);
