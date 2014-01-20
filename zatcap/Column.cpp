@@ -1,6 +1,6 @@
 #include "Column.h"
 #include "twitter.h"
-#include <SDL1/SDL_rotozoom.h>
+//#include <SDL1/SDL_rotozoom.h>
 #include "algorithm"
 #include "zatcap.h"
 #include "Awesomium.h"
