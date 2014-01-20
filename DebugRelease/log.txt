@@ -6,3 +6,90 @@ Logging in...
 Successfully logged in to twitter account: zacaj_
 Opening a stream...
 Streaming connection established.
+Loading information for user -2131359255
+Loading information for user 
+Loading information for user -2145715664
+Tweet sent successfully: @thedefacer @ksbaum94 @KillianMarz I could redo my edh deck as bg if you let me use varolz.  thoughts? (424954938058637312,)
+Command to be run: 
+cmd /C ""C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "http://dinosaurparty.tumblr.com/post/73841991567/the-infinity-augmented-reality-concept-video-by""
+
+Output from command (empty if successful):
+
+
+<end of output>
+Command to be run: 
+cmd /C ""C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "http://www.monoprice.com/Product?c_id=102&cp_id=10246&cs_id=1024603&p_id=9476&seq=1&format=2""
+
+Output from command (empty if successful):
+
+
+<end of output>
+Tweet sent successfully: @thedefacer @ksbaum94 *pokes @KillianMarz* (424994581403672576,)
+Tweet sent successfully: @thedefacer shit making a bg would also mean tearing apart my rg... (424994581403672576,)
+Tweet sent successfully: @thedefacer hrm (424996369104125952,)
+Tweet sent successfully: @thedefacer @ksbaum94 @KillianMarz what about tomorrow? (424997735788724224,)
+Tweet sent successfully: @thedefacer @ksbaum94 @KillianMarz how long would you be available if we did it at yours today? (425004673246851073,)
+Tweet sent successfully: @thedefacer @ksbaum94 @KillianMarz :/ (425008253345349633,)
+Tweet sent successfully: @thedefacer you can't do tomorrow during the day or? @ksbaum94 @KillianMarz  (425008468681297920,)
+Tweet sent successfully: @thedefacer what exact times are you available? @ksbaum94 @KillianMarz  (425010083286614016,)
+Tweet sent successfully: @thedefacer ? (425010083286614016,)
+Tweet sent successfully: @KillianMarz you're not available at all today?  (after 7?) (425011121985048577,)
+Tweet sent successfully: @thedefacer @ksbaum94 I can do 7 at chase's, @KillianMarz won't be able to come though if so (425011121985048577,)
+Tweet sent successfully: @thedefacer @ksbaum94 @KillianMarz did I trade any of you a fog of gnats? (425015491157954563,)
+Tweet sent successfully: @thedefacer @ksbaum94 @KillianMarz nvm found it (425015491157954563,)
+Tweet sent successfully: @SimoRoth I don't think you can deploy to iOS devices unless you're current, at least (425019391655563264,)
+Tweet sent successfully: @thedefacer @ksbaum94 @KillianMarz could just do both.  *shrug* (425015491157954563,)
+Tweet sent successfully: @thedefacer @ksbaum94 do we want to try to get a fourth person or? (425015491157954563,)
+Command to be run: 
+cmd /C ""C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "https://vine.co/v/hltMjU6YPb3""
+
+Output from command (empty if successful):
+
+
+<end of output>
+Tweet sent successfully: @thedefacer maybe.  I don't suppose Chris is still up for playing? (425023140276600832,)
+Tweet sent successfully: @thedefacer oh well (425026317109563393,)
+Tweet sent successfully: @thedefacer nah I didn't ask him (425027530244886528,)
+Tweet sent successfully: @thedefacer he's working (425032048227524608,)
+Command to be run: 
+cmd /C ""C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "http://imgur.com/wRSstal""
+
+Output from command (empty if successful):
+
+
+<end of output>
+Tweet sent successfully: @thedefacer @ksbaum94 so are we doing this? (425023140276600832,)
+Tweet sent successfully: @ksbaum94 @KillianMarz @thedefacer if chase isn't available till 530 tomorrow and you have to leave at six what's the point? (425040078545502208,)
+Tweet sent successfully: @thedefacer @ksbaum94 @KillianMarz true.   (425041926774325248,)
+Tweet sent successfully: @ksbaum94 why not today? (425040078545502208,)
+Tweet sent successfully: @thedefacer @ksbaum94 @KillianMarz so...  3ish tomorrow? (425041926774325248,)
+Tweet sent successfully: @thedefacer @ksbaum94 @KillianMarz yeah yeah (425046254804930560,)
+Tweet sent successfully: @thedefacer octgn sometime tonight? (425046254804930560,)
+Tweet sent successfully: @ksbaum94 @KillianMarz @thedefacer I'm good all of tomorrow though really, so earlier works too if you want (425046391853826049,)
+Tweet sent successfully: @thedefacer I'll give it a shot (425046541565304833,)
+Tweet sent successfully: @thedefacer when? (425046541565304833,)
+Tweet sent successfully: @bluehands15 @countjackuula ? (425046541565304833,)
+Tweet sent successfully: @Xzyliac *gets shovel* (425048245086076928,)
+Command to be run: 
+cmd /C ""C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "http://bit.ly/1hEcMwd""
+
+Output from command (empty if successful):
+
+
+<end of output>
+Tweet sent successfully: @countjackuula @bluehands15 are you suuuuuuuuuuuuuuuuuure? (425049105317265408,)
+Tweet sent successfully: @countjackuula @bluehands15 330/4, not pick up? (425049105317265408,)
+Tweet sent successfully: @thedefacer k (425049950221643776,)
+Tweet sent successfully: @countjackuula @bluehands15 well, I *was* planning on leaving on Thursday, but (425049549728530432,)
+Tweet sent successfully: @SimoRoth *3000 (425049357188993024,)
+Tweet sent successfully: @rainshapes lemme push the latest stuff to github for you (425050695352332288,)
+Tweet sent successfully: @rainshapes I've been fixing minor crash bugs and I havne't gotten around to committing them (425050695352332288,)
+Tweet sent successfully: @rainshapes also, I'll see if it still builds in linux (425050695352332288,)
+Tweet sent successfully: @rainshapes you'll need to install Awesomium dev libraries and SDL1: http://www.awesomium.com/download/ (425050695352332288,)
+Tweet sent successfully: @rainshapes on windows I needed to add it to my include path, don't remember linux, no idea on OSX (425052131104526336,)
+Tweet sent successfully: @rainshapes ah, shit.  you'll also need libcurl (425052346997956608,)
+Tweet sent successfully: @rainshapes normal (425053213864120321,)
+Tweet sent successfully: @rainshapes with ssl support (425053213864120321,)
+Tweet sent successfully: @rainshapes there's a makefile in zatcap/ to build the app on linux.  building the app requires it to link with libtwitcurl, so you'll... (425053213864120321,)
+Tweet sent successfully: @rainshapes ...need to build that (in libtwitcurl/) first.  both zatcap and libtwitcurl require libcurl (425053213864120321,)
+Tweet sent successfully: @rainshapes I'd assume so, if that's how OSX does it (425055547281260544,)

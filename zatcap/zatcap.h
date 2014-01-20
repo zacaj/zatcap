@@ -7,7 +7,7 @@
 #include <functional>
 #include <map>
 #include <stdio.h>
-#include "json/reader.h"
+#include "json/reader.h"   
 #define VERSION "0.0001  " __TIMESTAMP__
 using namespace std;
 using namespace Json;
@@ -54,6 +54,7 @@ extern string tempString;
 extern string username;
 
 #define debugHere() //debug("%s:%i %s\n",__FILE__,__LINE__,__FUNCTION__);
+#define debugHere2() debug("%s:%i %s\n",__FILE__,__LINE__,__FUNCTION__);
 
 class Process;
 extern map<float,Process*> processes;

@@ -5,17 +5,26 @@
 void addUsername(string str);
 int streaming=0;
 void parseStream(Json::Value root,string str)
-{debugHere();
+{debugHere2();
+debug("\nQ\n%s\nQ\n", str.c_str());
 	if(!root["friends"].isNull() && root["friends"].isArray())//opening friends message
 	{
-		print("Streaming connection established.\n");debugHere();
-		for(int i=0;i<root["friends"].size();i++)
-			addUsername(getUser(i2s(root["friends"][i].asInt()))->username);
+		print("Streaming connection established.\n");debugHere2();
+		for (int i = 0; i < root["friends"].size(); i++)
+		{
+			int ii = i;
+			//print("%i\n", i);
+			Json::Value v = root["friends"][i];
+			User *u = getUser(i2s(v.asUInt()));
+			if (u!=NULL)
+				addUsername(u->username);
+		}
 		//todo figure out a use for this like loading initial friends list or should that be done using rest api since streaming api might not be used and new users should be handled anyways...
 	}
 	else if(!root["text"].isNull() && !root["user"].isNull() && !root["favorited"].isNull())//is a tweet?
 	{
-		processTweet(root);debugHere();
+		//printf("new tweet from stream: %s\n", root["text"].asCString());
+		processTweet(root);debugHere2();
 	}
 	else if(!root["direct_message"].isNull())
 	{
@@ -23,13 +32,15 @@ void parseStream(Json::Value root,string str)
 	}
 	/*else if(!root["limit"].isNull())//limit notice
 	{
-		root=root["limit"];debugHere();
+		root=root["limit"];debugHere2();
 
 	}*/
 	else if(!root["event"].isNull())//event
 	{
 		User *target=getUser(root["target"]);
 		User *source=getUser(root["source"]);
+		if (target == NULL || source == NULL)
+			return;
 		string type=root["event"].asString();
 		struct tm otm=convertTimeStringToTM(root["created_at"].asString());
 		time_t ott=mtimegm(&otm);
@@ -60,11 +71,11 @@ void parseStream(Json::Value root,string str)
 	}
 	else if(!root["delete"].isNull())//delete notice
 	{
-		deleteTweet(root["delete"]["status"]["id_str"].asString());debugHere();
+		deleteTweet(root["delete"]["status"]["id_str"].asString());debugHere2();
 	}
 	/*else if(!root["target"].isNull())//todo events
 	{
-		debugHere();
+		debugHere2();
 	}
 	else if(0)
 	{
@@ -75,13 +86,13 @@ void parseStream(Json::Value root,string str)
 		//print("keep alive\n");
 	}*/
 	else
-	{debugHere();
+	{debugHere2();
 	debug("new stream message:\n%s\n",str.c_str());
  		FILE *fp=fopen("unhandled.txt","a+");
 		fprintf(fp,"couldnt handle (%s):\n%s\n\n\n",VERSION,str.c_str());
 		print("\nERROR: Twitter message not handleable by ZATCAP, pleas email unhandled.txt to zatcap@zacaj.com!\n\n");
-		fclose(fp);debugHere();
-	}debugHere();
+		fclose(fp);debugHere2();
+	}debugHere2();
 
 }
 struct ParseStream
@@ -95,69 +106,130 @@ void parseStreamThread(void *ptr)
 	parseStream(str->root,str->str);
 	delete ptr;
 }
+string removeLeadingTrailing(string s,string not)
+{
+	if (s.size() == 0)
+		return s;
+	size_t notSpace = 0;
+	while (not.find(s[notSpace]) != string::npos) notSpace++;
+	if (notSpace != string::npos && notSpace != 0)
+		s.erase(0, notSpace);
+	while (1)
+	{
+		int i;
+		if (not.find(s.back()) == string::npos)
+			break;
+		s.pop_back();
+	}
+	return s;
+}
 size_t callback_func(void *ptr, size_t size, size_t count, void *userdata)
 {
 	if(streaming<=0)
 	{
 		//startThread(loadMissingTweets,NULL);
 	}
-	streaming=60*45;debugHere();
-	string str=(char*)ptr;
-	//FILE *fp=fopen("stream debug.txt","a+");
-	//fprintf(fp,"Q%sQ\n\n\n\n\n\n\n\n",str.c_str());
-	size_t pos=0,lpos=0;debugHere();
-	if(str.size()<10)
-		return size*count;debugHere();
-	if(str.find('\r',lpos+1)!=string::npos)
-	{debugHere();
+
+	streaming=60*45;debugHere2();
+	string str = (char*)ptr;
+	if (str.size() < 10)
+		return size*count; debugHere2();
+	FILE *fp=fopen("stream debug.txt","a+");
+	if (fp)
+	fprintf(fp,"Q%sQ\n\n\n\n\n\n\n\n",str.c_str());
+	else
+	{
+		debug("fopen error: %s\n", strerror(errno));
+	}
+ 	size_t pos=0,lpos=0;debugHere2();
+	debug("\nT\n%s\nT\n", str.c_str());
+	bool isEnd =removeLeadingTrailing(str, "\n\r ").back() == '}';
+	size_t spos;
+	/*while (true)
+	{
+		spos = str.rfind('}');
+		if (spos == string::npos)
+		{
+			debugHere2();
+			break;
+		}
+		if (spos >= str.size() - 2 || spos <=str.size()-4)
+		{
+			debugHere2();
+			break;
+		}
+		if (str[spos + 1] != ',')
+		{
+			debugHere2();
+			isEnd = true;
+			break;
+		}
+		break;
+	}*/
+	//if(str.find('\r',lpos+1)!=string::npos)
+	if (isEnd)
+	{debugHere2();
+	if (fp)
+	fprintf(fp, "end\n"); 
+	string str2 = *((string*)userdata);
+	debug("\n2\n%s\n2\n", str2.c_str());
+	str2.append(removeLeadingTrailing(str, "\n\r "));
+	str = removeLeadingTrailing(str2, "\n\r ");
+	debug("\nS\n%s\nS\n", str.c_str());
+	str.push_back('\r');
 		while((pos=str.find('\r',lpos+1))!=string::npos)
 		{
-			string s;debugHere();
+			string s;debugHere2();
 			if(lpos==-1)
 				s=str;
 			else
 				s=str.substr(lpos,pos-lpos);
 			if(s.length()<10)
-			{debugHere();
+			{debugHere2();
 				lpos=pos;
 				continue;
-			}debugHere();
+			}debugHere2();
 			Json::Reader reader;
-			Json::Value root;debugHere();
-			reader.parse(s,root);debugHere();
+			Json::Value root;debugHere2();
+			reader.parse(s,root);debugHere2();
 			ParseStream *strm=new ParseStream;
 			strm->root=root;
 			strm->str=s;
-			startThread(parseStreamThread,strm);//parseStream(root,s);debugHere();
-			lpos=pos;debugHere();
+			startThread(parseStreamThread,strm);//parseStream(root,s);debugHere2();
+			lpos = pos; debugHere2();
 		} //i will be so amazed if this actually works
+		((string*)userdata)->clear(); debugHere2();
 	}
 	else//no carriage return->broken transmission
-	{debugHere();
-		if(str[str.size()-1]=='}')//end of a tweet
-		{debugHere();
+	{
+		debugHere2();
+		if (fp)
+		fprintf(fp, "not end\n");
+		if(str[str.size()-1]=='}' && 0)//end of a tweet
+		{debugHere2();
 			string str2=*((string*)userdata);
 			str2.append(str);
 			//fprintf(fp,"F%sF\n\n",str2.c_str());
 			Json::Reader reader;
 //			fflush(fp);
-			Json::Value root;debugHere();
-			reader.parse(str2,root);debugHere();
+			Json::Value root;debugHere2();
+			reader.parse(str2,root);debugHere2();
 			ParseStream *strm=new ParseStream;
 			strm->root=root;
 			strm->str=str2;
 			startThread(parseStreamThread,strm);
-			//parseStream(root,str2);debugHere();
-			((string*)userdata)->clear();debugHere();
+			//parseStream(root,str2);debugHere2();
+			((string*)userdata)->clear();debugHere2();
 		}
 		else
-		{debugHere();
-			string *str2=((string*)userdata);debugHere();
-			str2->append(str);debugHere();
+		{debugHere2();
+			string *str2=((string*)userdata);debugHere2();
+			str2->append(removeLeadingTrailing(str,"\n\r "));debugHere2();
 		}
 	//	fprintf(fp,"LOOKHERE");
-	}debugHere();
-	//fclose(fp);
+	}debugHere2();
+	if (fp)
+	fclose(fp);
 	return size*count;
 }
 
@@ -167,12 +239,16 @@ int openUserStream( void *twit ) //the fact that you need this really pisses me 
 }
 
 int curl_debug_callback2(CURL *curl,curl_infotype infotype,char *data,size_t size,void *userptr)
-{debugHere();
+{debugHere2();
 	//print("%i:\n");
 	//fwrite(data,size,1,stdout);
 	//print("\n");
 	FILE *fp=fopen("stream debug.txt","a+");
-	fprintf(fp,"%i:\n");
+	if (!fp){
+		debug("fopen error: %s\n", strerror(errno));
+		return 0;
+	}
+	fprintf(fp,"%i:\n",size);
 	fwrite(data,size,1,fp);
 	fprintf(fp,"\n\n\n");
 	fclose(fp);
@@ -197,7 +273,7 @@ bool openUserStream(twitCurl *twit)
 	curl_easy_setopt( curl, CURLOPT_USERPWD, userNamePassword.c_str() );//
 	string oAuthHttpHeader;
 	struct curl_slist* pOAuthHeaderList = NULL;
-	char *url="https://userstream.twitter.com/1.1/user.json?delimited=false&with=followings";
+	char *url="https://userstream.twitter.com/1.1/user.json?delimited=false&with=followings&stall_warnings=true";
 	//char *url="https://stream.twitter.com/1/statuses/sample.json";
 	tempString="";
 	twit->m_oAuth.getOAuthHeader( eOAuthHttpGet,url, tempString, oAuthHttpHeader );//
@@ -221,6 +297,7 @@ bool openUserStream(twitCurl *twit)
 	curl_easy_setopt(  curl, CURLOPT_VERBOSE, 1 );
 	//curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYHOST, 0 );
 	curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_easy_setopt(  curl, CURLOPT_CONNECTTIMEOUT, 60);
 	//curl_easy_setopt( curl, CURLOPT_CAINFO,"resources/cacert.pem");//
 	curl_easy_setopt(  curl, CURLOPT_URL, url);//
 	curl_easy_setopt( curl, CURLOPT_WRITEFUNCTION, callback_func);
@@ -257,15 +334,15 @@ bool openUserStream(twitCurl *twit)
 	return openUserStream(twit);
 }
 int curl_debug_callback3(CURL *curl,curl_infotype infotype,char *data,size_t size,void *userptr)
-{debugHere();
+{debugHere2();
 //print("%i:\n");
 //fwrite(data,size,1,stdout);
 //print("\n");
-FILE *fp=fopen("img debug.txt","a+");debugHere();
+FILE *fp=fopen("img debug.txt","a+");debugHere2();
 fprintf(fp,"%i:\n");
 fwrite(data,size,1,fp);
 fprintf(fp,"\n\n\n");
-fclose(fp);debugHere();
+fclose(fp);debugHere2();
 return 0;
 }
 size_t img_callback_func(void *ptr, size_t size, size_t count, void *userdata)
@@ -316,6 +393,7 @@ doing(1);
 	curl_easy_setopt(curl,CURLOPT_WRITEDATA,(void*)str);
 	//curl_easy_setopt( curl, CURLOPT_HEADERFUNCTION, callback_func );
 	curl_easy_setopt( curl, CURLOPT_DEBUGFUNCTION, curl_debug_callback3 );
+	curl_easy_setopt( curl, CURLOPT_TIMEOUT, curl_debug_callback3 );
 	//todo errors
 
 	struct curl_httppost* post = NULL;  struct curl_httppost* last = NULL; 

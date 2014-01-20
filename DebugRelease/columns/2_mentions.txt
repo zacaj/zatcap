@@ -1,0 +1,5 @@
+475
++ str $USERNAME
++ type 2
++ type 3
++ rt $USERNAME

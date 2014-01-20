@@ -7,7 +7,7 @@
 #include "json\writer.h"
 #include "TimedEventProcess.h"
 #include "Tweet.h"
-#include <SDL_rotozoom.h>
+#include <SDL1/SDL_rotozoom.h>
 #include "file.h"
 #include <stdio.h>
 #include <dirent.h>
@@ -49,38 +49,50 @@ void refreshTweets( void *data )
 {
 	doing(1);
 	{
-		string tmpString;debugHere();
-		while((tmpString=twit->timelineHomeGet(false,true,25,"",""))=="");
+		string tmpString; debugHere();
+		int nTries = 0;
+		while ((tmpString = twit->timelineHomeGet(false, true, 25, "", "")) == "") if (nTries++>4) goto mentions;
 		parseRestTweets(tmpString);debugHere();
 	}
+	mentions:
 	{
-		string tmpString;debugHere();
-		while((tmpString=twit->mentionsGet("",""))=="");
+		string tmpString; debugHere();
+		int nTries = 0;
+		while ((tmpString = twit->mentionsGet("", "")) == "") if (nTries++>4) goto favorties;
 		parseRestTweets(tmpString);debugHere();
 	}
+	/*{
+		string tmpString; debugHere();
+		int nTries = 0;
+		while ((tmpString = twit->timelineFriendsGet()) == "") if (nTries++>4) return;
+		parseRestTweets(tmpString);debugHere();
+	}*/
+	favorties:
 	{
-		string tmpString;debugHere();
-		while((tmpString=twit->timelineFriendsGet())=="");
+		string tmpString; debugHere();
+		int nTries = 0;
+		while ((tmpString = twit->favoriteGet()) == "") if (nTries++>4) goto retweets;
 		parseRestTweets(tmpString);debugHere();
 	}
+	retweets:
 	{
-		string tmpString;debugHere();
-		while((tmpString=twit->favoriteGet())=="");
+		string tmpString; debugHere();
+		int nTries = 0;
+		while ((tmpString = twit->retweetsGet()) == "") if (nTries++>4) goto dms;
 		parseRestTweets(tmpString);debugHere();
 	}
+	dms:
 	{
-		string tmpString;debugHere();
-		while((tmpString=twit->retweetsGet())=="");
+		string tmpString; debugHere();
+		int nTries = 0;
+		while ((tmpString = twit->directMessageGet()) == "") if (nTries++>4) goto followers;
 		parseRestTweets(tmpString);debugHere();
 	}
+	followers:
 	{
-		string tmpString;debugHere();
-		while((tmpString=twit->directMessageGet())=="");
-		parseRestTweets(tmpString);debugHere();
-	}
-	{
-		string tmpString;debugHere();
-		while((tmpString=twit->followersIdsGet(username))=="");
+		string tmpString; debugHere();
+		int nTries = 0;
+		while ((tmpString = twit->followersIdsGet(username)) == "") if (nTries++>4) goto done;
 		Json::Reader reader;
 		Json::Value root;
 		reader.parse(tmpString,root);
@@ -91,6 +103,7 @@ void refreshTweets( void *data )
 			addFollower(root[i].asString());
 		}
 	}
+	done:
 	doing(-1);
 }
 void loadBackTill(void *data)
@@ -102,8 +115,9 @@ void loadBackTill(void *data)
 	string oldestLoadedId="";
 	while(1)
 	{
-		string tmpString;debugHere();
-		while((tmpString=twit->timelineHomeGet(false,true,800,"",oldestLoadedId))=="");
+		string tmpString; debugHere();
+		int nTries = 0;
+		while ((tmpString = twit->timelineHomeGet(false, true, 800, "", oldestLoadedId)) == "") if (nTries++>20) return;
 		oldestLoadedId=parseRestTweets(tmpString);debugHere();
 		if(oldestLoadedId.empty())
 			break;
@@ -201,7 +215,7 @@ void readTweetFile(string path)
 			int n=ruint(fp);
 			for(int i=0;i<n;i++)
 			{
-                debug("Reading tweet %i/%i\n",i,n);
+                ///debug("Reading tweet %i/%i\n",i,n);
 				uchar type=ruchar(fp);
 				switch(type)
 				{
@@ -327,15 +341,21 @@ string parseRestTweets( string json )
 	Json::Value root;
 	string ret="";
 	FILE *fp=fopen("test.json","wb");
-	fwrite(json.c_str(),json.size(),1,fp);
-	fclose(fp);
+	if (fp){
+		fwrite(json.c_str(), json.size(), 1, fp);
+		fclose(fp);
+	}
+	else
+	{
+		debug("fopen error: %s\n", strerror(errno));
+	}
 	assert_(reader.parse(json,root));debugHere();
 	if(root.isArray())
 	{
 		int s=root.size();
 		for(int i=0;i<root.size();i++)
 		{
-			debug("processing tweet %i\n",i);
+			///debug("processing tweet %i\n",i);
 			Json::Value tweet=root[i];debugHere();
 			if(tweet.isNull())
 				continue;
@@ -354,7 +374,7 @@ string parseRestTweets( string json )
 
 size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 	debugHere();
-	debug("stream=%i\n",stream);
+	///debug("stream=%i\n",stream);
 	size_t written = fwrite(ptr, size, nmemb, stream);
 	return written;
 }
@@ -399,6 +419,8 @@ Item* getTweet( string id )
 	int tries=0;
 	string tmpString;
 	while((tmpString=twit->statusShowById(id))=="" && tries++<10);
+	if (tries == 10)
+		return NULL;
 	Json::Reader reader;
 	Json::Value root;
 	reader.parse(tmpString,root);
@@ -492,7 +514,7 @@ void addTweet( Item** tweet,bool newTweet )
 enterMutex(tweetsMutex);
 debugHere();
 	map<string,Item*>::iterator tw=tweets.find((*tweet)->id);debugHere();
-	debug("New tweet: %s\n",escape((*tweet)->text,true).c_str());
+	///debug("New tweet: %s\n",escape((*tweet)->text,true).c_str());
 	if(tw==tweets.end())
 	{
 		time_t t=time(NULL);
@@ -572,7 +594,8 @@ void fixUser(void *ptr)
 	TimedEventProcess *u=(TimedEventProcess*)ptr;
 	User *user=(User*)u->data;
 	string tmpString;
-	while((tmpString=twit->userGet(user->id,true))=="");
+	int nTries = 0;
+	while ((tmpString = twit->userGet(user->id, true)) == "") if (nTries++>20) return;
 
 	Json::Reader reader;
 	Json::Value root;
@@ -591,7 +614,7 @@ User * getUser( string id )
 	if(fileExists(string("users/")+id))
 	{debugHere();
 	User *user=new User;debugHere();
-	debug("%s\n",id.c_str());
+	///debug("%s\n",id.c_str());
 		FILE *fp=fopen((string("users/")+id).c_str(),"rb");debugHere();
 		assert_(fp);debugHere();
 		user->id=id;debugHere();
@@ -603,9 +626,12 @@ User * getUser( string id )
 	}debugHere();
 	User *user=new User;
 	string tmpString;debugHere();
-	debug("%s\n",id.c_str());
-	print("Loading information for user %s\n",id.c_str());debugHere();
-	while((tmpString=twit->userGet(id,true))=="") debugHere();
+	///debug("%s\n",id.c_str());
+	print("Loading information for user %s\n", id.c_str()); debugHere();
+	int nTries = 0;
+	while ((tmpString = twit->userGet(id, true)) == "") {
+		if (nTries++ > 20) break;; debugHere()
+	};
 	debugHere();
 	Json::Reader reader;
 	Json::Value root;
@@ -633,6 +659,8 @@ bool tweetsInuse=0;
 void User::save()
 {
 	FILE *fp=fopenf(string("users/")+id,"wb");
+	if (!fp)
+		return;
 	wstr(username,fp);
 	wstr(name,fp);
 	wstr(picURL,fp);
@@ -643,7 +671,8 @@ std::string User::getHtml()
 {
 	string content=f2s("resources/user.html");
 	string json;
-	while((json=twit->userGet(id,true))=="");
+	int nTries = 0;
+	while ((json = twit->userGet(id, true)) == "") if (nTries++>20) return "";
 	Json::Reader reader;
 	Json::Value root;
 	reader.parse(json,root);
@@ -850,10 +879,17 @@ Tweet* processTweet(Json::Value jtweet)
 		//	retweet->id=jtweet["id_str"].asString();
 		retweet->nRetweet=jtweet["retweet_count"].asInt();
 		retweet->timeRetweetedInSeconds=mktime(&retweet->timeRetweeted);debugHere();
-		if(original["in_reply_to_status_id_str"].isNull())
+		if(jtweet["in_reply_to_status_id_str"].isNull())
 			tweet->replyTo="";
 		else
-			tweet->replyTo=(original["in_reply_to_status_id_str"].asString());
+			tweet->replyTo=jtweet["in_reply_to_status_id_str"].asString();
+		if(tweet->replyTo.empty())
+		{
+			if(original["in_reply_to_status_id_str"].isNull())
+				tweet->replyTo="";
+			else
+				tweet->replyTo=(original["in_reply_to_status_id_str"].asString());
+		}
 	}
 	tweet->timeTweetedInSeconds=mktime(&tweet->timeTweeted);debugHere();
 	if(tweet->user()->username==username)

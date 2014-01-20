@@ -448,7 +448,7 @@ function doDelete(id,columnName)
 		cpp._delete(id);
 	}	
 }
-function doConvo(id,column,reply)
+function doConvo(id,column,reply,n)
 {
 	var shell=document.getElementById(id+"_"+column+"_replyShell");
 	if(shell)
@@ -457,7 +457,7 @@ function doConvo(id,column,reply)
 		{
 			shell.style.display="block";
 			shell.innerHTML="<img src=\"asset://resource/activity.gif\" />";
-			cpp.setIdToTweetHtml(id+"_"+column+"_replyShell",reply,id+"_"+column+"_replyShell");
+			cpp.setIdToTweetHtml(id+"_"+column+"_replyShell",reply,id+"_"+column+"_replyShell",n);
 		}
 		else
 		{

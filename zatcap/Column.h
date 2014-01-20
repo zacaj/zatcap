@@ -3,7 +3,7 @@
 #include "zatcap.h"
 #include <time.h>
 #include "Tweet.h"
-#include <SDL_mutex.h>
+#include <SDL1/SDL_mutex.h>
 
 #define COLUMNHEADERHEIGHT 35
 

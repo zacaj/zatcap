@@ -300,14 +300,14 @@ void notifyIcon(bool on)
 	info.hwnd = hwnd;
 	if(on)
 	{
-#ifdef NDEBUG
-		if(settings::notificationSound.size())
-			PlaySoundA(settings::notificationSound.c_str(), NULL, SND_FILENAME|SND_ASYNC|SND_NOSTOP);
-#endif
 		if(GetFocus()==hwnd || hasFocus)
 		{
 			return;
 		}
+#ifdef NDEBUG
+		if(settings::notificationSound.size())
+			PlaySoundA(settings::notificationSound.c_str(), NULL, SND_FILENAME|SND_ASYNC|SND_NOSTOP);
+#endif
 		alert=1;
 		info.dwFlags = FLASHW_TRAY;
 		info.dwTimeout = 0;
@@ -401,7 +401,7 @@ void loadUser(twitCurl *twit)
 			twit->getOAuth().setConsumerSecret("fMzPJj4oFBgSlW1Ma2r79Y1kE0t7S7r1lvQXBnXSk");
 			string authURL;debugHere();
 			assert_(twit->oAuthRequestToken(authURL)!="");debugHere();
-			if(settings::pinLogin)
+			if(settings::pinLogin || 1)
 			{
 				string url=authURL;
 				print("Please go to \n%s and enter the pin\n",url.c_str());
@@ -612,7 +612,8 @@ void sendTweet(void *_data)
 		Activity *activity=new Activity(str,"cpp.stopTweet("+i2s(t)+");",data->user);
 		pendingTweets[t]=0;
 		addTweet((Item**)&activity);
-		while(twit->statusUpdate(str,data->replyId)=="" && !pendingTweets[t]);
+		int nTries = 0;
+		while (twit->statusUpdate(str, data->replyId) == "" && !pendingTweets[t]) if (nTries++>20) return;
 		deleteTweet(activity->id);
 		print("Tweet sent successfully: %s (%s,%s)\n",str.c_str(),data->replyId.c_str(),replyId.c_str());
 	}
@@ -1099,10 +1100,22 @@ int main(int argc,char **argv)
 			string htmlid=ToString(args[0].ToString());
 			string tweetid=ToString(args[1].ToString());
 			string parent=ToString(args[2].ToString());
+			int n=args[3].ToInteger();
 			startLambdaThread([=]()
 			{
-				string html=getTweet(tweetid)->getHtml(parent);
+				Tweet *item=(Tweet*)getTweet(tweetid);
+				string html=item->getHtml(parent);
 				runJS("document.getElementById('"+htmlid+"').innerHTML='"+escape(html)+"';");
+				runJS("document.getElementById('"+htmlid+"').style.display='block';");
+				if(n-1>0 && item->replyTo.size())
+				{
+					JSArray a;
+					a.Push(JSValue(FS(item->id+"_"+parent+"_replyShell")));
+					a.Push(JSValue(FS(item->replyTo)));
+					a.Push(JSValue(FS(item->id+"_"+parent+"_replyShell")));
+					a.Push(JSValue(n-1));
+					methodHandler->funcs[WSLit("setIdToTweetHtml")](a);
+				}
 			});
 		});
 		methodHandler->reg(WSLit("pasteImage"),[](JSArray args)
@@ -1164,7 +1177,8 @@ int main(int argc,char **argv)
 				if(to==-1)
 				{
 					string json;
-					while((json=twit->userGet(id_,true))=="");
+					int nTries = 0;
+					while ((json = twit->userGet(id_, true)) == "") if (nTries++>20) return;
 					Json::Reader reader;
 					Json::Value root;
 					reader.parse(json,root);
@@ -1569,7 +1583,7 @@ void debug(const char* msg, ...)
 {
 
 	va_list fmtargs;
-	char buffer[2024];
+	char buffer[20024];
 	va_start(fmtargs, msg);
 	vsnprintf(buffer, sizeof(buffer) - 1, msg, fmtargs);
 	va_end(fmtargs);

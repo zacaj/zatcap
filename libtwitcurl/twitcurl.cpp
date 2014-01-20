@@ -936,16 +936,12 @@ std::string twitCurl::favoriteGet()
 *--*/
 std::string twitCurl::favoriteCreate( std::string& statusId )
 {
-    /* Prepare URL */
-    std::string buildUrl = twitterDefaults::TWITCURL_FAVORITECREATE_URL + statusId +
-                           twitCurlDefaults::TWITCURL_EXTENSIONFORMATS[m_eApiFormatType];
+	/* Prepare URL */
+	std::string buildUrl = twitterDefaults::TWITCURL_FAVORITECREATE_URL + 
+		twitCurlDefaults::TWITCURL_EXTENSIONFORMATS[m_eApiFormatType];
 
-    /* Send some dummy data in POST */
-    std::string dummyData = twitCurlDefaults::TWITCURL_TEXTSTRING +
-                            urlencode( std::string( "dummy" ) );
-
-    /* Perform POST */
-    return performPost( buildUrl, dummyData );
+	/* Perform DELETE */
+	return performPost( buildUrl ,"id="+statusId);
 }
 
 /*++
@@ -962,11 +958,11 @@ std::string twitCurl::favoriteCreate( std::string& statusId )
 std::string twitCurl::favoriteDestroy( std::string& statusId )
 {
     /* Prepare URL */
-    std::string buildUrl = twitterDefaults::TWITCURL_FAVORITEDESTROY_URL + statusId +
+    std::string buildUrl = twitterDefaults::TWITCURL_FAVORITEDESTROY_URL + 
                            twitCurlDefaults::TWITCURL_EXTENSIONFORMATS[m_eApiFormatType];
 
     /* Perform DELETE */
-    return performDelete( buildUrl );
+    return performPost( buildUrl ,"id="+statusId);
 }
 std::string twitCurl::retweetCreate( std::string& statusId )
 {

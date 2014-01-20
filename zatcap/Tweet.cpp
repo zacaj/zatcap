@@ -19,7 +19,8 @@ void favoriteTweet( void *data )
 {
 	Tweet *tweet=(Tweet*)data;
 	string tmpString;
-	while((tmpString=twit->favoriteCreate(tweet->id))=="");
+	int nTries = 0;
+	while((tmpString=twit->favoriteCreate(tweet->id))=="") if(nTries++>20) return;
 	debug("fav: %s\n",tmpString.c_str());
 }
 
@@ -27,14 +28,16 @@ void unfavoriteTweet(void *data)
 {
 	Tweet *tweet=(Tweet*)data;
 	string tmpString;
-	while((tmpString=twit->favoriteDestroy(tweet->id))=="");
+	int nTries = 0;
+	while ((tmpString = twit->favoriteDestroy(tweet->id)) == "") if (nTries++>20) return;
 	debug("unfav: %s\n",tmpString.c_str());
 }
 void retweetTweet(void *data)
 {
 	Tweet *tweet=(Tweet*)data;
 	string tmpString;
-	while((tmpString=twit->retweetCreate(tweet->id))=="");
+	int nTries = 0;
+	while ((tmpString = twit->retweetCreate(tweet->id)) == "") if (nTries++>20) return;
 	debug("retweet: %s\n",tmpString.c_str());
 	if(tweet->_type==1)
 	{
@@ -49,7 +52,8 @@ void deleteTweet(void *data)
 	Tweet *tweet=(Tweet*)data;
 	runJS("if(document.getElementById('tweetbox').value.length==0) document.getElementById('tweetbox').value='"+escape(tweet->originalText)+"';");
 	string tmpString;
-	while((tmpString=twit->statusDestroyById(tweet->id))=="");
+	int nTries = 0;
+	while ((tmpString = twit->statusDestroyById(tweet->id)) == "") if (nTries++>20) return;
 	debug("delete: %s\n",tmpString.c_str());
 }
 
@@ -141,7 +145,8 @@ std::string Retweet::getHtml( string columnName )
 	{
 		string content=f2s("resources/retweet.html");
 		replace(content,string("$ID"),id);
-		replace(content,string("$ORIGINALID"),originalID);
+		replace(content,string("$ORIGINALID"),originalID);;
+		replace(content,string("$REPLYID"),replyTo);
 		string htmlText=text;
 		{
 			char date[100];
