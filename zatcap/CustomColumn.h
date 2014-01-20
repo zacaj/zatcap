@@ -1,5 +1,5 @@
 #pragma once
-#include "column.h"
+#include "Column.h"
 #include "zatcap.h"
 class Rule
 {

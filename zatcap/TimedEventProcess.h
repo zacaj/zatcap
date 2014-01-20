@@ -1,5 +1,5 @@
 #pragma once
-#include "process.h"
+#include "Process.h"
 class User;
 class TimedEventProcess :
 	public Process

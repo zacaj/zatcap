@@ -106,18 +106,18 @@ void parseStreamThread(void *ptr)
 	parseStream(str->root,str->str);
 	delete ptr;
 }
-string removeLeadingTrailing(string s,string not)
+string removeLeadingTrailing(string s , std::string not2)
 {
 	if (s.size() == 0)
 		return s;
 	size_t notSpace = 0;
-	while (not.find(s[notSpace]) != string::npos) notSpace++;
+	while (not2.find(s[notSpace]) != string::npos) notSpace++;
 	if (notSpace != string::npos && notSpace != 0)
 		s.erase(0, notSpace);
 	while (1)
 	{
 		int i;
-		if (not.find(s.back()) == string::npos)
+		if (not2.find(s.back()) == string::npos)
 			break;
 		s.pop_back();
 	}

@@ -4,10 +4,10 @@
 #include "twitcurl.h"
 #include "stream.h"
 #include <assert.h>
-#include "json\writer.h"
+#include "json/writer.h"
 #include "TimedEventProcess.h"
 #include "Tweet.h"
-#include <SDL1/SDL_rotozoom.h>
+//#include <SDL1/SDL_rotozoom.h>
 #include "file.h"
 #include <stdio.h>
 #include <dirent.h>

@@ -1,5 +1,5 @@
 #pragma once
-#include "process.h"
+#include "Process.h"
 #include "zatcap.h"
 #include <time.h>
 #include "Tweet.h"
