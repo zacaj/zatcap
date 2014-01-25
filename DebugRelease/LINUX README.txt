@@ -1,0 +1,1 @@
+ sudo apt-get install libsdl-gfx1.2-4 libsdl-ttf2.0-0  before running
