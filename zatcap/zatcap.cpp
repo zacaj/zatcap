@@ -621,9 +621,9 @@ void sendTweet(void *_data)
 }
 extern vector<string> jsToRun;
 map<string,time_t> mute;
+set<string> followers;
 #ifdef USE_WINDOWS
 HBITMAP icon[3];
-set<string> followers;
 BOOL SaveToFile(HBITMAP hBitmap3, const char* lpszFileName)
 {   
 	HDC hDC;

@@ -35,7 +35,7 @@ all: target
 
 target: $(SRC) $(LIBNAME).h
 	$(CC) -Wall -fPIC -c -I$(INCLUDE_DIR) $(SRC) oauthlib.cpp urlencode.cpp base64.cpp HMAC_SHA1.cpp SHA1.cpp -m32
-	$(CC) -shared -Wl,-install_name $(STAGING_DIR)/usr/lib $(LDFLAGS) -L$(LIBRARY_DIR) -lcurl -m32 -o lib$(LIBNAME).dylib *.o
+	$(CC) -shared -L$(LIBRARY_DIR) -lcurl -m32 -o lib$(LIBNAME).dylib *.o
 
 #clean project.
 clean:
