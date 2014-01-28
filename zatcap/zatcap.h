@@ -64,7 +64,7 @@ extern Process *keyboardInputReceiver;
 
 struct tm convertTimeStringToTM(string str);
 
-string i2s(int i);
+string i2s(unsigned int i);
 
 
 void debug(const char* msg, ...);

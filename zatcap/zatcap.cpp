@@ -1,4 +1,4 @@
-﻿// zatcap.cpp : Defines the entry point for the console application.
+// zatcap.cpp : Defines the entry point for the console application.
 //
 
 #include "stdafx.h"
@@ -797,6 +797,7 @@ HCURSOR CreateAlphaCursor(void)
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				   LPSTR lpCmdLine, int nCmdShow)
 				   #else
+//#undef main
 int main(int argc,char **argv)
 #endif
 {
@@ -858,7 +859,7 @@ int main(int argc,char **argv)
 	if( strcmp(lpCmdLine, "-noredirect") != 0 )
 #endif
 	{
-		freopen("log.txt","w",stdout);
+		//freopen("log.txt","w",stdout);
 	}
 	debugMutex=createMutex();
 	bool candy=1;
@@ -953,7 +954,7 @@ int main(int argc,char **argv)
 #endif
 		htmlSource=new HtmlSource();
 		session->AddDataSource(WSLit("zatcap"), htmlSource);
-		session->AddDataSource(WSLit("resource"),new DirectorySource("resources\\"));
+		session->AddDataSource(WSLit("resource"),new DirectorySource("resources//"));
 		string index=f2s("resources/index.html");
 		replace(index,"$BOTTOM",f2s("resources/bottom.html"));
 		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> <script type=\"text/javascript\" src=\"asset://resource/selection_range.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/string_splitter.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/cursor_position.js\"></script><script type=\"text/javascript\" src=\"asset://resource/twitter-text.js\"></script></head><body onload=\"init();\" id='body'>"+index+"</body>";
@@ -1348,6 +1349,7 @@ int main(int argc,char **argv)
 void jumpToSetting(FILE *fp,string str)
 {
 	fseek(fp,0,SEEK_SET);
+    //printf("%i\n",ftell(fp));
 	skipToString(fp,(str).c_str());
 	fscanf(fp," = ");
 }
@@ -1407,7 +1409,7 @@ void readConfig()
 	jumpToSetting(fp,"backup tweet time");
 	fscanf(fp,"%i\n",&settings::backupTime);
 	jumpToSetting(fp,"browser command");
-	settings::browserCommand=readTo(fp,'\r');
+	settings::browserCommand=readTo(fp,'\n');
 	jumpToSetting(fp,"show url underline only when hovering");
 	fscanf(fp,"%i\n",&settings::underlineLinksWhenHovered);
 	jumpToSetting(fp,"temp");
@@ -1418,10 +1420,14 @@ void readConfig()
 	fscanf(fp,"%i\n",&pinLogin);
 	jumpToSetting(fp,"max tweets in ram");
 	fscanf(fp,"%i\n",&maxTweets);
+    printf("%i\n",ftell(fp));
 	jumpToSetting(fp,"proxy server");
-	settings::proxyServer=cscanf(fp,"%s\n");
+    printf("%i\n",ftell(fp));
+	settings::proxyServer=cscanf(fp,"%s\r");
 	jumpToSetting(fp,"proxy port");
 	settings::proxyPort=cscanf(fp,"%s\n");
+    proxyServer="none";
+   // exit(0);
 	jumpToSetting(fp,"notification sound");
 	settings::notificationSound=cscanf(fp,"%s\n");
 
@@ -1572,10 +1578,10 @@ struct tm convertTimeStringToTM( string str )
 	return tmm;
 }
 
-std::string i2s( int n )
+std::string i2s(unsigned int n )
 {
 	char t[50];
-	sprintf(t,"%i",n);
+	sprintf(t,"%u",n);
 	return string(t);
 }
 
