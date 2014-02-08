@@ -199,7 +199,7 @@ void handleSDLKeyEvent(Awesomium::WebView* webView, const SDL_Event& event) {
 void sdlInit()
 {
     SDL_Init(SDL_INIT_VIDEO);
-        SDL_SetVideoMode(settings::windowWidth, settings::windowHeight,32,SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_OPENGL);
+        SDL_SetVideoMode(settings::windowWidth, settings::windowHeight,32,SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_OPENGL|SDL_RESIZABLE);
         glewInit();
         glClearColor(0, 0, 0, 0);
         glClearDepth(1.0f);
@@ -261,6 +261,30 @@ void sdlUpdate(int &quit)
                                                 view->
                                                 InjectMouseUp(Awesomium::kMouseButton_Left);
                                 break;
+                            case SDL_VIDEORESIZE:
+                                
+                                SDL_SetVideoMode(e.resize.w, e.resize.h,32,SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_OPENGL|SDL_RESIZABLE);
+                                
+                                glViewport(0, 0, e.resize.w,e.resize.h);
+                                
+                                view->Resize(e.resize.w,e.resize.h);
+                                glewInit();
+                                glClearColor(0, 0, 0, 0);
+                                glClearDepth(1.0f);
+                                
+                                
+                                glMatrixMode(GL_PROJECTION);
+                                glLoadIdentity();
+                                
+                                glOrtho(0, 1024,768, 0, 1, -1);
+                                
+                                glMatrixMode(GL_MODELVIEW);
+                                
+                                glEnable(GL_TEXTURE_2D);
+                                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+                                glLoadIdentity();
+                                break;
+
                         }
                 }
 }

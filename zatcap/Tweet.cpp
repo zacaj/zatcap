@@ -94,7 +94,7 @@ std::string Tweet::getHtml(string columnName)
 		replace(htmlText,"\n","<br />");
 		replace(content,string("$TEXT"),escape(htmlText));
 		{
-			char date[100];
+			char date[10000];
 			if(timeTweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
 			{
 				tm *t=localtime(&timeTweetedInSeconds);
@@ -151,7 +151,7 @@ std::string Retweet::getHtml( string columnName )
 		replace(content,string("$REPLYID"),replyTo);
 		string htmlText=text;
 		{
-			char date[100];
+			char date[10000];
 			if(timeTweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
 			{
 				tm *t=localtime(&timeTweetedInSeconds);
@@ -228,7 +228,7 @@ std::string Favorite::getHtml( string columnName )
 		string htmlText=text;
 		replace(content,string("$TEXT"),escape(htmlText));
 		{
-			char date[100];
+			char date[10000];
 			if(timeTweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
 			{
 				tm *t=localtime(&timeTweetedInSeconds);
@@ -264,7 +264,7 @@ std::string Follow::getHtml( string columnName )
 		string htmlText=text;
 		replace(content,string("$TEXT"),escape(htmlText));
 		{
-			char date[100];
+			char date[1000];
 			if(timeTweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
 			{
 				tm *t=localtime(&timeTweetedInSeconds);
@@ -293,7 +293,7 @@ std::string Activity::getHtml( string columnName )
 		string htmlText=text;
 		replace(content,string("$TEXT"),escape(htmlText));
 		{
-			char date[100];
+			char date[1000];
 			if(timeTweeted.tm_yday==localtime(&currentTime)->tm_yday)//time
 			{
 				tm *t=localtime(&timeTweetedInSeconds);

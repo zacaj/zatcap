@@ -797,6 +797,7 @@ HCURSOR CreateAlphaCursor(void)
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				   LPSTR lpCmdLine, int nCmdShow)
 				   #else
+//#undef main
 int main(int argc,char **argv)
 #endif
 {
@@ -1358,6 +1359,7 @@ int main(int argc,char **argv)
 void jumpToSetting(FILE *fp,string str)
 {
 	fseek(fp,0,SEEK_SET);
+    //printf("%i\n",ftell(fp));
 	skipToString(fp,(str).c_str());
 	fscanf(fp," = ");
 }
@@ -1428,6 +1430,7 @@ void readConfig()
 	fscanf(fp,"%i\n",&pinLogin);
 	jumpToSetting(fp,"max tweets in ram");
 	fscanf(fp,"%i\n",&maxTweets);
+    printf("%i\n",ftell(fp));
 	jumpToSetting(fp,"proxy server");
 	settings::proxyServer=readTo(fp,'\n');
 	jumpToSetting(fp,"proxy port");
@@ -1582,10 +1585,10 @@ struct tm convertTimeStringToTM( string str )
 	return tmm;
 }
 
-std::string i2s( int n )
+std::string i2s(unsigned int n )
 {
 	char t[50];
-	sprintf(t,"%i",n);
+	sprintf(t,"%u",n);
 	return string(t);
 }
 
