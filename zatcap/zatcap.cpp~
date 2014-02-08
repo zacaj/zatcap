@@ -1395,7 +1395,7 @@ void readConfig()
 	jumpToSetting(fp,"scroll speed");
 	fscanf(fp,"%i\n",&settings::scrollSpeed);
 	jumpToSetting(fp,"date format");
-	settings::dateFormat=readTo(fp,'\r');
+	settings::dateFormat=readTo(fp,'\n');
 	jumpToSetting(fp,"show tweet backgrounds");
 	fscanf(fp,"%i\n",&settings::tweetBackgrounds);
 	jumpToSetting(fp,"tweet on enter");
@@ -1698,8 +1698,9 @@ string getPath(string path)
 		return path;
 }
 #ifdef LINUX
-struct threadData
+class threadData
 {
+public:
     void(*functionPointer)(void*);
     void *d;
 };
@@ -1707,7 +1708,9 @@ void *threadStarter(void *p)
 {
     threadData *d=(threadData*)p;
     d->functionPointer(d->d);
-    delete d;
+	print("thread started %i\n",p);
+    delete p;
+return NULL;
 }
 #endif
 void startThread(void(*functionPointer)(void*),void *data)
@@ -1716,7 +1719,7 @@ void startThread(void(*functionPointer)(void*),void *data)
 	_beginthread(functionPointer,0,data);
 	#else
     pthread_t tid;
-    threadData *dat=new threadData;
+    threadData *dat=new threadData();
     dat->functionPointer=functionPointer;
     dat->d=data;
 	pthread_create(&tid,NULL,threadStarter,dat);

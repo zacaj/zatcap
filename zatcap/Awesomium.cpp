@@ -24,17 +24,17 @@ void DirectorySource::OnRequest( int request_id, const WebString& name )
 		fseek(fp,0,SEEK_END);
 		unsigned int len=ftell(fp);
 		unsigned char *data=new unsigned char[len];
-		data[0]='\0';
+		//data[0]='\0';
 		fseek(fp,0,SEEK_SET);
 		fread(data,len,1,fp);
 		fclose(fp);
-		SendResponse(request_id,1,data,WSLit(("")));
+		SendResponse(request_id,len,data,WSLit(("")));
 		delete[] data;
 	}
 	else
 	{
 		debug("WARNING: could not retreive %s\n",p.c_str());		
-		SendResponse(request_id,1,(unsigned char*)"",WSLit(("")));
+		SendResponse(request_id,0,NULL,WSLit(("")));
 	}
 }
 

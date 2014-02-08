@@ -1,4 +1,4 @@
-CC=g++
+CC=clang++
 
 CFLAGS=-c -g -w -std=c++0x -fno-rtti -I../libtwitcurl -I ../libtwitcurl/curl -I/usr/include/ -DLINUX  -D_GNU_SOURCE=1 -D_THREAD_SAFE -I./
 

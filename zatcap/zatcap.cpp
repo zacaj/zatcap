@@ -941,7 +941,10 @@ int main(int argc,char **argv)
     }
     #endif
 	{
-		web_core = WebCore::Initialize(WebConfig());
+		WebConfig config;
+		config.log_level=kLogLevel_Verbose;
+		config.log_path=WSLit("./awesomiumdebug.txt");
+		web_core = WebCore::Initialize(config);
 		session=web_core->CreateWebSession(WSLit("session"),WebPreferences());
 #ifdef USE_WINDOWS
 		view = web_core->CreateWebView(settings::windowWidth, settings::windowHeight,session,kWebViewType_Window);
@@ -958,6 +961,7 @@ int main(int argc,char **argv)
 		string index=f2s("resources/index.html");
 		replace(index,"$BOTTOM",f2s("resources/bottom.html"));
 		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> <script type=\"text/javascript\" src=\"asset://resource/selection_range.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/string_splitter.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/cursor_position.js\"></script><script type=\"text/javascript\" src=\"asset://resource/twitter-text.js\"></script></head><body onload=\"init();\" id='body'>"+index+"</body>";
+		web_core->Log(WSLit("begin"),kLogSeverity_Info,WSLit("zatcap.cpp"),__LINE__);
 		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
 		runJS("init();");
 		debug("inited Awesomium\n",0);
@@ -1698,8 +1702,9 @@ string getPath(string path)
 		return path;
 }
 #ifdef LINUX
-struct threadData
+class threadData
 {
+public:
     void(*functionPointer)(void*);
     void *d;
 };
@@ -1707,7 +1712,9 @@ void *threadStarter(void *p)
 {
     threadData *d=(threadData*)p;
     d->functionPointer(d->d);
-    delete d;
+	print("thread started %i\n",p);
+    delete p;
+return NULL;
 }
 #endif
 void startThread(void(*functionPointer)(void*),void *data)
@@ -1716,7 +1723,7 @@ void startThread(void(*functionPointer)(void*),void *data)
 	_beginthread(functionPointer,0,data);
 	#else
     pthread_t tid;
-    threadData *dat=new threadData;
+    threadData *dat=new threadData();
     dat->functionPointer=functionPointer;
     dat->d=data;
 	pthread_create(&tid,NULL,threadStarter,dat);
@@ -1765,7 +1772,7 @@ void replace( std::string& str, const std::string& oldStr, const std::string& ne
 	size_t pos = 0;
 	while((pos = str.find(oldStr, pos)) != std::string::npos)
 	{
-		printf("%i,%i,%s,%s,%s\n",pos,oldStr.length(),newStr.c_str(),oldStr.c_str(),"");
+		//printf("%i,%i,%s,%s,%s\n",pos,oldStr.length(),newStr.c_str(),oldStr.c_str(),"");
 		str.replace(pos, oldStr.length(), newStr);
 		pos += newStr.length();
 	}

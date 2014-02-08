@@ -5,46 +5,13 @@ Logging in...
 ...
 Successfully logged in to twitter account: zacaj_
 Opening a stream...
-user: 7429862
-column: timeline
-user: 21220972
-column: timeline
-Loading information for user 131487287
-user: 7429862
-column: timeline
-user: 7429862
-column: timeline
-user: 7429862
-column: timeline
-user: 7429862
-column: timeline
-user: 1096828909
-column: timeline
-user: 1140968821
-column: timeline
-user: 1096828909
-column: timeline
-user: 7429862
-column: timeline
-user: 15218212
-column: timeline
-user: 7429862
-column: timeline
-user: 1096828909
-column: timeline
-Loading information for user 9308132
-user: 1140968821
-column: timeline
-user: 1140968821
-column: timeline
-user: 124863907
-column: timeline
-user: 1096828909
-column: timeline
-user: 1096828909
-column: timeline
-user: 1096828909
-column: timeline
-user: 1096828909
-column: timeline
-user: 701874878
+Streaming connection established.
+Loading information for user -2131359255
+Loading information for user -2131789852
+Loading information for user -2145715664
+thread started 17422256
+thread started 16966480
+thread started 16294880
+thread started 16297968
+thread started 17180800
+thread started 16734784

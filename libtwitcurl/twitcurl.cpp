@@ -1395,7 +1395,7 @@ void twitCurl::prepareCurlUserPass(twitInstance *instance)
 *--*/
 int curl_debug_callbacktwit(CURL *curl,curl_infotype infotype,char *data,size_t size,void *userptr)
 {
-//printf("%i:\n");
+//printf("%i:\n" );
 //fwrite(data,size,1,stdout);
 //printf("\n");
 FILE *fp=fopen("stream debug2.txt","a+");
