@@ -1,6 +1,7 @@
 #ifndef __GL_TEXTURE_SURFACE_H__
 #define __GL_TEXTURE_SURFACE_H__
 
+#include <GL/glew.h>
 #include <Awesomium/Surface.h>
 
 class GLTextureSurface : public Awesomium::Surface {

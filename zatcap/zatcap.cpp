@@ -489,8 +489,10 @@ char* getClipboardText()
 #endif
 
 extern Mutex jsMutex;
-#ifdef LINUX
+#ifdef SDLGL
 #include "linux.cpp"
+#endif
+#ifdef LINUX
 void SetCursor(int c)
 {
 
@@ -879,6 +881,7 @@ int main(int argc,char **argv)
 	jsMutex=createMutex();
 	twitCurl *twit=NULL;
 	#ifdef USE_WINDOWS
+#ifndef SDLGL
 	{
 		//Step 1: Registering the Window Class
 		wc.cbSize        = sizeof(WNDCLASSEX);
@@ -935,7 +938,8 @@ int main(int argc,char **argv)
 		MoveWindow(hwnd,rect.left-(pt.x-rect.left),rect.top-(pt.y-rect.top),settings::windowWidth+(pt.x-rect.left)*2,settings::windowHeight+(pt.y-rect.top)+(pt.x-rect.left),0);
 	}
 #endif
-#ifdef LINUX
+#endif
+#ifdef SDLGL
     {
         sdlInit();
 	debug("initialized SDL successfully\n",0);
@@ -946,15 +950,20 @@ int main(int argc,char **argv)
 		config.log_level=kLogLevel_Verbose;
 		config.log_path=WSLit("awesomiumdebug.txt");
 		web_core = WebCore::Initialize(config);
-		session=web_core->CreateWebSession(WSLit("session"),WebPreferences());
+		WebPreferences pref;
+		pref.enable_smooth_scrolling = true;
+		pref.enable_gpu_acceleration=true;
+		session=web_core->CreateWebSession(WSLit("session"),pref);
 #ifdef USE_WINDOWS
+#ifndef SDLGL
 		view = web_core->CreateWebView(settings::windowWidth, settings::windowHeight,session,kWebViewType_Window);
 		view->set_parent_window(hwnd);
 #endif
-#ifdef LINUX
+#endif
+#ifdef SDLGL
 
         web_core->set_surface_factory(new GLTextureSurfaceFactory());
-        view = web_core->CreateWebView(1024, 768,session);
+		view = web_core->CreateWebView(settings::windowWidth, settings::windowHeight, session);
 #endif
 		htmlSource=new HtmlSource();
 		session->AddDataSource(WSLit("zatcap"), htmlSource);
@@ -1309,6 +1318,7 @@ int main(int argc,char **argv)
 		}
 		time(&currentTime);
 #ifdef USE_WINDOWS
+#ifndef SDLGL
 		while (PeekMessage(&Msg, NULL, 0, 0, PM_REMOVE))
 		{
 			if (Msg.message == WM_QUIT)
@@ -1320,7 +1330,8 @@ int main(int argc,char **argv)
 			}
 		}
 #endif
-#ifdef LINUX
+#endif
+#ifdef SDLGL
         sdlUpdate(done);
 #endif
 		enterMutex(jsMutex);
@@ -1338,14 +1349,18 @@ int main(int argc,char **argv)
 		if(nUnread!=nUnread2 || alert2!=alert)
 		{
 #ifdef USE_WINDOWS
+#ifndef SDLGL
 			SendMessage(hwnd, WM_SETICON,
 				ICON_BIG,(LPARAM)CreateAlphaCursor());
+#endif			
 #endif			
 			nUnread2=nUnread;
 			alert2=alert;
 		}
 #ifdef USE_WINDOWS
+#ifndef SDLGL
 		Sleep(20);
+#endif
 #else
 		SDL_Delay(20);
 #endif

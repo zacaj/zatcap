@@ -1,7 +1,8 @@
  
 #include <SDL1/SDL.h>
-//#include <GL\glew.h>
+//#include <SDL1/SDL_opengl.h>
 #include "gl_texture_surface.h"
+#include <GL/glew.h>
  
 #define mapKey(a, b) case SDLK_##a: return Awesomium::KeyCodes::AK_##b;
  
@@ -141,15 +142,15 @@ int getWebKeyFromSDLKey(SDLKey key) {
                 return Awesomium::KeyCodes::AK_UNKNOWN;
         }
 }
-void handleSDLKeyEvent(Awesomium::WebView* webView, const SDL_Event& event) {
+void handleSDLKeyEvent(Awesomium::WebView* webView, const SDL_Event event) {
         if (!(event.type == SDL_KEYDOWN || event.type == SDL_KEYUP))
                 return;
  
         Awesomium::WebKeyboardEvent keyEvent;
  
-        keyEvent.type = event.type == SDL_KEYDOWN?
+        keyEvent.type = (event.type == SDL_KEYDOWN?
                 Awesomium::WebKeyboardEvent::kTypeKeyDown :
-        Awesomium::WebKeyboardEvent::kTypeKeyUp;
+        Awesomium::WebKeyboardEvent::kTypeKeyUp);
  
         char* buf = new char[20];
         keyEvent.virtual_key_code = getWebKeyFromSDLKey(event.key.keysym.sym);
@@ -201,6 +202,7 @@ void sdlInit()
     SDL_Init(SDL_INIT_VIDEO);
         SDL_SetVideoMode(settings::windowWidth, settings::windowHeight,32,SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_OPENGL|SDL_RESIZABLE);
         glewInit();
+		SDL_EnableUNICODE(1);
         glClearColor(0, 0, 0, 0);
         glClearDepth(1.0f);
  
@@ -230,10 +232,20 @@ void sdlUpdate(int &quit)
                 {
                         switch(e.type)
                         {
+						case SDL_ACTIVEEVENT:
+							if (e.active.state == SDL_APPMOUSEFOCUS)
+							{
+								if (e.active.gain)
+									view->Focus();
+								else
+									view->Unfocus();
+							}
+							break;
                         case SDL_QUIT:
                                 quit=1;
                                 break;
                         case SDL_KEYDOWN:
+                        case SDL_KEYUP:
                                 if(e.key.keysym.sym==SDLK_ESCAPE)
                                         quit=1;
                                 else
@@ -248,8 +260,9 @@ void sdlUpdate(int &quit)
                                 break;
                         case SDL_MOUSEBUTTONDOWN:
                                         if (e.button.button == SDL_BUTTON_LEFT)
-                                                view->
-                                                InjectMouseDown(Awesomium::kMouseButton_Left);
+                                                view->InjectMouseDown(Awesomium::kMouseButton_Left);
+										else if (e.button.button == SDL_BUTTON_RIGHT)
+											view->InjectMouseDown(Awesomium::kMouseButton_Right);
                                         else if (e.button.button == SDL_BUTTON_WHEELUP)
                                                 view->InjectMouseWheel(25, 0);
                                         else if (e.button.button == SDL_BUTTON_WHEELDOWN)
@@ -258,8 +271,9 @@ void sdlUpdate(int &quit)
                                 break;
                         case SDL_MOUSEBUTTONUP:
                                         if (e.button.button == SDL_BUTTON_LEFT)
-                                                view->
-                                                InjectMouseUp(Awesomium::kMouseButton_Left);
+                                                view->InjectMouseUp(Awesomium::kMouseButton_Left); 
+										else if (e.button.button == SDL_BUTTON_RIGHT)
+												view->InjectMouseUp(Awesomium::kMouseButton_Right);
                                 break;
                             case SDL_VIDEORESIZE:
                                 
@@ -288,3 +302,4 @@ void sdlUpdate(int &quit)
                         }
                 }
 }
+#include "gl_texture_surface.cpp"
