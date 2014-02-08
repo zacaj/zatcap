@@ -54,7 +54,7 @@ extern string tempString;
 extern string username;
 
 #define debugHere() //debug("%s:%i %s\n",__FILE__,__LINE__,__FUNCTION__);
-#define debugHere2() debug("%s:%i %s\n",__FILE__,__LINE__,__FUNCTION__);
+#define debugHere2() _debug(__FILE__,__LINE__,__FUNCTION__,"HERE\n");
 
 class Process;
 extern map<float,Process*> processes;
@@ -66,8 +66,8 @@ struct tm convertTimeStringToTM(string str);
 
 string i2s(int i);
 
-
-void debug(const char* msg, ...);
+#define debug(m,...) _debug(__FILE__,__LINE__,__FUNCTION__,m,__VA_ARGS__)
+void _debug(const char *file,int line,const char *funciton,const char* msg, ...);
 void print(const char* msg, ...);
 #define prints(s) print(s,0)
 

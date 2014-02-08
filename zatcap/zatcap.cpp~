@@ -1,4 +1,4 @@
-// zatcap.cpp : Defines the entry point for the console application.
+﻿// zatcap.cpp : Defines the entry point for the console application.
 //
 
 #include "stdafx.h"
@@ -6,16 +6,15 @@
 #include "curl.h"
 #include <string>
 #include <stdio.h>
+#include <thread>
 #include "twitter.h"
 #include "file.h"
 #include "stream.h"
 #include "zatcap.h"
-#include "WaitIndicator.h"
 #include <assert.h>
 #include <time.h>
 #include <string.h>
 #include <sys/stat.h>
-#include "Button.h"
 #include <Awesomium/WebCore.h>
 #include <Awesomium/BitmapSurface.h>
 #include <Awesomium/STLHelpers.h>
@@ -89,6 +88,7 @@ namespace settings
 	int maxTweets=1000;
 	string proxyServer;
 	string proxyPort;
+	string notificationSound;
 }
 namespace colors
 {
@@ -163,7 +163,7 @@ string getSite(string url)
 	curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYPEER, 0);
 	//curl_easy_setopt( curl, CURLOPT_DEBUGFUNCTION, curl_debug_callback2 );
 	curl_easy_setopt(  curl, CURLOPT_HTTPGET, 1 );//
-	curl_easy_setopt(  curl, CURLOPT_VERBOSE, 1 );
+	curl_easy_setopt(  curl, CURLOPT_VERBOSE, 0 );
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1); 
 	//curl_easy_setopt(  curl, CURLOPT_SSL_VERIFYHOST, 0 );
 	curl_easy_perform(curl);
@@ -217,6 +217,7 @@ int w=-1;
 WNDCLASSEX wc;
 HWND hwnd;
 MSG Msg;
+bool hasFocus=1;
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch(msg)
@@ -229,22 +230,32 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_SIZE:
 		{
+			if(LOWORD(lParam)==0)
+				break;
 			if(LOWORD(lParam)<550 &&(w==-1 || w>=550))
 			{
+				runJS("tweetContent=document.getElementById('tweetbox').value;");
 				runJS("document.getElementById('bottom').innerHTML='"+escape(f2s("resources/bottomnarrow.html"))+"';");
 				runJS("document.getElementById('bottom').style.height='100px';");
 				runJS("document.getElementById('columns').style.bottom='100px';");
 				runJS("document.getElementById('columns').style.overflow='hidden';");
 				runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
+				runJS("	document.getElementById('tweetbox').addEventListener('paste',tweetboxPaste,true);");
+				runJS("document.getElementById('tweetbox').value=tweetContent;");
+				runJS("hideColumns();");
 				addColumnButtons();
 			}
 			else if(LOWORD(lParam)>550 && (w==-1 || w<=550))
 			{
+				runJS("tweetContent=document.getElementById('tweetbox').value;");
 				runJS("document.getElementById('bottom').innerHTML='"+escape(f2s("resources/bottom.html"))+"';");
 				runJS("document.getElementById('bottom').style.height='75px';");
 				runJS("document.getElementById('columns').style.bottom='75px';");
 				runJS("document.getElementById('columns').style.overflow='auto';");
 				runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
+				runJS("	document.getElementById('tweetbox').addEventListener('paste',tweetboxPaste,true);");
+				runJS("document.getElementById('tweetbox').value=tweetContent;");
+				runJS("showColumns();");
 			}
 			if(view)
 			view->Resize(LOWORD(lParam),HIWORD(lParam));
@@ -252,18 +263,29 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 	case WM_SETFOCUS:
-		//puts( "Got the focus" ) ;
+		hasFocus=1;
+		//printf("focus\n");
 		notifyIcon(0);
 		break ;
 
 	case WM_KILLFOCUS:
-		//puts( "Lost the focus" ) ;
+		hasFocus=0;
+		//printf("unfocus\n");
 		break;
 
 	case WM_ACTIVATE:
 		if( LOWORD(wParam) == WA_ACTIVE )
+		{
+			//printf("active\n");
+			hasFocus=1;
 			notifyIcon(0);
-		//else 
+		}
+		else 
+		{
+			//printf("deactive\n");
+			
+			hasFocus=0;
+		}
 		//	puts( "I AM NOW INACTIVE." ) ;
 		break ;
 	default:
@@ -278,22 +300,34 @@ void notifyIcon(bool on)
 	info.hwnd = hwnd;
 	if(on)
 	{
-		if(GetFocus()==hwnd)
+		if(GetFocus()==hwnd || hasFocus)
 		{
 			return;
 		}
+#ifdef NDEBUG
+		if(settings::notificationSound.size())
+			PlaySoundA(settings::notificationSound.c_str(), NULL, SND_FILENAME|SND_ASYNC|SND_NOSTOP);
+#endif
+		alert=1;
 		info.dwFlags = FLASHW_TRAY;
 		info.dwTimeout = 0;
 		info.uCount = 3000;
-		FlashWindowEx(&info);
+		//FlashWindowEx(&info);
 	}
 	else 
 	{
 		info.dwFlags = FLASHW_STOP;
 		info.dwTimeout = 0;
 		info.uCount = 3;
-		FlashWindowEx(&info);
+		//FlashWindowEx(&info);
+		alert=0;
+		//printf("stop\n");
 	}
+}
+#else
+void notifyIcon(bool on)
+{
+//todo
 }
 #endif
 
@@ -367,7 +401,7 @@ void loadUser(twitCurl *twit)
 			twit->getOAuth().setConsumerSecret("fMzPJj4oFBgSlW1Ma2r79Y1kE0t7S7r1lvQXBnXSk");
 			string authURL;debugHere();
 			assert_(twit->oAuthRequestToken(authURL)!="");debugHere();
-			if(settings::pinLogin)
+			if(settings::pinLogin || 1)
 			{
 				string url=authURL;
 				print("Please go to \n%s and enter the pin\n",url.c_str());
@@ -401,10 +435,7 @@ void loadUser(twitCurl *twit)
 	print("...\n");
 	if((tmpString=twit->accountRateLimitGet())=="")
 		loadUser(twit);
-	Json::Value root;
-	Json::Reader reader;
-	reader.parse(tmpString,root);
-	if(root["reset_time"].isNull())
+	if(tmpString.find("error")!=string::npos)
 	{
 		print("ERROR:  log in failure (is your password correct in %s?)\n",settings::userInfoFile.c_str());
 		system("pause");
@@ -488,10 +519,14 @@ struct tweetData
 {
 	string str;
 	string replyId;
-	tweetData(string _str,string _r)
+	string user;
+	bool split;
+	tweetData(string _str,string _r,string _u,bool _split)
 	{
 		str=_str;
 		replyId=_r;
+		user=_u;
+		split=_split;
 	}
 };
 
@@ -499,19 +534,176 @@ void addUsername( string name )
 {
 	runJS("usernames.push('"+name+"');");
 }
+bool alert=0,alert2=0;;
 int nUnread=0,nUnread2=0;
-
+Mutex debugMutex;
+map<int,bool> pendingTweets;
+size_t removeLeadingTrailingSpaces( string &str )
+{
+	if(str.empty())
+		return 0;
+	size_t notSpace=str.find_first_not_of(' ');
+	if(notSpace!=string::npos)
+		str.erase(str.begin(),str.begin()+notSpace);
+	while(str.back()==' ') str.erase(str.size()-1);
+	if(notSpace==string::npos)
+		return 0;
+	return notSpace;
+}
 void sendTweet(void *_data)
 {
 	tweetData *data=(tweetData*)_data;
-	string str=data->str;
-	while(twit->statusUpdate(str,data->replyId)=="");
-	print("Tweet sent successfully: %s (%s,%s)\n",str.c_str(),data->replyId.c_str(),replyId.c_str());
+	string ostr=data->str;
+	vector<string> tweets;
+	if(ostr.size()<=140 || !data->split)
+		tweets.push_back(ostr);
+	else
+	{
+		string prefix="";
+		{
+			volatile int pos=0;
+			if(ostr[0]=='@')
+				while(pos!=string::npos)
+				{
+					if(ostr[pos]=='@')
+					{
+						pos=ostr.find(' ',pos);
+						pos++;
+					}
+					else break;
+				}
+				prefix.append(ostr.substr(0,pos));
+			int start=pos;
+			while(pos<=ostr.size())
+			{
+				pos+=137-prefix.size();
+				if(tweets.size()!=0)
+					pos-=3;
+				if(pos>ostr.size())
+					pos=ostr.size()-1;
+				else
+				while(ostr[pos]!=' ' && pos>start)
+					pos--;
+				if(pos==start)
+				{
+					//tweets[tweets.size()-1].erase(tweets[tweets.size()-1].begin()+tweets[tweets.size()-1].size()-2,tweets[tweets.size()-1].end());
+					break;
+				}
+				else
+				{
+					if(tweets.size())
+					tweets.back()+="...";
+				}
+				string tweet=prefix;
+				if(tweets.size()!=0)
+					tweet+="...";
+				string excerpt=ostr.substr(start,pos-start+1);
+				removeLeadingTrailingSpaces(excerpt);
+				tweet+=excerpt;
+				tweets.push_back(tweet);
+				start=pos;
+			}
+		}
+	}
+	for(int i=0;i<tweets.size();i++)
+	{
+		string str=tweets[i];
+		time_t t=time(NULL);
+		Activity *activity=new Activity(str,"cpp.stopTweet("+i2s(t)+");",data->user);
+		pendingTweets[t]=0;
+		addTweet((Item**)&activity);
+		int nTries = 0;
+		while (twit->statusUpdate(str, data->replyId) == "" && !pendingTweets[t]) if (nTries++>20) return;
+		deleteTweet(activity->id);
+		print("Tweet sent successfully: %s (%s,%s)\n",str.c_str(),data->replyId.c_str(),replyId.c_str());
+	}
 	delete data;
 }
 extern vector<string> jsToRun;
+map<string,time_t> mute;
+set<string> followers;
 #ifdef USE_WINDOWS
-HBITMAP icon;
+HBITMAP icon[3];
+BOOL SaveToFile(HBITMAP hBitmap3, const char* lpszFileName)
+{   
+	HDC hDC;
+	int iBits;
+	WORD wBitCount;
+	DWORD dwPaletteSize=0, dwBmBitsSize=0, dwDIBSize=0, dwWritten=0;
+	BITMAP Bitmap0;
+	BITMAPFILEHEADER bmfHdr;
+	BITMAPINFOHEADER bi;
+	LPBITMAPINFOHEADER lpbi;
+	HANDLE fh, hDib, hPal,hOldPal2=NULL;
+	hDC = CreateDCA("DISPLAY", NULL, NULL, NULL);
+	iBits = GetDeviceCaps(hDC, BITSPIXEL) * GetDeviceCaps(hDC, PLANES);
+	DeleteDC(hDC);
+	if (iBits <= 1)
+		wBitCount = 1;
+	else if (iBits <= 4)
+		wBitCount = 4;
+	else if (iBits <= 8)
+		wBitCount = 8;
+	else
+		wBitCount = 24; 
+	GetObject(hBitmap3, sizeof(Bitmap0), (LPSTR)&Bitmap0);
+	bi.biSize = sizeof(BITMAPINFOHEADER);
+	bi.biWidth = Bitmap0.bmWidth;
+	bi.biHeight =-Bitmap0.bmHeight;
+	bi.biPlanes = 1;
+	bi.biBitCount = wBitCount;
+	bi.biCompression = BI_RGB;
+	bi.biSizeImage = 0;
+	bi.biXPelsPerMeter = 0;
+	bi.biYPelsPerMeter = 0;
+	bi.biClrImportant = 0;
+	bi.biClrUsed = 256;
+	dwBmBitsSize = ((Bitmap0.bmWidth * wBitCount +31) & ~31) /8
+		* Bitmap0.bmHeight; 
+	hDib = GlobalAlloc(GHND,dwBmBitsSize + dwPaletteSize + sizeof(BITMAPINFOHEADER));
+	lpbi = (LPBITMAPINFOHEADER)GlobalLock(hDib);
+	*lpbi = bi;
+
+	hPal = GetStockObject(DEFAULT_PALETTE);
+	if (hPal)
+	{ 
+		hDC = GetDC(NULL);
+		hOldPal2 = SelectPalette(hDC, (HPALETTE)hPal, FALSE);
+		RealizePalette(hDC);
+	}
+
+
+	GetDIBits(hDC, hBitmap3, 0, (UINT) Bitmap0.bmHeight, (LPSTR)lpbi + sizeof(BITMAPINFOHEADER) 
+		+dwPaletteSize, (BITMAPINFO *)lpbi, DIB_RGB_COLORS);
+
+	if (hOldPal2)
+	{
+		SelectPalette(hDC, (HPALETTE)hOldPal2, TRUE);
+		RealizePalette(hDC);
+		ReleaseDC(NULL, hDC);
+	}
+
+	fh = CreateFileA(lpszFileName, GENERIC_WRITE,0, NULL, CREATE_ALWAYS, 
+		FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, NULL); 
+
+	if (fh == INVALID_HANDLE_VALUE)
+		return FALSE; 
+
+	bmfHdr.bfType = 0x4D42; // "BM"
+	dwDIBSize = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + dwPaletteSize + dwBmBitsSize;
+	bmfHdr.bfSize = dwDIBSize;
+	bmfHdr.bfReserved1 = 0;
+	bmfHdr.bfReserved2 = 0;
+	bmfHdr.bfOffBits = (DWORD)sizeof(BITMAPFILEHEADER) + (DWORD)sizeof(BITMAPINFOHEADER) + dwPaletteSize;
+
+	WriteFile(fh, (LPSTR)&bmfHdr, sizeof(BITMAPFILEHEADER), &dwWritten, NULL);
+
+	WriteFile(fh, (LPSTR)lpbi, dwDIBSize, &dwWritten, NULL);
+	GlobalUnlock(hDib);
+	GlobalFree(hDib);
+	CloseHandle(fh);
+	return TRUE;
+} 
 HCURSOR CreateAlphaCursor(void)
 {
 	HDC hMemDC;
@@ -541,23 +733,31 @@ HCURSOR CreateAlphaCursor(void)
 
 	HDC hdc;
 	hdc = GetDC(NULL);
-
+	char str[100];
+	sprintf(str,"%i",nUnread);
 	// Create the DIB section with an alpha channel.
 	hBitmap = (HBITMAP)CreateDIBSection(hdc, (BITMAPINFO *)&bi, DIB_RGB_COLORS, (void **)&lpBits, NULL, (DWORD)0);//LoadImage(NULL,L"resources/icon.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE|LR_LOADTRANSPARENT);//
-	GetDIBits(hdc,icon,0,32,lpBits,(BITMAPINFO *)&bi,DIB_RGB_COLORS);
+	if(nUnread==0)
+		GetDIBits(hdc,icon[0],0,32,lpBits,(BITMAPINFO *)&bi,DIB_RGB_COLORS);
+	else if(nUnread<10)
+		GetDIBits(hdc,icon[1],0,32,lpBits,(BITMAPINFO *)&bi,DIB_RGB_COLORS);
+	else
+		GetDIBits(hdc,icon[2],0,32,lpBits,(BITMAPINFO *)&bi,DIB_RGB_COLORS);
 	hMemDC = CreateCompatibleDC(hdc);
 	ReleaseDC(NULL,hdc);
 
 	// Draw something on the DIB section.
 	hOldBitmap = (HBITMAP)SelectObject(hMemDC, hBitmap);
 	//PatBlt(hMemDC,0,0,dwWidth,dwHeight,WHITENESS);
-	SetTextColor(hMemDC,RGB(0,0,0));
+	if(alert)
+	SetTextColor(hMemDC,RGB(255,0,0));
+	else
+	SetTextColor(hMemDC,RGB(255,255,255));
 	SetBkMode(hMemDC,TRANSPARENT);
 	if(nUnread>0)
 	{
-		char str[100];
-		sprintf(str,"%i",nUnread);
-		TextOutA(hMemDC,1,15,str,strlen(str));
+		
+		TextOutA(hMemDC,1,17,str,strlen(str));
 	}
 	SelectObject(hMemDC, hOldBitmap);
 	DeleteDC(hMemDC);
@@ -594,7 +794,6 @@ HCURSOR CreateAlphaCursor(void)
 
 		return hAlphaCursor;
 }
-map<string,time_t> mute;
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				   LPSTR lpCmdLine, int nCmdShow)
 				   #else
@@ -605,7 +804,11 @@ int main(int argc,char **argv)
 	assert_(sizeof(uchar)==1);
 	assert_(sizeof(float)==4);
 #ifdef USE_WINDOWS
+#ifdef NDEBUG
 	if ( strcmp(lpCmdLine, "-console") == 0 )
+#else 
+	if(1)
+#endif
 	{
 		// Create a console
 		AllocConsole();
@@ -647,20 +850,23 @@ int main(int argc,char **argv)
 		std::ios::sync_with_stdio();
 
 		HWND hwndC = GetConsoleWindow() ; 
-
+#ifdef _NDEBUG
 		ShowWindow(hwndC,SW_HIDE);
+#endif
 	}
 	else
 	if( strcmp(lpCmdLine, "-noredirect") != 0 )
 #endif
 	{
-		freopen("log.txt","w",stdout);
+		//freopen("log.txt","w",stdout);
 	}
+	debugMutex=createMutex();
 	bool candy=1;
 	if(!candy)
 		exit(EXIT_FAILURE);
 	fclose(fopen("debug.txt","w"));
-	debug("starting...\n");
+	fclose(fopen("log.txt","w"));
+	debug("starting...\n",0);
 	print("Version: a%i\n",version);
 	cursor=IDC_ARROW;
 	sysinit();
@@ -669,6 +875,7 @@ int main(int argc,char **argv)
 	readConfig();debug("%i\n",__LINE__);//read a second time to load colors
 	//sysinit();
 	tweetsMutex=createMutex();
+	jsMutex=createMutex();
 	twitCurl *twit=NULL;
 	#ifdef USE_WINDOWS
 	{
@@ -695,7 +902,7 @@ int main(int argc,char **argv)
 
 		// Step 2: Creating the Window
 		hwnd = CreateWindowEx(
-			WS_EX_CLIENTEDGE,
+			WS_EX_LEFT,
 			L"ZATCAP html",
 			L"Zacaj's (third) Amazing Twitter Client for Awesome People",
 			WS_OVERLAPPEDWINDOW,
@@ -711,7 +918,9 @@ int main(int argc,char **argv)
 
 		ShowWindow(hwnd, nCmdShow);
 		UpdateWindow(hwnd);
-		icon=(HBITMAP)LoadImage(NULL,L"resources/icon.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE);
+		icon[0]=(HBITMAP)LoadImage(NULL,L"resources/iconbig.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE);
+		icon[1]=(HBITMAP)LoadImage(NULL,L"resources/iconmed.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE);
+		icon[2]=(HBITMAP)LoadImage(NULL,L"resources/iconsmall.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE);
 		{
 			SendMessage(hwnd, WM_SETICON,
 				ICON_BIG,(LPARAM)CreateAlphaCursor());
@@ -728,9 +937,9 @@ int main(int argc,char **argv)
 #ifdef LINUX
     {
         sdlInit();
+	debug("initialized SDL successfully\n",0);
     }
     #endif
-	jsMutex=createMutex();
 	{
 		web_core = WebCore::Initialize(WebConfig());
 		session=web_core->CreateWebSession(WSLit("session"),WebPreferences());
@@ -745,12 +954,13 @@ int main(int argc,char **argv)
 #endif
 		htmlSource=new HtmlSource();
 		session->AddDataSource(WSLit("zatcap"), htmlSource);
-		session->AddDataSource(WSLit("resource"),new DirectorySource("resources\\"));
+		session->AddDataSource(WSLit("resource"),new DirectorySource("resources/"));
 		string index=f2s("resources/index.html");
 		replace(index,"$BOTTOM",f2s("resources/bottom.html"));
 		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> <script type=\"text/javascript\" src=\"asset://resource/selection_range.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/string_splitter.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/cursor_position.js\"></script><script type=\"text/javascript\" src=\"asset://resource/twitter-text.js\"></script></head><body onload=\"init();\" id='body'>"+index+"</body>";
 		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
 		runJS("init();");
+		debug("inited Awesomium\n",0);
 		methodHandler=new MethodHandler(view,web_core);
 		methodHandler->reg(WSLit("openInNativeBrowser"),[](JSArray args)
 			{
@@ -776,7 +986,7 @@ int main(int argc,char **argv)
 		{
 			string tweet=ToString(args[0].ToString());
 			string inReplyTo=ToString(args[1].ToString());
-			startThread(sendTweet,new tweetData(tweet,inReplyTo));
+			startThread(sendTweet,new tweetData(tweet,inReplyTo,username,ToString(args[2].ToString())=="true"));
 		});
 		methodHandler->reg(WSLit("debug"),[](JSArray args)
 			{
@@ -806,7 +1016,20 @@ int main(int argc,char **argv)
 						while(a<src.size() && src[a]!='\"') url.push_back(src[a++]);
 					}
 				}
-				runJS("lightbox('"+url+"');");
+				else if(ourl.find("twitpic.com")!=string::npos)
+				{
+					string src=getSite(ourl+"/full");
+					size_t pos=src.find("Return to photo page</a></p");
+					if(pos!=string::npos)
+					{
+						pos=src.find('\"',pos);
+						pos++;
+						int a=pos;
+						url.clear();
+						while(a<src.size() && src[a]!='\"') url.push_back(src[a++]);
+					}
+				}
+				runJS("lightbox('"+url+"','"+url+"');");
 		});
 		methodHandler->reg(WSLit("refresh"),[](JSArray args)
 		{
@@ -816,16 +1039,20 @@ int main(int argc,char **argv)
 		{
 			FILE *fp=fopen("source.html","w");
 			string source=ToString(args[0].ToString());
+			replace(source,"asset://resource/","resources/");
 			fwrite(source.c_str(),source.size(),1,fp);
 			fclose(fp);
 		});
 		methodHandler->reg(WSLit("read"),[](JSArray args)
 		{
 			string id=ToString(args[0].ToString());
-			map<string,Item*>::reverse_iterator it=--map<string,Item*>::reverse_iterator(tweets.find(id));
-			for(;it!=tweets.rend();++it)
+			Item *i=getTweet(id);
+			if(i==NULL)
+				return;
+			auto it=tweets.begin();
+			for(;it!=tweets.end();++it)
 			{
-				if(!it->second->read)
+				if(!it->second->read && it->second->timeTweetedInSeconds<=i->timeTweetedInSeconds)
 				{
 					it->second->read=1;
 					nUnread--;
@@ -865,9 +1092,109 @@ int main(int argc,char **argv)
 		  ShowWindow(hwndC, IsWindowVisible(hwndC)?SW_HIDE:SW_SHOW);
 #endif
 		});
-
-
+		methodHandler->reg(WSLit("stopTweet"),[](JSArray args)
+		{
+			int t=args[0].ToInteger();
+			pendingTweets[t]=1;
+		});
+		methodHandler->reg(WSLit("setIdToTweetHtml"),[](JSArray args)
+		{
+			string htmlid=ToString(args[0].ToString());
+			string tweetid=ToString(args[1].ToString());
+			string parent=ToString(args[2].ToString());
+			int n=args[3].ToInteger();
+			startLambdaThread([=]()
+			{
+				Tweet *item=(Tweet*)getTweet(tweetid);
+				string html=item->getHtml(parent);
+				runJS("document.getElementById('"+htmlid+"').innerHTML='"+escape(html)+"';");
+				runJS("document.getElementById('"+htmlid+"').style.display='block';");
+				if(n-1>0 && item->replyTo.size())
+				{
+					JSArray a;
+					a.Push(JSValue(FS(item->id+"_"+parent+"_replyShell")));
+					a.Push(JSValue(FS(item->replyTo)));
+					a.Push(JSValue(FS(item->id+"_"+parent+"_replyShell")));
+					a.Push(JSValue(n-1));
+					methodHandler->funcs[WSLit("setIdToTweetHtml")](a);
+				}
+			});
+		});
+		methodHandler->reg(WSLit("pasteImage"),[](JSArray args)
+		{
+			string htmlid=ToString(args[0].ToString());
+#ifdef WINDOWS
+			assert_(OpenClipboard(NULL));
+			{
+				HANDLE hData = GetClipboardData(CF_BITMAP);
+				{
+					Activity *activity=new Activity("Uploading photo...");
+					addTweet((Item**)&activity);
+					string file="t"+i2s(time(NULL))+".bmp";
+					SaveToFile((HBITMAP)hData, file.c_str());
+					startLambdaThread([=](){
+					string url=uploadPhoto(file);
+					runJS("insertText('"+escape(url)+"',"+htmlid+");");
+					system((string("erase \"")+file+"\"").c_str());});
+					deleteTweet(activity->id);
+				}
+				CloseClipboard();
+			}
+#endif
+		});
+		methodHandler->reg(WSLit("showUser"),[&](JSArray args)
+		{
+			string id=ToString(args[0].ToString());
+			string url=ToString(args[1].ToString());
+			runJS("popup('<img src=\"asset://resource/activity.gif\">','"+escape(url)+"');");
+			startLambdaThread([=]()
+			{
+				string html=getUser(id)->getHtml();
+				runJS("document.getElementById('popup_content').innerHTML='"+escape(html)+"';");
+				string json=twit->timelineUserGet(false,true,200,id,true);
+				Json::Reader reader;
+				Json::Value root;
+				reader.parse(json,root);
+				assert(root.isArray());
+				for(int i=0;i<root.size();i++)
+				{
+					Json::Value tweet=root[i];debugHere();
+					if(tweet.isNull())
+						continue;
+					Tweet *t=processTweet(root[i]);debugHere();
+					runJS("document.getElementById('userDisplayColumn').insertBefore(nodeFromHtml('"+escape(t->getHtml("userDisplayColumn"))+"'),null);");
+				}
+				//runJS("cpp.source(document.body.parentNode.outerHTML);");
+			});
+		});
+		methodHandler->reg(WSLit("follow"),[&](JSArray args)
+		{
+			string id=ToString(args[0].ToString());
+			int to=args[1].ToInteger();
+			startLambdaThread([=]()
+			{
+				string id_=id;
+				int to_=to;
+				twitCurl *twit_=twit;
+				if(to==-1)
+				{
+					string json;
+					int nTries = 0;
+					while ((json = twit->userGet(id_, true)) == "") if (nTries++>20) return;
+					Json::Reader reader;
+					Json::Value root;
+					reader.parse(json,root);
+					to_=!root["following"].asBool();
+				}
+				if(to_==1)
+					twit->friendshipCreate(id_,true);
+				else if(to_==0)
+					twit->friendshipDestroy(id_,true);
+				runJS((string("document.getElementById('followbutton').innerHTML='")+(!to_?"Follow":"Unfollow")+"';"));
+			});
+		});
 	}
+	debug("Registered JS functions\n",0);
 	/*processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
 	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up*/
 	{
@@ -881,6 +1208,7 @@ int main(int argc,char **argv)
 			    #else
 			    d_namlen=strlen(entry->d_name);
 			    #endif
+				debug("processing column %s\n",entry->d_name);
 				if( strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0 )
 				{
 					struct stat s;
@@ -902,6 +1230,7 @@ int main(int argc,char **argv)
 								name.push_back(entry->d_name[a++]);
 							name.erase(name.end()-4,name.end());
 							processes[200+n]=new CustomColumn(name,(string("columns/")+entry->d_name));
+							debug("Added column %s\n",name.c_str());
 						}
 					}
 				}
@@ -910,7 +1239,10 @@ int main(int argc,char **argv)
 		}
 	}
 	fclose(fopen("stream debug.txt","w"));
+	fclose(fopen("img debug.txt","w"));
 	startThread(twitterInit,&twit);
+	debug("started twitter init\n",0);
+	runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
 	//addTweet(new Favorite("lorem ipsum est luditorium con meguieligum son locos","3453245234624563456",))
 	/*{
 		Textbox *textbox=new Textbox();
@@ -998,13 +1330,14 @@ int main(int argc,char **argv)
 		web_core->Update();
 		for (map<float,Process*>::reverse_iterator it=processes.rbegin();it!=processes.rend();it++)
 			it->second->update();
-		if(nUnread!=nUnread2)
+		if(nUnread!=nUnread2 || alert2!=alert)
 		{
 #ifdef USE_WINDOWS
 			SendMessage(hwnd, WM_SETICON,
 				ICON_BIG,(LPARAM)CreateAlphaCursor());
 #endif			
 			nUnread2=nUnread;
+			alert2=alert;
 		}
 #ifdef USE_WINDOWS
 		Sleep(20);
@@ -1040,7 +1373,7 @@ void readConfig()
 	stat("config.txt",&st);
 	if(st.st_mtime<=configLastRead)
 		return;
-	FILE *fp=fopen("config.txt","rb");//debugHere();
+	FILE *fp=fopen("config.txt","r");//debugHere();
 	using namespace settings;
 
 	jumpToSetting(fp,"user info file");
@@ -1080,7 +1413,7 @@ void readConfig()
 	jumpToSetting(fp,"backup tweet time");
 	fscanf(fp,"%i\n",&settings::backupTime);
 	jumpToSetting(fp,"browser command");
-	settings::browserCommand=readTo(fp,'\r');
+	settings::browserCommand=readTo(fp,'\n');
 	jumpToSetting(fp,"show url underline only when hovering");
 	fscanf(fp,"%i\n",&settings::underlineLinksWhenHovered);
 	jumpToSetting(fp,"temp");
@@ -1092,9 +1425,11 @@ void readConfig()
 	jumpToSetting(fp,"max tweets in ram");
 	fscanf(fp,"%i\n",&maxTweets);
 	jumpToSetting(fp,"proxy server");
-	settings::proxyServer=cscanf(fp,"%s\n");
+	settings::proxyServer=readTo(fp,'\n');
 	jumpToSetting(fp,"proxy port");
-	settings::proxyPort=cscanf(fp,"%s\n");
+	settings::proxyPort=readTo(fp,'\n');
+	jumpToSetting(fp,"notification sound");
+	settings::notificationSound=cscanf(fp,"%s\n");
 
 	using namespace colors;
 	jumpToSetting(fp,"unread tweet color");
@@ -1250,20 +1585,25 @@ std::string i2s( int n )
 	return string(t);
 }
 
-void debug(const char* msg, ...)
+void _debug(const char *file,int line,const char *function,const char* msg, ...)
 {
+
 	va_list fmtargs;
-	char buffer[2024];
+	char buffer[20024];
 	va_start(fmtargs, msg);
 	vsnprintf(buffer, sizeof(buffer) - 1, msg, fmtargs);
 	va_end(fmtargs);
 	FILE *fp;
+	enterMutex(debugMutex);
 	fp=fopen("debug.txt","a");
 	if(!fp)
+	{
+		leaveMutex(debugMutex);
 		return;
-	fprintf(fp,buffer);
+	}
+	fprintf(fp,"%s:%i (%s): %s",file,line,function,buffer);
 	fclose(fp);
-
+	leaveMutex(debugMutex);
 }
 void print(const char* msg, ...)
 {
@@ -1425,31 +1765,46 @@ void replace( std::string& str, const std::string& oldStr, const std::string& ne
 	size_t pos = 0;
 	while((pos = str.find(oldStr, pos)) != std::string::npos)
 	{
+		printf("%i,%i,%s,%s,%s\n",pos,oldStr.length(),newStr.c_str(),oldStr.c_str(),"");
 		str.replace(pos, oldStr.length(), newStr);
 		pos += newStr.length();
 	}
 }
 
-std::string escape( string str )
+std::string escape( string str,bool forPrintf )
 {
-	string special="\"\'\n\r";
+	string special="\"\'\n\r/";
 	for(int i=0;i<str.size();i++)
 	{
-		for(int j=0;j<special.size();j++)
-		{
-			if(str[i]=='%')
+			if(str[i]=='%' && forPrintf)
 				str.insert(str.begin()+i++,'%');
 			else
-			if(str[i]==special[j] && (i==0 || str[i-1]!='\\'))
 			{
-				str.insert(str.begin()+i++,'\\');
-				if(special[j]=='\n')
-					str[i]='n';
-				if(special[j]=='\r')
-					str[i]='r';
+				int j=0;
+				bool found=0;
+				for(j=0;j<special.size();j++)
+				{
+					if(str[i]==special[j])
+					{
+							found=1;
+							if(i==0 || str[i-1]!='\\')
+							{
+								str.insert(str.begin()+i++,'\\');
+								if(special[j]=='\n')
+									str[i]='n';
+								if(special[j]=='\r')
+									str[i]='r';
+								break;
+							}
+					}
+				}
+				if(i!=0 && !found && str[i]!='n' && str[i]!='r' && str[i]!='\\'  && str[i-1]=='\\')
+					str.insert(str.begin()+i++,'\\');
 			}
-		}
+
 	}
+	if(str[str.size()-1]=='\\')
+		str.insert(str.begin()+str.size()-1,'\\');
 	return str;
 }
 
@@ -1468,4 +1823,32 @@ void doing( int i )
 		progress=0;
 		runJS("document.getElementById('activity').style.display='none';");
 	}
+}
+void lambdaThreadStarter(void *data)
+{
+	function<void()> func=*(function<void()>*)data;
+	func();
+}
+void startLambdaThread( function<void ()> func )
+{
+	startThread(lambdaThreadStarter,new function<void()>(func));
+}
+
+std::string tolower( string str )
+{
+	for(int i=0;i<str.size();i++)
+		str[i]=tolower(str[i]);
+	return str;
+}
+
+void addFollower( string id )
+{
+	followers.insert(id);
+	runJS("addFollower('"+id+"');");
+}
+
+tm getTime()
+{
+	time_t t=time(NULL);
+	return *localtime(&t);
 }

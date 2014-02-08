@@ -19,14 +19,23 @@ void DirectorySource::OnRequest( int request_id, const WebString& name )
 	string n=ToString(name);
 	string p=path+getFile(n);
 	fp=fopen((p).c_str(),"rb");
-	fseek(fp,0,SEEK_END);
-	unsigned int len=ftell(fp);
-	fseek(fp,0,SEEK_SET);
-	unsigned char *data=new unsigned char[len];
-	fread(data,len,1,fp);
-	SendResponse(request_id,len,data,WSLit(("")));
-	delete[] data;
-	fclose(fp);
+	if(fp)
+	{
+		fseek(fp,0,SEEK_END);
+		unsigned int len=ftell(fp);
+		unsigned char *data=new unsigned char[len];
+		data[0]='\0';
+		fseek(fp,0,SEEK_SET);
+		fread(data,len,1,fp);
+		fclose(fp);
+		SendResponse(request_id,1,data,WSLit(("")));
+		delete[] data;
+	}
+	else
+	{
+		debug("WARNING: could not retreive %s\n",p.c_str());		
+		SendResponse(request_id,1,(unsigned char*)"",WSLit(("")));
+	}
 }
 
 DirectorySource::DirectorySource( string _path )

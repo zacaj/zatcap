@@ -4,9 +4,10 @@
 #include "curl.h"
 #include <string>
 #include <vector>
+#include <functional>
 #include <map>
 #include <stdio.h>
-#include <json/reader.h>
+#include "json/reader.h"   
 #define VERSION "0.0001  " __TIMESTAMP__
 using namespace std;
 using namespace Json;
@@ -22,6 +23,7 @@ extern int done;
 #define IDC_SIZEWE 1
 #define IDC_ARROW 0
 #endif
+#include <set>
 
 string cscanf(FILE *fp,char *text);
 
@@ -30,58 +32,17 @@ extern LPCWSTR cursor;
 namespace settings
 {
 	extern string userInfoFile;
-	extern int tweetsToLoadOnStartup;//800
-	extern int tweetArchiveAge; //todo 7
-	extern string defaultUserPicPath;
-	extern int multipleRetweet;
-	extern int retweeterPicSize;
-	extern int retweeteePicSize;
-	extern int arrowsOnScrollbar;
-	extern int scrollSpeed;
 	extern string dateFormat;
-	extern int tweetBackgrounds;
 	extern int tweetOnEnter;
-	extern int addSFZ;
 	extern int windowWidth;
 	extern int windowHeight;
-	extern int separatorHeight;
-	extern int enableStreaming;
 	extern int backupTime;
 	extern string browserCommand;
-	extern int underlineLinksWhenHovered;
-	extern int tempInt;
 	extern int markReadAfterTweeting;
-	extern int textSize,timeSize,columnTitleTextSize,userNameTextSize,retweetTextSize,editorTextSize;
 	extern int pinLogin;
-	extern int maxTweets;
 	extern string proxyServer;
 	extern string proxyPort;
-}
-namespace colors
-{
-	extern string unreadTweetColor;
-	extern string readTweetColor;
-	extern string hoverTweetColor;
-	extern string columnBackgroundColor;
-	extern string buttonHoverColor;
-	extern string buttonColor;
-	extern int columnTitleTextColorR,columnTitleTextColorG,columnTitleTextColorB;
-	extern int textColorR,textColorG,textColorB;
-	extern string buttonBackgroundColor;
-	extern string buttonBorderColor;
-	extern string scrollbarBackgroundColor;
-	extern string scrollbarColor;
-	extern string scrollbarHoverColor;
-	extern int retweetTextColorR,retweetTextColorG,retweetTextColorB;
-	extern int usernameTextColorR,usernameTextColorG,usernameTextColorB;
-	extern int timeTextColorR,timeTextColorG,timeTextColorB;
-	extern string unreadTweetColor2;
-	extern string readTweetColor2;
-	extern string separatorColor;
-	extern int entityColorR[6];
-	extern int entityColorG[6];
-	extern int entityColorB[6];
-	extern string entityUnderlineColor[6];
+	extern string notificationSound;
 }
 
 FILE *fopenf(string path,char *mode);
@@ -92,7 +53,8 @@ void loadUser(twitCurl *twit);
 extern string tempString;
 extern string username;
 
-#define debugHere() debug("%s:%i\n",__FILE__,__LINE__);
+#define debugHere() //debug("%s:%i %s\n",__FILE__,__LINE__,__FUNCTION__);
+#define debugHere2() _debug(__FILE__,__LINE__,__FUNCTION__,"HERE\n");
 
 class Process;
 extern map<float,Process*> processes;
@@ -104,8 +66,8 @@ struct tm convertTimeStringToTM(string str);
 
 string i2s(int i);
 
-
-void debug(const char* msg, ...);
+#define debug(m,...) _debug(__FILE__,__LINE__,__FUNCTION__,m,...)
+void _debug(const char *file,int line,const char *funciton,const char* msg, ...);
 void print(const char* msg, ...);
 #define prints(s) print(s,0)
 
@@ -136,6 +98,7 @@ extern int iconR,iconG,iconB;
 
 void startThread(void(*functionPointer)(void*),void *data);
 void delayedThreadStart(void(*functionPointer)(void*),void *data,float delay);
+void startLambdaThread(function<void ()> func);
 
 #ifdef USE_WINDOWS
 typedef CRITICAL_SECTION Mutex;
@@ -148,9 +111,13 @@ void deleteMutex(Mutex &mutex);
 void enterMutex(Mutex &mutex);
 void leaveMutex(Mutex &mutex);
 void replace(std::string& str, const std::string& oldStr, const std::string& newStr);
-string escape(string str);
+string escape(string str,bool forPrintf =false);
 void doing(int i);
 void notifyIcon(bool on);
+string tolower( string str);
 extern int nUnread;
-
+extern bool alert;
 extern map<string,time_t> mute;
+extern set<string> followers;
+void addFollower(string id);
+tm getTime();

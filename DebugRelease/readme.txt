@@ -2,14 +2,22 @@ SETUP
 
 1. fill in user.txt (create it if it does not exist)
 username = YOUR USERNAME
-password = YOUR PASSWORD
+password = 
 
-2.  on linux: symlink libawesomium-1-7.so.0.0 into /usr/lib
-    on windows: if you get an error about msvcr110.dll install http://www.microsoft.com/en-us/download/details.aspx?id=30679 and delete msvcr110.dll
+(yes, leave the password blank)
+
+2.  on linux: symlink libawesomium-1-7.so and libtwitcurl.so into /usr/lib
+    on windows: if you get an error about msvcr110.dll install http://www.microsoft.com/en-us/download/details.aspx?id=40784 and delete msvcr110.dll
 
 3. open config.txt, find "browser command = " and replace the path with the path to the .exe for your browser of choice
 
-4. launch zatcap and hope
+4. launch zatcap (on linux pass -noredirect the first time so you can see console output)
+
+5.  on windows: right click on "Load Old Tweets" (bottom left) to open the terminal
+6. there should be a URL in the terminal, copy this to your browser, and authenticate on twitter
+7. type the code twitter gives you back into the terminal, and press enter
+8. on windows, right click "Load Old Tweets" again to hide the terminal
+9. tada!
 
 COLUMNS
 
@@ -31,3 +39,4 @@ fav - matches any tweet you have favorited
 if a tweet matches any command with a - in front of it, it won't be added to the column
 if it matches any command with a + in front of it (and none with a -) it will be added to the column
 (no logical operations, sorry)
+

@@ -1,42 +1,61 @@
-starting...
-873
-875
-stream.cpp:242 curl_debug_callback2
-stream.cpp:133 callback_func
-stream.cpp:242 curl_debug_callback2
-stream.cpp:133 callback_func
-stream.cpp:242 curl_debug_callback2
-stream.cpp:133 callback_func
-stream.cpp:136 callback_func
-stream.cpp:144 callback_func
-
-T
-{"created_at":"Sat Feb 08 03:25:57 +0000 2014","id":431992266949795840,"id_str":"431992266949795840","text":"In phoenix. Surrounded by game devs doing games and dev and stuff.","source":"web","truncated":false,"in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"user":{"id":19575980,"id_str":"19575980","name":"Michael Todd","screen_name":"thegamedesigner","location":"Toronto","url":"http:\/\/www.MichaelToddGames.com","description":"Wandering game developer","protected":false,"followers_count":5451,"friends_count":128,"listed_count":220,"created_at":"Tue Jan 27 03:51:40 +0000 2009","favourites_count":27,"utc_offset":-18000,"time_zone":"Eastern Time (US & Canada)","geo_enabled":false,"verified":false,"statuses_count":16581,"lang":"en","contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"FFFFFF","profile_background_image_url":"http:\/\/pbs.twimg.com\/profile_background_images\/8595185\/twitterbk_pic1.jpg","profile_background_image_url_https":"https:\/\/pbs.twimg.com\/profile_background_images\/8595185\/twitterbk_pic1.jpg","profile_background_tile":false,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/2937682727\/16a87791d240540faa55d74cac477bb0_normal.png","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/2937682727\/16a87791d240540faa55d74cac477bb0_normal.png","profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/19575980\/1354758564","profile_link_color":"4F4F4F","profile_sidebar_border_color":"2E2E2E","profile_sidebar_fill_color":"F5F7F9","profile_text_color":"A3A3A3","profile_use_background_image":true,"default_profile":false,"default_profile_image":false,"following":null,"follow_request_sent":null,"notifications":null},"geo":null,"coordinates":null,"place":null,"contributors":null,"retweet_count":0,"favorite_count":0,"entities":{"hashtags":[],"symbols":[],"urls":[],"user_mentions":[]},"favorited":false,"retweeted":false,"filter_level":"medium","lang":"en"}
-
-
-T
-stream.cpp:171 callback_func
-
-2
-
-2
-
-S
-{"created_at":"Sat Feb 08 03:25:57 +0000 2014","id":431992266949795840,"id_str":"431992266949795840","text":"In phoenix. Surrounded by game devs doing games and dev and stuff.","source":"web","truncated":false,"in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"user":{"id":19575980,"id_str":"19575980","name":"Michael Todd","screen_name":"thegamedesigner","location":"Toronto","url":"http:\/\/www.MichaelToddGames.com","description":"Wandering game developer","protected":false,"followers_count":5451,"friends_count":128,"listed_count":220,"created_at":"Tue Jan 27 03:51:40 +0000 2009","favourites_count":27,"utc_offset":-18000,"time_zone":"Eastern Time (US & Canada)","geo_enabled":false,"verified":false,"statuses_count":16581,"lang":"en","contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"FFFFFF","profile_background_image_url":"http:\/\/pbs.twimg.com\/profile_background_images\/8595185\/twitterbk_pic1.jpg","profile_background_image_url_https":"https:\/\/pbs.twimg.com\/profile_background_images\/8595185\/twitterbk_pic1.jpg","profile_background_tile":false,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/2937682727\/16a87791d240540faa55d74cac477bb0_normal.png","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/2937682727\/16a87791d240540faa55d74cac477bb0_normal.png","profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/19575980\/1354758564","profile_link_color":"4F4F4F","profile_sidebar_border_color":"2E2E2E","profile_sidebar_fill_color":"F5F7F9","profile_text_color":"A3A3A3","profile_use_background_image":true,"default_profile":false,"default_profile_image":false,"following":null,"follow_request_sent":null,"notifications":null},"geo":null,"coordinates":null,"place":null,"contributors":null,"retweet_count":0,"favorite_count":0,"entities":{"hashtags":[],"symbols":[],"urls":[],"user_mentions":[]},"favorited":false,"retweeted":false,"filter_level":"medium","lang":"en"}
-S
-stream.cpp:182 callback_func
-stream.cpp:191 callback_func
-stream.cpp:193 callback_func
-stream.cpp:194 callback_func
-stream.cpp:199 callback_func
-stream.cpp:8 parseStream
-stream.cpp:201 callback_func
-
-Q
-{"created_at":"Sat Feb 08 03:25:57 +0000 2014","id":431992266949795840,"id_str":"431992266949795840","text":"In phoenix. Surrounded by game devs doing games and dev and stuff.","source":"web","truncated":false,"in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"user":{"id":19575980,"id_str":"19575980","name":"Michael Todd","screen_name":"thegamedesigner","location":"Toronto","url":"http:\/\/www.MichaelToddGames.com","description":"Wandering game developer","protected":false,"followers_count":5451,"friends_count":128,"listed_count":220,"created_at":"Tue Jan 27 03:51:40 +0000 2009","favourites_count":27,"utc_offset":-18000,"time_zone":"Eastern Time (US & Canada)","geo_enabled":false,"verified":false,"statuses_count":16581,"lang":"en","contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"FFFFFF","profile_background_image_url":"http:\/\/pbs.twimg.com\/profile_background_images\/8595185\/twitterbk_pic1.jpg","profile_background_image_url_https":"https:\/\/pbs.twimg.com\/profile_background_images\/8595185\/twitterbk_pic1.jpg","profile_background_tile":false,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/2937682727\/16a87791d240540faa55d74cac477bb0_normal.png","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/2937682727\/16a87791d240540faa55d74cac477bb0_normal.png","profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/19575980\/1354758564","profile_link_color":"4F4F4F","profile_sidebar_border_color":"2E2E2E","profile_sidebar_fill_color":"F5F7F9","profile_text_color":"A3A3A3","profile_use_background_image":true,"default_profile":false,"default_profile_image":false,"following":null,"follow_request_sent":null,"notifications":null},"geo":null,"coordinates":null,"place":null,"contributors":null,"retweet_count":0,"favorite_count":0,"entities":{"hashtags":[],"symbols":[],"urls":[],"user_mentions":[]},"favorited":false,"retweeted":false,"filter_level":"medium","lang":"en"}
-Q
-stream.cpp:230 callback_func
-stream.cpp:27 parseStream
-stream.cpp:95 parseStream
-stream.cpp:242 curl_debug_callback2
-stream.cpp:133 callback_func
+zatcap.cpp:869 (main): starting...
+zatcap.cpp:873 (main): 873
+zatcap.cpp:875 (main): 875
+zatcap.cpp:940 (main): initialized SDL successfully
+zatcap.cpp:963 (main): inited Awesomium
+zatcap.cpp:1197 (main): Registered JS functions
+zatcap.cpp:1211 (main): processing column 3_direct messages.txt
+zatcap.cpp:1233 (main): Added column direct messages
+zatcap.cpp:1211 (main): processing column .
+zatcap.cpp:1211 (main): processing column 2_mentions.txt
+zatcap.cpp:1233 (main): Added column mentions
+zatcap.cpp:1211 (main): processing column ..
+zatcap.cpp:1211 (main): processing column 1_timeline.txt
+zatcap.cpp:1233 (main): Added column timeline
+zatcap.cpp:1211 (main): processing column 0_favorites.txt
+zatcap.cpp:1233 (main): Added column favorites
+zatcap.cpp:1244 (main): started twitter init
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE
+stream.cpp:242 (curl_debug_callback2): HERE

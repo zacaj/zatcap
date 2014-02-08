@@ -1,3 +1,50 @@
 Version: a97
 Scanned config file
 Scanned config file
+Logging in...
+...
+Successfully logged in to twitter account: zacaj_
+Opening a stream...
+user: 7429862
+column: timeline
+user: 21220972
+column: timeline
+Loading information for user 131487287
+user: 7429862
+column: timeline
+user: 7429862
+column: timeline
+user: 7429862
+column: timeline
+user: 7429862
+column: timeline
+user: 1096828909
+column: timeline
+user: 1140968821
+column: timeline
+user: 1096828909
+column: timeline
+user: 7429862
+column: timeline
+user: 15218212
+column: timeline
+user: 7429862
+column: timeline
+user: 1096828909
+column: timeline
+Loading information for user 9308132
+user: 1140968821
+column: timeline
+user: 1140968821
+column: timeline
+user: 124863907
+column: timeline
+user: 1096828909
+column: timeline
+user: 1096828909
+column: timeline
+user: 1096828909
+column: timeline
+user: 1096828909
+column: timeline
+user: 701874878

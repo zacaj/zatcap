@@ -109,7 +109,9 @@ std::string Tweet::getHtml(string columnName)
 		replace(content,string("$USERNAME"),escape(user()->username));
 		replace(content,string("$NAME"),escape(user()->username));
 		replace(content,string("$FULLNAME"),escape(user()->name));
+		print("user: %s\n",user()->id.c_str());
 		replace(content,string("$AVATAR"),user()->picURL);
+		print("column: %s\n",columnName.c_str());
 		replace(content,string("$COLUMN"),columnName);
 		if(user()->username==username)
 			replace(content,string("$HIDENOTMINE"),"inline");

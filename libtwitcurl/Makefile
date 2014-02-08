@@ -11,7 +11,7 @@ LINCLUDE_DIR = $(STAGING_DIR)/usr/local/include
 LIBRARY_DIR = $(STAGING_DIR)/usr/lib
 LLIBRARY_DIR = $(STAGING_DIR)/usr/local/lib
 #LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
-CC = g++
+CC = g++ -g
 REMOVE = rm -f
 COPY = cp
 REMOTEIP = 192.168.1.30
@@ -34,14 +34,14 @@ CFLAGS =$(CDEFS) $(CINCS) $(CSTANDARD)
 all: target
 
 target: $(SRC) $(LIBNAME).h
-	$(CC) -Wall -fPIC -c -I$(INCLUDE_DIR) $(SRC) oauthlib.cpp urlencode.cpp base64.cpp HMAC_SHA1.cpp SHA1.cpp -m32
-	$(CC) -shared -L$(LIBRARY_DIR) -lcurl -m32 -o lib$(LIBNAME).dylib *.o
+	$(CC) -Wall -fPIC -c -I$(INCLUDE_DIR) $(SRC) oauthlib.cpp urlencode.cpp base64.cpp HMAC_SHA1.cpp SHA1.cpp 
+	$(CC) -shared -L$(LIBRARY_DIR) -lcurl  -o lib$(LIBNAME).so *.o
 
 #clean project.
 clean:
-	$(REMOVE) $(LIBNAME)/libtwitcurl.dylib
+	$(REMOVE) $(LIBNAME)/libtwitcurl.so
 	$(REMOVE) $(LIBNAME).o
-	$(REMOVE) $(LIBRARY_DIR)/lib$(LIBNAME).dylib
+	$(REMOVE) $(LIBRARY_DIR)/lib$(LIBNAME).so
 	
 # Install library to local openwrt library directory
 install: all

@@ -1410,7 +1410,8 @@ void twitCurl::prepareStandardParams(twitInstance *instance)
     /* Restore any custom request we may have */
     curl_easy_setopt( instance->m_curlHandle, CURLOPT_CUSTOMREQUEST, NULL );
 
-	//curl_easy_setopt( instance->m_curlHandle, CURLOPT_DEBUGFUNCTION, curl_debug_callbacktwit);
+	curl_easy_setopt( instance->m_curlHandle, CURLOPT_DEBUGFUNCTION, curl_debug_callbacktwit);
+    curl_easy_setopt( instance->m_curlHandle, CURLOPT_VERBOSE, 1 );
     /* Clear callback and error buffers */
     clearCurlCallbackBuffers();
 

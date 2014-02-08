@@ -6,9 +6,9 @@ void skipToString(FILE *fp,const char *str)
 	while(!feof(fp))
 	{
 		char c=fgetc(fp);
-		if(c=='\n')
+		if(c==str[0])
 		{
-			int i=0;
+			int i=1;
 			while(str[i]!='\0')
 			{
 				char c2=fgetc(fp);
@@ -216,6 +216,11 @@ std::string f2s( string path )
 		return files[path];
 	string ret;
 	FILE *fp=fopen(path.c_str(),"rb");
+	if(!fp)
+	{
+		debug("ERROR: could not open file %s\n",path.c_str());
+		return "";
+	}
 	while(!feof(fp))
 		ret.push_back(fgetc(fp));
 	ret.erase(--ret.end());

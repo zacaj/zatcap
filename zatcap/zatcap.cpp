@@ -858,7 +858,7 @@ int main(int argc,char **argv)
 	if( strcmp(lpCmdLine, "-noredirect") != 0 )
 #endif
 	{
-		freopen("log.txt","w",stdout);
+		//freopen("log.txt","w",stdout);
 	}
 	debugMutex=createMutex();
 	bool candy=1;
@@ -866,7 +866,7 @@ int main(int argc,char **argv)
 		exit(EXIT_FAILURE);
 	fclose(fopen("debug.txt","w"));
 	fclose(fopen("log.txt","w"));
-	debug("starting...\n");
+	debug("starting...\n",0);
 	print("Version: a%i\n",version);
 	cursor=IDC_ARROW;
 	sysinit();
@@ -937,6 +937,7 @@ int main(int argc,char **argv)
 #ifdef LINUX
     {
         sdlInit();
+	debug("initialized SDL successfully\n",0);
     }
     #endif
 	{
@@ -953,12 +954,13 @@ int main(int argc,char **argv)
 #endif
 		htmlSource=new HtmlSource();
 		session->AddDataSource(WSLit("zatcap"), htmlSource);
-		session->AddDataSource(WSLit("resource"),new DirectorySource("resources\\"));
+		session->AddDataSource(WSLit("resource"),new DirectorySource("resources/"));
 		string index=f2s("resources/index.html");
 		replace(index,"$BOTTOM",f2s("resources/bottom.html"));
 		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> <script type=\"text/javascript\" src=\"asset://resource/selection_range.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/string_splitter.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/cursor_position.js\"></script><script type=\"text/javascript\" src=\"asset://resource/twitter-text.js\"></script></head><body onload=\"init();\" id='body'>"+index+"</body>";
 		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
 		runJS("init();");
+		debug("inited Awesomium\n",0);
 		methodHandler=new MethodHandler(view,web_core);
 		methodHandler->reg(WSLit("openInNativeBrowser"),[](JSArray args)
 			{
@@ -1192,6 +1194,7 @@ int main(int argc,char **argv)
 			});
 		});
 	}
+	debug("Registered JS functions\n",0);
 	/*processes[2.4]=new HomeColumn(510);debug("%i\n",__LINE__);debugHere();
 	processes[2.5]=new MentionColumn("zacaj2",300);debug("%i\n",__LINE__);//not going to come up*/
 	{
@@ -1205,6 +1208,7 @@ int main(int argc,char **argv)
 			    #else
 			    d_namlen=strlen(entry->d_name);
 			    #endif
+				debug("processing column %s\n",entry->d_name);
 				if( strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0 )
 				{
 					struct stat s;
@@ -1226,6 +1230,7 @@ int main(int argc,char **argv)
 								name.push_back(entry->d_name[a++]);
 							name.erase(name.end()-4,name.end());
 							processes[200+n]=new CustomColumn(name,(string("columns/")+entry->d_name));
+							debug("Added column %s\n",name.c_str());
 						}
 					}
 				}
@@ -1236,6 +1241,7 @@ int main(int argc,char **argv)
 	fclose(fopen("stream debug.txt","w"));
 	fclose(fopen("img debug.txt","w"));
 	startThread(twitterInit,&twit);
+	debug("started twitter init\n",0);
 	runJS("	document.getElementById('tweetbox').addEventListener('keydown',tweetboxKeydown,true);");
 	//addTweet(new Favorite("lorem ipsum est luditorium con meguieligum son locos","3453245234624563456",))
 	/*{
@@ -1367,7 +1373,7 @@ void readConfig()
 	stat("config.txt",&st);
 	if(st.st_mtime<=configLastRead)
 		return;
-	FILE *fp=fopen("config.txt","rb");//debugHere();
+	FILE *fp=fopen("config.txt","r");//debugHere();
 	using namespace settings;
 
 	jumpToSetting(fp,"user info file");
@@ -1389,7 +1395,7 @@ void readConfig()
 	jumpToSetting(fp,"scroll speed");
 	fscanf(fp,"%i\n",&settings::scrollSpeed);
 	jumpToSetting(fp,"date format");
-	settings::dateFormat=readTo(fp,'\r');
+	settings::dateFormat=readTo(fp,'\n');
 	jumpToSetting(fp,"show tweet backgrounds");
 	fscanf(fp,"%i\n",&settings::tweetBackgrounds);
 	jumpToSetting(fp,"tweet on enter");
@@ -1407,7 +1413,7 @@ void readConfig()
 	jumpToSetting(fp,"backup tweet time");
 	fscanf(fp,"%i\n",&settings::backupTime);
 	jumpToSetting(fp,"browser command");
-	settings::browserCommand=readTo(fp,'\r');
+	settings::browserCommand=readTo(fp,'\n');
 	jumpToSetting(fp,"show url underline only when hovering");
 	fscanf(fp,"%i\n",&settings::underlineLinksWhenHovered);
 	jumpToSetting(fp,"temp");
@@ -1419,9 +1425,9 @@ void readConfig()
 	jumpToSetting(fp,"max tweets in ram");
 	fscanf(fp,"%i\n",&maxTweets);
 	jumpToSetting(fp,"proxy server");
-	settings::proxyServer=cscanf(fp,"%s\n");
+	settings::proxyServer=readTo(fp,'\n');
 	jumpToSetting(fp,"proxy port");
-	settings::proxyPort=cscanf(fp,"%s\n");
+	settings::proxyPort=readTo(fp,'\n');
 	jumpToSetting(fp,"notification sound");
 	settings::notificationSound=cscanf(fp,"%s\n");
 
@@ -1579,7 +1585,7 @@ std::string i2s( int n )
 	return string(t);
 }
 
-void debug(const char* msg, ...)
+void _debug(const char *file,int line,const char *function,const char* msg, ...)
 {
 
 	va_list fmtargs;
@@ -1595,7 +1601,7 @@ void debug(const char* msg, ...)
 		leaveMutex(debugMutex);
 		return;
 	}
-	fprintf(fp,buffer);
+	fprintf(fp,"%s:%i (%s): %s",file,line,function,buffer);
 	fclose(fp);
 	leaveMutex(debugMutex);
 }
@@ -1759,6 +1765,7 @@ void replace( std::string& str, const std::string& oldStr, const std::string& ne
 	size_t pos = 0;
 	while((pos = str.find(oldStr, pos)) != std::string::npos)
 	{
+		printf("%i,%i,%s,%s,%s\n",pos,oldStr.length(),newStr.c_str(),oldStr.c_str(),"");
 		str.replace(pos, oldStr.length(), newStr);
 		pos += newStr.length();
 	}
