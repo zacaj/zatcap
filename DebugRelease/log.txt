@@ -7,11 +7,7 @@ Successfully logged in to twitter account: zacaj_
 Opening a stream...
 Streaming connection established.
 Loading information for user -2131359255
+Loading information for user 
 Loading information for user -2131789852
 Loading information for user -2145715664
-thread started 17422256
-thread started 16966480
-thread started 16294880
-thread started 16297968
-thread started 17180800
-thread started 16734784
+Tweet sent successfully: @delta_vee linux version working, going to merge in OSX improvements and then try to send it to you (432235226413023233,)

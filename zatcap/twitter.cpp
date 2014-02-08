@@ -19,9 +19,6 @@ map<string,User*> users;
 twitCurl *twit=NULL;
 bool loggedIn=0;
 
-SDL_Surface *defaultUserPic;
-SDL_Surface *defaultSmallUserPic;
-SDL_Surface *defaultMediumUserPic;
 string replyId="";
 void twitterInit( void  *_twit )
 {

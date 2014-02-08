@@ -943,7 +943,7 @@ int main(int argc,char **argv)
 	{
 		WebConfig config;
 		config.log_level=kLogLevel_Verbose;
-		config.log_path=WSLit("./awesomiumdebug.txt");
+		config.log_path=WSLit("awesomiumdebug.txt");
 		web_core = WebCore::Initialize(config);
 		session=web_core->CreateWebSession(WSLit("session"),WebPreferences());
 #ifdef USE_WINDOWS
@@ -961,7 +961,7 @@ int main(int argc,char **argv)
 		string index=f2s("resources/index.html");
 		replace(index,"$BOTTOM",f2s("resources/bottom.html"));
 		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> <script type=\"text/javascript\" src=\"asset://resource/selection_range.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/string_splitter.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/cursor_position.js\"></script><script type=\"text/javascript\" src=\"asset://resource/twitter-text.js\"></script></head><body onload=\"init();\" id='body'>"+index+"</body>";
-		web_core->Log(WSLit("begin"),kLogSeverity_Info,WSLit("zatcap.cpp"),__LINE__);
+		//web_core->Log(WSLit("begin"),kLogSeverity_Info,WSLit("zatcap.cpp"),__LINE__);
 		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
 		runJS("init();");
 		debug("inited Awesomium\n",0);
