@@ -23,6 +23,8 @@
 *debug.txt
 test.json
 *.gz
+*user.txt
+DebugRelease/zatcap
 
 #################
 ## Eclipse
