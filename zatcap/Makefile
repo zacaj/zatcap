@@ -1,6 +1,6 @@
 CC=clang++
 
-CFLAGS=-c -g -w -std=c++0x -fno-rtti -I../libtwitcurl -I ../libtwitcurl/curl -I/usr/include/ -DLINUX  -D_GNU_SOURCE=1 -D_THREAD_SAFE -I./ -DSDLGL
+CFLAGS=-c -g -w -std=c++0x -fno-rtti -I../libtwitcurl -I ../libtwitcurl/curl -I/usr/include/ -DLINUX  -D_GNU_SOURCE=1 -D_THREAD_SAFE -I./
 
 
 LDFLAGS= -L/usr/lib -L../libtwitcurl -lSDLmain -lSDL  -lcurl -lGLEW -lawesomium-1-7 -lGL -ltwitcurl -lpthread -g
@@ -22,5 +22,4 @@ $(EXECUTABLE):$(OBJECTS)
 clean:
 	rm -rf ../DebugRelease/zatcap
 	rm -rf linux/obj/*
-	rm -rf *.o
 
