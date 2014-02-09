@@ -46,18 +46,7 @@ void GLRAMTextureSurface::Paint(unsigned char* src_buffer,
       dest_rect.width * 4);
 
   needs_update_ = true;
-  glBindTexture(GL_TEXTURE_2D,GetTexture());
-  glBegin(GL_QUADS);
-  glTexCoord2f(0,0);
-  glVertex2f(0,0);
-  glTexCoord2f(1,0);
-  glVertex2f(1024,0);
-  glTexCoord2f(1,1);
-  glVertex2f(1024,768);
-  glTexCoord2f(0,1);
-  glVertex2f(0,768);
-  glEnd();
-  SDL_GL_SwapBuffers();
+  UpdateTexture();
 }
 
 void GLRAMTextureSurface::Scroll(int dx,
@@ -105,7 +94,16 @@ void GLRAMTextureSurface::Scroll(int dx,
   }
 
   needs_update_ = true;
-  glBindTexture(GL_TEXTURE_2D,GetTexture());
+  UpdateTexture();
+}
+
+void GLRAMTextureSurface::UpdateTexture() {
+  if (needs_update_) {
+    glBindTexture(GL_TEXTURE_2D, texture_id_);
+    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width_, height_,
+                      bpp_ == 3 ? GL_RGB : GL_BGRA, GL_UNSIGNED_BYTE,
+                      buffer_);
+    needs_update_ = false;
   glBegin(GL_QUADS);
   glTexCoord2f(0,0);
   glVertex2f(0,0);
@@ -117,15 +115,6 @@ void GLRAMTextureSurface::Scroll(int dx,
   glVertex2f(0,768);
   glEnd();
   SDL_GL_SwapBuffers();
-}
-
-void GLRAMTextureSurface::UpdateTexture() {
-  if (needs_update_) {
-    glBindTexture(GL_TEXTURE_2D, texture_id_);
-    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width_, height_,
-                      bpp_ == 3 ? GL_RGB : GL_BGRA, GL_UNSIGNED_BYTE,
-                      buffer_);
-    needs_update_ = false;
   }
 }
 

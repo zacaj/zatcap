@@ -797,7 +797,6 @@ HCURSOR CreateAlphaCursor(void)
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				   LPSTR lpCmdLine, int nCmdShow)
 				   #else
-//#undef main
 int main(int argc,char **argv)
 #endif
 {
@@ -944,7 +943,7 @@ int main(int argc,char **argv)
 	{
 		WebConfig config;
 		config.log_level=kLogLevel_Verbose;
-		config.log_path=WSLit("awesomiumdebug.txt");
+		//config.log_path=WSLit(".awesomiumdebug.txt");
 		web_core = WebCore::Initialize(config);
 		session=web_core->CreateWebSession(WSLit("session"),WebPreferences());
 #ifdef USE_WINDOWS
@@ -962,7 +961,7 @@ int main(int argc,char **argv)
 		string index=f2s("resources/index.html");
 		replace(index,"$BOTTOM",f2s("resources/bottom.html"));
 		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> <script type=\"text/javascript\" src=\"asset://resource/selection_range.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/string_splitter.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/cursor_position.js\"></script><script type=\"text/javascript\" src=\"asset://resource/twitter-text.js\"></script></head><body onload=\"init();\" id='body'>"+index+"</body>";
-		//web_core->Log(WSLit("begin"),kLogSeverity_Info,WSLit("zatcap.cpp"),__LINE__);
+		web_core->Log(WSLit("begin"),kLogSeverity_Info,WSLit("zatcap.cpp"),__LINE__);
 		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
 		runJS("init();");
 		debug("inited Awesomium\n",0);
@@ -1205,6 +1204,7 @@ int main(int argc,char **argv)
 	{
 		DIR *pDIR;
 		struct dirent *entry;
+		set<string> columnNames;
 		if( pDIR=opendir("columns") ){
 			while(entry = readdir(pDIR)){
 			    int d_namlen;
@@ -1221,26 +1221,30 @@ int main(int argc,char **argv)
 					{
 						if( s.st_mode & S_IFREG )
 						{
-							float n=0;
-							int a=0;
-							while(a<d_namlen && entry->d_name[a]!='_')
-							{
-								n+=entry->d_name[a]-'0';
-								n*=10;
-								a++;
-							}
-							a++;
-							string name;
-							while(a<d_namlen)
-								name.push_back(entry->d_name[a++]);
-							name.erase(name.end()-4,name.end());
-							processes[200+n]=new CustomColumn(name,(string("columns/")+entry->d_name));
-							debug("Added column %s\n",name.c_str());
+							columnNames.insert(entry->d_name);
 						}
 					}
 				}
 			}
 			closedir(pDIR);
+		}
+		for(string d_name : columnNames)
+		{
+			float n=0;
+			int a=0;
+			while(a<d_name.size() && d_name[a]!='_')
+			{
+				n+=d_name[a]-'0';
+				n*=10;
+				a++;
+			}
+			a++;
+			string name;
+			while(a<d_name.size())
+				name.push_back(d_name[a++]);
+			name.erase(name.end()-4,name.end());
+			processes[200+n]=new CustomColumn(name,(string("columns/")+d_name));
+			debug("Added column %s\n",name.c_str());
 		}
 	}
 	fclose(fopen("stream debug.txt","w"));
@@ -1359,7 +1363,6 @@ int main(int argc,char **argv)
 void jumpToSetting(FILE *fp,string str)
 {
 	fseek(fp,0,SEEK_SET);
-    //printf("%i\n",ftell(fp));
 	skipToString(fp,(str).c_str());
 	fscanf(fp," = ");
 }
@@ -1430,7 +1433,6 @@ void readConfig()
 	fscanf(fp,"%i\n",&pinLogin);
 	jumpToSetting(fp,"max tweets in ram");
 	fscanf(fp,"%i\n",&maxTweets);
-    printf("%i\n",ftell(fp));
 	jumpToSetting(fp,"proxy server");
 	settings::proxyServer=readTo(fp,'\n');
 	jumpToSetting(fp,"proxy port");
@@ -1585,7 +1587,7 @@ struct tm convertTimeStringToTM( string str )
 	return tmm;
 }
 
-std::string i2s(unsigned int n )
+std::string i2s( unsigned int n )
 {
 	char t[50];
 	sprintf(t,"%u",n);
@@ -1715,7 +1717,7 @@ void *threadStarter(void *p)
 {
     threadData *d=(threadData*)p;
     d->functionPointer(d->d);
-	print("thread started %i\n",p);
+	//print("thread started %i\n",p);
     delete p;
 return NULL;
 }
