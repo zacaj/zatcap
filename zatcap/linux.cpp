@@ -302,4 +302,6 @@ void sdlUpdate(int &quit)
                         }
                 }
 }
+#ifdef WINDOWS
 #include "gl_texture_surface.cpp"
+#endif
