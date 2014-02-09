@@ -73,7 +73,7 @@ string readTo(FILE *fp,char g)
 	while(!feof(fp))
 	{
 		char c=fgetc(fp);
-		if(c==g)
+		if(c==g || (g=='\n' && c=='\r'))
 		{
 			break;
 		}

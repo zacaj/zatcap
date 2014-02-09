@@ -6,4 +6,14 @@ Logging in...
 Successfully logged in to twitter account: zacaj_
 Opening a stream...
 Streaming connection established.
-Tweet sent successfully: @delta_vee muahaha, I have fixed it.  (on windows) (432297953856724992,)
+ERROR
+ERROR
+ERROR
+ERROR
+ERROR:Stream connection lost, reconnecting after 1000ms wait...
+ERROR
+ERROR
+ERROR
+ERROR
+Opening a stream...
+Streaming connection established.

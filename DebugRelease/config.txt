@@ -93,14 +93,14 @@ backup tweet time = 3600
 show url underline only when hovering = 1
 
 # default: 0
-pin login = 0
+pin login = 1
 
 # not working currently, ignore
 # default: 1000
 max tweets in ram = 10
 
 
-browser command = C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+browser command = C:\Users\Zack\AppData\Local\Google\Chrome\Application\chrome.exe
 
 window width = 1024
 
