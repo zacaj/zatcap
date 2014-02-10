@@ -489,8 +489,10 @@ char* getClipboardText()
 #endif
 
 extern Mutex jsMutex;
-#ifdef LINUX
+#ifdef SDLGL
 #include "linux.cpp"
+#endif
+#ifdef LINUX
 void SetCursor(int c)
 {
 
@@ -878,6 +880,7 @@ int main(int argc,char **argv)
 	jsMutex=createMutex();
 	twitCurl *twit=NULL;
 	#ifdef USE_WINDOWS
+#ifndef SDLGL
 	{
 		//Step 1: Registering the Window Class
 		wc.cbSize        = sizeof(WNDCLASSEX);
@@ -934,23 +937,34 @@ int main(int argc,char **argv)
 		MoveWindow(hwnd,rect.left-(pt.x-rect.left),rect.top-(pt.y-rect.top),settings::windowWidth+(pt.x-rect.left)*2,settings::windowHeight+(pt.y-rect.top)+(pt.x-rect.left),0);
 	}
 #endif
-#ifdef LINUX
+#endif
+#ifdef SDLGL
     {
         sdlInit();
 	debug("initialized SDL successfully\n",0);
     }
     #endif
+	//if(0)
 	{
-		web_core = WebCore::Initialize(WebConfig());
-		session=web_core->CreateWebSession(WSLit("session"),WebPreferences());
+		WebConfig config;
+		config.log_level=kLogLevel_Verbose;
+		//config.log_path=WSLit(".awesomiumdebug.txt");
+		web_core = WebCore::Initialize(config);
+		WebPreferences pref;
+		pref.enable_smooth_scrolling = true;
+		pref.enable_gpu_acceleration=true;
+		session=web_core->CreateWebSession(WSLit("session"),pref);
 #ifdef USE_WINDOWS
+#ifndef SDLGL
 		view = web_core->CreateWebView(settings::windowWidth, settings::windowHeight,session,kWebViewType_Window);
-		view->set_parent_window(hwnd);
+		view->set_parent_window(hwnd);debugHere();
 #endif
-#ifdef LINUX
+#endif
+#ifdef SDLGL
 
-        web_core->set_surface_factory(new GLTextureSurfaceFactory());
-        view = web_core->CreateWebView(1024, 768,session);
+        //web_core->set_surface_factory(new GLTextureSurfaceFactory());
+		debug("creating %ix%i webview\n",settings::windowWidth,settings::windowHeight);
+		view = web_core->CreateWebView(settings::windowWidth, settings::windowHeight, session);debugHere();
 #endif
 		htmlSource=new HtmlSource();
 		session->AddDataSource(WSLit("zatcap"), htmlSource);
@@ -958,10 +972,11 @@ int main(int argc,char **argv)
 		string index=f2s("resources/index.html");
 		replace(index,"$BOTTOM",f2s("resources/bottom.html"));
 		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> <script type=\"text/javascript\" src=\"asset://resource/selection_range.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/string_splitter.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/cursor_position.js\"></script><script type=\"text/javascript\" src=\"asset://resource/twitter-text.js\"></script></head><body onload=\"init();\" id='body'>"+index+"</body>";
-		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
+		web_core->Log(WSLit("begin"),kLogSeverity_Info,WSLit("zatcap.cpp"),__LINE__);debugHere();
+		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));debugHere();
 		runJS("init();");
 		debug("inited Awesomium\n",0);
-		methodHandler=new MethodHandler(view,web_core);
+		methodHandler=new MethodHandler(view,web_core);debugHere();
 		methodHandler->reg(WSLit("openInNativeBrowser"),[](JSArray args)
 			{
 				msystem("\""+settings::browserCommand+"\" \""+ToString(args[0].ToString())+"\"");
@@ -992,7 +1007,7 @@ int main(int argc,char **argv)
 			{
 				string i=ToString(args[0].ToString());
 				print("\n",0);
-		});
+		});debugHere();
 		methodHandler->reg(WSLit("print"),[](JSArray args)
 		{
 			string i=ToString(args[0].ToString());
@@ -1042,7 +1057,7 @@ int main(int argc,char **argv)
 			replace(source,"asset://resource/","resources/");
 			fwrite(source.c_str(),source.size(),1,fp);
 			fclose(fp);
-		});
+		});debugHere();
 		methodHandler->reg(WSLit("read"),[](JSArray args)
 		{
 			string id=ToString(args[0].ToString());
@@ -1096,7 +1111,7 @@ int main(int argc,char **argv)
 		{
 			int t=args[0].ToInteger();
 			pendingTweets[t]=1;
-		});
+		});debugHere();
 		methodHandler->reg(WSLit("setIdToTweetHtml"),[](JSArray args)
 		{
 			string htmlid=ToString(args[0].ToString());
@@ -1200,6 +1215,7 @@ int main(int argc,char **argv)
 	{
 		DIR *pDIR;
 		struct dirent *entry;
+		set<string> columnNames;
 		if( pDIR=opendir("columns") ){
 			while(entry = readdir(pDIR)){
 			    int d_namlen;
@@ -1216,26 +1232,30 @@ int main(int argc,char **argv)
 					{
 						if( s.st_mode & S_IFREG )
 						{
-							float n=0;
-							int a=0;
-							while(a<d_namlen && entry->d_name[a]!='_')
-							{
-								n+=entry->d_name[a]-'0';
-								n*=10;
-								a++;
-							}
-							a++;
-							string name;
-							while(a<d_namlen)
-								name.push_back(entry->d_name[a++]);
-							name.erase(name.end()-4,name.end());
-							processes[200+n]=new CustomColumn(name,(string("columns/")+entry->d_name));
-							debug("Added column %s\n",name.c_str());
+							columnNames.insert(entry->d_name);
 						}
 					}
 				}
 			}
 			closedir(pDIR);
+		}
+		for(string d_name : columnNames)
+		{
+			float n=0;
+			int a=0;
+			while(a<d_name.size() && d_name[a]!='_')
+			{
+				n+=d_name[a]-'0';
+				n*=10;
+				a++;
+			}
+			a++;
+			string name;
+			while(a<d_name.size())
+				name.push_back(d_name[a++]);
+			name.erase(name.end()-4,name.end());
+			processes[200+n]=new CustomColumn(name,(string("columns/")+d_name));
+			debug("Added column %s\n",name.c_str());
 		}
 	}
 	fclose(fopen("stream debug.txt","w"));
@@ -1304,6 +1324,7 @@ int main(int argc,char **argv)
 		}
 		time(&currentTime);
 #ifdef USE_WINDOWS
+#ifndef SDLGL
 		while (PeekMessage(&Msg, NULL, 0, 0, PM_REMOVE))
 		{
 			if (Msg.message == WM_QUIT)
@@ -1315,7 +1336,8 @@ int main(int argc,char **argv)
 			}
 		}
 #endif
-#ifdef LINUX
+#endif
+#ifdef SDLGL
         sdlUpdate(done);
 #endif
 		enterMutex(jsMutex);
@@ -1333,14 +1355,18 @@ int main(int argc,char **argv)
 		if(nUnread!=nUnread2 || alert2!=alert)
 		{
 #ifdef USE_WINDOWS
+#ifndef SDLGL
 			SendMessage(hwnd, WM_SETICON,
 				ICON_BIG,(LPARAM)CreateAlphaCursor());
+#endif			
 #endif			
 			nUnread2=nUnread;
 			alert2=alert;
 		}
 #ifdef USE_WINDOWS
+#ifndef SDLGL
 		Sleep(20);
+#endif
 #else
 		SDL_Delay(20);
 #endif
@@ -1578,10 +1604,10 @@ struct tm convertTimeStringToTM( string str )
 	return tmm;
 }
 
-std::string i2s( int n )
+std::string i2s( unsigned int n )
 {
 	char t[50];
-	sprintf(t,"%i",n);
+	sprintf(t,"%u",n);
 	return string(t);
 }
 
@@ -1708,7 +1734,7 @@ void *threadStarter(void *p)
 {
     threadData *d=(threadData*)p;
     d->functionPointer(d->d);
-	print("thread started %i\n",p);
+	//print("thread started %i\n",p);
     delete p;
 return NULL;
 }
@@ -1768,7 +1794,7 @@ void replace( std::string& str, const std::string& oldStr, const std::string& ne
 	size_t pos = 0;
 	while((pos = str.find(oldStr, pos)) != std::string::npos)
 	{
-		printf("%i,%i,%s,%s,%s\n",pos,oldStr.length(),newStr.c_str(),oldStr.c_str(),"");
+		//printf("%i,%i,%s,%s,%s\n",pos,oldStr.length(),newStr.c_str(),oldStr.c_str(),"");
 		str.replace(pos, oldStr.length(), newStr);
 		pos += newStr.length();
 	}

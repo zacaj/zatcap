@@ -6,14 +6,3 @@ Logging in...
 Successfully logged in to twitter account: zacaj_
 Opening a stream...
 Streaming connection established.
-ERROR
-ERROR
-ERROR
-ERROR
-ERROR:Stream connection lost, reconnecting after 1000ms wait...
-ERROR
-ERROR
-ERROR
-ERROR
-Opening a stream...
-Streaming connection established.

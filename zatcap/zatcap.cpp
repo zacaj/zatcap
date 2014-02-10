@@ -944,6 +944,7 @@ int main(int argc,char **argv)
 	debug("initialized SDL successfully\n",0);
     }
     #endif
+	//if(0)
 	{
 		WebConfig config;
 		config.log_level=kLogLevel_Verbose;
@@ -956,13 +957,14 @@ int main(int argc,char **argv)
 #ifdef USE_WINDOWS
 #ifndef SDLGL
 		view = web_core->CreateWebView(settings::windowWidth, settings::windowHeight,session,kWebViewType_Window);
-		view->set_parent_window(hwnd);
+		view->set_parent_window(hwnd);debugHere();
 #endif
 #endif
 #ifdef SDLGL
 
         web_core->set_surface_factory(new GLTextureSurfaceFactory());
-		view = web_core->CreateWebView(settings::windowWidth, settings::windowHeight, session);
+		debug("creating %ix%i webview\n",settings::windowWidth,settings::windowHeight);
+		view = web_core->CreateWebView(settings::windowWidth, settings::windowHeight, session);debugHere();
 #endif
 		htmlSource=new HtmlSource();
 		session->AddDataSource(WSLit("zatcap"), htmlSource);
@@ -970,11 +972,11 @@ int main(int argc,char **argv)
 		string index=f2s("resources/index.html");
 		replace(index,"$BOTTOM",f2s("resources/bottom.html"));
 		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> <script type=\"text/javascript\" src=\"asset://resource/selection_range.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/string_splitter.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/cursor_position.js\"></script><script type=\"text/javascript\" src=\"asset://resource/twitter-text.js\"></script></head><body onload=\"init();\" id='body'>"+index+"</body>";
-		web_core->Log(WSLit("begin"),kLogSeverity_Info,WSLit("zatcap.cpp"),__LINE__);
-		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));
+		web_core->Log(WSLit("begin"),kLogSeverity_Info,WSLit("zatcap.cpp"),__LINE__);debugHere();
+		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));debugHere();
 		runJS("init();");
 		debug("inited Awesomium\n",0);
-		methodHandler=new MethodHandler(view,web_core);
+		methodHandler=new MethodHandler(view,web_core);debugHere();
 		methodHandler->reg(WSLit("openInNativeBrowser"),[](JSArray args)
 			{
 				msystem("\""+settings::browserCommand+"\" \""+ToString(args[0].ToString())+"\"");
@@ -1005,7 +1007,7 @@ int main(int argc,char **argv)
 			{
 				string i=ToString(args[0].ToString());
 				print("\n",0);
-		});
+		});debugHere();
 		methodHandler->reg(WSLit("print"),[](JSArray args)
 		{
 			string i=ToString(args[0].ToString());
@@ -1055,7 +1057,7 @@ int main(int argc,char **argv)
 			replace(source,"asset://resource/","resources/");
 			fwrite(source.c_str(),source.size(),1,fp);
 			fclose(fp);
-		});
+		});debugHere();
 		methodHandler->reg(WSLit("read"),[](JSArray args)
 		{
 			string id=ToString(args[0].ToString());
@@ -1109,7 +1111,7 @@ int main(int argc,char **argv)
 		{
 			int t=args[0].ToInteger();
 			pendingTweets[t]=1;
-		});
+		});debugHere();
 		methodHandler->reg(WSLit("setIdToTweetHtml"),[](JSArray args)
 		{
 			string htmlid=ToString(args[0].ToString());

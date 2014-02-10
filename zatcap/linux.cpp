@@ -200,7 +200,7 @@ void handleSDLKeyEvent(Awesomium::WebView* webView, const SDL_Event event) {
 void sdlInit()
 {
     SDL_Init(SDL_INIT_VIDEO);
-        SDL_SetVideoMode(settings::windowWidth, settings::windowHeight,32,SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_OPENGL|SDL_RESIZABLE);
+        SDL_SetVideoMode(settings::windowWidth, settings::windowHeight,0,SDL_DOUBLEBUF|SDL_OPENGL|SDL_RESIZABLE);
         glewInit();
 		SDL_EnableUNICODE(1);
         glClearColor(0, 0, 0, 0);
@@ -232,6 +232,9 @@ void sdlUpdate(int &quit)
                 {
                         switch(e.type)
                         {
+                        case SDL_QUIT:
+                                quit=1;
+                                break;
 						case SDL_ACTIVEEVENT:
 							if (e.active.state == SDL_APPMOUSEFOCUS)
 							{
@@ -241,9 +244,6 @@ void sdlUpdate(int &quit)
 									view->Unfocus();
 							}
 							break;
-                        case SDL_QUIT:
-                                quit=1;
-                                break;
                         case SDL_KEYDOWN:
                         case SDL_KEYUP:
                                 if(e.key.keysym.sym==SDLK_ESCAPE)
@@ -276,12 +276,13 @@ void sdlUpdate(int &quit)
 												view->InjectMouseUp(Awesomium::kMouseButton_Right);
                                 break;
                             case SDL_VIDEORESIZE:
+                                debug("resizing to %ix%i\n",e.resize.w,e.resize.h);
+                                SDL_SetVideoMode(e.resize.w, e.resize.h,0,SDL_DOUBLEBUF|SDL_OPENGL|SDL_RESIZABLE);
                                 
-                                SDL_SetVideoMode(e.resize.w, e.resize.h,32,SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_OPENGL|SDL_RESIZABLE);
-                                
-                                glViewport(0, 0, e.resize.w,e.resize.h);
                                 
                                 view->Resize(e.resize.w,e.resize.h);
+                                glViewport(0, 0, e.resize.w,e.resize.h);
+				break;
                                 glewInit();
                                 glClearColor(0, 0, 0, 0);
                                 glClearDepth(1.0f);
@@ -302,4 +303,6 @@ void sdlUpdate(int &quit)
                         }
                 }
 }
+#ifdef WINDOWS
 #include "gl_texture_surface.cpp"
+#endif
