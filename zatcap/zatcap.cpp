@@ -212,7 +212,7 @@ void addColumnButtons()
 		}
 	}
 }
-int w=-1;
+int w2=-1;
 #ifdef USE_WINDOWS
 WNDCLASSEX wc;
 HWND hwnd;
@@ -232,7 +232,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		{
 			if(LOWORD(lParam)==0)
 				break;
-			if(LOWORD(lParam)<550 &&(w==-1 || w>=550))
+			if(LOWORD(lParam)<550 &&(w2==-1 || w2>=550))
 			{
 				runJS("tweetContent=document.getElementById('tweetbox').value;");
 				runJS("document.getElementById('bottom').innerHTML='"+escape(f2s("resources/bottomnarrow.html"))+"';");
@@ -245,7 +245,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 				runJS("hideColumns();");
 				addColumnButtons();
 			}
-			else if(LOWORD(lParam)>550 && (w==-1 || w<=550))
+			else if(LOWORD(lParam)>550 && (w2==-1 || w2<=550))
 			{
 				runJS("tweetContent=document.getElementById('tweetbox').value;");
 				runJS("document.getElementById('bottom').innerHTML='"+escape(f2s("resources/bottom.html"))+"';");
@@ -259,7 +259,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			}
 			if(view)
 			view->Resize(LOWORD(lParam),HIWORD(lParam));
-			w=LOWORD(lParam);
+			w2=LOWORD(lParam);
 		}
 		break;
 	case WM_SETFOCUS:
@@ -972,7 +972,7 @@ int main(int argc,char **argv)
 		string index=f2s("resources/index.html");
 		replace(index,"$BOTTOM",f2s("resources/bottom.html"));
 		htmlSource->data[WSLit("index")]="<head><script language=javascript type='text/javascript' src=\"asset://resource/javascript.js\" ></script><link rel=\"stylesheet\" type=\"text/css\" href=\"asset://resource/style.css\" /> <script type=\"text/javascript\" src=\"asset://resource/selection_range.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/string_splitter.js\"></script>			<script type=\"text/javascript\" src=\"asset://resource/cursor_position.js\"></script><script type=\"text/javascript\" src=\"asset://resource/twitter-text.js\"></script></head><body onload=\"init();\" id='body'>"+index+"</body>";
-		web_core->Log(WSLit("begin"),kLogSeverity_Info,WSLit("zatcap.cpp"),__LINE__);debugHere();
+//		web_core->Log(WSLit("begin"),kLogSeverity_Info,WSLit("zatcap.cpp"),__LINE__);debugHere();
 		view->LoadURL(WebURL(WSLit("asset://zatcap/index")));debugHere();
 		runJS("init();");
 		debug("inited Awesomium\n",0);

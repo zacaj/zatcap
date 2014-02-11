@@ -5,7 +5,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <SDL1/SDL_video.h>
-
+set<GLRAMTextureSurface*> activeSurfaces;
 GLRAMTextureSurface::GLRAMTextureSurface(int width, int height) : texture_id_(0),
   buffer_(0), bpp_(4), rowspan_(0), width_(width), height_(height) {
   rowspan_ = width_ * bpp_;
@@ -23,11 +23,13 @@ GLRAMTextureSurface::GLRAMTextureSurface(int width, int height) : texture_id_(0)
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, largest_supported_anisotropy);
   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width_, height_, 0,
                bpp_ == 3 ? GL_RGB : GL_BGRA, GL_UNSIGNED_BYTE, buffer_);
+  activeSurfaces.insert(this);
 }
 
 GLRAMTextureSurface::~GLRAMTextureSurface() {
   glDeleteTextures(1, &texture_id_);
   delete[] buffer_;
+  activeSurfaces.erase(this);
 }
 
 GLuint GLRAMTextureSurface::GetTexture() const {

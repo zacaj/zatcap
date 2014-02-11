@@ -196,17 +196,21 @@ void handleSDLKeyEvent(Awesomium::WebView* webView, const SDL_Event event) {
                 }
         }
 }
- 
+int w, h;
 void sdlInit()
 {
     SDL_Init(SDL_INIT_VIDEO);
         SDL_SetVideoMode(settings::windowWidth, settings::windowHeight,0,SDL_DOUBLEBUF|SDL_OPENGL|SDL_RESIZABLE);
         glewInit();
+		w = settings::windowWidth;
+		h = settings::windowHeight;
+		SDL_WM_SetCaption("ZATCAP",NULL);
 		SDL_EnableUNICODE(1);
+		SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
         glClearColor(0, 0, 0, 0);
         glClearDepth(1.0f);
  
-        glViewport(0, 0, 1024,768);
+		glViewport(0, 0, settings::windowWidth, settings::windowHeight);
  
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
@@ -243,6 +247,17 @@ void sdlUpdate(int &quit)
 								else
 									view->Unfocus();
 							}
+							else if ((e.active.state == 6 || e.active.state==SDL_APPACTIVE)&& e.active.gain)
+							{
+								debug("resizing to %ix%i\n", w, h);
+								SDL_SetVideoMode(w, h, 0, SDL_DOUBLEBUF | SDL_OPENGL | SDL_RESIZABLE);
+
+
+								view->Resize(w, h);
+								glViewport(0, 0, w, h);
+								printf("gained\n");
+							}
+							//printf("%x\n", e.active.state);
 							break;
                         case SDL_KEYDOWN:
                         case SDL_KEYUP:
@@ -275,33 +290,19 @@ void sdlUpdate(int &quit)
 										else if (e.button.button == SDL_BUTTON_RIGHT)
 												view->InjectMouseUp(Awesomium::kMouseButton_Right);
                                 break;
-                            case SDL_VIDEORESIZE:
-                                debug("resizing to %ix%i\n",e.resize.w,e.resize.h);
-                                SDL_SetVideoMode(e.resize.w, e.resize.h,0,SDL_DOUBLEBUF|SDL_OPENGL|SDL_RESIZABLE);
+						case SDL_VIDEORESIZE:
+							w = e.resize.w;
+							h = e.resize.h;
+                                debug("resizing to %ix%i\n",w,h);
+                                //SDL_SetVideoMode(w, h,0,SDL_DOUBLEBUF|SDL_OPENGL|SDL_RESIZABLE);
                                 
                                 
-                                view->Resize(e.resize.w,e.resize.h);
-                                glViewport(0, 0, e.resize.w,e.resize.h);
-				break;
-                                glewInit();
-                                glClearColor(0, 0, 0, 0);
-                                glClearDepth(1.0f);
-                                
-                                
-                                glMatrixMode(GL_PROJECTION);
-                                glLoadIdentity();
-                                
-                                glOrtho(0, 1024,768, 0, 1, -1);
-                                
-                                glMatrixMode(GL_MODELVIEW);
-                                
-                                glEnable(GL_TEXTURE_2D);
-                                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-                                glLoadIdentity();
-                                break;
+                                view->Resize(w,h);
+                                glViewport(0, 0, w,h);
+								break;
 
                         }
-                }
+				}
 }
 #ifdef WINDOWS
 #include "gl_texture_surface.cpp"

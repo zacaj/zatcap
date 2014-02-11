@@ -3,7 +3,8 @@
 
 #include <GL/glew.h>
 #include <Awesomium/Surface.h>
-
+class GLRAMTextureSurface;
+extern set<GLRAMTextureSurface*> activeSurfaces;
 class GLTextureSurface : public Awesomium::Surface {
 public:
   virtual void Paint(unsigned char* src_buffer,
@@ -22,12 +23,12 @@ public:
 };
 
 class GLRAMTextureSurface : public GLTextureSurface {
+public:
   GLuint texture_id_;
   unsigned char* buffer_;
   int bpp_, rowspan_, width_, height_;
   bool needs_update_;
 
- public:
   GLRAMTextureSurface(int width, int height);
   virtual ~GLRAMTextureSurface();
 
@@ -39,7 +40,8 @@ class GLRAMTextureSurface : public GLTextureSurface {
 
   int size() const { return rowspan_ * height_; }
 
- protected:
+  void UpdateTexture();
+ //protected:
   virtual void Paint(unsigned char* src_buffer,
                      int src_row_span,
                      const Awesomium::Rect& src_rect,
@@ -49,7 +51,6 @@ class GLRAMTextureSurface : public GLTextureSurface {
                       int dy,
                       const Awesomium::Rect& clip_rect);
 
-  void UpdateTexture();
 };
 
 class GLTextureSurfaceFactory : public Awesomium::SurfaceFactory {
