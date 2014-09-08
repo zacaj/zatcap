@@ -444,10 +444,21 @@ std::string twitCurl::timelineFriendsGet()
 *          response by twitter. Use getLastWebResponse() for that.
 *
 *--*/
-std::string twitCurl::mentionsGet( std::string sinceId,std::string maxId )
+std::string twitCurl::mentionsGet( std::string sinceId,std::string maxId ,int tweetCount)
 {
     std::string buildUrl = twitterDefaults::TWITCURL_MENTIONS_URL +
-                           twitCurlDefaults::TWITCURL_EXTENSIONFORMATS[m_eApiFormatType]+twitCurlDefaults::TWITCURL_URL_SEP_QUES+twitCurlDefaults::TWITCURL_INCLUDEENTITIES;
+		twitCurlDefaults::TWITCURL_EXTENSIONFORMATS[m_eApiFormatType] + twitCurlDefaults::TWITCURL_URL_SEP_QUES + twitCurlDefaults::TWITCURL_INCLUDEENTITIES;
+	if (tweetCount)
+	{
+		if (tweetCount > twitCurlDefaults::MAX_TIMELINE_TWEET_COUNT)
+		{
+			tweetCount = twitCurlDefaults::MAX_TIMELINE_TWEET_COUNT;
+		}
+		std::stringstream tmpStrm;
+		tmpStrm << twitCurlDefaults::TWITCURL_URL_SEP_AMP + twitCurlDefaults::TWITCURL_COUNT << tweetCount;
+		buildUrl += tmpStrm.str();
+		tmpStrm.str().clear();
+	}
     if( sinceId.length() )
     {
         buildUrl += twitCurlDefaults::TWITCURL_URL_SEP_AMP + twitCurlDefaults::TWITCURL_SINCEID + sinceId;

@@ -1,6 +1,20 @@
-[0210/201716:INFO:content_main_delegate_impl.cc(58)] WebCore is now online.
-[0210/201716:INFO:content_main_delegate_impl.cc(59)] Running Awesomium 1.7.0
-[0210/201716:WARNING:content_client_impl.cc(85)] GetDataResource 4559
-[0210/201716:WARNING:content_client_impl.cc(87)] Len: 195
-[0210/201719:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
-[0210/201728:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
+[0907/202547:INFO:content_main_delegate_impl.cc(58)] WebCore is now online.
+[0907/202547:INFO:content_main_delegate_impl.cc(59)] Running Awesomium 1.7.0
+[0907/202547:WARNING:content_client_impl.cc(85)] GetDataResource 4559
+[0907/202547:WARNING:content_client_impl.cc(87)] Len: 195
+[0907/202810:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
+[0907/202810:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
+[0907/202819:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
+[0907/202819:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
+[0907/202832:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
+[0907/202832:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
+[0907/202853:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
+[0907/202853:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
+[0907/202929:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
+[0907/202929:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
+[0907/203038:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
+[0907/203038:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
+[0907/203243:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
+[0907/203243:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
+[0907/203447:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2
+[0907/203447:INFO:dhcp_proxy_script_adapter_fetcher_win.cc(265)] Error fetching PAC URL from DHCP: 2

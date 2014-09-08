@@ -154,7 +154,7 @@ public:
     std::string timelineFriendsGet();
     std::string timelineUserGet( bool trimUser /* in */, bool includeRetweets /* in */, unsigned int tweetCount /* in */, std::string userInfo = "" /* in */, bool isUserId = false /* in */ );
     std::string featuredUsersGet();
-    std::string mentionsGet( std::string sinceId /* in */ ,std::string maxId);
+	std::string mentionsGet(std::string sinceId /* in */, std::string maxId, int tweetCount=20);
     std::string retweetsGet();
 
     /* Twitter user APIs */

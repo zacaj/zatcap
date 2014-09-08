@@ -6,3 +6,19 @@ Logging in...
 Successfully logged in to twitter account: zacaj_
 Opening a stream...
 Streaming connection established.
+Tweet sent successfully: 
+@delta_vee look, I made zatcap so that it makes multipart replies be in response to the previous part of the multiple part tweet!  I... (,)
+Tweet sent successfully: 
+@delta_vee ...think.  does this work correctly on your end?  	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod... (,)
+Tweet sent successfully: 
+@delta_vee ...tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris... (,)
+Tweet sent successfully: 
+@delta_vee ...nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu... (,)
+Tweet sent successfully: 
+@delta_vee ...fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id... (,)
+Tweet sent successfully: 
+@delta_vee ...est laborum. (,)
+Tweet sent successfully: 
+@delta_vee coolio (508773621259841536,)
+Tweet sent successfully: 
+@delta_vee wait...  some days you *don't* have day long headaches? (508774371239137280,)

@@ -552,13 +552,37 @@ size_t removeLeadingTrailingSpaces( string &str )
 		return 0;
 	return notSpace;
 }
+#include <locale>         // std::wstring_convert
+#include <codecvt>        // std::codecvt_utf8
+#include <cstdint>        // std::uint_least32_t
 void sendTweet(void *_data)
 {
 	tweetData *data=(tweetData*)_data;
 	string ostr=data->str;
 	vector<string> tweets;
-	if(ostr.size()<=140 || !data->split)
+	if (!data->split)
+	{
+		/*//string res = "";
+		wstring res;
+		for (int i = 0; i < ostr.size(); i++)
+		{
+			wchar_t c = 0xFEE0 + ostr[i];
+			//char utf[4];
+			//int l=1;
+			//WideCharToMultiByte(CP_UTF8, 0, &c, 1, utf, 4, 0, 0);
+			//res += string(utf);
+			res.push_back(c);
+			//res.push_back((c&0xFF00)>>8);
+			//res.push_back(c&0xFF);
+		}
+		std::wstring_convert<std::codecvt_utf8<wchar_t>> myconv;
+		string res2 = myconv.to_bytes(res);
+		FILE *fp;
+		fp = fopen("unicode.txt", "a+");
+		fprintf(fp, "%s\n", res.c_str());
+		fclose(fp);*/
 		tweets.push_back(ostr);
+	}
 	else
 	{
 		string prefix="";
@@ -607,6 +631,7 @@ void sendTweet(void *_data)
 			}
 		}
 	}
+	string lastId = data->replyId;
 	for(int i=0;i<tweets.size();i++)
 	{
 		string str=tweets[i];
@@ -615,9 +640,16 @@ void sendTweet(void *_data)
 		pendingTweets[t]=0;
 		addTweet((Item**)&activity);
 		int nTries = 0;
-		while (twit->statusUpdate(str, data->replyId) == "" && !pendingTweets[t]) if (nTries++>20) return;
+		string ret = "";
+		while ((ret=twit->statusUpdate(str, lastId)) == "" && !pendingTweets[t]) if (nTries++>20) return;
+		Json::Reader reader;
+		Json::Value root;
+		reader.parse(ret, root);
+		if (root["id_str"].isString() && root["id_str"].asString() != "")
+			lastId = root["id_str"].asString();
+
 		deleteTweet(activity->id);
-		print("Tweet sent successfully: %s (%s,%s)\n",str.c_str(),data->replyId.c_str(),replyId.c_str());
+		print("Tweet sent successfully: \n%s (%s,%s)\n",str.c_str(),data->replyId.c_str(),replyId.c_str());
 	}
 	delete data;
 }
@@ -1069,6 +1101,7 @@ int main(int argc,char **argv)
 			{
 				if(!it->second->read && it->second->timeTweetedInSeconds<=i->timeTweetedInSeconds)
 				{
+
 					it->second->read=1;
 					nUnread--;
 					for(auto c:it->second->instances)

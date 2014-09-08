@@ -200,7 +200,11 @@ overflow: hidden;
 #tweetbox
 {
 	overflow-y:auto;
+
 }
+#tweetbox::selection {
+	background: #ffb7b7; /* Safari */
+	}
 .completeboxitem
 {
 	position:relative;

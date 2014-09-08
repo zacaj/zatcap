@@ -204,7 +204,7 @@ void sdlInit()
         glewInit();
 		w = settings::windowWidth;
 		h = settings::windowHeight;
-		SDL_WM_SetCaption("ZATCAP",NULL);
+		SDL_WM_SetCaption("Zacaj's (third) Amazing Twitter Client for Awesome People",NULL);
 		SDL_EnableUNICODE(1);
 		SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
         glClearColor(0, 0, 0, 0);
@@ -249,21 +249,25 @@ void sdlUpdate(int &quit)
 							}
 							else if ((e.active.state == 6 || e.active.state==SDL_APPACTIVE)&& e.active.gain)
 							{
-								debug("resizing to %ix%i\n", w, h);
-								SDL_SetVideoMode(w, h, 0, SDL_DOUBLEBUF | SDL_OPENGL | SDL_RESIZABLE);
+								//SDL_SetVideoMode(w, h, 0, SDL_DOUBLEBUF | SDL_OPENGL | SDL_RESIZABLE);
 
-
+									view->Focus();
 								view->Resize(w, h);
 								glViewport(0, 0, w, h);
+								for(auto s:activeSurfaces)
+								{
+								  s->needs_update_=1;
+								  s->UpdateTexture();
+								}
 								printf("gained\n");
 							}
 							//printf("%x\n", e.active.state);
 							break;
                         case SDL_KEYDOWN:
                         case SDL_KEYUP:
-                                if(e.key.keysym.sym==SDLK_ESCAPE)
-                                        quit=1;
-                                else
+                              //  if(e.key.keysym.sym==SDLK_ESCAPE)
+                               //         quit=1;
+                                //else
                                 {
                                         handleSDLKeyEvent(view,e);
                                 }
@@ -294,11 +298,18 @@ void sdlUpdate(int &quit)
 							w = e.resize.w;
 							h = e.resize.h;
                                 debug("resizing to %ix%i\n",w,h);
-                                //SDL_SetVideoMode(w, h,0,SDL_DOUBLEBUF|SDL_OPENGL|SDL_RESIZABLE);
+                                SDL_SetVideoMode(w, h,0,SDL_DOUBLEBUF|SDL_OPENGL|SDL_RESIZABLE);
                                 
                                 
-                                view->Resize(w,h);
-                                glViewport(0, 0, w,h);
+                                
+									view->Focus();
+								view->Resize(w, h);
+								glViewport(0, 0, w, h);
+								for(auto s:activeSurfaces)
+								{
+								  s->needs_update_=1;
+								  s->UpdateTexture();
+								}
 								break;
 
                         }

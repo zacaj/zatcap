@@ -55,7 +55,7 @@ void refreshTweets( void *data )
 	{
 		string tmpString; debugHere();
 		int nTries = 0;
-		while ((tmpString = twit->mentionsGet("", "")) == "") if (nTries++>4) goto favorties;
+		while ((tmpString = twit->mentionsGet("", "",40)) == "") if (nTries++>4) goto favorties;
 		parseRestTweets(tmpString);debugHere();
 	}
 	/*{
@@ -138,7 +138,8 @@ int get_utc_offset() {
     from the hours to get the UTC offset */
   if( timeptr->tm_mday < 2 )
     gmtime_hours -= 24;
-
+	if(timeptr->tm_isdst==0)
+		gmtime_hours--;
   return gmtime_hours;
 
 }

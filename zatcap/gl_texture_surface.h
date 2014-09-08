@@ -3,6 +3,8 @@
 
 #include <GL/glew.h>
 #include <Awesomium/Surface.h>
+#include <set>
+using namespace std;
 class GLRAMTextureSurface;
 extern set<GLRAMTextureSurface*> activeSurfaces;
 class GLTextureSurface : public Awesomium::Surface {

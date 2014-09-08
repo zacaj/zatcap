@@ -7,8 +7,7 @@ password =
 (yes, leave the password blank)
 
 2.  on linux: symlink libawesomium-1-7.so and libtwitcurl.so into /usr/lib
-    on windows: if you get an error about msvcr110.dll install http://www.microsoft.com/en-us/download/details.aspx?id=40784 and delete msvcr110.dll
-
+    on windows: if you get an error about msvcr120.dll install http://www.microsoft.com/en-us/download/details.aspx?id=40784
 3. open config.txt, find "browser command = " and replace the path with the path to the .exe for your browser of choice
 
 4. launch zatcap (on linux pass -noredirect the first time so you can see console output)

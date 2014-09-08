@@ -47,6 +47,7 @@ void GLRAMTextureSurface::Paint(unsigned char* src_buffer,
       src_buffer + (row + src_rect.y) * src_row_span + (src_rect.x * 4),
       dest_rect.width * 4);
 
+if(dest_rect.width*dest_rect.height>5000 || dest_rect.width*dest_rect.height<2000)
   needs_update_ = true;
   UpdateTexture();
 }

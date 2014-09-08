@@ -199,7 +199,7 @@ function setReplyTo(id,author)
 					break;
 				str=str+text.charAt(j);
 			}
-			if(globals && str!='@'+globals.username && str.length>0 && to.indexOf(str)==-1)
+			if(globals && str!='@'+globals.username && str.length>0 && to.indexOf(str)==-1 && to.indexOf(str)==-1)
 				to.push(str);
 			i=j;
 		}
@@ -220,10 +220,12 @@ function sendTweet(tweet,split)
 {
 	if(!tweet || tweet.length==0)
 		tweet=document.getElementById('tweetbox').value;
-	if(tweet.length>300)
-			split="true";
-	cpp.sendTweet(tweet,inReplyTo,split);
-	document.getElementById('tweetbox').value="";
+	
+	if(tweet.length<=140 || split)
+	{
+		cpp.sendTweet(tweet,inReplyTo,tweet.length<=140?"false":split);
+		document.getElementById('tweetbox').value="";
+	}
 }
 var completebox=null;
 var usernames=new Array();
@@ -350,6 +352,11 @@ function nodeFromHtml(html)
 	t.innerHTML=html;
 	return t.firstChild;
 }
+function limitColumnTo(columnName,n)
+{
+	while(document.getElementById(columnName).children.length>n)
+		document.getElementById(columnName).removeChild(document.getElementById(columnName).lastChild);
+}
 function addTweet(columnName,n)
 {
 	var a=document.getElementById(columnName).children;
@@ -369,6 +376,7 @@ function addTweet(columnName,n)
 		{
 			//cpp.print("Inserted "+tweetId+" at index "+i);
 			document.getElementById(columnName).insertBefore(n,a[i]);
+			limitColumnTo(columnName,500);
 			return tweetId;
 		}
 		if(a[i].tweetid===undefined)
@@ -376,6 +384,7 @@ function addTweet(columnName,n)
 	}
 	//cpp.print("Inserted "+tweetId+" at index(end) "+i);
 			document.getElementById(columnName).insertBefore(n,null);
+			limitColumnTo(columnName,500);
 //	cpp.debug("insert at "+i);
 	return tweetId;
 }
