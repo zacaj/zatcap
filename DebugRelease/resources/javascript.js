@@ -79,6 +79,7 @@ function tweetboxPaste(e)
 	/**/
 	
 }
+var tweetLength=0;
 function insertText(text,at)
 {
 	if(!at)
@@ -221,9 +222,9 @@ function sendTweet(tweet,split)
 	if(!tweet || tweet.length==0)
 		tweet=document.getElementById('tweetbox').value;
 	
-	if(tweet.length<=140 || split)
+	if(tweetLength<=140 || split)
 	{
-		cpp.sendTweet(tweet,inReplyTo,tweet.length<=140?"false":split);
+		cpp.sendTweet(tweet,inReplyTo,tweetLength<=140?"false":split);
 		document.getElementById('tweetbox').value="";
 	}
 }
@@ -232,6 +233,7 @@ var usernames=new Array();
 function updateTweetLength()
 {
 	var len=twttr.txt.getTweetLength(document.getElementById('tweetbox').value);
+	tweetLength=len;
 	if(len>140 && len<160)
 		document.getElementById("SendTweet").style.disabled=true;
 	else

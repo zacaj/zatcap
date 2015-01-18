@@ -636,7 +636,7 @@ void sendTweet(void *_data)
 	{
 		string str=tweets[i];
 		time_t t=time(NULL);
-		Activity *activity=new Activity(str,"cpp.stopTweet("+i2s(t)+");",data->user);
+		Activity *activity=new Activity(escape(str),"cpp.stopTweet("+i2s(t)+");",data->user);
 		pendingTweets[t]=0;
 		addTweet((Item**)&activity);
 		int nTries = 0;

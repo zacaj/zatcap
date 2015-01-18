@@ -7,18 +7,81 @@ Successfully logged in to twitter account: zacaj_
 Opening a stream...
 Streaming connection established.
 Tweet sent successfully: 
-@delta_vee look, I made zatcap so that it makes multipart replies be in response to the previous part of the multiple part tweet!  I... (,)
+> numTransistorsBlown++
+> print numTransistorsBlown
+8
+> print numTranstorsBlown * price
+12
+> print price_subway
+less than 12, you dunce
+ (,)
+Command to be run: 
+cmd /C ""C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "https://twitter.com/search?q=                174610lidays          1835888451nthe           543452769nited             D$$идїtates&src=typd""
+
+Output from command (empty if successful):
+
+
+<end of output>
 Tweet sent successfully: 
-@delta_vee ...think.  does this work correctly on your end?  	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod... (,)
+has someone made #Meninist shirts that just say #Feminist yet (,)
+Command to be run: 
+cmd /C ""C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "http://emhuff.com/misc/more_fire.html""
+
+Output from command (empty if successful):
+
+
+<end of output>
 Tweet sent successfully: 
-@delta_vee ...tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris... (,)
+@BooDooPerson * is /coincidentally/ listening to it right now * (556660816360275968,)
+Command to be run: 
+cmd /C ""C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "http://twitter.com/TaleSpun/status/550400422091829248""
+
+Output from command (empty if successful):
+
+
+<end of output>
 Tweet sent successfully: 
-@delta_vee ...nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu... (,)
+@TaleSpun *looks at own best tweet* http://zacaj.com/screenshots/2015-01-17_22-55-55.png damn (556660782205661184,)
 Tweet sent successfully: 
-@delta_vee ...fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id... (,)
+@SwooshyCueb that's what it came to for me (556661649931661315,)
 Tweet sent successfully: 
-@delta_vee ...est laborum. (,)
+@SwooshyCueb you're welcome to fork mine to get started (556661649931661315,)
 Tweet sent successfully: 
-@delta_vee coolio (508773621259841536,)
+@SwooshyCueb https://github.com/zacaj/zatcap (556661861299396608,)
 Tweet sent successfully: 
-@delta_vee wait...  some days you *don't* have day long headaches? (508774371239137280,)
+@SwooshyCueb I have no idea what state it's in, because I'm the only user, so I haven't kept the instuctions up to date (556661861299396608,)
+Tweet sent successfully: 
+@SwooshyCueb but if you actually wanna check it out I'd be more than happy to figure out how you can run/compile it and help you along (556661861299396608,)
+Tweet sent successfully: 
+let (556661861299396608,)
+Tweet sent successfully: 
+twitter, let's play a game called 'you link me literally any song and I'll listen to it and even review it if you want' (556661861299396608,)
+Tweet sent successfully: 
+@velartrill there's just so many fucking things in it, my god (556663170488483841,)
+Tweet sent successfully: 
+anyone know how to delete a commit from github (556663170488483841,)
+Tweet sent successfully: 
+everything's telling me commands but I can't run commands on a website (556663170488483841,)
+Tweet sent successfully: 
+@delta_vee I am, but it shouldn't matter?  My local copy has commits I want to push, and github has commits that I already made locally... (556664635475394560,)
+Tweet sent successfully: 
+@delta_vee ...manually, so they're useless and I'd just like to remove the last few on github so then I can push my local copy (556664635475394560,)
+Tweet sent successfully: 
+@delta_vee and 'move your local repo, clone the remote down, change it, and re up it, then push your old local' is not a solution (556664635475394560,)
+Tweet sent successfully: 
+@delta_vee maybe I should just force push? (556664635475394560,)
+Tweet sent successfully: 
+@delta_vee I know it's 'bad' but is there a reason I should care (556665468803887104,)
+Tweet sent successfully: 
+@delta_vee how? (556665906588577794,)
+Tweet sent successfully: 
+I swear some day I'm going to make my own version control system again (556665906588577794,)
+Tweet sent successfully: 
+@aquaneesan what show? (556666424857755648,)
+Command to be run: 
+cmd /C ""C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "http://git-scm.com/book/en/v2/Git-Branching-Rebasing""
+
+Output from command (empty if successful):
+
+
+<end of output>

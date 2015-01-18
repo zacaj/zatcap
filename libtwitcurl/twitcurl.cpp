@@ -374,7 +374,8 @@ std::string twitCurl::statusDestroyById( std::string& statusId )
                                twitCurlDefaults::TWITCURL_EXTENSIONFORMATS[m_eApiFormatType];
 
         /* Perform DELETE */
-        retVal = performDelete( buildUrl );
+		retVal = performPost(buildUrl, twitCurlDefaults::TWITCURL_TEXTSTRING +
+			urlencode(std::string("dummy")));
     }
     return retVal;
 }
